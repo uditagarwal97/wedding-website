@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Invitation | Udit &amp; Gunjan</title>
+  <meta name="description" content="Join us in celebrating the wedding of Udit Agarwal and Gunjan Garg. Save the date, view event schedules, and explore our beautiful journey.">
+  
+  <!-- Google Fonts: Great Vibes, Monsieur La Doulaise, Pinyon Script & Regal Serif -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Italianno&family=Monsieur+La+Doulaise&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons for UI & Map pin icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Fullscreen Canvas for Confetti & Particles -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Responsive SVG Heart ClipPath Definition -->
+  <svg width="0" height="0" style="position: absolute; pointer-events: none;">
+    <defs>
+      <clipPath id="heartClip" clipPathUnits="objectBoundingBox">
+        <path d="M 0.5, 0.95 C 0.05, 0.62 0, 0.32 0.18, 0.11 C 0.34, -0.04 0.47, 0.08 0.5, 0.2 C 0.53, 0.08 0.66, -0.04 0.82, 0.11 C 1, 0.32 0.95, 0.62 0.5, 0.95 Z" />
+      </clipPath>
+    </defs>
+  </svg>
+
+  <!-- 1. LANDING SCREEN & WAX SEAL STAGE CURTAINS CONTAINER -->
+  <section id="landingScreen" class="landing-screen">
+    <!-- Left Stage Curtain Panel -->
+    <div class="landing-curtain landing-curtain-left" id="curtainLeft">
+      <div class="curtain-wallpaper"></div>
+      <div class="curtain-gold-trim"></div>
+    </div>
+
+    <!-- Right Stage Curtain Panel -->
+    <div class="landing-curtain landing-curtain-right" id="curtainRight">
+      <div class="curtain-wallpaper"></div>
+      <div class="curtain-gold-trim"></div>
+    </div>
+
+    <div class="floating-glitter-container" id="landingGlitter"></div>
+
+    <div class="landing-content" id="landingContent">
+      <p class="family-invite-text">
+        Together with their families
+      </p>
+
+      <h1 class="couple-hero-title">
+        <span class="name-groom">Udit</span>
+        <span class="ampersand">&amp;</span>
+        <span class="name-bride">Gunjan</span>
+      </h1>
+
+      <p class="landing-subquote">
+        invite you to share in the joy of their wedding celebration
+      </p>
+
+      <div class="seal-container">
+        <div class="tap-banner" id="tapBanner">
+          TAP WAX SEAL TO UNWRAP
+        </div>
+
+        <!-- Realistic 3D Photo Wax Seal Button -->
+        <button id="waxSealBtn" class="wax-seal" aria-label="Tap Wax Seal to Open Invitation">
+          <div class="seal-lens-flare" id="sealLensFlare"></div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN INVITATION CONTENT (Revealed after Seal Tap) -->
+  <main id="mainInvitation" class="main-invitation hidden">
+
+    <!-- FLOATING AUDIO CONTROLLER -->
+    <div class="audio-controller-wrapper">
+      <button id="audioToggleBtn" class="audio-toggle-btn" aria-label="Toggle Romantic Music">
+        <div class="sound-waves">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <i class="fa-solid fa-music music-icon"></i>
+      </button>
+      <div class="audio-tooltip" id="audioTooltip">PLAY MUSIC</div>
+    </div>
+
+    <!-- 2. FORMAL ANNOUNCEMENT CARD -->
+    <section id="announcement" class="announcement-section">
+      <div class="parchment-card reveal-on-scroll">
+        <div class="gold-corner top-left"></div>
+        <div class="gold-corner top-right"></div>
+        <div class="gold-corner bottom-left"></div>
+        <div class="gold-corner bottom-right"></div>
+
+        <div class="blessings-header">
+          <div class="om-symbol">꧁ ✦ ꧂</div>
+          <p class="blessings-text">"With the blessings of the Almighty &amp; our respected elders..."</p>
+        </div>
+
+        <div class="couple-announcement-names">
+          <div class="lineage-column groom-column">
+            <h2 class="name-display">Udit</h2>
+            <div class="lineage-details">
+              <p class="parent-line">Son of <strong>Mr. &amp; Mrs. Agarwal</strong></p>
+              <p class="grandparent-line">Grandson of Respected Elders</p>
+            </div>
+          </div>
+
+          <div class="ampersand-divider">
+            <span class="ornate-amp">&amp;</span>
+          </div>
+
+          <div class="lineage-column bride-column">
+            <h2 class="name-display">Gunjan</h2>
+            <div class="lineage-details">
+              <p class="parent-line">Daughter of <strong>Mr. &amp; Mrs. Garg</strong></p>
+              <p class="grandparent-line">Granddaughter of Respected Elders</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="announcement-footer-line">
+          <p class="invitation-solicitation">
+            request the pleasure of your company to share in our laughter, love, and new beginnings.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. INTERACTIVE "SAVE THE DATE" SCRATCH CARDS -->
+    <section id="saveTheDate" class="scratch-section">
+      <div class="section-header reveal-on-scroll">
+        <span class="sub-subtitle">REVEAL OUR BIG DAY</span>
+        <h2 class="section-title">SAVE THE DATE</h2>
+        <p class="section-instruction">Scratch to reveal our wedding date</p>
+      </div>
+
+      <div class="scratch-cards-grid">
+        <!-- Heart 1: Day -->
+        <div class="scratch-card-wrapper reveal-on-scroll delay-1" id="scratchCard1">
+          <div class="scratch-card-bg">
+            <span class="scratch-label">DAY</span>
+            <span class="scratch-value" id="valDay">11</span>
+          </div>
+          <canvas id="canvasDay" class="scratch-canvas" width="220" height="220"></canvas>
+        </div>
+
+        <!-- Heart 2: Month -->
+        <div class="scratch-card-wrapper reveal-on-scroll delay-2" id="scratchCard2">
+          <div class="scratch-card-bg">
+            <span class="scratch-label">MONTH</span>
+            <span class="scratch-value" id="valMonth">DEC</span>
+          </div>
+          <canvas id="canvasMonth" class="scratch-canvas" width="220" height="220"></canvas>
+        </div>
+
+        <!-- Heart 3: Year -->
+        <div class="scratch-card-wrapper reveal-on-scroll delay-3" id="scratchCard3">
+          <div class="scratch-card-bg">
+            <span class="scratch-label">YEAR</span>
+            <span class="scratch-value" id="valYear">2026</span>
+          </div>
+          <canvas id="canvasYear" class="scratch-canvas" width="220" height="220"></canvas>
+        </div>
+      </div>
+
+      <div id="scratchCompletionMsg" class="scratch-completion-msg hidden">
+        We request the honor of your presence on <strong>December 11, 2026</strong>
+      </div>
+    </section>
+
+    <!-- 4. COUNTDOWN TIMER & ANIMATED PHOTO CAROUSEL -->
+    <section id="countdownCarousel" class="countdown-carousel-section">
+      
+      <!-- Countdown Ticker -->
+      <div class="countdown-container reveal-on-scroll">
+        <p class="journey-header">The start of a beautiful journey...</p>
+        <div class="countdown-grid">
+          <div class="time-box">
+            <span id="timerDays" class="time-num">00</span>
+            <span class="time-label">DAYS</span>
+          </div>
+          <div class="time-colon">:</div>
+          <div class="time-box">
+            <span id="timerHours" class="time-num">00</span>
+            <span class="time-label">HOURS</span>
+          </div>
+          <div class="time-colon">:</div>
+          <div class="time-box">
+            <span id="timerMins" class="time-num">00</span>
+            <span class="time-label">MINUTES</span>
+          </div>
+          <div class="time-colon">:</div>
+          <div class="time-box">
+            <span id="timerSecs" class="time-num">00</span>
+            <span class="time-label">SECONDS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Illustrated Photo Carousel -->
+      <div class="carousel-wrapper reveal-on-scroll">
+        <div class="section-header light">
+          <span class="sub-subtitle">OUR BEAUTIFUL MOMENTS</span>
+          <h2 class="section-title">A GLIMPSE OF US</h2>
+        </div>
+
+        <div class="carousel-container">
+          <button id="carouselPrev" class="carousel-nav-btn prev-btn" aria-label="Previous Slide">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+
+          <div class="carousel-track-container">
+            <div class="carousel-track" id="carouselTrack">
+
+              <!-- Slide 1 -->
+              <div class="carousel-slide active">
+                <div class="photo-frame">
+                  <img src="assets/couple1.png" alt="Udit &amp; Gunjan Golden Moment" class="carousel-img">
+                  <div class="photo-caption">
+                    <h3>The Beginning of Forever</h3>
+                    <p>When two souls meet under sunset skies</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 2 -->
+              <div class="carousel-slide">
+                <div class="photo-frame">
+                  <img src="assets/couple2.png" alt="Udit &amp; Gunjan with Pet" class="carousel-img">
+                  <div class="photo-caption">
+                    <h3>Cozy Moments &amp; Puppy Love</h3>
+                    <p>Our little family complete with lazy Sunday snuggles</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 3 -->
+              <div class="carousel-slide">
+                <div class="photo-frame">
+                  <img src="assets/couple3.png" alt="Udit &amp; Gunjan Dancing under Stars" class="carousel-img">
+                  <div class="photo-caption">
+                    <h3>Dancing Under the Stars</h3>
+                    <p>Lost in the melody of our favorite song</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <button id="carouselNext" class="carousel-nav-btn next-btn" aria-label="Next Slide">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <!-- Carousel Dots -->
+        <div class="carousel-dots" id="carouselDots">
+          <span class="dot active" data-index="0"></span>
+          <span class="dot" data-index="1"></span>
+          <span class="dot" data-index="2"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. EVENT SCHEDULE & CEREMONY CARDS -->
+    <section id="events" class="events-section">
+      <div class="section-header reveal-on-scroll">
+        <span class="sub-subtitle">WEDDING ITINERARY</span>
+        <h2 class="section-title">EVENTS &amp; CELEBRATIONS</h2>
+        <p class="section-instruction">Join us across three days of love, music, and tradition</p>
+      </div>
+
+      <div class="events-grid">
+        
+        <!-- Sangeet Card -->
+        <div class="event-card reveal-on-scroll delay-1">
+          <div class="event-bg-image" style="background-image: url('assets/sangeet.png');">
+            <div class="event-overlay"></div>
+          </div>
+          <div class="event-card-content">
+            <div class="event-badge">NIGHT OF MUSIC &amp; DANCE</div>
+            <h3 class="event-name">Sangeet &amp; Ring Ceremony</h3>
+            <div class="event-meta">
+              <div class="meta-item"><i class="fa-solid fa-calendar-day"></i> Thursday, December 10, 2026</div>
+              <div class="meta-item"><i class="fa-solid fa-clock"></i> 8:00 PM Onwards</div>
+              <div class="meta-item"><i class="fa-solid fa-location-dot"></i> Crystal Lawns, Palasa Hotel, Udaipur</div>
+            </div>
+            <p class="event-desc">An evening of glittering performances, energetic dhol beats, delicious cocktails, and endless dancing under string lights.</p>
+            <a href="https://maps.app.goo.gl/DWSVJpDQqgPCErpN6" target="_blank" rel="noopener" class="map-cta-btn">
+              <i class="fa-solid fa-map-location-dot"></i> VIEW ON MAPS
+            </a>
+          </div>
+        </div>
+
+        <!-- Wedding Ceremony Card -->
+        <div class="event-card featured-event reveal-on-scroll delay-2">
+          <div class="event-bg-image" style="background-image: url('assets/wedding.png');">
+            <div class="event-overlay"></div>
+          </div>
+          <div class="event-card-content">
+            <div class="event-badge gold">THE MAIN CEREMONY</div>
+            <h3 class="event-name">Pheras &amp; Royal Mandap</h3>
+            <div class="event-meta">
+              <div class="meta-item"><i class="fa-solid fa-calendar-day"></i> Friday, December 11, 2026</div>
+              <div class="meta-item"><i class="fa-solid fa-clock"></i> 11:00 AM (Baraat &amp; Phere)</div>
+              <div class="meta-item"><i class="fa-solid fa-location-dot"></i> Royal Mandap, Palasa Hotel, Udaipur</div>
+            </div>
+            <p class="event-desc">The sacred vows around the holy fire beside the serene pools and regal architecture of Palasa Hotel.</p>
+            <a href="https://maps.app.goo.gl/DWSVJpDQqgPCErpN6" target="_blank" rel="noopener" class="map-cta-btn highlight">
+              <i class="fa-solid fa-map-location-dot"></i> VIEW ON MAPS
+            </a>
+          </div>
+        </div>
+
+        <!-- Reception Card -->
+        <div class="event-card reveal-on-scroll delay-3">
+          <div class="event-bg-image" style="background-image: url('assets/reception.png');">
+            <div class="event-overlay"></div>
+          </div>
+          <div class="event-card-content">
+            <div class="event-badge">GRAND BALLROOM</div>
+            <h3 class="event-name">Gala Reception</h3>
+            <div class="event-meta">
+              <div class="meta-item"><i class="fa-solid fa-calendar-day"></i> Saturday, December 12, 2026</div>
+              <div class="meta-item"><i class="fa-solid fa-clock"></i> 7:00 PM Onwards</div>
+              <div class="meta-item"><i class="fa-solid fa-location-dot"></i> Grand Ballroom, Palasa Hotel, Udaipur</div>
+            </div>
+            <p class="event-desc">Dress to impress! Join us for a royal formal banquet, champagne toasts, cake cutting, and celebratory dining.</p>
+            <a href="https://maps.app.goo.gl/DWSVJpDQqgPCErpN6" target="_blank" rel="noopener" class="map-cta-btn">
+              <i class="fa-solid fa-map-location-dot"></i> VIEW ON MAPS
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 6. VENUE LOCATION & EMBEDDED GOOGLE MAP SECTION -->
+    <section id="venue" class="venue-section">
+      <div class="section-header reveal-on-scroll">
+        <span class="sub-subtitle">THE WEDDING VENUE</span>
+        <h2 class="section-title">PALASA HOTEL &amp; RESORT</h2>
+        <p class="section-instruction">Udaipur, Rajasthan • www.palasahotel.com</p>
+      </div>
+
+      <div class="venue-container reveal-on-scroll">
+        <!-- Venue Information Card -->
+        <div class="venue-info-card">
+          <h3 class="venue-card-title">Palasa Hotel &amp; Resort</h3>
+          <p class="venue-address"><i class="fa-solid fa-location-dot"></i> Badi Hawala Road, Near Shilpgram, Udaipur, Rajasthan 313001</p>
+          <p class="venue-website"><i class="fa-solid fa-globe"></i> <a href="https://www.palasahotel.com/" target="_blank" rel="noopener">www.palasahotel.com</a></p>
+          <div class="venue-btn-group">
+            <a href="https://maps.app.goo.gl/DWSVJpDQqgPCErpN6" target="_blank" rel="noopener" class="map-cta-btn highlight">
+              <i class="fa-solid fa-map-location-dot"></i> OPEN IN GOOGLE MAPS
+            </a>
+            <a href="https://www.palasahotel.com/" target="_blank" rel="noopener" class="map-cta-btn">
+              <i class="fa-solid fa-hotel"></i> VISIT HOTEL WEBSITE
+            </a>
+          </div>
+        </div>
+
+        <!-- Embedded Interactive Google Map -->
+        <div class="google-map-wrapper">
+          <iframe 
+            title="Palasa Hotel &amp; Resort Location Map"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3473.5048945333624!2d77.72555337592574!3d29.472464545443643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390c1be948f1964d%3A0xd6584e6d82ee16ee!2sPalasa%20Hotel%20%26%20Resort!5e0!3m2!1sen!2sca!4v1784603028729!5m2!1sen!2sca" 
+            width="100%" 
+            height="380" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="strict-origin-when-cross-origin">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. CLOSING FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-ornament">꧁ ✦ ꧂</div>
+      <h3 class="footer-couple">Udit &amp; Gunjan</h3>
+      <p class="footer-date">December 11, 2026 • Palasa Hotel, Udaipur, Rajasthan</p>
+      <div class="footer-divider"></div>
+      <p class="footer-credit">With love &amp; gratitude to our family and friends</p>
+    </footer>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
