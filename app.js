@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 3. WEB AUDIO ROMANTIC MUSIC SYNTHESIZER & CONTROLLER
+  // 3. ROYAL ACOUSTIC INSTRUMENTAL MUSIC SYNTHESIZER & CONTROLLER
   // =========================================================================
   const audioToggleBtn = document.getElementById('audioToggleBtn');
   const audioTooltip = document.getElementById('audioTooltip');
@@ -104,6 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let audioCtx = null;
   let isPlayingAudio = false;
   let synthInterval = null;
+  let melodyStep = 0;
 
   function startRomanticAudio() {
     if (isPlayingAudio) return;
@@ -122,49 +123,90 @@ document.addEventListener('DOMContentLoaded', () => {
         audioToggleBtn.classList.add('playing');
         audioToggleBtn.classList.remove('muted');
       }
-      if (audioTooltip) audioTooltip.textContent = '🔊 Pause Music';
+      if (audioTooltip) audioTooltip.textContent = 'PAUSE MUSIC';
 
-      // Play soft ambient romantic synth chords loop
-      const chords = [
-        [261.63, 329.63, 392.00, 493.88], // Cmaj7
-        [220.00, 261.63, 329.63, 392.00], // Am7
-        [174.61, 220.00, 261.63, 329.63], // Fmaj7
-        [196.00, 246.94, 293.66, 349.23]  // G7
+      // Royal Indian Flute & Harp Acoustic Instrumental Raga Melody
+      const fluteMelody = [
+        { freq: 261.63, duration: 1.3 }, // Sa (C4)
+        { freq: 329.63, duration: 1.0 }, // Ga (E4)
+        { freq: 392.00, duration: 1.2 }, // Pa (G4)
+        { freq: 493.88, duration: 1.4 }, // Ni (B4)
+        { freq: 523.25, duration: 1.6 }, // High Sa (C5)
+        { freq: 440.00, duration: 1.1 }, // Dha (A4)
+        { freq: 392.00, duration: 1.3 }, // Pa (G4)
+        { freq: 329.63, duration: 1.4 }, // Ga (E4)
+        { freq: 293.66, duration: 1.2 }, // Re (D4)
+        { freq: 261.63, duration: 1.8 }  // Sa (C4)
       ];
 
-      let chordIndex = 0;
+      const harpChords = [
+        [130.81, 261.63, 329.63, 392.00], // C Drone
+        [174.61, 261.63, 329.63, 440.00], // F Drone
+        [196.00, 246.94, 293.66, 392.00]  // G Drone
+      ];
 
-      function playChord() {
+      function playInstrumentalPhrase() {
         if (!isPlayingAudio) return;
 
-        const currentNotes = chords[chordIndex];
-        chordIndex = (chordIndex + 1) % chords.length;
+        const note = fluteMelody[melodyStep % fluteMelody.length];
+        const chord = harpChords[Math.floor(melodyStep / 3) % harpChords.length];
+        melodyStep++;
 
-        currentNotes.forEach((freq, i) => {
-          const osc = audioCtx.createOscillator();
-          const gain = audioCtx.createGain();
+        // 1. Acoustic Wooden Bansuri Flute (Sine + Lowpass Filter + 5.2Hz Vibrato)
+        const fluteOsc = audioCtx.createOscillator();
+        const fluteGain = audioCtx.createGain();
+        const filter = audioCtx.createBiquadFilter();
+        const vibrato = audioCtx.createOscillator();
+        const vibratoGain = audioCtx.createGain();
 
-          osc.type = 'triangle';
-          osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        fluteOsc.type = 'sine';
+        fluteOsc.frequency.setValueAtTime(note.freq, audioCtx.currentTime);
 
-          // Soft attack and decay envelope
-          gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-          gain.gain.linearRampToValueAtTime(0.04, audioCtx.currentTime + 1.2);
-          gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 3.8);
+        // Gentle 5.2Hz Vibrato for authentic wooden flute breath feel
+        vibrato.frequency.setValueAtTime(5.2, audioCtx.currentTime);
+        vibratoGain.gain.setValueAtTime(note.freq * 0.014, audioCtx.currentTime);
+        vibrato.connect(fluteOsc.frequency);
 
-          osc.connect(gain);
-          gain.connect(audioCtx.destination);
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(1350, audioCtx.currentTime);
 
-          osc.start(audioCtx.currentTime + (i * 0.1));
-          osc.stop(audioCtx.currentTime + 4.0);
+        fluteGain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+        fluteGain.gain.linearRampToValueAtTime(0.045, audioCtx.currentTime + 0.25);
+        fluteGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + note.duration);
+
+        fluteOsc.connect(filter);
+        filter.connect(fluteGain);
+        fluteGain.connect(audioCtx.destination);
+
+        vibrato.start(audioCtx.currentTime);
+        fluteOsc.start(audioCtx.currentTime);
+        vibrato.stop(audioCtx.currentTime + note.duration);
+        fluteOsc.stop(audioCtx.currentTime + note.duration);
+
+        // 2. Plucked Acoustic Harp / Sitar String Accents
+        chord.forEach((freq, idx) => {
+          const harpOsc = audioCtx.createOscillator();
+          const harpGain = audioCtx.createGain();
+
+          harpOsc.type = 'triangle';
+          harpOsc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+          harpGain.gain.setValueAtTime(0.018, audioCtx.currentTime + (idx * 0.15));
+          harpGain.gain.exponentialRampToValueAtTime(0.0005, audioCtx.currentTime + (idx * 0.15) + 1.2);
+
+          harpOsc.connect(harpGain);
+          harpGain.connect(audioCtx.destination);
+
+          harpOsc.start(audioCtx.currentTime + (idx * 0.15));
+          harpOsc.stop(audioCtx.currentTime + (idx * 0.15) + 1.3);
         });
       }
 
-      playChord();
-      synthInterval = setInterval(playChord, 4000);
+      playInstrumentalPhrase();
+      synthInterval = setInterval(playInstrumentalPhrase, 1400);
 
     } catch (err) {
-      console.log('Audio playback prevented or unsupported:', err);
+      console.log('Audio playback error:', err);
     }
   }
 
@@ -174,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
       audioToggleBtn.classList.remove('playing');
       audioToggleBtn.classList.add('muted');
     }
-    if (audioTooltip) audioTooltip.textContent = '🎵 Play Music';
+    if (audioTooltip) audioTooltip.textContent = 'PLAY MUSIC';
 
     if (synthInterval) clearInterval(synthInterval);
     if (audioCtx && audioCtx.state === 'running') {
