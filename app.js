@@ -58,8 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (landingScreen) landingScreen.classList.add('curtains-open');
     startRomanticAudio();
 
-    // Launch falling marigold flowers shower immediately as curtains part open
-    launchMarigoldShower();
+
 
     // 4. Remove landing screen overlay after curtains fully open outward
     setTimeout(() => {
@@ -586,42 +585,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // 2. Render Falling Marigold Flowers (Floats all the way to the bottom of the section)
-    marigoldPetals.forEach(p => {
-      p.y += p.speedY;
-      p.swing += p.swingSpeed;
-      p.x += Math.sin(p.swing) * 1.5 + p.speedX;
-      p.rotation += p.rSpeed;
 
-      // Smooth fade out only after expired or reaching bottom
-      if (isMarigoldsExpired || p.y > window.innerHeight * 0.85) {
-        p.opacity -= 0.008;
-      }
-
-      // Interactive Wind Push on Cursor Proximity
-      const dx = p.x - mousePos.x;
-      const dy = p.y - mousePos.y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < 130) {
-        const force = (130 - dist) / 130;
-        const angle = Math.atan2(dy, dx);
-        p.x += Math.cos(angle) * force * 5;
-        p.y += Math.sin(angle) * force * 5;
-      }
-
-      // Recycle marigolds at top while shower timer is active
-      if (p.y > window.innerHeight + 40) {
-        if (!isMarigoldsExpired) {
-          p.y = Math.random() * -120 - 20;
-          p.x = Math.random() * window.innerWidth;
-        }
-      }
-
-      if (p.opacity > 0) {
-        active++;
-        drawMarigoldFlower(cCtx, p.x, p.y, p.size, p.rotation, p.theme, p.opacity);
-      }
-    });
 
     // 3. Render Confetti
     confettiParticles.forEach(p => {
@@ -663,82 +627,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // =========================================================================
-  // FALLING MARIGOLD FLOWERS LAUNCHER (2 Second Duration)
-  // =========================================================================
-  function launchMarigoldShower() {
-    if (!confettiCanvas || !cCtx) return;
 
-    isMarigoldsExpired = false;
-    marigoldPetals = [];
-    const petalCount = 28; // Rich festive count
-    const themes = ['orange', 'yellow'];
-
-    for (let i = 0; i < petalCount; i++) {
-      marigoldPetals.push({
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * -300 - 20,
-        speedY: Math.random() * 2.0 + 1.8,
-        speedX: Math.random() * 1.0 - 0.5,
-        swing: Math.random() * Math.PI * 2,
-        swingSpeed: Math.random() * 0.02 + 0.01,
-        size: Math.random() * 16 + 18, // Generous fluffy size
-        theme: themes[Math.floor(Math.random() * themes.length)],
-        rotation: Math.random() * 360,
-        rSpeed: (Math.random() - 0.5) * 2.5,
-        opacity: 1
-      });
-    }
-
-    // Stop marigold recycling and fade out after 6.5 seconds (allowing petals to reach section end)
-    setTimeout(() => {
-      isMarigoldsExpired = true;
-    }, 6500);
-
-    if (!confettiAnimationId) animateCanvasParticles();
-  }
-
-  // Authentic Organic Marigold Flower Geometry
-  function drawMarigoldFlower(ctx, x, y, size, rotation, themeColor, opacity) {
-    ctx.save();
-    ctx.translate(x, y);
-    ctx.rotate((rotation * Math.PI) / 180);
-    ctx.globalAlpha = Math.max(0, opacity);
-
-    let colors;
-    if (themeColor === 'orange') {
-      colors = ['#B71C1C', '#D84315', '#E65100', '#FF9800', '#FFB300'];
-    } else {
-      colors = ['#E65100', '#FF8F00', '#FFC107', '#FFD54F', '#FFE082'];
-    }
-
-    // 5 Concentric layers of fluffy scalloped petal structures
-    for (let layer = 0; layer < 5; layer++) {
-      const layerSize = size * (1 - layer * 0.16);
-      const petalCount = 8 + layer * 4;
-      const petalRadius = layerSize * 0.35;
-
-      ctx.fillStyle = colors[Math.min(layer, colors.length - 1)];
-
-      for (let p = 0; p < petalCount; p++) {
-        const angle = (p / petalCount) * Math.PI * 2 + (layer * 0.5);
-        const px = Math.cos(angle) * (layerSize * 0.52);
-        const py = Math.sin(angle) * (layerSize * 0.52);
-
-        ctx.beginPath();
-        ctx.arc(px, py, petalRadius, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    // Bright golden central core
-    ctx.fillStyle = '#FFEE58';
-    ctx.beginPath();
-    ctx.arc(0, 0, size * 0.15, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.restore();
-  }
 
   // =========================================================================
   // --- Animation 1: 3D Parallax Mouse Tracking ---
