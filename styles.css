@@ -647,116 +647,61 @@ body {
   width: 100%;
   text-align: center;
   color: #FFFFFF;
-  margin-top: 1rem;
-}
-
-.palace-top-ornament {
-  font-size: 1.5rem;
-  letter-spacing: 0.5rem;
-  color: var(--color-gold-bright);
-  text-shadow: 0 0 10px rgba(245, 215, 127, 0.8);
-  margin-bottom: 1rem;
-}
-
-.palace-hero-names {
+  margin-top: 2rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: clamp(0.5rem, 2vw, 1.8rem);
-  flex-wrap: wrap;
-  margin-bottom: 1.5rem;
+  gap: 1.2rem;
 }
 
-.palace-hero-names .palace-name {
-  font-family: var(--font-heading);
-  font-size: clamp(2.4rem, 6vw, 4.8rem);
-  font-weight: 800;
-  letter-spacing: 0.15rem;
-  text-transform: uppercase;
-  background: linear-gradient(to bottom, #FFFFFF 0%, #FFF3D1 40%, #F5D77F 80%, #D4AF37 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.8));
-}
-
-.palace-hero-names .palace-weds {
-  font-family: var(--font-serif);
-  font-size: clamp(1.2rem, 3vw, 2rem);
-  font-style: italic;
-  color: #FFF3D1;
-  text-transform: lowercase;
-  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
-}
-
-.palace-hero-divider {
-  width: 150px;
-  height: 2px;
-  background: linear-gradient(to right, transparent, var(--color-gold-bright), transparent);
-  margin: 1rem auto;
-}
-
-.palace-hero-subtitle {
-  font-family: var(--font-heading);
-  font-size: clamp(0.85rem, 1.8vw, 1.25rem);
+.palace-families-text {
+  font-family: var(--font-sans);
+  font-size: clamp(0.72rem, 1.4vw, 0.95rem);
+  font-weight: 500;
   letter-spacing: 0.35rem;
   color: var(--color-gold-bright);
   text-transform: uppercase;
-  margin-bottom: 2rem;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
 }
 
-.palace-hero-invite-text {
-  font-family: var(--font-serif);
-  font-size: clamp(0.95rem, 2vw, 1.35rem);
-  line-height: 1.5;
-  color: #F7EFE5;
-  max-width: 700px;
-  margin: 0 auto 3rem auto;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
-}
-
-/* Lineage Cards inside Palace Screen */
-.palace-lineage-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: clamp(1rem, 3vw, 2.5rem);
-  flex-wrap: wrap;
-  width: 100%;
-}
-
-.palace-lineage-card {
-  flex: 1;
-  min-width: 250px;
-  max-width: 380px;
-  background: rgba(61, 12, 17, 0.55);
-  border: 1px solid rgba(212, 175, 55, 0.4);
-  border-radius: 15px;
-  padding: 1.8rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(212, 175, 55, 0.15);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-.palace-lineage-card h3 {
+.palace-hero-names {
   font-family: var(--font-heading);
-  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+  font-size: clamp(2.4rem, 6vw, 4.8rem);
+  font-weight: 900;
+  letter-spacing: 0.15rem;
+  text-transform: uppercase;
+  background: linear-gradient(to bottom, #FFFFFF 0%, #FFF3D1 35%, #F5D77F 70%, #D4AF37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.95));
+  margin: 0.5rem 0;
+}
+
+.palace-scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  font-family: var(--font-sans);
+  font-size: clamp(0.68rem, 1.2vw, 0.85rem);
+  letter-spacing: 0.25rem;
+  color: #FFFFFF;
+  opacity: 0.85;
+  text-transform: uppercase;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.bounce-arrow {
+  font-size: 1.1rem;
   color: var(--color-gold-bright);
-  margin-bottom: 0.8rem;
-  letter-spacing: 0.1rem;
+  animation: arrowBounce 1.5s infinite alternate ease-in-out;
+  text-shadow: 0 0 8px rgba(245, 215, 127, 0.6);
 }
 
-.palace-lineage-card p {
-  font-family: var(--font-serif);
-  font-size: clamp(0.85rem, 1.4vw, 1.05rem);
-  color: #EBD9C3;
-  margin-bottom: 0.4rem;
-}
-
-.palace-lineage-card p.grandparent {
-  font-size: clamp(0.78rem, 1.2vw, 0.94rem);
-  color: #B19B86;
-  font-style: italic;
+@keyframes arrowBounce {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(8px); }
 }
 
 /* Vector Silhouette positioning at bottom */
