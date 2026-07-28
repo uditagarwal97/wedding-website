@@ -84,6 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let isYtReady = false;
   const JASHN_START_SEC = 13; // Starts right at 0:13
   const JASHN_SPEED = 1.0;    // Original 1.0x playback speed
+  const JASHN_VOLUME = 50;    // 50% volume level
 
   // YouTube IFrame API Callback
   window.onYouTubeIframeAPIReady = function() {
@@ -104,12 +105,16 @@ document.addEventListener('DOMContentLoaded', () => {
         events: {
           onReady: () => {
             isYtReady = true;
+            try { ytPlayer.setVolume(JASHN_VOLUME); } catch(e){}
             console.log('YouTube Jashn-E-Bahaaraa Player Ready');
           },
           onStateChange: (event) => {
             if (event.data === YT.PlayerState.PLAYING) {
               isPlayingAudio = true;
-              try { ytPlayer.setPlaybackRate(JASHN_SPEED); } catch(e){}
+              try {
+                ytPlayer.setPlaybackRate(JASHN_SPEED);
+                ytPlayer.setVolume(JASHN_VOLUME);
+              } catch(e){}
               if (audioToggleBtn) {
                 audioToggleBtn.classList.add('playing');
                 audioToggleBtn.classList.remove('muted');
@@ -138,6 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         ytPlayer.seekTo(JASHN_START_SEC, true);
         ytPlayer.setPlaybackRate(JASHN_SPEED);
+        ytPlayer.setVolume(JASHN_VOLUME);
         ytPlayer.playVideo();
         isPlayingAudio = true;
         if (audioToggleBtn) {
@@ -157,6 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
           ytPlayer.seekTo(JASHN_START_SEC, true);
           ytPlayer.setPlaybackRate(JASHN_SPEED);
+          ytPlayer.setVolume(JASHN_VOLUME);
           ytPlayer.playVideo();
           isPlayingAudio = true;
           if (audioToggleBtn) {

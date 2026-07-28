@@ -552,7 +552,7 @@ body {
 }
 
 /* ==========================================================================
-   2. FORMAL ANNOUNCEMENT SCROLL (ROYAL FARMAN)
+   2. FORMAL ANNOUNCEMENT SCROLL (HORIZONTAL ROYAL FARMAN)
    ========================================================================== */
 .announcement-section {
   padding: 5rem 1.5rem;
@@ -566,63 +566,66 @@ body {
   overflow: hidden;
 }
 
-/* Royal Farman Scroll Container */
-.royal-scroll-container {
+/* Horizontal Royal Farman Scroll Container */
+.royal-scroll-horizontal {
   position: relative;
-  max-width: 820px;
-  width: 94%;
+  max-width: 960px;
+  width: 95%;
   margin: 0 auto;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
   filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.75));
 }
 
-/* Top & Bottom Roller Rods & Handles */
-.scroll-roller {
+/* Vertical Roller Rods (Left & Right Ends) */
+.scroll-roller-v {
   position: relative;
-  width: 104%;
-  height: 28px;
+  width: 28px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 5;
+  flex-shrink: 0;
 }
 
-.scroll-rod {
-  width: 92%;
-  height: 22px;
-  background: linear-gradient(180deg, #FFE082 0%, #D4AF37 40%, #8A6D1B 80%, #54410E 100%);
+.scroll-rod-v {
+  width: 22px;
+  height: 104%;
+  background: linear-gradient(90deg, #FFE082 0%, #D4AF37 40%, #8A6D1B 80%, #54410E 100%);
   border-radius: 11px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.7);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6), inset 2px 0 4px rgba(255, 255, 255, 0.7);
 }
 
-.scroll-handle {
+.scroll-handle-v {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 24px;
-  height: 38px;
-  background: linear-gradient(180deg, #FFFFFF 0%, #F5D77F 35%, #D4AF37 70%, #6A5112 100%);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 38px;
+  height: 24px;
+  background: linear-gradient(90deg, #FFFFFF 0%, #F5D77F 35%, #D4AF37 70%, #6A5112 100%);
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
 }
 
-.scroll-handle.handle-left {
-  left: 0;
+.scroll-handle-v.handle-top {
+  top: -12px;
   border-top-left-radius: 14px;
-  border-bottom-left-radius: 14px;
+  border-top-right-radius: 14px;
 }
 
-.scroll-handle.handle-right {
-  right: 0;
-  border-top-right-radius: 14px;
+.scroll-handle-v.handle-bottom {
+  bottom: -12px;
+  border-bottom-left-radius: 14px;
   border-bottom-right-radius: 14px;
 }
 
-.scroll-tassel {
+/* Swaying Tassels at Bottom of Right Rod */
+.scroll-tassel-v {
   position: absolute;
-  bottom: -22px;
+  bottom: -32px;
   width: 14px;
   height: 32px;
   background: linear-gradient(180deg, #D4AF37 0%, #B71C1C 45%, #880E4F 100%);
@@ -631,52 +634,54 @@ body {
   animation: tasselSway 3s infinite ease-in-out;
 }
 
-.scroll-tassel.tassel-left { left: 6%; }
-.scroll-tassel.tassel-right { right: 6%; animation-delay: 1.5s; }
+.scroll-tassel-v.tassel-bottom-left { left: -6px; }
+.scroll-tassel-v.tassel-bottom-right { right: -6px; animation-delay: 1.5s; }
 
 @keyframes tasselSway {
   0%, 100% { transform: rotate(0deg); }
   50% { transform: rotate(5deg); }
 }
 
-/* Scroll Body (Aged Parchment Canvas + Roll Shadows) */
-.royal-scroll-body {
+/* Horizontal Scroll Body (Unrolled Left-to-Right) */
+.royal-scroll-body-horizontal {
   position: relative;
-  width: 96%;
-  padding: 3.8rem 2.5rem;
+  flex: 1;
+  padding: 3.5rem 2.8rem;
   background-color: #F7EFE2;
   background-image: 
-    linear-gradient(to bottom, 
-      rgba(40, 20, 5, 0.3) 0%, 
-      transparent 5%, 
-      transparent 95%, 
-      rgba(40, 20, 5, 0.3) 100%
+    linear-gradient(to right, 
+      rgba(40, 20, 5, 0.35) 0%, 
+      transparent 6%, 
+      transparent 94%, 
+      rgba(40, 20, 5, 0.35) 100%
     ),
     url('assets/parchment_bg.png');
   background-size: 100% 100%, cover;
   background-position: center;
-  border-left: 2px solid #D4AF37;
-  border-right: 2px solid #D4AF37;
-  box-shadow: inset 0 15px 25px rgba(40, 20, 5, 0.2), inset 0 -15px 25px rgba(40, 20, 5, 0.2);
+  border-top: 2px solid #D4AF37;
+  border-bottom: 2px solid #D4AF37;
+  box-shadow: inset 15px 0 25px rgba(40, 20, 5, 0.22), inset -15px 0 25px rgba(40, 20, 5, 0.22);
   color: var(--color-maroon-dark);
   text-align: center;
   z-index: 2;
 }
 
-.scroll-side-border {
+/* Ornate Top & Bottom Filigree Lace Borders for Horizontal Scroll */
+.scroll-top-border,
+.scroll-bottom-border {
   position: absolute;
-  top: 0;
-  width: 18px;
-  height: 100%;
-  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAyMCA0MCcgd2lkdGg9JzIwJyBoZWlnaHQ9JzQwJz48cGF0aCBkPSdNMTAgMCB2NDAgTTUgMCB2NDAgTTE1IDAgdjQwJyBzdHJva2U9JyNENEFGMzcnIHN0cm9rZS13aWR0aD0nMC43NScgZmlsbD0nbm9uZScvPjxjaXJjbGUgY3g9JzEwJyBjeT0nMjAnIHI9JzIuNScgZmlsbD0nI0Q0QUYzNycvPjwvc3ZnPg==");
-  background-repeat: repeat-y;
-  background-size: 18px 36px;
+  left: 0;
+  width: 100%;
+  height: 18px;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA0MCAyMCcgd2lkdGg9JzQwJyBoZWlnaHQ9JzIwJz48cGF0aCBkPSdNMCAxMCBoNDAgTTAgNSBoNDAgTTAgMTUgaDQwJyBzdHJva2U9JyNENEFGMzcnIHN0cm9rZS13aWR0aD0nMC43NScgZmlsbD0nbm9uZScvPjxjaXJjbGUgY3g9JzEwJyBjeT0nMTAnIHI9JzIuNScgZmlsbD0nI0Q0QUYzNycvPjwvc3ZnPg==");
+  background-repeat: repeat-x;
+  background-size: 36px 18px;
   opacity: 0.65;
   pointer-events: none;
 }
 
-.scroll-side-border.border-left { left: 8px; }
-.scroll-side-border.border-right { right: 8px; transform: scaleX(-1); }
+.scroll-top-border { top: 8px; }
+.scroll-bottom-border { bottom: 8px; transform: scaleY(-1); }
   text-align: center;
 }
 
