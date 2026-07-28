@@ -17,14 +17,14 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < particleCount; i++) {
       const particle = document.createElement('div');
       particle.className = 'glitter-particle';
-      
+
       const size = Math.random() * 6 + 3;
       particle.style.width = `${size}px`;
       particle.style.height = `${size}px`;
       particle.style.left = `${Math.random() * 100}%`;
       particle.style.animationDuration = `${Math.random() * 5 + 6}s`;
       particle.style.animationDelay = `${Math.random() * 6}s`;
-      
+
       container.appendChild(particle);
     }
   }
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. Remove landing screen overlay after curtains fully open outward
     setTimeout(() => {
       if (landingScreen) landingScreen.style.display = 'none';
-      
+
       const announcement = document.getElementById('announcement');
       if (announcement) announcement.scrollIntoView({ behavior: 'smooth' });
     }, 1500);
@@ -84,10 +84,10 @@ document.addEventListener('DOMContentLoaded', () => {
   let isYtReady = false;
   const JASHN_START_SEC = 13; // Starts right at 0:13
   const JASHN_SPEED = 1.0;    // Original 1.0x playback speed
-  const JASHN_VOLUME = 25;    // 25% volume level (50% softer)
+  const JASHN_VOLUME = 10;    // 10% volume level
 
   // YouTube IFrame API Callback
-  window.onYouTubeIframeAPIReady = function() {
+  window.onYouTubeIframeAPIReady = function () {
     try {
       ytPlayer = new YT.Player('ytPlayer', {
         height: '1',
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
         events: {
           onReady: () => {
             isYtReady = true;
-            try { ytPlayer.setVolume(JASHN_VOLUME); } catch(e){}
+            try { ytPlayer.setVolume(JASHN_VOLUME); } catch (e) { }
             console.log('YouTube Jashn-E-Bahaaraa Player Ready');
           },
           onStateChange: (event) => {
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
               try {
                 ytPlayer.setPlaybackRate(JASHN_SPEED);
                 ytPlayer.setVolume(JASHN_VOLUME);
-              } catch(e){}
+              } catch (e) { }
               if (audioToggleBtn) {
                 audioToggleBtn.classList.add('playing');
                 audioToggleBtn.classList.remove('muted');
@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
             audioToggleBtn.classList.remove('muted');
           }
           if (audioTooltip) audioTooltip.textContent = 'PAUSE MUSIC';
-        } catch(e){}
+        } catch (e) { }
       }
     }, 1000);
   }
@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isYtReady && ytPlayer && typeof ytPlayer.pauseVideo === 'function') {
       try {
         ytPlayer.pauseVideo();
-      } catch(e){}
+      } catch (e) { }
     }
   }
 
@@ -717,20 +717,20 @@ document.addEventListener('DOMContentLoaded', () => {
       const layerSize = size * (1 - layer * 0.16);
       const petalCount = 8 + layer * 4;
       const petalRadius = layerSize * 0.35;
-      
+
       ctx.fillStyle = colors[Math.min(layer, colors.length - 1)];
-      
+
       for (let p = 0; p < petalCount; p++) {
         const angle = (p / petalCount) * Math.PI * 2 + (layer * 0.5);
         const px = Math.cos(angle) * (layerSize * 0.52);
         const py = Math.sin(angle) * (layerSize * 0.52);
-        
+
         ctx.beginPath();
         ctx.arc(px, py, petalRadius, 0, Math.PI * 2);
         ctx.fill();
       }
     }
-    
+
     // Bright golden central core
     ctx.fillStyle = '#FFEE58';
     ctx.beginPath();
