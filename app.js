@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let isYtReady = false;
   const JASHN_START_SEC = 13; // Starts right at 0:13
   const JASHN_SPEED = 1.0;    // Original 1.0x playback speed
-  const JASHN_VOLUME = 50;    // 50% volume level
+  const JASHN_VOLUME = 25;    // 25% volume level (50% softer)
 
   // YouTube IFrame API Callback
   window.onYouTubeIframeAPIReady = function() {
