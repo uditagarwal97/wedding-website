@@ -674,6 +674,19 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach(el => observer.observe(el));
   }
 
+  // =========================================================================
+  // 8. SCROLL TO EXPLORE BUTTON
+  // =========================================================================
+  const scrollIndicator = document.querySelector('.palace-scroll-indicator');
+  if (scrollIndicator) {
+    scrollIndicator.addEventListener('click', () => {
+      const nextSection = document.getElementById('saveTheDate');
+      if (nextSection) {
+        nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
+
   initScrollObserver();
 
 });
