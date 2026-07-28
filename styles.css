@@ -623,7 +623,7 @@ body {
 /* Mobile Devices & Portrait Screens: Vertical Scroll (Extra Zoomed In & Prominent) */
 @media (max-width: 767px) {
   .announcement-section {
-    padding: 3.5rem 0;
+    padding: 2.5rem 0.5rem;
     overflow: hidden;
   }
 
@@ -632,9 +632,8 @@ body {
 
   .photo-scroll-wrapper {
     max-width: 100%;
-    width: 108%;
-    margin: 0 -4%;
-    transform: scale(1.24);
+    width: 98%;
+    transform: scale(1.15);
   }
 
   .photo-scroll-content {
@@ -643,7 +642,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 68%;
-    max-height: 78%;
+    max-height: 82%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -655,27 +654,27 @@ body {
   }
 
   .photo-scroll-content .blessings-text {
-    font-size: clamp(0.78rem, 3.0vw, 1.05rem);
+    font-size: clamp(0.78rem, 3.2vw, 1.05rem);
     line-height: 1.25;
   }
 
   .photo-scroll-content .couple-announcement-names {
-    margin: 0.4rem 0;
+    margin: 0.5rem 0;
     gap: 0.8rem;
   }
 
   .photo-scroll-content .name-display {
-    font-size: clamp(1.6rem, 6.2vw, 2.5rem);
+    font-size: clamp(1.6rem, 6.4vw, 2.6rem);
     line-height: 1.1;
     letter-spacing: 0.05rem;
   }
 
   .photo-scroll-content .parent-line {
-    font-size: clamp(0.68rem, 2.7vw, 0.92rem);
+    font-size: clamp(0.68rem, 2.8vw, 0.94rem);
   }
 
   .photo-scroll-content .grandparent-line {
-    font-size: clamp(0.58rem, 2.3vw, 0.82rem);
+    font-size: clamp(0.58rem, 2.4vw, 0.82rem);
   }
 
   .photo-scroll-content .invitation-solicitation {
