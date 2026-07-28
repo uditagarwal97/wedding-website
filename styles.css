@@ -684,13 +684,12 @@ body {
 }
 
 .palace-families-text {
-  font-family: var(--font-sans);
-  font-size: clamp(0.72rem, 1.4vw, 0.95rem);
-  font-weight: 500;
-  letter-spacing: 0.35rem;
-  color: var(--color-gold-bright);
-  text-transform: uppercase;
+  font-family: var(--font-serif);
+  font-size: clamp(0.95rem, 1.8vw, 1.3rem);
+  font-style: italic;
+  color: #FFF3D1;
   text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+  margin-top: -0.5rem;
 }
 
 .palace-hero-names {
@@ -707,14 +706,14 @@ body {
 }
 
 .announcement-catchy-msg {
-  font-family: var(--font-serif);
-  font-size: clamp(0.88rem, 1.8vw, 1.2rem);
-  font-style: italic;
-  line-height: 1.6;
-  color: #F7EFE5;
-  max-width: 600px;
-  margin: 0.5rem auto;
+  font-family: var(--font-sans);
+  font-size: clamp(0.88rem, 1.6vw, 1.15rem);
+  font-weight: 500;
+  letter-spacing: 0.15rem;
+  text-transform: uppercase;
+  color: var(--color-gold-bright);
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.85);
+  margin-top: 0.5rem;
 }
 
 .palace-scroll-indicator {
