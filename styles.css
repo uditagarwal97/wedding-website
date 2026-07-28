@@ -582,7 +582,7 @@ body {
 /* Vertical Roller Rods (Left & Right Ends) */
 .scroll-roller-v {
   position: relative;
-  width: 28px;
+  width: 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -593,33 +593,43 @@ body {
 
 .scroll-rod-v {
   width: 22px;
-  height: 104%;
-  background: linear-gradient(90deg, #FFE082 0%, #D4AF37 40%, #8A6D1B 80%, #54410E 100%);
+  height: 100%;
+  background-color: #4A2E1B;
+  background-image: 
+    linear-gradient(90deg, 
+      #1F1006 0%, 
+      #4A2E1B 25%, 
+      #7A4B29 50%, 
+      #4A2E1B 75%, 
+      #1F1006 100%
+    );
   border-radius: 11px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6), inset 2px 0 4px rgba(255, 255, 255, 0.7);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.75), inset 2px 0 5px rgba(255, 245, 184, 0.4);
 }
 
-.scroll-handle-v {
+/* Turned Wood & Brass Finials (Top & Bottom Knobs) */
+.scroll-finial {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  width: 38px;
-  height: 24px;
-  background: linear-gradient(90deg, #FFFFFF 0%, #F5D77F 35%, #D4AF37 70%, #6A5112 100%);
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  width: 48px;
+  height: 60px;
+  z-index: 6;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.7));
 }
 
-.scroll-handle-v.handle-top {
-  top: -12px;
-  border-top-left-radius: 14px;
-  border-top-right-radius: 14px;
+.scroll-finial.finial-top {
+  top: -46px;
 }
 
-.scroll-handle-v.handle-bottom {
-  bottom: -12px;
-  border-bottom-left-radius: 14px;
-  border-bottom-right-radius: 14px;
+.scroll-finial.finial-bottom {
+  bottom: -46px;
+}
+
+.scroll-finial-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 /* Swaying Tassels at Bottom of Right Rod */
