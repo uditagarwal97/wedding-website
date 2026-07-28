@@ -14,7 +14,7 @@
   <!-- FontAwesome Icons for UI & Map pin icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <link rel="stylesheet" href="styles.css?v=18.0">
+  <link rel="stylesheet" href="styles.css?v=19.0">
 </head>
 <body>
 
@@ -94,8 +94,11 @@
     <!-- 2. FORMAL ANNOUNCEMENT PARCHMENT PAPER CARD -->
     <section id="announcement" class="announcement-section">
       <div class="royal-parchment-wrapper reveal-on-scroll">
-        <!-- Realistic Indian Parchment SVG Frame with Traditional Gold/Red Borders -->
-        <img src="assets/parchment_bg.svg" alt="Royal Indian Parchment Frame" class="parchment-frame-img">
+        <!-- Responsive Indian Parchment Frame (Horizontal on wider screens, Vertical on mobile) -->
+        <picture class="parchment-frame-img">
+          <source media="(min-width: 768px)" srcset="assets/parchment_bg_horizontal.svg">
+          <img src="assets/parchment_bg.svg" alt="Royal Indian Parchment Frame">
+        </picture>
 
         <!-- Announcement Content Overlay (Centered inside the frame borders) -->
         <div class="parchment-frame-content">
@@ -395,6 +398,6 @@
   </main>
 
   <script src="https://www.youtube.com/iframe_api"></script>
-  <script src="app.js?v=18.0"></script>
+  <script src="app.js?v=19.0"></script>
 </body>
 </html>
