@@ -585,19 +585,20 @@ body {
   pointer-events: none;
 }
 
-/* Wide Screens / Laptops: Horizontal Scroll (Zoomed In & Prominent) */
+/* Wide Screens / Laptops: Horizontal Scroll (Expands Horizontally according to Device Screen Size) */
 @media (min-width: 768px) {
   .announcement-section {
-    padding: 3rem 0.5rem;
+    padding: 3.5rem 1rem;
+    overflow: hidden;
   }
 
   .scroll-img-horizontal { display: block !important; }
   .scroll-img-vertical { display: none !important; }
 
   .photo-scroll-wrapper {
-    max-width: 1140px;
+    max-width: 1280px;
     width: 98%;
-    transform: scale(1.04);
+    margin: 0 auto;
   }
 
   .photo-scroll-content {
@@ -606,7 +607,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 54%;
-    max-height: 74%;
+    max-height: 75%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -614,7 +615,33 @@ body {
     text-align: center;
     color: #3B1E08;
     z-index: 3;
-    padding: clamp(0.2rem, 1vw, 1rem) 0;
+    padding: clamp(0.2rem, 1vw, 1.2rem) 0;
+  }
+}
+
+/* Large Displays & Laptops (>= 1200px) */
+@media (min-width: 1200px) {
+  .photo-scroll-wrapper {
+    max-width: 1440px;
+    width: 98%;
+  }
+  
+  .photo-scroll-content {
+    width: 56%;
+    max-height: 76%;
+  }
+}
+
+/* Ultra-Wide Monitors (>= 1500px) */
+@media (min-width: 1500px) {
+  .photo-scroll-wrapper {
+    max-width: 1680px;
+    width: 98%;
+  }
+
+  .photo-scroll-content {
+    width: 58%;
+    max-height: 78%;
   }
 }
 
