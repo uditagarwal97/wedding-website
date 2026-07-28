@@ -114,9 +114,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: 
-    linear-gradient(135deg, rgba(2, 52, 54, 0.94) 0%, rgba(92, 6, 27, 0.92) 50%, rgba(230, 92, 0, 0.88) 100%),
-    url('assets/royal_curtains.png');
+  background-image: url('assets/royal_curtains.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -177,7 +175,6 @@ body {
   }
 }
 
-/* Floating Sky Lanterns (Kandil / Diya style) */
 .lanterns-container {
   position: absolute;
   top: 0;
@@ -187,11 +184,6 @@ body {
   pointer-events: none;
   z-index: 2;
   overflow: hidden;
-}
-
-.landing-screen.curtains-open .lanterns-container {
-  opacity: 0;
-  transition: opacity 0.5s ease;
 }
 
 .lantern {
@@ -316,12 +308,9 @@ body {
 
 .couple-hero-title .name-bride,
 .couple-hero-title .name-groom {
-  font-family: var(--font-heading);
-  font-size: clamp(2.2rem, 6.2vw, 4.4rem);
-  font-weight: 700;
-  letter-spacing: 0.18rem;
-  text-transform: uppercase;
-  line-height: 1.3;
+  font-family: 'Great Vibes', var(--font-script);
+  font-size: clamp(3.0rem, 7.5vw, 5.5rem);
+  line-height: 1.6;
   display: inline-block;
   padding: 0.5rem 0.4rem;
   background: linear-gradient(180deg, #FFFFFF 0%, #FFF3D1 35%, #F5D77F 70%, #D4AF37 100%);
@@ -630,7 +619,8 @@ body {
    2. FORMAL ANNOUNCEMENT ROYAL PARCHMENT PAPER CARD
    ========================================================================== */
 .announcement-section {
-  padding: 0.5rem;
+  position: relative;
+  padding: 2.5rem 0.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
