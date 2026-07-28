@@ -579,18 +579,16 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // 2. Render Falling Marigold Flowers (Fades out and stops after 2 seconds or scroll)
-    const isScrolledDown = window.scrollY > 350;
-
+    // 2. Render Falling Marigold Flowers (Floats all the way to the bottom of the section)
     marigoldPetals.forEach(p => {
       p.y += p.speedY;
       p.swing += p.swingSpeed;
       p.x += Math.sin(p.swing) * 1.5 + p.speedX;
       p.rotation += p.rSpeed;
 
-      // Fade out if 2 sec timer expired OR scrolled down
-      if (isScrolledDown || isMarigoldsExpired) {
-        p.opacity -= 0.025;
+      // Smooth fade out only after expired or reaching bottom
+      if (isMarigoldsExpired || p.y > window.innerHeight * 0.85) {
+        p.opacity -= 0.008;
       }
 
       // Interactive Wind Push on Cursor Proximity
@@ -604,9 +602,9 @@ document.addEventListener('DOMContentLoaded', () => {
         p.y += Math.sin(angle) * force * 5;
       }
 
-      // Recycle marigolds at top ONLY if 2 sec timer active and not scrolled down
+      // Recycle marigolds at top while shower timer is active
       if (p.y > window.innerHeight + 40) {
-        if (!isScrolledDown && !isMarigoldsExpired) {
+        if (!isMarigoldsExpired) {
           p.y = Math.random() * -120 - 20;
           p.x = Math.random() * window.innerWidth;
         }
@@ -685,10 +683,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Stop marigold recycling and fade out after 2 seconds
+    // Stop marigold recycling and fade out after 6.5 seconds (allowing petals to reach section end)
     setTimeout(() => {
       isMarigoldsExpired = true;
-    }, 2000);
+    }, 6500);
 
     if (!confettiAnimationId) animateCanvasParticles();
   }
