@@ -114,7 +114,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url('assets/royal_curtains.png');
+  background-image: url('assets/royal_curtains.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -863,7 +863,7 @@ body {
   padding: 6rem 1.5rem;
   background-image: 
     linear-gradient(rgba(253, 251, 247, 0.82), rgba(253, 251, 247, 0.82)),
-    url('assets/parchment_bg.png');
+    url('assets/parchment_bg.webp');
   background-size: cover;
   background-position: center;
 }
@@ -901,7 +901,7 @@ body {
   height: 100%;
   background-image: 
     linear-gradient(rgba(255, 249, 242, 0.92), rgba(245, 234, 224, 0.92)),
-    url('assets/parchment_bg.png');
+    url('assets/parchment_bg.webp');
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -962,7 +962,7 @@ body {
   background: var(--color-maroon-main);
   background-image: 
     radial-gradient(circle at center, rgba(106, 24, 37, 0.6) 0%, rgba(43, 4, 11, 0.9) 100%),
-    url('assets/wallpaper_bg.png');
+    url('assets/wallpaper_bg.webp');
   background-size: cover;
   color: var(--color-gold-bright);
   font-family: var(--font-sans);
@@ -984,7 +984,7 @@ body {
   padding: 6rem 1.5rem;
   background-image: 
     radial-gradient(circle at center, rgba(106, 24, 37, 0.4) 0%, rgba(43, 4, 11, 0.85) 100%),
-    url('assets/velvet_bg.png');
+    url('assets/velvet_bg.webp');
   background-size: cover;
   background-position: center;
   color: var(--color-parchment);
@@ -1178,7 +1178,7 @@ body {
   padding: 6rem 1.5rem;
   background-image: 
     linear-gradient(rgba(253, 251, 247, 0.85), rgba(253, 251, 247, 0.85)),
-    url('assets/parchment_bg.png');
+    url('assets/parchment_bg.webp');
   background-size: cover;
   background-position: center;
 }
@@ -1352,7 +1352,7 @@ body {
 .site-footer {
   background-image: 
     radial-gradient(circle at center, rgba(106, 24, 37, 0.5) 0%, rgba(43, 4, 11, 0.9) 100%),
-    url('assets/velvet_bg.png');
+    url('assets/velvet_bg.webp');
   background-size: cover;
   background-position: center;
   color: var(--color-parchment);
@@ -1583,7 +1583,7 @@ body {
   background-color: var(--color-maroon-dark);
   background-image: 
     radial-gradient(circle at 50% 50%, rgba(74, 14, 23, 0.4) 0%, rgba(26, 3, 7, 0.95) 100%),
-    url('assets/wallpaper_bg.png');
+    url('assets/wallpaper_bg.webp');
   background-size: cover, 400px 400px;
   background-repeat: no-repeat, repeat;
   background-position: center, center;
@@ -1600,7 +1600,7 @@ body {
 
 .venue-info-card {
   background: rgba(255, 249, 242, 0.94);
-  background-image: url('assets/parchment_bg.png');
+  background-image: url('assets/parchment_bg.webp');
   background-size: cover;
   border: 1px solid var(--color-gold-main);
   border-radius: 20px;
