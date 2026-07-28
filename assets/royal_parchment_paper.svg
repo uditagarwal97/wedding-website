@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <!-- Gold Gradient -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#AA7C11" />
+      <stop offset="30%" stop-color="#FDF6C7" />
+      <stop offset="50%" stop-color="#D4AF37" />
+      <stop offset="85%" stop-color="#F3E5AB" />
+      <stop offset="100%" stop-color="#A67C1E" />
+    </linearGradient>
+    
+    <!-- Red Gradient -->
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#800020" />
+      <stop offset="50%" stop-color="#B22222" />
+      <stop offset="100%" stop-color="#5C061B" />
+    </linearGradient>
+
+    <!-- Paper Texture Gradient -->
+    <radialGradient id="paperGrad" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#FFFDF9" />
+      <stop offset="70%" stop-color="#FDF5E6" />
+      <stop offset="100%" stop-color="#F4E8D3" />
+    </radialGradient>
+  </defs>
+
+  <!-- Parchment Sheet Base -->
+  <rect x="0" y="0" width="200" height="200" fill="url(#paperGrad)" />
+  
+  <!-- Outer Gold Border -->
+  <rect x="5" y="5" width="190" height="190" fill="none" stroke="url(#goldGrad)" stroke-width="2.5" />
+  
+  <!-- Red Border Frame -->
+  <rect x="12" y="12" width="176" height="176" fill="none" stroke="url(#redGrad)" stroke-width="4.5" />
+
+  <!-- Inner Fine Gold Line -->
+  <rect x="18" y="18" width="164" height="164" fill="none" stroke="url(#goldGrad)" stroke-width="1" />
+
+  <!-- Traditional Ornate Corners -->
+  <!-- Top Left -->
+  <g transform="translate(12, 12)">
+    <path d="M 0,0 L 25,0 C 25,12 12,25 0,25 Z" fill="url(#goldGrad)" opacity="0.8" />
+    <path d="M 0,20 C 10,20 20,10 20,0" fill="none" stroke="url(#redGrad)" stroke-width="1.5" />
+    <circle cx="8" cy="8" r="2.5" fill="url(#redGrad)" />
+  </g>
+
+  <!-- Top Right -->
+  <g transform="translate(188, 12) scale(-1, 1)">
+    <path d="M 0,0 L 25,0 C 25,12 12,25 0,25 Z" fill="url(#goldGrad)" opacity="0.8" />
+    <path d="M 0,20 C 10,20 20,10 20,0" fill="none" stroke="url(#redGrad)" stroke-width="1.5" />
+    <circle cx="8" cy="8" r="2.5" fill="url(#redGrad)" />
+  </g>
+
+  <!-- Bottom Left -->
+  <g transform="translate(12, 188) scale(1, -1)">
+    <path d="M 0,0 L 25,0 C 25,12 12,25 0,25 Z" fill="url(#goldGrad)" opacity="0.8" />
+    <path d="M 0,20 C 10,20 20,10 20,0" fill="none" stroke="url(#redGrad)" stroke-width="1.5" />
+    <circle cx="8" cy="8" r="2.5" fill="url(#redGrad)" />
+  </g>
+
+  <!-- Bottom Right -->
+  <g transform="translate(188, 188) scale(-1, -1)">
+    <path d="M 0,0 L 25,0 C 25,12 12,25 0,25 Z" fill="url(#goldGrad)" opacity="0.8" />
+    <path d="M 0,20 C 10,20 20,10 20,0" fill="none" stroke="url(#redGrad)" stroke-width="1.5" />
+    <circle cx="8" cy="8" r="2.5" fill="url(#redGrad)" />
+  </g>
+</svg>
