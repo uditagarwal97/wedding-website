@@ -14,7 +14,7 @@
   <!-- FontAwesome Icons for UI & Map pin icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <link rel="stylesheet" href="styles.css?v=3.4">
+  <link rel="stylesheet" href="styles.css?v=4.0">
 </head>
 <body>
 
@@ -91,67 +91,13 @@
       <div class="audio-tooltip" id="audioTooltip">PLAY MUSIC</div>
     </div>
 
-    <!-- 2. FORMAL ANNOUNCEMENT SCROLL (HORIZONTAL ROYAL FARMAN) -->
+    <!-- 2. FORMAL ANNOUNCEMENT SCROLL (REAL ROYAL FARMAN PHOTO) -->
     <section id="announcement" class="announcement-section">
-      <div class="royal-scroll-horizontal reveal-on-scroll">
+      <div class="photo-scroll-wrapper reveal-on-scroll">
+        <img src="assets/royal_scroll.png" alt="Royal Farman Scroll" class="photo-scroll-img">
 
-        <!-- Left Vertical Scroll Roller Rod & Turned Wood Finials -->
-        <div class="scroll-roller-v scroll-roller-left">
-          <div class="scroll-finial finial-top">
-            <svg class="scroll-finial-svg" viewBox="0 0 60 75">
-              <defs>
-                <linearGradient id="woodGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#2D190B" />
-                  <stop offset="25%" stop-color="#5C381E" />
-                  <stop offset="50%" stop-color="#8B572A" />
-                  <stop offset="75%" stop-color="#5C381E" />
-                  <stop offset="100%" stop-color="#1F1006" />
-                </linearGradient>
-                <linearGradient id="goldBrass" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#6B5112" />
-                  <stop offset="20%" stop-color="#D4AF37" />
-                  <stop offset="50%" stop-color="#FFF5B8" />
-                  <stop offset="80%" stop-color="#D4AF37" />
-                  <stop offset="100%" stop-color="#4A370A" />
-                </linearGradient>
-                <radialGradient id="brassTip" cx="35%" cy="35%" r="65%">
-                  <stop offset="0%" stop-color="#FFF8D6" />
-                  <stop offset="40%" stop-color="#D4AF37" />
-                  <stop offset="100%" stop-color="#5C420B" />
-                </radialGradient>
-              </defs>
-              <circle cx="30" cy="8" r="6" fill="url(#brassTip)" stroke="#3E2B06" stroke-width="0.5" />
-              <rect x="22" y="13" width="16" height="5" rx="2.5" fill="url(#goldBrass)" />
-              <path d="M 18,18 C 12,28 12,38 30,44 C 48,38 48,28 42,18 Z" fill="url(#woodGrad)" stroke="#1F1006" stroke-width="0.75" />
-              <ellipse cx="30" cy="26" rx="14" ry="3" fill="none" stroke="#2D190B" stroke-width="1.2" opacity="0.6" />
-              <ellipse cx="30" cy="34" rx="12" ry="2.5" fill="none" stroke="#8B572A" stroke-width="1.2" opacity="0.5" />
-              <rect x="14" y="44" width="32" height="7" rx="3" fill="url(#goldBrass)" stroke="#3E2B06" stroke-width="0.5" />
-              <rect x="18" y="51" width="24" height="4" rx="2" fill="url(#woodGrad)" />
-              <rect x="16" y="55" width="28" height="6" rx="3" fill="url(#goldBrass)" />
-            </svg>
-          </div>
-          
-          <div class="scroll-rod-v"></div>
-
-          <div class="scroll-finial finial-bottom">
-            <svg class="scroll-finial-svg" viewBox="0 0 60 75" style="transform: rotate(180deg);">
-              <circle cx="30" cy="8" r="6" fill="url(#brassTip)" stroke="#3E2B06" stroke-width="0.5" />
-              <rect x="22" y="13" width="16" height="5" rx="2.5" fill="url(#goldBrass)" />
-              <path d="M 18,18 C 12,28 12,38 30,44 C 48,38 48,28 42,18 Z" fill="url(#woodGrad)" stroke="#1F1006" stroke-width="0.75" />
-              <ellipse cx="30" cy="26" rx="14" ry="3" fill="none" stroke="#2D190B" stroke-width="1.2" opacity="0.6" />
-              <ellipse cx="30" cy="34" rx="12" ry="2.5" fill="none" stroke="#8B572A" stroke-width="1.2" opacity="0.5" />
-              <rect x="14" y="44" width="32" height="7" rx="3" fill="url(#goldBrass)" stroke="#3E2B06" stroke-width="0.5" />
-              <rect x="18" y="51" width="24" height="4" rx="2" fill="url(#woodGrad)" />
-              <rect x="16" y="55" width="28" height="6" rx="3" fill="url(#goldBrass)" />
-            </svg>
-          </div>
-        </div>
-
-        <!-- Scroll Body Canvas (Horizontal Unroll) -->
-        <div class="royal-scroll-body-horizontal">
-          <div class="scroll-top-border"></div>
-          <div class="scroll-bottom-border"></div>
-
+        <!-- Announcement Content Overlay (Centered inside Parchment Canvas) -->
+        <div class="photo-scroll-content">
           <div class="blessings-header">
             <div class="om-symbol">꧁ ✦ ꧂</div>
             <p class="blessings-text">"With the blessings of the Almighty &amp; our respected elders..."</p>
@@ -185,40 +131,6 @@
             </p>
           </div>
         </div>
-
-        <!-- Right Vertical Scroll Roller Rod & Turned Wood Finials with Tassels -->
-        <div class="scroll-roller-v scroll-roller-right">
-          <div class="scroll-finial finial-top">
-            <svg class="scroll-finial-svg" viewBox="0 0 60 75">
-              <circle cx="30" cy="8" r="6" fill="url(#brassTip)" stroke="#3E2B06" stroke-width="0.5" />
-              <rect x="22" y="13" width="16" height="5" rx="2.5" fill="url(#goldBrass)" />
-              <path d="M 18,18 C 12,28 12,38 30,44 C 48,38 48,28 42,18 Z" fill="url(#woodGrad)" stroke="#1F1006" stroke-width="0.75" />
-              <ellipse cx="30" cy="26" rx="14" ry="3" fill="none" stroke="#2D190B" stroke-width="1.2" opacity="0.6" />
-              <ellipse cx="30" cy="34" rx="12" ry="2.5" fill="none" stroke="#8B572A" stroke-width="1.2" opacity="0.5" />
-              <rect x="14" y="44" width="32" height="7" rx="3" fill="url(#goldBrass)" stroke="#3E2B06" stroke-width="0.5" />
-              <rect x="18" y="51" width="24" height="4" rx="2" fill="url(#woodGrad)" />
-              <rect x="16" y="55" width="28" height="6" rx="3" fill="url(#goldBrass)" />
-            </svg>
-          </div>
-
-          <div class="scroll-rod-v"></div>
-
-          <div class="scroll-finial finial-bottom">
-            <svg class="scroll-finial-svg" viewBox="0 0 60 75" style="transform: rotate(180deg);">
-              <circle cx="30" cy="8" r="6" fill="url(#brassTip)" stroke="#3E2B06" stroke-width="0.5" />
-              <rect x="22" y="13" width="16" height="5" rx="2.5" fill="url(#goldBrass)" />
-              <path d="M 18,18 C 12,28 12,38 30,44 C 48,38 48,28 42,18 Z" fill="url(#woodGrad)" stroke="#1F1006" stroke-width="0.75" />
-              <ellipse cx="30" cy="26" rx="14" ry="3" fill="none" stroke="#2D190B" stroke-width="1.2" opacity="0.6" />
-              <ellipse cx="30" cy="34" rx="12" ry="2.5" fill="none" stroke="#8B572A" stroke-width="1.2" opacity="0.5" />
-              <rect x="14" y="44" width="32" height="7" rx="3" fill="url(#goldBrass)" stroke="#3E2B06" stroke-width="0.5" />
-              <rect x="18" y="51" width="24" height="4" rx="2" fill="url(#woodGrad)" />
-              <rect x="16" y="55" width="28" height="6" rx="3" fill="url(#goldBrass)" />
-            </svg>
-          </div>
-          <div class="scroll-tassel-v tassel-bottom-left"></div>
-          <div class="scroll-tassel-v tassel-bottom-right"></div>
-        </div>
-
       </div>
     </section>
 
@@ -483,6 +395,6 @@
   </main>
 
   <script src="https://www.youtube.com/iframe_api"></script>
-  <script src="app.js?v=3.4"></script>
+  <script src="app.js?v=4.0"></script>
 </body>
 </html>

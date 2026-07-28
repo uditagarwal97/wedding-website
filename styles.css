@@ -552,12 +552,13 @@ body {
 }
 
 /* ==========================================================================
-   2. FORMAL ANNOUNCEMENT SCROLL (HORIZONTAL ROYAL FARMAN)
+   2. FORMAL ANNOUNCEMENT SCROLL (REAL ROYAL FARMAN PHOTO)
    ========================================================================== */
 .announcement-section {
-  padding: 5rem 1.5rem;
+  padding: 4rem 1rem;
   display: flex;
   justify-content: center;
+  align-items: center;
   background-image: 
     radial-gradient(circle at center, rgba(106, 24, 37, 0.4) 0%, rgba(43, 4, 11, 0.85) 100%),
     url('assets/velvet_bg.png');
@@ -566,132 +567,40 @@ body {
   overflow: hidden;
 }
 
-/* Horizontal Royal Farman Scroll Container */
-.royal-scroll-horizontal {
+/* Photorealistic Royal Farman Scroll Frame Container */
+.photo-scroll-wrapper {
   position: relative;
   max-width: 960px;
   width: 95%;
   margin: 0 auto;
   display: flex;
-  flex-direction: row;
-  align-items: stretch;
   justify-content: center;
-  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.75));
-}
-
-/* Vertical Roller Rods (Left & Right Ends) */
-.scroll-roller-v {
-  position: relative;
-  width: 32px;
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  z-index: 5;
-  flex-shrink: 0;
+  filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.88));
 }
 
-.scroll-rod-v {
-  width: 22px;
-  height: 100%;
-  background-color: #4A2E1B;
-  background-image: 
-    linear-gradient(90deg, 
-      #1F1006 0%, 
-      #4A2E1B 25%, 
-      #7A4B29 50%, 
-      #4A2E1B 75%, 
-      #1F1006 100%
-    );
-  border-radius: 11px;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.75), inset 2px 0 5px rgba(255, 245, 184, 0.4);
-}
-
-/* Turned Wood & Brass Finials (Top & Bottom Knobs) */
-.scroll-finial {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 48px;
-  height: 60px;
-  z-index: 6;
-  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.7));
-}
-
-.scroll-finial.finial-top {
-  top: -46px;
-}
-
-.scroll-finial.finial-bottom {
-  bottom: -46px;
-}
-
-.scroll-finial-svg {
+.photo-scroll-img {
   width: 100%;
-  height: 100%;
+  height: auto;
   display: block;
-}
-
-/* Swaying Tassels at Bottom of Right Rod */
-.scroll-tassel-v {
-  position: absolute;
-  bottom: -32px;
-  width: 14px;
-  height: 32px;
-  background: linear-gradient(180deg, #D4AF37 0%, #B71C1C 45%, #880E4F 100%);
-  border-radius: 0 0 6px 6px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  animation: tasselSway 3s infinite ease-in-out;
-}
-
-.scroll-tassel-v.tassel-bottom-left { left: -6px; }
-.scroll-tassel-v.tassel-bottom-right { right: -6px; animation-delay: 1.5s; }
-
-@keyframes tasselSway {
-  0%, 100% { transform: rotate(0deg); }
-  50% { transform: rotate(5deg); }
-}
-
-/* Horizontal Scroll Body (Unrolled Left-to-Right) */
-.royal-scroll-body-horizontal {
-  position: relative;
-  flex: 1;
-  padding: 3.5rem 2.8rem;
-  background-color: #F7EFE2;
-  background-image: 
-    linear-gradient(to right, 
-      rgba(40, 20, 5, 0.35) 0%, 
-      transparent 6%, 
-      transparent 94%, 
-      rgba(40, 20, 5, 0.35) 100%
-    ),
-    url('assets/parchment_bg.png');
-  background-size: 100% 100%, cover;
-  background-position: center;
-  border-top: 2px solid #D4AF37;
-  border-bottom: 2px solid #D4AF37;
-  box-shadow: inset 15px 0 25px rgba(40, 20, 5, 0.22), inset -15px 0 25px rgba(40, 20, 5, 0.22);
-  color: var(--color-maroon-dark);
-  text-align: center;
-  z-index: 2;
-}
-
-/* Ornate Top & Bottom Filigree Lace Borders for Horizontal Scroll */
-.scroll-top-border,
-.scroll-bottom-border {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 18px;
-  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA0MCAyMCcgd2lkdGg9JzQwJyBoZWlnaHQ9JzIwJz48cGF0aCBkPSdNMCAxMCBoNDAgTTAgNSBoNDAgTTAgMTUgaDQwJyBzdHJva2U9JyNENEFGMzcnIHN0cm9rZS13aWR0aD0nMC43NScgZmlsbD0nbm9uZScvPjxjaXJjbGUgY3g9JzEwJyBjeT0nMTAnIHI9JzIuNScgZmlsbD0nI0Q0QUYzNycvPjwvc3ZnPg==");
-  background-repeat: repeat-x;
-  background-size: 36px 18px;
-  opacity: 0.65;
   pointer-events: none;
 }
 
-.scroll-top-border { top: 8px; }
-.scroll-bottom-border { bottom: 8px; transform: scaleY(-1); }
+.photo-scroll-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 58%;
+  max-height: 82%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #3B1E08;
+  z-index: 3;
+}
   text-align: center;
 }
 
