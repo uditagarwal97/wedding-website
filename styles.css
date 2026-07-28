@@ -620,237 +620,170 @@ body {
    ========================================================================== */
 .announcement-section {
   position: relative;
-  padding: 2.5rem 0.5rem;
+  min-height: 100vh;
+  padding: 3rem 1.5rem 10rem 1.5rem;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  background-image: 
-    radial-gradient(circle at center, rgba(106, 24, 37, 0.4) 0%, rgba(43, 4, 11, 0.85) 100%),
-    url('assets/velvet_bg.png');
-  background-size: cover;
-  background-position: center;
+  /* Sunset Sky Gradient (Deep Blue to Orange/Pink) */
+  background: linear-gradient(to bottom, #112233 0%, #291F37 25%, #591F33 50%, #993A24 75%, #D65A15 90%, #FF9E00 100%);
   overflow: hidden;
 }
 
-/* Royal Parchment Paper Card Container */
-.royal-parchment-wrapper {
+.palace-hero-content {
   position: relative;
-  max-width: 920px;
-  width: 98%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.88));
+  z-index: 5;
+  max-width: 900px;
+  width: 100%;
+  text-align: center;
+  color: #FFFFFF;
+  margin-top: 1rem;
 }
 
-.parchment-frame-img {
+.palace-top-ornament {
+  font-size: 1.5rem;
+  letter-spacing: 0.5rem;
+  color: var(--color-gold-bright);
+  text-shadow: 0 0 10px rgba(245, 215, 127, 0.8);
+  margin-bottom: 1rem;
+}
+
+.palace-hero-names {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.5rem, 2vw, 1.8rem);
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.palace-hero-names .palace-name {
+  font-family: var(--font-heading);
+  font-size: clamp(2.4rem, 6vw, 4.8rem);
+  font-weight: 800;
+  letter-spacing: 0.15rem;
+  text-transform: uppercase;
+  background: linear-gradient(to bottom, #FFFFFF 0%, #FFF3D1 40%, #F5D77F 80%, #D4AF37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.8));
+}
+
+.palace-hero-names .palace-weds {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-style: italic;
+  color: #FFF3D1;
+  text-transform: lowercase;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+.palace-hero-divider {
+  width: 150px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--color-gold-bright), transparent);
+  margin: 1rem auto;
+}
+
+.palace-hero-subtitle {
+  font-family: var(--font-heading);
+  font-size: clamp(0.85rem, 1.8vw, 1.25rem);
+  letter-spacing: 0.35rem;
+  color: var(--color-gold-bright);
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.palace-hero-invite-text {
+  font-family: var(--font-serif);
+  font-size: clamp(0.95rem, 2vw, 1.35rem);
+  line-height: 1.5;
+  color: #F7EFE5;
+  max-width: 700px;
+  margin: 0 auto 3rem auto;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+/* Lineage Cards inside Palace Screen */
+.palace-lineage-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.palace-lineage-card {
+  flex: 1;
+  min-width: 250px;
+  max-width: 380px;
+  background: rgba(61, 12, 17, 0.55);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 15px;
+  padding: 1.8rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(212, 175, 55, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.palace-lineage-card h3 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+  color: var(--color-gold-bright);
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.1rem;
+}
+
+.palace-lineage-card p {
+  font-family: var(--font-serif);
+  font-size: clamp(0.85rem, 1.4vw, 1.05rem);
+  color: #EBD9C3;
+  margin-bottom: 0.4rem;
+}
+
+.palace-lineage-card p.grandparent {
+  font-size: clamp(0.78rem, 1.2vw, 0.94rem);
+  color: #B19B86;
+  font-style: italic;
+}
+
+/* Vector Silhouette positioning at bottom */
+.palace-silhouette-container {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  z-index: 1;
+  height: 380px;
+  z-index: 3;
   pointer-events: none;
 }
 
-.parchment-frame-img img {
+.palace-silhouette-svg {
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: fill;
 }
 
-.parchment-frame-content {
-  position: relative;
-  width: 100%;
-  z-index: 3;
-  padding: 4.5rem 5rem;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  text-align: center;
-  color: #3B1E08;
-}
-
-.blessings-header {
-  margin-bottom: 0.5rem;
-}
-
-.blessings-text {
-  font-family: var(--font-serif);
-  font-size: clamp(0.72rem, 1.4vw, 1.15rem);
-  font-style: italic;
-  color: #4A2B14;
-  line-height: 1.25;
-}
-
-.couple-announcement-names {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(0.8rem, 2vw, 1.8rem);
-  margin: 0.5rem 0;
-  width: 100%;
-  flex-wrap: wrap;
-}
-
-.name-display {
-  font-family: var(--font-heading);
-  font-size: clamp(1.4rem, 3.8vw, 3.2rem);
-  color: var(--color-maroon-main);
-  text-transform: uppercase;
-  letter-spacing: clamp(0.02rem, 0.1vw, 0.08rem);
-  line-height: 1.1;
-  text-shadow: 1px 1px 2px rgba(212, 175, 55, 0.2);
-}
-
-.lineage-details {
-  margin-top: 0.4rem;
-}
-
-.parent-line {
-  font-family: var(--font-serif);
-  font-size: clamp(0.68rem, 1.2vw, 1.0rem);
-  color: #3D200B;
-}
-
-.grandparent-line {
-  font-family: var(--font-serif);
-  font-size: clamp(0.58rem, 1.0vw, 0.82rem);
-  font-style: italic;
-  color: #613C1C;
-  margin-top: 0.1rem;
-}
-
-.ornate-amp {
-  font-family: var(--font-serif);
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-  color: var(--color-gold-dark);
-}
-
-.invitation-solicitation {
-  font-family: var(--font-serif);
-  font-size: clamp(0.72rem, 1.3vw, 1.15rem);
-  color: #4A2B14;
-  max-width: 90%;
-  margin: 0 auto;
-  line-height: 1.3;
-}
-
+/* Mobile responsive fixes */
 @media (max-width: 767px) {
   .announcement-section {
-    padding: 0.2rem;
+    min-height: auto;
+    padding: 2.5rem 1rem 8rem 1rem;
   }
-
-  .royal-parchment-wrapper {
-    max-width: 480px;
-    width: 98%;
-    transform: none;
+  .palace-silhouette-container {
+    height: 260px;
   }
-
-  .parchment-frame-content {
-    padding: 2.8rem 2rem;
-  }
-
-  .parchment-frame-content .couple-announcement-names {
+  .palace-lineage-container {
     flex-direction: column;
-    gap: 0.6rem;
-    margin: 0.6rem 0;
+    gap: 1rem;
   }
-
-  .parchment-frame-content .lineage-column {
+  .palace-lineage-card {
     min-width: 100%;
+    padding: 1.2rem;
   }
-
-  .parchment-frame-content .ornate-amp {
-    font-size: 2.4rem;
-  }
-}
-
-/* Blessings Header */
-.parchment-frame-content .blessings-header {
-  margin-bottom: 1.2rem;
-}
-
-.parchment-frame-content .blessings-text {
-  font-family: var(--font-serif);
-  font-size: clamp(0.82rem, 1.4vw, 1.15rem);
-  font-style: italic;
-  color: #5C3D24;
-  line-height: 1.35;
-}
-
-/* Names Layout */
-.parchment-frame-content .couple-announcement-names {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(1rem, 2.5vw, 3rem);
-  width: 100%;
-  margin: 1.2rem 0;
-}
-
-.parchment-frame-content .lineage-column {
-  flex: 1;
-  min-width: 200px;
-}
-
-.parchment-frame-content .name-display {
-  font-family: var(--font-heading);
-  font-size: clamp(1.8rem, 4vw, 3.4rem);
-  color: var(--color-maroon-main);
-  margin-bottom: 0.4rem;
-  letter-spacing: 0.05rem;
-  line-height: 1.1;
-  text-transform: uppercase;
-}
-
-.parchment-frame-content .lineage-details {
-  font-size: clamp(0.78rem, 1.1vw, 0.95rem);
-  color: #4A2B14;
-}
-
-.parchment-frame-content .parent-line {
-  margin-bottom: 0.2rem;
-}
-
-.parchment-frame-content .grandparent-line {
-  font-size: clamp(0.68rem, 1vw, 0.85rem);
-  color: #7A583C;
-  font-style: italic;
-}
-
-/* Ampersand */
-.parchment-frame-content .ampersand-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.parchment-frame-content .ornate-amp {
-  font-family: var(--font-script);
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
-  color: var(--color-gold-dark);
-  line-height: 1;
-}
-
-/* Solicitation Footer */
-.parchment-frame-content .announcement-footer-line {
-  border-top: 1px dashed rgba(212, 175, 55, 0.4);
-  padding-top: 1rem;
-  width: 90%;
-  margin: 0 auto;
-}
-
-.parchment-frame-content .invitation-solicitation {
-  font-family: var(--font-serif);
-  font-size: clamp(0.82rem, 1.3vw, 1.15rem);
-  color: #4A2B14;
-  font-style: italic;
-  line-height: 1.4;
 }
 
 /* ==========================================================================

@@ -14,7 +14,7 @@
   <!-- FontAwesome Icons for UI & Map pin icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <link rel="stylesheet" href="styles.css?v=22.0">
+  <link rel="stylesheet" href="styles.css?v=23.0">
 </head>
 <body>
 
@@ -91,9 +91,9 @@
       <div class="audio-tooltip" id="audioTooltip">PLAY MUSIC</div>
     </div>
 
-    <!-- 2. FORMAL ANNOUNCEMENT PARCHMENT PAPER CARD -->
+    <!-- 2. FORMAL ANNOUNCEMENT / HERO HERO ARCHITECTURE SECTION -->
     <section id="announcement" class="announcement-section">
-      <!-- Floating Sky Lanterns inside Main Page Section 1 -->
+      <!-- Floating Sky Lanterns -->
       <div class="lanterns-container">
         <div class="lantern lantern-1"></div>
         <div class="lantern lantern-2"></div>
@@ -104,47 +104,69 @@
         <div class="lantern lantern-7"></div>
         <div class="lantern lantern-8"></div>
       </div>
-      <div class="royal-parchment-wrapper reveal-on-scroll">
-        <!-- Responsive Indian Parchment Frame (Horizontal on wider screens, Vertical on mobile) -->
-        <picture class="parchment-frame-img">
-          <source media="(min-width: 768px)" srcset="assets/parchment_bg_horizontal.svg">
-          <img src="assets/parchment_bg.svg" alt="Royal Indian Parchment Frame">
-        </picture>
 
-        <!-- Announcement Content Overlay (Centered inside the frame borders) -->
-        <div class="parchment-frame-content">
-          <div class="blessings-header">
-            <p class="blessings-text">"With the blessings of the Almighty &amp; our respected elders..."</p>
+      <!-- Palace Courtyard Content Overlay -->
+      <div class="palace-hero-content reveal-on-scroll">
+        <div class="palace-top-ornament">✦ ✦ ✦</div>
+        
+        <h2 class="palace-hero-names">
+          <span class="palace-name">Gunjan</span>
+          <span class="palace-weds">weds</span>
+          <span class="palace-name">Udit</span>
+        </h2>
+        
+        <div class="palace-hero-divider"></div>
+        
+        <p class="palace-hero-subtitle">THE ROYAL WEDDING INVITATION</p>
+        
+        <p class="palace-hero-invite-text">
+          request the pleasure of your company to share in our laughter, love, and new beginnings.
+        </p>
+
+        <!-- Lineage Summary in subtle gold cards -->
+        <div class="palace-lineage-container">
+          <div class="palace-lineage-card">
+            <h3>UDIT</h3>
+            <p>Son of Mr. &amp; Mrs. Agarwal</p>
+            <p class="grandparent">Grandson of Respected Elders</p>
           </div>
-
-          <div class="couple-announcement-names">
-            <div class="lineage-column groom-column">
-              <h2 class="name-display">Udit</h2>
-              <div class="lineage-details">
-                <p class="parent-line">Son of <strong>Mr. &amp; Mrs. Agarwal</strong></p>
-                <p class="grandparent-line">Grandson of Respected Elders</p>
-              </div>
-            </div>
-
-            <div class="ampersand-divider">
-              <span class="ornate-amp">&amp;</span>
-            </div>
-
-            <div class="lineage-column bride-column">
-              <h2 class="name-display">Gunjan</h2>
-              <div class="lineage-details">
-                <p class="parent-line">Daughter of <strong>Mr. &amp; Mrs. Garg</strong></p>
-                <p class="grandparent-line">Granddaughter of Respected Elders</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="announcement-footer-line">
-            <p class="invitation-solicitation">
-              request the pleasure of your company to share in our laughter, love, and new beginnings.
-            </p>
+          <div class="palace-lineage-card">
+            <h3>GUNJAN</h3>
+            <p>Daughter of Mr. &amp; Mrs. Garg</p>
+            <p class="grandparent">Granddaughter of Respected Elders</p>
           </div>
         </div>
+      </div>
+
+      <!-- Vector Silhouette Overlay of Traditional Indian Haveli / Palace Courtyard -->
+      <div class="palace-silhouette-container">
+        <svg class="palace-silhouette-svg" viewBox="0 0 1200 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="palaceGold" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#F5D77F" />
+              <stop offset="50%" stop-color="#D4AF37" />
+              <stop offset="100%" stop-color="#A38025" />
+            </linearGradient>
+            <linearGradient id="palaceMaroon" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#3D0C11" />
+              <stop offset="100%" stop-color="#1F0306" />
+            </linearGradient>
+          </defs>
+          <!-- Far Background Domes -->
+          <path d="M 0,400 L 0,280 Q 50,220 100,280 L 150,280 C 170,250 210,250 230,280 L 280,280 Q 330,220 380,280 L 420,280 C 440,240 480,240 500,280 L 550,280 Q 600,220 650,280 L 700,280 C 720,240 760,240 780,280 L 830,280 Q 880,220 930,280 L 980,280 C 1000,250 1040,250 1060,280 L 1110,280 Q 1160,220 1200,280 L 1200,400 Z" fill="url(#palaceMaroon)" opacity="0.4"/>
+          <!-- Midground Jharokha Domes -->
+          <path d="M 0,400 L 0,310 C 20,310 30,270 50,270 C 70,270 80,310 100,310 L 180,310 C 190,260 210,230 230,230 C 250,230 270,260 280,310 L 360,310 C 370,290 385,275 400,275 C 415,275 430,290 440,310 L 480,310 C 500,240 540,240 560,310 L 640,310 C 660,240 700,240 720,310 L 760,310 C 770,290 785,275 800,275 C 815,275 830,290 840,310 L 920,310 C 930,260 950,230 970,230 C 990,230 1010,260 1020,310 L 1100,310 C 1120,270 1130,270 1150,270 C 1170,270 1180,310 1200,310 L 1200,400 Z" fill="url(#palaceMaroon)" opacity="0.85"/>
+          <!-- Pillars & Arch -->
+          <rect x="80" y="160" width="24" height="240" fill="url(#palaceGold)"/>
+          <path d="M 65,160 L 119,160 L 105,180 L 79,180 Z" fill="url(#palaceGold)"/>
+          <rect x="1096" y="160" width="24" height="240" fill="url(#palaceGold)"/>
+          <path d="M 1081,160 L 1135,160 L 1121,180 L 1095,180 Z" fill="url(#palaceGold)"/>
+          <!-- Connecting Palace Arch -->
+          <path d="M 80,180 C 160,80 360,60 600,140 C 840,60 1040,80 1120,180 L 1120,200 C 1040,100 840,80 600,160 C 360,80 160,100 80,200 Z" fill="url(#palaceGold)"/>
+          <!-- Pool & Fountain -->
+          <ellipse cx="600" cy="385" rx="300" ry="18" fill="#132B39" stroke="url(#palaceGold)" stroke-width="2.5"/>
+          <path d="M 595,385 C 595,360 605,360 605,385" fill="none" stroke="url(#palaceGold)" stroke-width="2"/>
+        </svg>
       </div>
     </section>
 
@@ -409,6 +431,6 @@
   </main>
 
   <script src="https://www.youtube.com/iframe_api"></script>
-  <script src="app.js?v=22.0"></script>
+  <script src="app.js?v=23.0"></script>
 </body>
 </html>
