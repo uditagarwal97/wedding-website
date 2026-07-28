@@ -555,7 +555,7 @@ body {
    2. FORMAL ANNOUNCEMENT ROYAL PARCHMENT PAPER CARD
    ========================================================================== */
 .announcement-section {
-  padding: 2rem 1rem;
+  padding: 0.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -570,8 +570,8 @@ body {
 /* Royal Parchment Paper Card Container */
 .royal-parchment-wrapper {
   position: relative;
-  max-width: 620px;
-  width: 95%;
+  max-width: 850px;
+  width: 98%;
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -591,8 +591,8 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 76%;
-  max-height: 64%;
+  width: 80%;
+  max-height: 72%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -669,7 +669,7 @@ body {
 
 @media (max-width: 767px) {
   .announcement-section {
-    padding: 1rem 0.2rem;
+    padding: 0.2rem;
   }
 
   .royal-parchment-wrapper {
@@ -679,108 +679,106 @@ body {
   }
 
   .parchment-frame-content {
-    width: 70%;
-    max-height: 72%;
+    width: 82%;
+    max-height: 78%;
   }
 
   .parchment-frame-content .couple-announcement-names {
-    margin: 0.3rem 0;
+    flex-direction: column;
     gap: 0.6rem;
+    margin: 0.6rem 0;
+  }
+
+  .parchment-frame-content .lineage-column {
+    min-width: 100%;
+  }
+
+  .parchment-frame-content .ornate-amp {
+    font-size: 2.4rem;
   }
 }
-  text-align: center;
+
+/* Blessings Header */
+.parchment-frame-content .blessings-header {
+  margin-bottom: 1.2rem;
 }
 
-/* Gold Filigree Corners */
-.gold-corner {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  border: 2px solid var(--color-gold-main);
-  pointer-events: none;
-}
-.gold-corner.top-left { top: 15px; left: 15px; border-right: none; border-bottom: none; }
-.gold-corner.top-right { top: 15px; right: 15px; border-left: none; border-bottom: none; }
-.gold-corner.bottom-left { bottom: 15px; left: 15px; border-right: none; border-top: none; }
-.gold-corner.bottom-right { bottom: 15px; right: 15px; border-left: none; border-top: none; }
-
-.blessings-header {
-  margin-bottom: 2.5rem;
-}
-
-.om-symbol {
-  display: none !important;
-}
-
-.blessings-text {
+.parchment-frame-content .blessings-text {
   font-family: var(--font-serif);
-  font-size: 1.3rem;
+  font-size: clamp(0.82rem, 1.4vw, 1.15rem);
   font-style: italic;
-  color: var(--color-text-muted);
+  color: #5C3D24;
+  line-height: 1.35;
 }
 
-.couple-announcement-names {
+/* Names Layout */
+.parchment-frame-content .couple-announcement-names {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
-  margin-bottom: 3rem;
-  flex-wrap: wrap;
+  gap: clamp(1rem, 2.5vw, 3rem);
+  width: 100%;
+  margin: 1.2rem 0;
 }
 
-.lineage-column {
+.parchment-frame-content .lineage-column {
   flex: 1;
-  min-width: 260px;
+  min-width: 200px;
 }
 
-.name-display {
+.parchment-frame-content .name-display {
   font-family: var(--font-heading);
-  font-size: 3rem;
+  font-size: clamp(1.8rem, 4vw, 3.4rem);
   color: var(--color-maroon-main);
-  margin-bottom: 0.8rem;
-  letter-spacing: 1px;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.05rem;
+  line-height: 1.1;
+  text-transform: uppercase;
 }
 
-.lineage-details {
-  font-size: 1.05rem;
-  color: var(--color-text-dark);
+.parchment-frame-content .lineage-details {
+  font-size: clamp(0.78rem, 1.1vw, 0.95rem);
+  color: #4A2B14;
 }
 
-.parent-line {
-  margin-bottom: 0.3rem;
+.parchment-frame-content .parent-line {
+  margin-bottom: 0.2rem;
 }
 
-.grandparent-line {
-  font-size: 0.95rem;
-  color: var(--color-text-muted);
+.parchment-frame-content .grandparent-line {
+  font-size: clamp(0.68rem, 1vw, 0.85rem);
+  color: #7A583C;
   font-style: italic;
 }
 
-.ampersand-divider {
+/* Ampersand */
+.parchment-frame-content .ampersand-divider {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.ornate-amp {
+.parchment-frame-content .ornate-amp {
   font-family: var(--font-script);
-  font-size: 5rem;
-  color: var(--color-gold-main);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  color: var(--color-gold-dark);
   line-height: 1;
 }
 
-.announcement-footer-line {
-  border-top: 1px solid rgba(212, 175, 55, 0.3);
-  padding-top: 2rem;
-  max-width: 600px;
+/* Solicitation Footer */
+.parchment-frame-content .announcement-footer-line {
+  border-top: 1px dashed rgba(212, 175, 55, 0.4);
+  padding-top: 1rem;
+  width: 90%;
   margin: 0 auto;
 }
 
-.invitation-solicitation {
+.parchment-frame-content .invitation-solicitation {
   font-family: var(--font-serif);
-  font-size: 1.25rem;
-  color: var(--color-maroon-main);
+  font-size: clamp(0.82rem, 1.3vw, 1.15rem);
+  color: #4A2B14;
   font-style: italic;
+  line-height: 1.4;
 }
 
 /* ==========================================================================
