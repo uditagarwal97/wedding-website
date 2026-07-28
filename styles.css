@@ -585,7 +585,7 @@ body {
   pointer-events: none;
 }
 
-/* Wide Screens / Laptops: Horizontal Scroll (Expands Horizontally according to Device Screen Size) */
+/* Wide Screens / Laptops: Horizontal Scroll (Sleek & Reduced Laptop Size) */
 @media (min-width: 768px) {
   .announcement-section {
     padding: 3.5rem 1rem;
@@ -596,9 +596,10 @@ body {
   .scroll-img-vertical { display: none !important; }
 
   .photo-scroll-wrapper {
-    max-width: 1280px;
-    width: 98%;
+    max-width: 860px;
+    width: 92%;
     margin: 0 auto;
+    transform: scale(1.0);
   }
 
   .photo-scroll-content {
@@ -606,8 +607,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 54%;
-    max-height: 75%;
+    width: 52%;
+    max-height: 72%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -615,40 +616,14 @@ body {
     text-align: center;
     color: #3B1E08;
     z-index: 3;
-    padding: clamp(0.2rem, 1vw, 1.2rem) 0;
-  }
-}
-
-/* Large Displays & Laptops (>= 1200px) */
-@media (min-width: 1200px) {
-  .photo-scroll-wrapper {
-    max-width: 1440px;
-    width: 98%;
-  }
-  
-  .photo-scroll-content {
-    width: 56%;
-    max-height: 76%;
-  }
-}
-
-/* Ultra-Wide Monitors (>= 1500px) */
-@media (min-width: 1500px) {
-  .photo-scroll-wrapper {
-    max-width: 1680px;
-    width: 98%;
-  }
-
-  .photo-scroll-content {
-    width: 58%;
-    max-height: 78%;
+    padding: clamp(0.2rem, 1vw, 0.8rem) 0;
   }
 }
 
 /* Mobile Devices & Portrait Screens: Vertical Scroll (Extra Zoomed In & Prominent) */
 @media (max-width: 767px) {
   .announcement-section {
-    padding: 2rem 0.1rem;
+    padding: 3.5rem 0;
     overflow: hidden;
   }
 
@@ -657,8 +632,9 @@ body {
 
   .photo-scroll-wrapper {
     max-width: 100%;
-    width: 100%;
-    transform: scale(1.12);
+    width: 108%;
+    margin: 0 -4%;
+    transform: scale(1.24);
   }
 
   .photo-scroll-content {
@@ -666,8 +642,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 66%;
-    max-height: 76%;
+    width: 68%;
+    max-height: 78%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -679,7 +655,7 @@ body {
   }
 
   .photo-scroll-content .blessings-text {
-    font-size: clamp(0.75rem, 2.8vw, 1.0rem);
+    font-size: clamp(0.78rem, 3.0vw, 1.05rem);
     line-height: 1.25;
   }
 
@@ -689,21 +665,21 @@ body {
   }
 
   .photo-scroll-content .name-display {
-    font-size: clamp(1.5rem, 5.8vw, 2.4rem);
+    font-size: clamp(1.6rem, 6.2vw, 2.5rem);
     line-height: 1.1;
     letter-spacing: 0.05rem;
   }
 
   .photo-scroll-content .parent-line {
-    font-size: clamp(0.65rem, 2.5vw, 0.88rem);
+    font-size: clamp(0.68rem, 2.7vw, 0.92rem);
   }
 
   .photo-scroll-content .grandparent-line {
-    font-size: clamp(0.56rem, 2.1vw, 0.78rem);
+    font-size: clamp(0.58rem, 2.3vw, 0.82rem);
   }
 
   .photo-scroll-content .invitation-solicitation {
-    font-size: clamp(0.7rem, 2.8vw, 0.95rem);
+    font-size: clamp(0.72rem, 3.0vw, 1.0rem);
     line-height: 1.25;
     max-width: 96%;
   }
