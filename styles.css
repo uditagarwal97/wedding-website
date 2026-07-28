@@ -203,7 +203,7 @@ body {
 }
 
 .lantern-flame {
-  transform-origin: 30px 80px;
+  transform-origin: 40px 90px;
   animation: flickerFlame 0.15s infinite alternate ease-in-out;
 }
 
@@ -220,6 +220,16 @@ body {
 .lantern-6 { left: 82%; animation-delay: 6s; animation-duration: 17s; width: 46px; height: 69px; }
 .lantern-7 { left: 16%; animation-delay: 8s; animation-duration: 19s; width: 42px; height: 63px; }
 .lantern-8 { left: 76%; animation-delay: 9s; animation-duration: 16s; width: 52px; height: 78px; }
+.lantern-9 { left: 3%; animation-delay: 4.5s; animation-duration: 17.5s; width: 45px; height: 67.5px; }
+.lantern-10 { left: 19%; animation-delay: 11s; animation-duration: 21s; width: 36px; height: 54px; }
+.lantern-11 { left: 31%; animation-delay: 7s; animation-duration: 15.5s; width: 48px; height: 72px; }
+.lantern-12 { left: 45%; animation-delay: 13s; animation-duration: 18.5s; width: 42px; height: 63px; }
+.lantern-13 { left: 59%; animation-delay: 2.5s; animation-duration: 16.5s; width: 52px; height: 78px; }
+.lantern-14 { left: 71%; animation-delay: 10s; animation-duration: 22s; width: 38px; height: 57px; }
+.lantern-15 { left: 88%; animation-delay: 5.5s; animation-duration: 19.5s; width: 48px; height: 72px; }
+.lantern-16 { left: 12%; animation-delay: 12s; animation-duration: 16s; width: 40px; height: 60px; }
+.lantern-17 { left: 63%; animation-delay: 8.5s; animation-duration: 20s; width: 46px; height: 69px; }
+.lantern-18 { left: 93%; animation-delay: 1.5s; animation-duration: 17s; width: 50px; height: 75px; }
 
 @keyframes floatLantern {
   0% {

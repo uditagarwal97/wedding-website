@@ -14,7 +14,7 @@
   <!-- FontAwesome Icons for UI & Map pin icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <link rel="stylesheet" href="styles.css?v=25.0">
+  <link rel="stylesheet" href="styles.css?v=26.0">
 </head>
 <body>
 
@@ -94,104 +94,366 @@
     <!-- 2. FORMAL ANNOUNCEMENT / HERO HERO ARCHITECTURE SECTION -->
     <section id="announcement" class="announcement-section">
       <!-- Floating Sky Lanterns -->
-      <div class="lanterns-container">
+            <!-- Floating Sky Lanterns -->
+      <div class=lanterns-container>
         <!-- Shared SVGs gradients defs -->
-        <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" xmlns="http://www.w3.org/2000/svg">
+        <svg style='position: absolute; width: 0; height: 0; overflow: hidden;' xmlns='http://www.w3.org/2000/svg'>
           <defs>
-            <radialGradient id="lanternGlow" cx="50%" cy="85%" r="85%">
-              <stop offset="0%" stop-color="#FFFFFF" />
-              <stop offset="15%" stop-color="#FFF59D" stop-opacity="0.95" />
-              <stop offset="45%" stop-color="#FFB300" stop-opacity="0.9" />
-              <stop offset="80%" stop-color="#E65100" stop-opacity="0.8" />
-              <stop offset="100%" stop-color="#8E24AA" stop-opacity="0.25" />
+            <radialGradient id='lanternGlow' cx='50%' cy='80%' r='80%'>
+              <stop offset='0%' stop-color='#FFFFFF' />
+              <stop offset='12%' stop-color='#FFFAA0' stop-opacity='0.95' />
+              <stop offset='35%' stop-color='#FFB300' stop-opacity='0.9' />
+              <stop offset='65%' stop-color='#E65100' stop-opacity='0.85' />
+              <stop offset='90%' stop-color='#BF360C' stop-opacity='0.75' />
+              <stop offset='100%' stop-color='#3E2723' stop-opacity='0.3' />
             </radialGradient>
-            <linearGradient id="flameGrad" x1="0%" y1="100%" x2="0%" y2="0%">
-              <stop offset="0%" stop-color="#FF3D00" />
-              <stop offset="50%" stop-color="#FFEA00" />
-              <stop offset="100%" stop-color="#FFFFFF" />
+            <linearGradient id='flameGrad' x1='0%' y1='100%' x2='0%' y2='0%'>
+              <stop offset='0%' stop-color='#FF3D00' />
+              <stop offset='50%' stop-color='#FFEA00' />
+              <stop offset='100%' stop-color='#FFFFFF' />
             </linearGradient>
           </defs>
         </svg>
-
-        <!-- Lanterns -->
-        <div class="lantern lantern-1">
-          <svg class="lantern-svg" viewBox="0 0 60 90" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="#FF8F00" opacity="0.15" transform="scale(1.1) translate(-2.7, -3)"/>
-            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="url(#lanternGlow)" stroke="#F5D77F" stroke-width="0.5"/>
-            <ellipse cx="30" cy="80" rx="8.5" ry="1.5" fill="none" stroke="#D4AF37" stroke-width="1"/>
-            <path class="lantern-flame" d="M 30,73 C 27,77 27,82 30,82 C 33,82 33,77 30,73 Z" fill="url(#flameGrad)"/>
-            <line x1="25" y1="81" x2="24" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
-            <line x1="35" y1="81" x2="36" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
+        <div class='lantern lantern-1'>
+          <svg class='lantern-svg' viewBox='0 0 80 120' xmlns='http://www.w3.org/2000/svg'>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='#FF8F00' opacity='0.18' transform='scale(1.08) translate(-3, -4)'/>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='url(#lanternGlow)' stroke='#F5D77F' stroke-width='0.5'/>
+            <path d='M 32,12 C 34,40 33,70 31,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 48,12 C 46,40 47,70 49,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 40,11 L 40,99' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 14,35 Q 40,42 66,35' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 17,58 Q 40,65 63,58' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 20,78 Q 40,84 60,78' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <line x1='24' y1='100' x2='56' y2='100' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <line x1='40' y1='96' x2='40' y2='104' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <rect x='38.5' y='98.5' width='3' height='3' fill='#21100B' opacity='0.9'/>
+            <path class='lantern-flame' d='M 40,81 C 36,89 36,97 40,97 C 44,97 44,89 40,81 Z' fill='url(#flameGrad)'/>
+            <ellipse cx='40' cy='100' rx='16.5' ry='3.2' fill='none' stroke='#D4AF37' stroke-width='1.3'/>
+            <line x1='27' y1='101' x2='25' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
+            <line x1='53' y1='101' x2='55' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
           </svg>
         </div>
-        <div class="lantern lantern-2">
-          <svg class="lantern-svg" viewBox="0 0 60 90" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="#FF8F00" opacity="0.15" transform="scale(1.1) translate(-2.7, -3)"/>
-            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="url(#lanternGlow)" stroke="#F5D77F" stroke-width="0.5"/>
-            <ellipse cx="30" cy="80" rx="8.5" ry="1.5" fill="none" stroke="#D4AF37" stroke-width="1"/>
-            <path class="lantern-flame" d="M 30,73 C 27,77 27,82 30,82 C 33,82 33,77 30,73 Z" fill="url(#flameGrad)"/>
-            <line x1="25" y1="81" x2="24" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
-            <line x1="35" y1="81" x2="36" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
+        <div class='lantern lantern-2'>
+          <svg class='lantern-svg' viewBox='0 0 80 120' xmlns='http://www.w3.org/2000/svg'>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='#FF8F00' opacity='0.18' transform='scale(1.08) translate(-3, -4)'/>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='url(#lanternGlow)' stroke='#F5D77F' stroke-width='0.5'/>
+            <path d='M 32,12 C 34,40 33,70 31,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 48,12 C 46,40 47,70 49,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 40,11 L 40,99' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 14,35 Q 40,42 66,35' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 17,58 Q 40,65 63,58' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 20,78 Q 40,84 60,78' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <line x1='24' y1='100' x2='56' y2='100' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <line x1='40' y1='96' x2='40' y2='104' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <rect x='38.5' y='98.5' width='3' height='3' fill='#21100B' opacity='0.9'/>
+            <path class='lantern-flame' d='M 40,81 C 36,89 36,97 40,97 C 44,97 44,89 40,81 Z' fill='url(#flameGrad)'/>
+            <ellipse cx='40' cy='100' rx='16.5' ry='3.2' fill='none' stroke='#D4AF37' stroke-width='1.3'/>
+            <line x1='27' y1='101' x2='25' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
+            <line x1='53' y1='101' x2='55' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
           </svg>
         </div>
-        <div class="lantern lantern-3">
-          <svg class="lantern-svg" viewBox="0 0 60 90" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="#FF8F00" opacity="0.15" transform="scale(1.1) translate(-2.7, -3)"/>
-            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="url(#lanternGlow)" stroke="#F5D77F" stroke-width="0.5"/>
-            <ellipse cx="30" cy="80" rx="8.5" ry="1.5" fill="none" stroke="#D4AF37" stroke-width="1"/>
-            <path class="lantern-flame" d="M 30,73 C 27,77 27,82 30,82 C 33,82 33,77 30,73 Z" fill="url(#flameGrad)"/>
-            <line x1="25" y1="81" x2="24" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
-            <line x1="35" y1="81" x2="36" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
+        <div class='lantern lantern-3'>
+          <svg class='lantern-svg' viewBox='0 0 80 120' xmlns='http://www.w3.org/2000/svg'>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='#FF8F00' opacity='0.18' transform='scale(1.08) translate(-3, -4)'/>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='url(#lanternGlow)' stroke='#F5D77F' stroke-width='0.5'/>
+            <path d='M 32,12 C 34,40 33,70 31,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 48,12 C 46,40 47,70 49,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 40,11 L 40,99' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 14,35 Q 40,42 66,35' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 17,58 Q 40,65 63,58' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 20,78 Q 40,84 60,78' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <line x1='24' y1='100' x2='56' y2='100' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <line x1='40' y1='96' x2='40' y2='104' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <rect x='38.5' y='98.5' width='3' height='3' fill='#21100B' opacity='0.9'/>
+            <path class='lantern-flame' d='M 40,81 C 36,89 36,97 40,97 C 44,97 44,89 40,81 Z' fill='url(#flameGrad)'/>
+            <ellipse cx='40' cy='100' rx='16.5' ry='3.2' fill='none' stroke='#D4AF37' stroke-width='1.3'/>
+            <line x1='27' y1='101' x2='25' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
+            <line x1='53' y1='101' x2='55' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
           </svg>
         </div>
-        <div class="lantern lantern-4">
-          <svg class="lantern-svg" viewBox="0 0 60 90" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="#FF8F00" opacity="0.15" transform="scale(1.1) translate(-2.7, -3)"/>
-            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="url(#lanternGlow)" stroke="#F5D77F" stroke-width="0.5"/>
-            <ellipse cx="30" cy="80" rx="8.5" ry="1.5" fill="none" stroke="#D4AF37" stroke-width="1"/>
-            <path class="lantern-flame" d="M 30,73 C 27,77 27,82 30,82 C 33,82 33,77 30,73 Z" fill="url(#flameGrad)"/>
-            <line x1="25" y1="81" x2="24" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
-            <line x1="35" y1="81" x2="36" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
+        <div class='lantern lantern-4'>
+          <svg class='lantern-svg' viewBox='0 0 80 120' xmlns='http://www.w3.org/2000/svg'>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='#FF8F00' opacity='0.18' transform='scale(1.08) translate(-3, -4)'/>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='url(#lanternGlow)' stroke='#F5D77F' stroke-width='0.5'/>
+            <path d='M 32,12 C 34,40 33,70 31,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 48,12 C 46,40 47,70 49,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 40,11 L 40,99' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 14,35 Q 40,42 66,35' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 17,58 Q 40,65 63,58' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 20,78 Q 40,84 60,78' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <line x1='24' y1='100' x2='56' y2='100' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <line x1='40' y1='96' x2='40' y2='104' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <rect x='38.5' y='98.5' width='3' height='3' fill='#21100B' opacity='0.9'/>
+            <path class='lantern-flame' d='M 40,81 C 36,89 36,97 40,97 C 44,97 44,89 40,81 Z' fill='url(#flameGrad)'/>
+            <ellipse cx='40' cy='100' rx='16.5' ry='3.2' fill='none' stroke='#D4AF37' stroke-width='1.3'/>
+            <line x1='27' y1='101' x2='25' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
+            <line x1='53' y1='101' x2='55' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
           </svg>
         </div>
-        <div class="lantern lantern-5">
-          <svg class="lantern-svg" viewBox="0 0 60 90" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="#FF8F00" opacity="0.15" transform="scale(1.1) translate(-2.7, -3)"/>
-            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="url(#lanternGlow)" stroke="#F5D77F" stroke-width="0.5"/>
-            <ellipse cx="30" cy="80" rx="8.5" ry="1.5" fill="none" stroke="#D4AF37" stroke-width="1"/>
-            <path class="lantern-flame" d="M 30,73 C 27,77 27,82 30,82 C 33,82 33,77 30,73 Z" fill="url(#flameGrad)"/>
-            <line x1="25" y1="81" x2="24" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
-            <line x1="35" y1="81" x2="36" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
+        <div class='lantern lantern-5'>
+          <svg class='lantern-svg' viewBox='0 0 80 120' xmlns='http://www.w3.org/2000/svg'>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='#FF8F00' opacity='0.18' transform='scale(1.08) translate(-3, -4)'/>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='url(#lanternGlow)' stroke='#F5D77F' stroke-width='0.5'/>
+            <path d='M 32,12 C 34,40 33,70 31,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 48,12 C 46,40 47,70 49,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 40,11 L 40,99' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 14,35 Q 40,42 66,35' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 17,58 Q 40,65 63,58' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 20,78 Q 40,84 60,78' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <line x1='24' y1='100' x2='56' y2='100' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <line x1='40' y1='96' x2='40' y2='104' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <rect x='38.5' y='98.5' width='3' height='3' fill='#21100B' opacity='0.9'/>
+            <path class='lantern-flame' d='M 40,81 C 36,89 36,97 40,97 C 44,97 44,89 40,81 Z' fill='url(#flameGrad)'/>
+            <ellipse cx='40' cy='100' rx='16.5' ry='3.2' fill='none' stroke='#D4AF37' stroke-width='1.3'/>
+            <line x1='27' y1='101' x2='25' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
+            <line x1='53' y1='101' x2='55' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
           </svg>
         </div>
-        <div class="lantern lantern-6">
-          <svg class="lantern-svg" viewBox="0 0 60 90" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="#FF8F00" opacity="0.15" transform="scale(1.1) translate(-2.7, -3)"/>
-            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="url(#lanternGlow)" stroke="#F5D77F" stroke-width="0.5"/>
-            <ellipse cx="30" cy="80" rx="8.5" ry="1.5" fill="none" stroke="#D4AF37" stroke-width="1"/>
-            <path class="lantern-flame" d="M 30,73 C 27,77 27,82 30,82 C 33,82 33,77 30,73 Z" fill="url(#flameGrad)"/>
-            <line x1="25" y1="81" x2="24" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
-            <line x1="35" y1="81" x2="36" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
+        <div class='lantern lantern-6'>
+          <svg class='lantern-svg' viewBox='0 0 80 120' xmlns='http://www.w3.org/2000/svg'>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='#FF8F00' opacity='0.18' transform='scale(1.08) translate(-3, -4)'/>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='url(#lanternGlow)' stroke='#F5D77F' stroke-width='0.5'/>
+            <path d='M 32,12 C 34,40 33,70 31,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 48,12 C 46,40 47,70 49,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 40,11 L 40,99' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 14,35 Q 40,42 66,35' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 17,58 Q 40,65 63,58' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 20,78 Q 40,84 60,78' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <line x1='24' y1='100' x2='56' y2='100' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <line x1='40' y1='96' x2='40' y2='104' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <rect x='38.5' y='98.5' width='3' height='3' fill='#21100B' opacity='0.9'/>
+            <path class='lantern-flame' d='M 40,81 C 36,89 36,97 40,97 C 44,97 44,89 40,81 Z' fill='url(#flameGrad)'/>
+            <ellipse cx='40' cy='100' rx='16.5' ry='3.2' fill='none' stroke='#D4AF37' stroke-width='1.3'/>
+            <line x1='27' y1='101' x2='25' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
+            <line x1='53' y1='101' x2='55' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
           </svg>
         </div>
-        <div class="lantern lantern-7">
-          <svg class="lantern-svg" viewBox="0 0 60 90" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="#FF8F00" opacity="0.15" transform="scale(1.1) translate(-2.7, -3)"/>
-            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="url(#lanternGlow)" stroke="#F5D77F" stroke-width="0.5"/>
-            <ellipse cx="30" cy="80" rx="8.5" ry="1.5" fill="none" stroke="#D4AF37" stroke-width="1"/>
-            <path class="lantern-flame" d="M 30,73 C 27,77 27,82 30,82 C 33,82 33,77 30,73 Z" fill="url(#flameGrad)"/>
-            <line x1="25" y1="81" x2="24" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
-            <line x1="35" y1="81" x2="36" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
+        <div class='lantern lantern-7'>
+          <svg class='lantern-svg' viewBox='0 0 80 120' xmlns='http://www.w3.org/2000/svg'>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='#FF8F00' opacity='0.18' transform='scale(1.08) translate(-3, -4)'/>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='url(#lanternGlow)' stroke='#F5D77F' stroke-width='0.5'/>
+            <path d='M 32,12 C 34,40 33,70 31,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 48,12 C 46,40 47,70 49,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 40,11 L 40,99' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 14,35 Q 40,42 66,35' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 17,58 Q 40,65 63,58' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 20,78 Q 40,84 60,78' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <line x1='24' y1='100' x2='56' y2='100' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <line x1='40' y1='96' x2='40' y2='104' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <rect x='38.5' y='98.5' width='3' height='3' fill='#21100B' opacity='0.9'/>
+            <path class='lantern-flame' d='M 40,81 C 36,89 36,97 40,97 C 44,97 44,89 40,81 Z' fill='url(#flameGrad)'/>
+            <ellipse cx='40' cy='100' rx='16.5' ry='3.2' fill='none' stroke='#D4AF37' stroke-width='1.3'/>
+            <line x1='27' y1='101' x2='25' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
+            <line x1='53' y1='101' x2='55' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
           </svg>
         </div>
-        <div class="lantern lantern-8">
-          <svg class="lantern-svg" viewBox="0 0 60 90" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="#FF8F00" opacity="0.15" transform="scale(1.1) translate(-2.7, -3)"/>
-            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="url(#lanternGlow)" stroke="#F5D77F" stroke-width="0.5"/>
-            <ellipse cx="30" cy="80" rx="8.5" ry="1.5" fill="none" stroke="#D4AF37" stroke-width="1"/>
-            <path class="lantern-flame" d="M 30,73 C 27,77 27,82 30,82 C 33,82 33,77 30,73 Z" fill="url(#flameGrad)"/>
-            <line x1="25" y1="81" x2="24" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
-            <line x1="35" y1="81" x2="36" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
+        <div class='lantern lantern-8'>
+          <svg class='lantern-svg' viewBox='0 0 80 120' xmlns='http://www.w3.org/2000/svg'>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='#FF8F00' opacity='0.18' transform='scale(1.08) translate(-3, -4)'/>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='url(#lanternGlow)' stroke='#F5D77F' stroke-width='0.5'/>
+            <path d='M 32,12 C 34,40 33,70 31,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 48,12 C 46,40 47,70 49,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 40,11 L 40,99' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 14,35 Q 40,42 66,35' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 17,58 Q 40,65 63,58' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 20,78 Q 40,84 60,78' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <line x1='24' y1='100' x2='56' y2='100' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <line x1='40' y1='96' x2='40' y2='104' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <rect x='38.5' y='98.5' width='3' height='3' fill='#21100B' opacity='0.9'/>
+            <path class='lantern-flame' d='M 40,81 C 36,89 36,97 40,97 C 44,97 44,89 40,81 Z' fill='url(#flameGrad)'/>
+            <ellipse cx='40' cy='100' rx='16.5' ry='3.2' fill='none' stroke='#D4AF37' stroke-width='1.3'/>
+            <line x1='27' y1='101' x2='25' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
+            <line x1='53' y1='101' x2='55' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
+          </svg>
+        </div>
+        <div class='lantern lantern-9'>
+          <svg class='lantern-svg' viewBox='0 0 80 120' xmlns='http://www.w3.org/2000/svg'>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='#FF8F00' opacity='0.18' transform='scale(1.08) translate(-3, -4)'/>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='url(#lanternGlow)' stroke='#F5D77F' stroke-width='0.5'/>
+            <path d='M 32,12 C 34,40 33,70 31,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 48,12 C 46,40 47,70 49,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 40,11 L 40,99' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 14,35 Q 40,42 66,35' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 17,58 Q 40,65 63,58' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 20,78 Q 40,84 60,78' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <line x1='24' y1='100' x2='56' y2='100' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <line x1='40' y1='96' x2='40' y2='104' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <rect x='38.5' y='98.5' width='3' height='3' fill='#21100B' opacity='0.9'/>
+            <path class='lantern-flame' d='M 40,81 C 36,89 36,97 40,97 C 44,97 44,89 40,81 Z' fill='url(#flameGrad)'/>
+            <ellipse cx='40' cy='100' rx='16.5' ry='3.2' fill='none' stroke='#D4AF37' stroke-width='1.3'/>
+            <line x1='27' y1='101' x2='25' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
+            <line x1='53' y1='101' x2='55' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
+          </svg>
+        </div>
+        <div class='lantern lantern-10'>
+          <svg class='lantern-svg' viewBox='0 0 80 120' xmlns='http://www.w3.org/2000/svg'>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='#FF8F00' opacity='0.18' transform='scale(1.08) translate(-3, -4)'/>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='url(#lanternGlow)' stroke='#F5D77F' stroke-width='0.5'/>
+            <path d='M 32,12 C 34,40 33,70 31,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 48,12 C 46,40 47,70 49,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 40,11 L 40,99' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 14,35 Q 40,42 66,35' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 17,58 Q 40,65 63,58' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 20,78 Q 40,84 60,78' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <line x1='24' y1='100' x2='56' y2='100' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <line x1='40' y1='96' x2='40' y2='104' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <rect x='38.5' y='98.5' width='3' height='3' fill='#21100B' opacity='0.9'/>
+            <path class='lantern-flame' d='M 40,81 C 36,89 36,97 40,97 C 44,97 44,89 40,81 Z' fill='url(#flameGrad)'/>
+            <ellipse cx='40' cy='100' rx='16.5' ry='3.2' fill='none' stroke='#D4AF37' stroke-width='1.3'/>
+            <line x1='27' y1='101' x2='25' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
+            <line x1='53' y1='101' x2='55' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
+          </svg>
+        </div>
+        <div class='lantern lantern-11'>
+          <svg class='lantern-svg' viewBox='0 0 80 120' xmlns='http://www.w3.org/2000/svg'>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='#FF8F00' opacity='0.18' transform='scale(1.08) translate(-3, -4)'/>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='url(#lanternGlow)' stroke='#F5D77F' stroke-width='0.5'/>
+            <path d='M 32,12 C 34,40 33,70 31,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 48,12 C 46,40 47,70 49,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 40,11 L 40,99' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 14,35 Q 40,42 66,35' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 17,58 Q 40,65 63,58' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 20,78 Q 40,84 60,78' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <line x1='24' y1='100' x2='56' y2='100' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <line x1='40' y1='96' x2='40' y2='104' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <rect x='38.5' y='98.5' width='3' height='3' fill='#21100B' opacity='0.9'/>
+            <path class='lantern-flame' d='M 40,81 C 36,89 36,97 40,97 C 44,97 44,89 40,81 Z' fill='url(#flameGrad)'/>
+            <ellipse cx='40' cy='100' rx='16.5' ry='3.2' fill='none' stroke='#D4AF37' stroke-width='1.3'/>
+            <line x1='27' y1='101' x2='25' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
+            <line x1='53' y1='101' x2='55' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
+          </svg>
+        </div>
+        <div class='lantern lantern-12'>
+          <svg class='lantern-svg' viewBox='0 0 80 120' xmlns='http://www.w3.org/2000/svg'>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='#FF8F00' opacity='0.18' transform='scale(1.08) translate(-3, -4)'/>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='url(#lanternGlow)' stroke='#F5D77F' stroke-width='0.5'/>
+            <path d='M 32,12 C 34,40 33,70 31,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 48,12 C 46,40 47,70 49,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 40,11 L 40,99' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 14,35 Q 40,42 66,35' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 17,58 Q 40,65 63,58' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 20,78 Q 40,84 60,78' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <line x1='24' y1='100' x2='56' y2='100' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <line x1='40' y1='96' x2='40' y2='104' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <rect x='38.5' y='98.5' width='3' height='3' fill='#21100B' opacity='0.9'/>
+            <path class='lantern-flame' d='M 40,81 C 36,89 36,97 40,97 C 44,97 44,89 40,81 Z' fill='url(#flameGrad)'/>
+            <ellipse cx='40' cy='100' rx='16.5' ry='3.2' fill='none' stroke='#D4AF37' stroke-width='1.3'/>
+            <line x1='27' y1='101' x2='25' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
+            <line x1='53' y1='101' x2='55' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
+          </svg>
+        </div>
+        <div class='lantern lantern-13'>
+          <svg class='lantern-svg' viewBox='0 0 80 120' xmlns='http://www.w3.org/2000/svg'>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='#FF8F00' opacity='0.18' transform='scale(1.08) translate(-3, -4)'/>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='url(#lanternGlow)' stroke='#F5D77F' stroke-width='0.5'/>
+            <path d='M 32,12 C 34,40 33,70 31,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 48,12 C 46,40 47,70 49,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 40,11 L 40,99' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 14,35 Q 40,42 66,35' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 17,58 Q 40,65 63,58' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 20,78 Q 40,84 60,78' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <line x1='24' y1='100' x2='56' y2='100' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <line x1='40' y1='96' x2='40' y2='104' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <rect x='38.5' y='98.5' width='3' height='3' fill='#21100B' opacity='0.9'/>
+            <path class='lantern-flame' d='M 40,81 C 36,89 36,97 40,97 C 44,97 44,89 40,81 Z' fill='url(#flameGrad)'/>
+            <ellipse cx='40' cy='100' rx='16.5' ry='3.2' fill='none' stroke='#D4AF37' stroke-width='1.3'/>
+            <line x1='27' y1='101' x2='25' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
+            <line x1='53' y1='101' x2='55' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
+          </svg>
+        </div>
+        <div class='lantern lantern-14'>
+          <svg class='lantern-svg' viewBox='0 0 80 120' xmlns='http://www.w3.org/2000/svg'>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='#FF8F00' opacity='0.18' transform='scale(1.08) translate(-3, -4)'/>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='url(#lanternGlow)' stroke='#F5D77F' stroke-width='0.5'/>
+            <path d='M 32,12 C 34,40 33,70 31,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 48,12 C 46,40 47,70 49,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 40,11 L 40,99' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 14,35 Q 40,42 66,35' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 17,58 Q 40,65 63,58' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 20,78 Q 40,84 60,78' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <line x1='24' y1='100' x2='56' y2='100' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <line x1='40' y1='96' x2='40' y2='104' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <rect x='38.5' y='98.5' width='3' height='3' fill='#21100B' opacity='0.9'/>
+            <path class='lantern-flame' d='M 40,81 C 36,89 36,97 40,97 C 44,97 44,89 40,81 Z' fill='url(#flameGrad)'/>
+            <ellipse cx='40' cy='100' rx='16.5' ry='3.2' fill='none' stroke='#D4AF37' stroke-width='1.3'/>
+            <line x1='27' y1='101' x2='25' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
+            <line x1='53' y1='101' x2='55' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
+          </svg>
+        </div>
+        <div class='lantern lantern-15'>
+          <svg class='lantern-svg' viewBox='0 0 80 120' xmlns='http://www.w3.org/2000/svg'>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='#FF8F00' opacity='0.18' transform='scale(1.08) translate(-3, -4)'/>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='url(#lanternGlow)' stroke='#F5D77F' stroke-width='0.5'/>
+            <path d='M 32,12 C 34,40 33,70 31,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 48,12 C 46,40 47,70 49,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 40,11 L 40,99' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 14,35 Q 40,42 66,35' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 17,58 Q 40,65 63,58' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 20,78 Q 40,84 60,78' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <line x1='24' y1='100' x2='56' y2='100' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <line x1='40' y1='96' x2='40' y2='104' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <rect x='38.5' y='98.5' width='3' height='3' fill='#21100B' opacity='0.9'/>
+            <path class='lantern-flame' d='M 40,81 C 36,89 36,97 40,97 C 44,97 44,89 40,81 Z' fill='url(#flameGrad)'/>
+            <ellipse cx='40' cy='100' rx='16.5' ry='3.2' fill='none' stroke='#D4AF37' stroke-width='1.3'/>
+            <line x1='27' y1='101' x2='25' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
+            <line x1='53' y1='101' x2='55' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
+          </svg>
+        </div>
+        <div class='lantern lantern-16'>
+          <svg class='lantern-svg' viewBox='0 0 80 120' xmlns='http://www.w3.org/2000/svg'>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='#FF8F00' opacity='0.18' transform='scale(1.08) translate(-3, -4)'/>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='url(#lanternGlow)' stroke='#F5D77F' stroke-width='0.5'/>
+            <path d='M 32,12 C 34,40 33,70 31,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 48,12 C 46,40 47,70 49,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 40,11 L 40,99' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 14,35 Q 40,42 66,35' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 17,58 Q 40,65 63,58' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 20,78 Q 40,84 60,78' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <line x1='24' y1='100' x2='56' y2='100' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <line x1='40' y1='96' x2='40' y2='104' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <rect x='38.5' y='98.5' width='3' height='3' fill='#21100B' opacity='0.9'/>
+            <path class='lantern-flame' d='M 40,81 C 36,89 36,97 40,97 C 44,97 44,89 40,81 Z' fill='url(#flameGrad)'/>
+            <ellipse cx='40' cy='100' rx='16.5' ry='3.2' fill='none' stroke='#D4AF37' stroke-width='1.3'/>
+            <line x1='27' y1='101' x2='25' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
+            <line x1='53' y1='101' x2='55' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
+          </svg>
+        </div>
+        <div class='lantern lantern-17'>
+          <svg class='lantern-svg' viewBox='0 0 80 120' xmlns='http://www.w3.org/2000/svg'>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='#FF8F00' opacity='0.18' transform='scale(1.08) translate(-3, -4)'/>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='url(#lanternGlow)' stroke='#F5D77F' stroke-width='0.5'/>
+            <path d='M 32,12 C 34,40 33,70 31,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 48,12 C 46,40 47,70 49,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 40,11 L 40,99' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 14,35 Q 40,42 66,35' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 17,58 Q 40,65 63,58' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 20,78 Q 40,84 60,78' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <line x1='24' y1='100' x2='56' y2='100' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <line x1='40' y1='96' x2='40' y2='104' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <rect x='38.5' y='98.5' width='3' height='3' fill='#21100B' opacity='0.9'/>
+            <path class='lantern-flame' d='M 40,81 C 36,89 36,97 40,97 C 44,97 44,89 40,81 Z' fill='url(#flameGrad)'/>
+            <ellipse cx='40' cy='100' rx='16.5' ry='3.2' fill='none' stroke='#D4AF37' stroke-width='1.3'/>
+            <line x1='27' y1='101' x2='25' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
+            <line x1='53' y1='101' x2='55' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
+          </svg>
+        </div>
+        <div class='lantern lantern-18'>
+          <svg class='lantern-svg' viewBox='0 0 80 120' xmlns='http://www.w3.org/2000/svg'>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='#FF8F00' opacity='0.18' transform='scale(1.08) translate(-3, -4)'/>
+            <path d='M 24,100 C 20,80 14,50 14,35 C 14,10 66,10 66,35 C 66,50 60,80 56,100 Z' fill='url(#lanternGlow)' stroke='#F5D77F' stroke-width='0.5'/>
+            <path d='M 32,12 C 34,40 33,70 31,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 48,12 C 46,40 47,70 49,98' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 40,11 L 40,99' fill='none' stroke='#D4AF37' stroke-width='0.35' opacity='0.25'/>
+            <path d='M 14,35 Q 40,42 66,35' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 17,58 Q 40,65 63,58' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <path d='M 20,78 Q 40,84 60,78' fill='none' stroke='#D4AF37' stroke-width='0.3' opacity='0.2'/>
+            <line x1='24' y1='100' x2='56' y2='100' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <line x1='40' y1='96' x2='40' y2='104' stroke='#5D4037' stroke-width='0.8' opacity='0.6'/>
+            <rect x='38.5' y='98.5' width='3' height='3' fill='#21100B' opacity='0.9'/>
+            <path class='lantern-flame' d='M 40,81 C 36,89 36,97 40,97 C 44,97 44,89 40,81 Z' fill='url(#flameGrad)'/>
+            <ellipse cx='40' cy='100' rx='16.5' ry='3.2' fill='none' stroke='#D4AF37' stroke-width='1.3'/>
+            <line x1='27' y1='101' x2='25' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
+            <line x1='53' y1='101' x2='55' y2='114' stroke='#D4AF37' stroke-width='0.85' opacity='0.8'/>
           </svg>
         </div>
       </div>
@@ -522,6 +784,6 @@
   </main>
 
   <script src="https://www.youtube.com/iframe_api"></script>
-  <script src="app.js?v=25.0"></script>
+  <script src="app.js?v=26.0"></script>
 </body>
 </html>
