@@ -704,9 +704,7 @@ body {
 }
 
 .om-symbol {
-  font-size: 1.8rem;
-  color: var(--color-terracotta);
-  margin-bottom: 0.5rem;
+  display: none !important;
 }
 
 .blessings-text {
