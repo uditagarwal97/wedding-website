@@ -14,7 +14,7 @@
   <!-- FontAwesome Icons for UI & Map pin icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <link rel="stylesheet" href="styles.css?v=23.0">
+  <link rel="stylesheet" href="styles.css?v=24.0">
 </head>
 <body>
 
@@ -95,14 +95,105 @@
     <section id="announcement" class="announcement-section">
       <!-- Floating Sky Lanterns -->
       <div class="lanterns-container">
-        <div class="lantern lantern-1"></div>
-        <div class="lantern lantern-2"></div>
-        <div class="lantern lantern-3"></div>
-        <div class="lantern lantern-4"></div>
-        <div class="lantern lantern-5"></div>
-        <div class="lantern lantern-6"></div>
-        <div class="lantern lantern-7"></div>
-        <div class="lantern lantern-8"></div>
+        <!-- Shared SVGs gradients defs -->
+        <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="lanternGlow" cx="50%" cy="85%" r="85%">
+              <stop offset="0%" stop-color="#FFFFFF" />
+              <stop offset="15%" stop-color="#FFF59D" stop-opacity="0.95" />
+              <stop offset="45%" stop-color="#FFB300" stop-opacity="0.9" />
+              <stop offset="80%" stop-color="#E65100" stop-opacity="0.8" />
+              <stop offset="100%" stop-color="#8E24AA" stop-opacity="0.25" />
+            </radialGradient>
+            <linearGradient id="flameGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+              <stop offset="0%" stop-color="#FF3D00" />
+              <stop offset="50%" stop-color="#FFEA00" />
+              <stop offset="100%" stop-color="#FFFFFF" />
+            </linearGradient>
+          </defs>
+        </svg>
+
+        <!-- Lanterns -->
+        <div class="lantern lantern-1">
+          <svg class="lantern-svg" viewBox="0 0 60 90" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="#FF8F00" opacity="0.15" transform="scale(1.1) translate(-2.7, -3)"/>
+            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="url(#lanternGlow)" stroke="#F5D77F" stroke-width="0.5"/>
+            <ellipse cx="30" cy="80" rx="8.5" ry="1.5" fill="none" stroke="#D4AF37" stroke-width="1"/>
+            <path class="lantern-flame" d="M 30,73 C 27,77 27,82 30,82 C 33,82 33,77 30,73 Z" fill="url(#flameGrad)"/>
+            <line x1="25" y1="81" x2="24" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
+            <line x1="35" y1="81" x2="36" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
+          </svg>
+        </div>
+        <div class="lantern lantern-2">
+          <svg class="lantern-svg" viewBox="0 0 60 90" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="#FF8F00" opacity="0.15" transform="scale(1.1) translate(-2.7, -3)"/>
+            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="url(#lanternGlow)" stroke="#F5D77F" stroke-width="0.5"/>
+            <ellipse cx="30" cy="80" rx="8.5" ry="1.5" fill="none" stroke="#D4AF37" stroke-width="1"/>
+            <path class="lantern-flame" d="M 30,73 C 27,77 27,82 30,82 C 33,82 33,77 30,73 Z" fill="url(#flameGrad)"/>
+            <line x1="25" y1="81" x2="24" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
+            <line x1="35" y1="81" x2="36" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
+          </svg>
+        </div>
+        <div class="lantern lantern-3">
+          <svg class="lantern-svg" viewBox="0 0 60 90" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="#FF8F00" opacity="0.15" transform="scale(1.1) translate(-2.7, -3)"/>
+            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="url(#lanternGlow)" stroke="#F5D77F" stroke-width="0.5"/>
+            <ellipse cx="30" cy="80" rx="8.5" ry="1.5" fill="none" stroke="#D4AF37" stroke-width="1"/>
+            <path class="lantern-flame" d="M 30,73 C 27,77 27,82 30,82 C 33,82 33,77 30,73 Z" fill="url(#flameGrad)"/>
+            <line x1="25" y1="81" x2="24" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
+            <line x1="35" y1="81" x2="36" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
+          </svg>
+        </div>
+        <div class="lantern lantern-4">
+          <svg class="lantern-svg" viewBox="0 0 60 90" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="#FF8F00" opacity="0.15" transform="scale(1.1) translate(-2.7, -3)"/>
+            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="url(#lanternGlow)" stroke="#F5D77F" stroke-width="0.5"/>
+            <ellipse cx="30" cy="80" rx="8.5" ry="1.5" fill="none" stroke="#D4AF37" stroke-width="1"/>
+            <path class="lantern-flame" d="M 30,73 C 27,77 27,82 30,82 C 33,82 33,77 30,73 Z" fill="url(#flameGrad)"/>
+            <line x1="25" y1="81" x2="24" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
+            <line x1="35" y1="81" x2="36" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
+          </svg>
+        </div>
+        <div class="lantern lantern-5">
+          <svg class="lantern-svg" viewBox="0 0 60 90" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="#FF8F00" opacity="0.15" transform="scale(1.1) translate(-2.7, -3)"/>
+            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="url(#lanternGlow)" stroke="#F5D77F" stroke-width="0.5"/>
+            <ellipse cx="30" cy="80" rx="8.5" ry="1.5" fill="none" stroke="#D4AF37" stroke-width="1"/>
+            <path class="lantern-flame" d="M 30,73 C 27,77 27,82 30,82 C 33,82 33,77 30,73 Z" fill="url(#flameGrad)"/>
+            <line x1="25" y1="81" x2="24" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
+            <line x1="35" y1="81" x2="36" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
+          </svg>
+        </div>
+        <div class="lantern lantern-6">
+          <svg class="lantern-svg" viewBox="0 0 60 90" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="#FF8F00" opacity="0.15" transform="scale(1.1) translate(-2.7, -3)"/>
+            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="url(#lanternGlow)" stroke="#F5D77F" stroke-width="0.5"/>
+            <ellipse cx="30" cy="80" rx="8.5" ry="1.5" fill="none" stroke="#D4AF37" stroke-width="1"/>
+            <path class="lantern-flame" d="M 30,73 C 27,77 27,82 30,82 C 33,82 33,77 30,73 Z" fill="url(#flameGrad)"/>
+            <line x1="25" y1="81" x2="24" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
+            <line x1="35" y1="81" x2="36" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
+          </svg>
+        </div>
+        <div class="lantern lantern-7">
+          <svg class="lantern-svg" viewBox="0 0 60 90" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="#FF8F00" opacity="0.15" transform="scale(1.1) translate(-2.7, -3)"/>
+            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="url(#lanternGlow)" stroke="#F5D77F" stroke-width="0.5"/>
+            <ellipse cx="30" cy="80" rx="8.5" ry="1.5" fill="none" stroke="#D4AF37" stroke-width="1"/>
+            <path class="lantern-flame" d="M 30,73 C 27,77 27,82 30,82 C 33,82 33,77 30,73 Z" fill="url(#flameGrad)"/>
+            <line x1="25" y1="81" x2="24" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
+            <line x1="35" y1="81" x2="36" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
+          </svg>
+        </div>
+        <div class="lantern lantern-8">
+          <svg class="lantern-svg" viewBox="0 0 60 90" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="#FF8F00" opacity="0.15" transform="scale(1.1) translate(-2.7, -3)"/>
+            <path d="M 10 35 C 10 10, 50 10, 50 35 C 50 55, 42 75, 38 80 L 22 80 C 18 75, 10 55, 10 35 Z" fill="url(#lanternGlow)" stroke="#F5D77F" stroke-width="0.5"/>
+            <ellipse cx="30" cy="80" rx="8.5" ry="1.5" fill="none" stroke="#D4AF37" stroke-width="1"/>
+            <path class="lantern-flame" d="M 30,73 C 27,77 27,82 30,82 C 33,82 33,77 30,73 Z" fill="url(#flameGrad)"/>
+            <line x1="25" y1="81" x2="24" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
+            <line x1="35" y1="81" x2="36" y2="88" stroke="#D4AF37" stroke-width="0.8" opacity="0.8"/>
+          </svg>
+        </div>
       </div>
 
       <!-- Palace Courtyard Content Overlay -->
@@ -431,6 +522,6 @@
   </main>
 
   <script src="https://www.youtube.com/iframe_api"></script>
-  <script src="app.js?v=23.0"></script>
+  <script src="app.js?v=24.0"></script>
 </body>
 </html>

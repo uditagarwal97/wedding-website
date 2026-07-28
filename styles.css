@@ -188,39 +188,38 @@ body {
 
 .lantern {
   position: absolute;
-  bottom: -100px;
-  width: 30px;
-  height: 44px;
-  background: linear-gradient(to bottom, #FFA726 0%, #E65C00 70%, #9E1B2F 100%);
-  border-radius: 6px 6px 12px 12px;
-  box-shadow: 
-    0 0 15px rgba(255, 167, 38, 0.85),
-    0 0 35px rgba(230, 92, 0, 0.5),
-    inset 0 -8px 12px rgba(255, 235, 59, 0.7);
+  bottom: -120px;
+  width: 44px;
+  height: 66px;
   opacity: 0;
-  animation: floatLantern 15s infinite linear;
+  animation: floatLantern 16s infinite linear;
+  filter: drop-shadow(0 0 10px rgba(255, 179, 0, 0.45));
 }
 
-.lantern::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 2px;
-  height: 10px;
-  background: var(--color-gold-main);
-  box-shadow: 0 0 3px rgba(255, 215, 0, 0.8);
+.lantern-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
-.lantern-1 { left: 8%; animation-delay: 0s; animation-duration: 15s; width: 28px; height: 42px; }
-.lantern-2 { left: 24%; animation-delay: 3s; animation-duration: 18s; width: 34px; height: 50px; }
-.lantern-3 { left: 38%; animation-delay: 1s; animation-duration: 16s; width: 26px; height: 40px; }
-.lantern-4 { left: 52%; animation-delay: 5s; animation-duration: 20s; width: 36px; height: 54px; }
-.lantern-5 { left: 68%; animation-delay: 2s; animation-duration: 14s; width: 30px; height: 46px; }
-.lantern-6 { left: 82%; animation-delay: 6s; animation-duration: 17s; width: 32px; height: 48px; }
-.lantern-7 { left: 16%; animation-delay: 8s; animation-duration: 19s; width: 28px; height: 44px; }
-.lantern-8 { left: 76%; animation-delay: 9s; animation-duration: 16s; width: 34px; height: 52px; }
+.lantern-flame {
+  transform-origin: 30px 80px;
+  animation: flickerFlame 0.15s infinite alternate ease-in-out;
+}
+
+@keyframes flickerFlame {
+  0% { transform: scale(0.9) rotate(-1.5deg); opacity: 0.8; }
+  100% { transform: scale(1.15) rotate(1.5deg); opacity: 1; }
+}
+
+.lantern-1 { left: 8%; animation-delay: 0s; animation-duration: 15s; width: 40px; height: 60px; }
+.lantern-2 { left: 24%; animation-delay: 3s; animation-duration: 18s; width: 50px; height: 75px; }
+.lantern-3 { left: 38%; animation-delay: 1s; animation-duration: 16s; width: 38px; height: 57px; }
+.lantern-4 { left: 52%; animation-delay: 5s; animation-duration: 20s; width: 54px; height: 81px; }
+.lantern-5 { left: 68%; animation-delay: 2s; animation-duration: 14s; width: 44px; height: 66px; }
+.lantern-6 { left: 82%; animation-delay: 6s; animation-duration: 17s; width: 46px; height: 69px; }
+.lantern-7 { left: 16%; animation-delay: 8s; animation-duration: 19s; width: 42px; height: 63px; }
+.lantern-8 { left: 76%; animation-delay: 9s; animation-duration: 16s; width: 52px; height: 78px; }
 
 @keyframes floatLantern {
   0% {
