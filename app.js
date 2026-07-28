@@ -34,9 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================================
   // 2. LANDING WAX SEAL REVEAL & CURTAIN WIPE
   // =========================================================================
-  const waxSealBtn = document.getElementById('waxSealBtn');
-  const tapBanner = document.getElementById('tapBanner');
-  const sealLensFlare = document.getElementById('sealLensFlare');
+  // =========================================================================
+  // 2. LANDING MARIGOLD REVEAL & CURTAIN WIPE
+  // =========================================================================
+  const marigoldBtn = document.getElementById('marigoldBtn');
+  const marigoldGlow = document.getElementById('marigoldGlow');
   const landingScreen = document.getElementById('landingScreen');
   const mainInvitation = document.getElementById('mainInvitation');
 
@@ -46,19 +48,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isInvitationOpened) return;
     isInvitationOpened = true;
 
-    // 1. Trigger Lens Flare Pulse & Sound Effect
-    if (sealLensFlare) sealLensFlare.classList.add('active');
-    playSealSound();
+    // 1. Trigger Marigold Glow Pulse
+    if (marigoldGlow) marigoldGlow.classList.add('active');
 
     // 2. Make mainInvitation visible IMMEDIATELY directly behind stage curtains
     if (mainInvitation) mainInvitation.classList.remove('hidden');
 
-    // 3. Immediately dissolve landing text/pictures/layovers & part stage curtains
+    // 3. Immediately dissolve landing text & part stage curtains
     if (landingScreen) landingScreen.classList.add('curtains-open');
     startRomanticAudio();
 
-    // Launch falling rose petals celebration immediately as curtains part open
-    launchRosePetals();
+    // Launch falling marigold flowers shower immediately as curtains part open
+    launchMarigoldShower();
 
     // 4. Remove landing screen overlay after curtains fully open outward
     setTimeout(() => {
@@ -69,145 +70,103 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 1500);
   }
 
-  // Only Wax Seal button click triggers reveal
-  if (waxSealBtn) waxSealBtn.addEventListener('click', openInvitation);
-
-  // Soft Seal Sound Effect
-  function playSealSound() {
-    try {
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(440, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.3);
-      
-      gain.gain.setValueAtTime(0.3, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
-      
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start();
-      osc.stop(ctx.currentTime + 0.3);
-    } catch (e) {
-      console.log('AudioContext initialized');
-    }
-  }
+  // Only Marigold button click triggers reveal
+  if (marigoldBtn) marigoldBtn.addEventListener('click', openInvitation);
 
   // =========================================================================
-  // 3. ROYAL ACOUSTIC INSTRUMENTAL MUSIC SYNTHESIZER & CONTROLLER
+  // 3. ROMANTIC BACKGROUND MUSIC (Jashn-E-Bahaaraa via YouTube IFrame API)
   // =========================================================================
   const audioToggleBtn = document.getElementById('audioToggleBtn');
   const audioTooltip = document.getElementById('audioTooltip');
 
-  let audioCtx = null;
   let isPlayingAudio = false;
-  let synthInterval = null;
-  let melodyStep = 0;
+  let ytPlayer = null;
+  let isYtReady = false;
+  const JASHN_START_SEC = 13; // Starts right at 0:13
+  const JASHN_SPEED = 1.0;    // Original 1.0x playback speed
+
+  // YouTube IFrame API Callback
+  window.onYouTubeIframeAPIReady = function() {
+    try {
+      ytPlayer = new YT.Player('ytPlayer', {
+        height: '1',
+        width: '1',
+        videoId: 'cZrcHegIFqQ',
+        playerVars: {
+          autoplay: 0,
+          controls: 0,
+          start: JASHN_START_SEC,
+          loop: 1,
+          playlist: 'cZrcHegIFqQ',
+          enablejsapi: 1,
+          playsinline: 1
+        },
+        events: {
+          onReady: () => {
+            isYtReady = true;
+            console.log('YouTube Jashn-E-Bahaaraa Player Ready');
+          },
+          onStateChange: (event) => {
+            if (event.data === YT.PlayerState.PLAYING) {
+              isPlayingAudio = true;
+              try { ytPlayer.setPlaybackRate(JASHN_SPEED); } catch(e){}
+              if (audioToggleBtn) {
+                audioToggleBtn.classList.add('playing');
+                audioToggleBtn.classList.remove('muted');
+              }
+              if (audioTooltip) audioTooltip.textContent = 'PAUSE MUSIC';
+            } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+              isPlayingAudio = false;
+              if (audioToggleBtn) {
+                audioToggleBtn.classList.remove('playing');
+                audioToggleBtn.classList.add('muted');
+              }
+              if (audioTooltip) audioTooltip.textContent = 'PLAY MUSIC';
+            }
+          }
+        }
+      });
+    } catch (e) {
+      console.log('YouTube Player init error:', e);
+    }
+  };
 
   function startRomanticAudio() {
     if (isPlayingAudio) return;
 
-    try {
-      if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (isYtReady && ytPlayer && typeof ytPlayer.playVideo === 'function') {
+      try {
+        ytPlayer.seekTo(JASHN_START_SEC, true);
+        ytPlayer.setPlaybackRate(JASHN_SPEED);
+        ytPlayer.playVideo();
+        isPlayingAudio = true;
+        if (audioToggleBtn) {
+          audioToggleBtn.classList.add('playing');
+          audioToggleBtn.classList.remove('muted');
+        }
+        if (audioTooltip) audioTooltip.textContent = 'PAUSE MUSIC';
+        return;
+      } catch (err) {
+        console.log('YouTube play error:', err);
       }
-
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
-
-      isPlayingAudio = true;
-      if (audioToggleBtn) {
-        audioToggleBtn.classList.add('playing');
-        audioToggleBtn.classList.remove('muted');
-      }
-      if (audioTooltip) audioTooltip.textContent = 'PAUSE MUSIC';
-
-      // Royal Indian Flute & Harp Acoustic Instrumental Raga Melody
-      const fluteMelody = [
-        { freq: 261.63, duration: 1.3 }, // Sa (C4)
-        { freq: 329.63, duration: 1.0 }, // Ga (E4)
-        { freq: 392.00, duration: 1.2 }, // Pa (G4)
-        { freq: 493.88, duration: 1.4 }, // Ni (B4)
-        { freq: 523.25, duration: 1.6 }, // High Sa (C5)
-        { freq: 440.00, duration: 1.1 }, // Dha (A4)
-        { freq: 392.00, duration: 1.3 }, // Pa (G4)
-        { freq: 329.63, duration: 1.4 }, // Ga (E4)
-        { freq: 293.66, duration: 1.2 }, // Re (D4)
-        { freq: 261.63, duration: 1.8 }  // Sa (C4)
-      ];
-
-      const harpChords = [
-        [130.81, 261.63, 329.63, 392.00], // C Drone
-        [174.61, 261.63, 329.63, 440.00], // F Drone
-        [196.00, 246.94, 293.66, 392.00]  // G Drone
-      ];
-
-      function playInstrumentalPhrase() {
-        if (!isPlayingAudio) return;
-
-        const note = fluteMelody[melodyStep % fluteMelody.length];
-        const chord = harpChords[Math.floor(melodyStep / 3) % harpChords.length];
-        melodyStep++;
-
-        // 1. Acoustic Wooden Bansuri Flute (Sine + Lowpass Filter + 5.2Hz Vibrato)
-        const fluteOsc = audioCtx.createOscillator();
-        const fluteGain = audioCtx.createGain();
-        const filter = audioCtx.createBiquadFilter();
-        const vibrato = audioCtx.createOscillator();
-        const vibratoGain = audioCtx.createGain();
-
-        fluteOsc.type = 'sine';
-        fluteOsc.frequency.setValueAtTime(note.freq, audioCtx.currentTime);
-
-        // Gentle 5.2Hz Vibrato for authentic wooden flute breath feel
-        vibrato.frequency.setValueAtTime(5.2, audioCtx.currentTime);
-        vibratoGain.gain.setValueAtTime(note.freq * 0.014, audioCtx.currentTime);
-        vibrato.connect(fluteOsc.frequency);
-
-        filter.type = 'lowpass';
-        filter.frequency.setValueAtTime(1350, audioCtx.currentTime);
-
-        fluteGain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-        fluteGain.gain.linearRampToValueAtTime(0.045, audioCtx.currentTime + 0.25);
-        fluteGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + note.duration);
-
-        fluteOsc.connect(filter);
-        filter.connect(fluteGain);
-        fluteGain.connect(audioCtx.destination);
-
-        vibrato.start(audioCtx.currentTime);
-        fluteOsc.start(audioCtx.currentTime);
-        vibrato.stop(audioCtx.currentTime + note.duration);
-        fluteOsc.stop(audioCtx.currentTime + note.duration);
-
-        // 2. Plucked Acoustic Harp / Sitar String Accents
-        chord.forEach((freq, idx) => {
-          const harpOsc = audioCtx.createOscillator();
-          const harpGain = audioCtx.createGain();
-
-          harpOsc.type = 'triangle';
-          harpOsc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-
-          harpGain.gain.setValueAtTime(0.018, audioCtx.currentTime + (idx * 0.15));
-          harpGain.gain.exponentialRampToValueAtTime(0.0005, audioCtx.currentTime + (idx * 0.15) + 1.2);
-
-          harpOsc.connect(harpGain);
-          harpGain.connect(audioCtx.destination);
-
-          harpOsc.start(audioCtx.currentTime + (idx * 0.15));
-          harpOsc.stop(audioCtx.currentTime + (idx * 0.15) + 1.3);
-        });
-      }
-
-      playInstrumentalPhrase();
-      synthInterval = setInterval(playInstrumentalPhrase, 1400);
-
-    } catch (err) {
-      console.log('Audio playback error:', err);
     }
+
+    // Fallback if API is still loading
+    setTimeout(() => {
+      if (ytPlayer && typeof ytPlayer.playVideo === 'function') {
+        try {
+          ytPlayer.seekTo(JASHN_START_SEC, true);
+          ytPlayer.setPlaybackRate(JASHN_SPEED);
+          ytPlayer.playVideo();
+          isPlayingAudio = true;
+          if (audioToggleBtn) {
+            audioToggleBtn.classList.add('playing');
+            audioToggleBtn.classList.remove('muted');
+          }
+          if (audioTooltip) audioTooltip.textContent = 'PAUSE MUSIC';
+        } catch(e){}
+      }
+    }, 1000);
   }
 
   function stopRomanticAudio() {
@@ -218,9 +177,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (audioTooltip) audioTooltip.textContent = 'PLAY MUSIC';
 
-    if (synthInterval) clearInterval(synthInterval);
-    if (audioCtx && audioCtx.state === 'running') {
-      audioCtx.suspend();
+    if (isYtReady && ytPlayer && typeof ytPlayer.pauseVideo === 'function') {
+      try {
+        ytPlayer.pauseVideo();
+      } catch(e){}
     }
   }
 
@@ -478,6 +438,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let confettiParticles = [];
   let stardustParticles = [];
+  let marigoldPetals = [];
+  let isMarigoldsExpired = false;
   let confettiAnimationId = null;
 
   function resizeConfettiCanvas() {
@@ -617,17 +579,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // 2. Render Falling Rose Petals (Fades out and stops after 2 seconds or scroll)
+    // 2. Render Falling Marigold Flowers (Fades out and stops after 2 seconds or scroll)
     const isScrolledDown = window.scrollY > 350;
 
-    rosePetals.forEach(p => {
+    marigoldPetals.forEach(p => {
       p.y += p.speedY;
       p.swing += p.swingSpeed;
       p.x += Math.sin(p.swing) * 1.5 + p.speedX;
       p.rotation += p.rSpeed;
 
       // Fade out if 2 sec timer expired OR scrolled down
-      if (isScrolledDown || isPetalsExpired) {
+      if (isScrolledDown || isMarigoldsExpired) {
         p.opacity -= 0.025;
       }
 
@@ -642,9 +604,9 @@ document.addEventListener('DOMContentLoaded', () => {
         p.y += Math.sin(angle) * force * 5;
       }
 
-      // Recycle petals at top ONLY if 2 sec timer active and not scrolled down
+      // Recycle marigolds at top ONLY if 2 sec timer active and not scrolled down
       if (p.y > window.innerHeight + 40) {
-        if (!isScrolledDown && !isPetalsExpired) {
+        if (!isScrolledDown && !isMarigoldsExpired) {
           p.y = Math.random() * -120 - 20;
           p.x = Math.random() * window.innerWidth;
         }
@@ -652,7 +614,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (p.opacity > 0) {
         active++;
-        drawRosePetal(cCtx, p.x, p.y, p.size, p.rotation, p.color, p.opacity);
+        drawMarigoldFlower(cCtx, p.x, p.y, p.size, p.rotation, p.theme, p.opacity);
       }
     });
 
@@ -697,67 +659,78 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // FALLING ROSE PETALS LAUNCHER (2 Second Duration)
+  // FALLING MARIGOLD FLOWERS LAUNCHER (2 Second Duration)
   // =========================================================================
-  let isPetalsExpired = false;
-
-  function launchRosePetals() {
+  function launchMarigoldShower() {
     if (!confettiCanvas || !cCtx) return;
 
-    isPetalsExpired = false;
-    rosePetals = [];
-    const petalCount = 22; // Subtle count
-    const colors = ['#C8102E', '#E63946', '#D90429', '#800020', '#FF4D6D', '#FF758F', '#FF8FA3', '#C9184A'];
+    isMarigoldsExpired = false;
+    marigoldPetals = [];
+    const petalCount = 28; // Rich festive count
+    const themes = ['orange', 'yellow'];
 
     for (let i = 0; i < petalCount; i++) {
-      rosePetals.push({
+      marigoldPetals.push({
         x: Math.random() * window.innerWidth,
         y: Math.random() * -300 - 20,
-        speedY: Math.random() * 2.2 + 1.5,
-        speedX: Math.random() * 1.2 - 0.6,
+        speedY: Math.random() * 2.0 + 1.8,
+        speedX: Math.random() * 1.0 - 0.5,
         swing: Math.random() * Math.PI * 2,
-        swingSpeed: Math.random() * 0.025 + 0.01,
-        size: Math.random() * 14 + 10,
-        color: colors[Math.floor(Math.random() * colors.length)],
+        swingSpeed: Math.random() * 0.02 + 0.01,
+        size: Math.random() * 16 + 18, // Generous fluffy size
+        theme: themes[Math.floor(Math.random() * themes.length)],
         rotation: Math.random() * 360,
-        rSpeed: (Math.random() - 0.5) * 2.2,
+        rSpeed: (Math.random() - 0.5) * 2.5,
         opacity: 1
       });
     }
 
-    // Stop rose petal recycling and fade out after 2 seconds
+    // Stop marigold recycling and fade out after 2 seconds
     setTimeout(() => {
-      isPetalsExpired = true;
+      isMarigoldsExpired = true;
     }, 2000);
 
     if (!confettiAnimationId) animateCanvasParticles();
   }
 
-  // Authentic Organic Rose Petal Geometry
-  function drawRosePetal(ctx, x, y, size, angle, color, opacity) {
+  // Authentic Organic Marigold Flower Geometry
+  function drawMarigoldFlower(ctx, x, y, size, rotation, themeColor, opacity) {
     ctx.save();
     ctx.translate(x, y);
-    ctx.rotate((angle * Math.PI) / 180);
+    ctx.rotate((rotation * Math.PI) / 180);
     ctx.globalAlpha = Math.max(0, opacity);
-    ctx.fillStyle = color;
 
-    // Organic tapered rose petal silhouette
+    let colors;
+    if (themeColor === 'orange') {
+      colors = ['#B71C1C', '#D84315', '#E65100', '#FF9800', '#FFB300'];
+    } else {
+      colors = ['#E65100', '#FF8F00', '#FFC107', '#FFD54F', '#FFE082'];
+    }
+
+    // 5 Concentric layers of fluffy scalloped petal structures
+    for (let layer = 0; layer < 5; layer++) {
+      const layerSize = size * (1 - layer * 0.16);
+      const petalCount = 8 + layer * 4;
+      const petalRadius = layerSize * 0.35;
+      
+      ctx.fillStyle = colors[Math.min(layer, colors.length - 1)];
+      
+      for (let p = 0; p < petalCount; p++) {
+        const angle = (p / petalCount) * Math.PI * 2 + (layer * 0.5);
+        const px = Math.cos(angle) * (layerSize * 0.52);
+        const py = Math.sin(angle) * (layerSize * 0.52);
+        
+        ctx.beginPath();
+        ctx.arc(px, py, petalRadius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    
+    // Bright golden central core
+    ctx.fillStyle = '#FFEE58';
     ctx.beginPath();
-    ctx.moveTo(0, -size * 0.5);
-    ctx.bezierCurveTo(size * 0.5, -size * 0.45, size * 0.65, 0, size * 0.4, size * 0.45);
-    ctx.bezierCurveTo(size * 0.2, size * 0.65, 0, size * 0.7, 0, size * 0.7);
-    ctx.bezierCurveTo(0, size * 0.7, -size * 0.2, size * 0.65, -size * 0.4, size * 0.45);
-    ctx.bezierCurveTo(-size * 0.65, 0, -size * 0.5, -size * 0.45, 0, -size * 0.5);
-    ctx.closePath();
+    ctx.arc(0, 0, size * 0.15, 0, Math.PI * 2);
     ctx.fill();
-
-    // Delicate central vein accent
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(0, -size * 0.35);
-    ctx.quadraticCurveTo(size * 0.08, 0, 0, size * 0.45);
-    ctx.stroke();
 
     ctx.restore();
   }

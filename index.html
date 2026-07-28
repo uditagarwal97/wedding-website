@@ -14,9 +14,14 @@
   <!-- FontAwesome Icons for UI & Map pin icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=2.5">
 </head>
 <body>
+
+  <!-- Hidden YouTube Audio Player Container for Jashn-E-Bahaaraa -->
+  <div id="ytAudioContainer" style="position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; top: -9999px; left: -9999px;">
+    <div id="ytPlayer"></div>
+  </div>
 
   <!-- Fullscreen Canvas for Confetti & Particles -->
   <canvas id="confettiCanvas"></canvas>
@@ -30,41 +35,41 @@
     </defs>
   </svg>
 
-  <!-- 1. LANDING SCREEN & WAX SEAL STAGE CURTAINS CONTAINER -->
+  <!-- 1. LANDING SCREEN & STAGE CURTAINS CONTAINER -->
   <section id="landingScreen" class="landing-screen">
     <!-- Left Stage Curtain Panel -->
     <div class="landing-curtain landing-curtain-left" id="curtainLeft">
       <div class="curtain-wallpaper"></div>
-      <div class="curtain-gold-trim"></div>
     </div>
 
     <!-- Right Stage Curtain Panel -->
     <div class="landing-curtain landing-curtain-right" id="curtainRight">
       <div class="curtain-wallpaper"></div>
-      <div class="curtain-gold-trim"></div>
     </div>
 
     <div class="floating-glitter-container" id="landingGlitter"></div>
 
     <div class="landing-content" id="landingContent">
-      <p class="family-invite-text">
-        From Agarwals &amp; Gargs
-      </p>
-
       <h1 class="couple-hero-title">
-        <span class="name-groom">Udit</span>
-        <span class="ampersand">&amp;</span>
         <span class="name-bride">Gunjan</span>
+        <span class="weds-text">weds</span>
+        <span class="name-groom">Udit</span>
       </h1>
 
-      <div class="seal-container">
-        <div class="tap-banner" id="tapBanner">
-          TAP WAX SEAL TO UNWRAP
-        </div>
-
-        <!-- Realistic 3D Photo Wax Seal Button -->
-        <button id="waxSealBtn" class="wax-seal" aria-label="Tap Wax Seal to Open Invitation">
-          <div class="seal-lens-flare" id="sealLensFlare"></div>
+      <div class="blessings-container">
+        <!-- Interactive Realistic Marigold Flower Button with Circular Royal Seal Prompt -->
+        <button id="marigoldBtn" class="marigold-btn" aria-label="Press to share blessings and open invitation">
+          <svg viewBox="0 0 200 200" class="marigold-text-ring">
+            <path id="textPathRing" d="M 100, 100 m -78, 0 a 78,78 0 1,1 156,0 a 78,78 0 1,1 -156,0" fill="none" />
+            <text font-family="'Cormorant Garamond', serif" font-size="11" font-weight="600" letter-spacing="2.2" fill="#F5D77F">
+              <textPath href="#textPathRing" startOffset="0%">
+                ✦ TAP FLOWER TO BLESS ✦ OPEN INVITATION ✦
+              </textPath>
+            </text>
+          </svg>
+          <div class="marigold-pulse-ring"></div>
+          <img src="assets/marigold_flower.png" alt="Genda Phool Marigold Flower" class="marigold-img">
+          <div class="marigold-glow" id="marigoldGlow"></div>
         </button>
       </div>
     </div>
@@ -389,6 +394,7 @@
 
   </main>
 
-  <script src="app.js"></script>
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="app.js?v=2.5"></script>
 </body>
 </html>
