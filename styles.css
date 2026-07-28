@@ -706,6 +706,17 @@ body {
   margin: 0.5rem 0;
 }
 
+.announcement-catchy-msg {
+  font-family: var(--font-serif);
+  font-size: clamp(0.88rem, 1.8vw, 1.2rem);
+  font-style: italic;
+  line-height: 1.6;
+  color: #F7EFE5;
+  max-width: 600px;
+  margin: 0.5rem auto;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.85);
+}
+
 .palace-scroll-indicator {
   display: flex;
   flex-direction: column;
