@@ -570,13 +570,12 @@ body {
 /* Photorealistic Royal Farman Scroll Frame Container */
 .photo-scroll-wrapper {
   position: relative;
-  max-width: 960px;
-  width: 96%;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
   filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.88));
+  transition: all 0.3s ease;
 }
 
 .photo-scroll-img {
@@ -586,21 +585,60 @@ body {
   pointer-events: none;
 }
 
-.photo-scroll-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 50%;
-  max-height: 70%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
-  color: #3B1E08;
-  z-index: 3;
-  padding: clamp(0.2rem, 1vw, 1rem) 0;
+/* Wide Screens / Laptops: Horizontal Scroll */
+@media (min-width: 768px) {
+  .scroll-img-horizontal { display: block !important; }
+  .scroll-img-vertical { display: none !important; }
+
+  .photo-scroll-wrapper {
+    max-width: 960px;
+    width: 96%;
+  }
+
+  .photo-scroll-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    max-height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    color: #3B1E08;
+    z-index: 3;
+    padding: clamp(0.2rem, 1vw, 1rem) 0;
+  }
+}
+
+/* Mobile Devices & Portrait Screens: Vertical Scroll */
+@media (max-width: 767px) {
+  .scroll-img-horizontal { display: none !important; }
+  .scroll-img-vertical { display: block !important; }
+
+  .photo-scroll-wrapper {
+    max-width: 520px;
+    width: 94%;
+  }
+
+  .photo-scroll-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 62%;
+    max-height: 76%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    color: #3B1E08;
+    z-index: 3;
+    padding: 0.5rem 0;
+  }
 }
 
 .photo-scroll-content .blessings-header {
