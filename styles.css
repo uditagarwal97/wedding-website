@@ -2388,62 +2388,6 @@ body {
 
 
 
-.map-cta-btn {
-  position: relative;
-  overflow: hidden;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.15rem;
-  color: var(--color-gold-bright);
-  background: rgba(43, 4, 11, 0.85);
-  border: 1px solid var(--color-gold-main);
-  padding: 0.85rem 1.8rem;
-  border-radius: 30px;
-  text-decoration: none;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-.map-cta-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.35) 50%,
-    transparent 100%
-  );
-  transition: transform 0.7s ease;
-}
-
-.map-cta-btn:hover::before {
-  transform: translateX(200%);
-}
-
-.map-cta-btn:hover {
-  transform: translateY(-3px);
-  background: var(--color-gold-main);
-  color: var(--color-maroon-dark);
-  box-shadow: var(--shadow-gold), 0 8px 25px rgba(212, 175, 55, 0.4);
-}
-
-.map-cta-btn.highlight {
-  background: var(--color-gold-main);
-  color: var(--color-maroon-dark);
-}
-
-.map-cta-btn.highlight:hover {
-  background: var(--color-gold-bright);
-  transform: translateY(-3px);
-}
 
 /* ==========================================================================
    6. CLOSING FOOTER
@@ -2635,108 +2579,718 @@ body {
 }
 
 /* ==========================================================================
-   VENUE LOCATION & EMBEDDED MAP SECTION
+   5. THE ROYAL DESTINATION & INTERACTIVE MAP PAVILION
    ========================================================================== */
 .venue-section {
   position: relative;
-  padding: 6rem 2rem;
-  background-color: var(--color-maroon-dark);
+  padding: 6.5rem 1.5rem;
   background-image: 
-    radial-gradient(circle at 50% 50%, rgba(74, 14, 23, 0.4) 0%, rgba(26, 3, 7, 0.95) 100%),
+    linear-gradient(rgba(26, 2, 7, 0.88), rgba(26, 2, 7, 0.94)),
     url('assets/wallpaper_bg.webp');
-  background-size: cover, 400px 400px;
-  background-repeat: no-repeat, repeat;
-  background-position: center, center;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow-x: clip;
+  color: var(--color-parchment);
 }
 
 .venue-container {
-  max-width: 1100px;
+  max-width: 1240px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2.5rem;
-  align-items: center;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(1.5rem, 3vw, 2.8rem);
+  align-items: stretch;
+  box-sizing: border-box;
 }
 
-.venue-info-card {
-  background: rgba(255, 249, 242, 0.94);
-  background-image: url('assets/parchment_bg.webp');
-  background-size: cover;
-  border: 1px solid var(--color-gold-main);
-  border-radius: 20px;
-  padding: 2.8rem 2rem;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-  color: var(--color-text-dark);
-}
-
-.venue-card-title {
-  font-family: var(--font-heading);
-  font-size: 2.1rem;
-  color: var(--color-maroon-main);
-  margin-bottom: 1.2rem;
-}
-
-.venue-address,
-.venue-website {
-  font-family: var(--font-serif);
-  line-height: 1.6;
-  margin-bottom: 1.2rem;
-  color: var(--color-text-dark);
+/* Left Panel: Imperial Hospitality & Transit Concierge */
+.venue-concierge-card {
+  background: radial-gradient(ellipse at center, rgba(38, 8, 17, 0.96) 0%, rgba(16, 2, 7, 0.98) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  border-radius: 24px;
+  padding: clamp(1.6rem, 2.8vw, 2.5rem);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6), inset 0 0 25px rgba(212, 175, 55, 0.08);
+  position: relative;
   display: flex;
-  align-items: flex-start;
-  gap: 0.8rem;
+  flex-direction: column;
+  gap: 1.4rem;
+  box-sizing: border-box;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
-.venue-address i,
-.venue-website i {
-  color: var(--color-gold-dark);
-  font-size: 1.2rem;
+.venue-concierge-card::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 18px;
+  pointer-events: none;
+}
+
+.concierge-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.concierge-star-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--color-gold-bright);
+  background: rgba(85, 14, 25, 0.6);
+  border: 1px solid rgba(245, 215, 127, 0.4);
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+}
+
+.concierge-city-badge {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  color: #E2D7C3;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.concierge-city-badge i {
+  color: var(--color-gold-main);
+}
+
+.concierge-venue-name {
+  font-family: 'Cinzel Decorative', 'Cinzel', serif;
+  font-size: clamp(1.8rem, 2.6vw, 2.3rem);
+  color: var(--color-gold-bright);
+  margin: 0;
+  line-height: 1.2;
+  letter-spacing: 0.03em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+.concierge-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+  font-style: italic;
+  color: #E6D7C3;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Quick Address Box with Copy Button */
+.venue-address-box {
+  background: rgba(28, 4, 11, 0.75);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 16px;
+  padding: 1rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.venue-address-box:hover {
+  border-color: rgba(245, 215, 127, 0.6);
+  box-shadow: 0 4px 18px rgba(212, 175, 55, 0.15);
+}
+
+.address-icon-wrap {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(106, 17, 32, 0.8) 0%, rgba(153, 27, 48, 0.8) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gold-bright);
+  font-size: 1.1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.address-text-wrap {
+  flex: 1;
+}
+
+.address-label {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  color: #A38025;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+.address-full {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.84rem;
+  color: #FAF3E0;
+  margin: 0;
+  line-height: 1.45;
+}
+
+.address-copy-btn {
+  background: rgba(85, 14, 25, 0.75);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  color: var(--color-gold-bright);
+  border-radius: 20px;
+  padding: 0.5rem 0.95rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.address-copy-btn:hover {
+  background: var(--color-gold-main);
+  color: #1A0207;
+  border-color: var(--color-gold-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+.address-copy-btn.copied {
+  background: #2E6B34;
+  border-color: #64DD17;
+  color: #FFF;
+}
+
+/* Transit Guide & Travel Tabs */
+.transit-guide-wrapper {
+  background: rgba(22, 3, 9, 0.85);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 18px;
+  padding: 1.2rem;
+}
+
+.transit-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.85rem;
+}
+
+.transit-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-gold-bright);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.transit-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: #D4AF37;
+}
+
+.transit-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.55rem;
+  margin-bottom: 1rem;
+}
+
+.transit-tab {
+  background: rgba(43, 4, 11, 0.7);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 12px;
+  padding: 0.55rem 0.8rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: #E2D7C3;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  transition: all 0.25s ease;
+}
+
+.transit-tab:hover {
+  background: rgba(85, 14, 25, 0.8);
+  border-color: rgba(245, 215, 127, 0.5);
+  color: #FFF;
+}
+
+.transit-tab.active {
+  background: linear-gradient(135deg, rgba(106, 17, 32, 0.95) 0%, rgba(153, 27, 48, 0.95) 100%);
+  border-color: var(--color-gold-bright);
+  color: #FFF;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.transit-tab i {
+  color: var(--color-gold-bright);
+  font-size: 0.82rem;
+}
+
+.transit-detail-display {
+  background: rgba(14, 2, 6, 0.75);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.transit-detail-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+}
+
+.transit-stat-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  color: var(--color-gold-bright);
+  min-width: 140px;
+}
+
+.transit-stat-val {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: #FFF;
+}
+
+.transit-detail-note {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.98rem;
+  font-style: italic;
+  line-height: 1.4;
+  color: #E2D7C3;
+  margin: 0.25rem 0 0 0;
+  padding-top: 0.45rem;
+  border-top: 1px dashed rgba(212, 175, 55, 0.2);
+}
+
+/* Amenities Grid */
+.venue-amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
+}
+
+.amenity-item {
+  background: rgba(38, 6, 15, 0.55);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 12px;
+  padding: 0.6rem 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.74rem;
+  color: #E6D7C3;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.amenity-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(245, 215, 127, 0.5);
+}
+
+.amenity-item i {
+  color: var(--color-gold-bright);
+  font-size: 0.95rem;
+}
+
+/* Call to Action Buttons Row */
+.venue-cta-row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
   margin-top: 0.2rem;
 }
 
-.venue-website a {
-  color: var(--color-maroon-main);
+.venue-primary-btn,
+.venue-secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
   font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.85rem 1.4rem;
+  border-radius: 30px;
   text-decoration: none;
-  border-bottom: 1px solid var(--color-gold-main);
-  transition: color 0.3s ease;
+  transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  user-select: none;
+  flex: 1 1 auto;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
-.venue-website a:hover {
-  color: var(--color-gold-dark);
+.venue-primary-btn {
+  background: linear-gradient(135deg, #D4AF37 0%, #F5D77F 50%, #C49726 100%);
+  color: #1A0207;
+  border: 1px solid #FFF;
 }
 
-.venue-btn-group {
+.venue-primary-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(245, 215, 127, 0.5);
+  filter: brightness(1.08);
+}
+
+.venue-secondary-btn {
+  background: rgba(43, 4, 11, 0.85);
+  color: var(--color-gold-bright);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+}
+
+.venue-secondary-btn:hover {
+  background: rgba(85, 14, 25, 0.9);
+  border-color: var(--color-gold-bright);
+  color: #FFF;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(212, 175, 55, 0.3);
+}
+
+/* Right Panel: Royal Jharokha Map Pavilion */
+.venue-map-pavilion {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin-top: 1.8rem;
+  gap: 1.2rem;
+  box-sizing: border-box;
 }
 
-.google-map-wrapper {
+.jharokha-frame {
+  background: radial-gradient(ellipse at center, rgba(38, 8, 17, 0.96) 0%, rgba(16, 2, 7, 0.98) 100%);
+  border: 2px solid rgba(212, 175, 55, 0.5);
+  border-radius: 24px;
+  padding: 1.1rem;
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.65), 0 0 35px rgba(212, 175, 55, 0.12);
   position: relative;
-  border-radius: 20px;
+  box-sizing: border-box;
   overflow: hidden;
-  border: 3px solid var(--color-gold-main);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
-.google-map-wrapper iframe {
-  display: block;
+.jharokha-arch-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.35rem 0.5rem 0.95rem 0.5rem;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+  margin-bottom: 0.9rem;
+}
+
+.arch-ornament-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.arch-flourish {
+  font-family: 'Cinzel Decorative', 'Cinzel', serif;
+  font-size: 0.88rem;
+  letter-spacing: 0.14em;
+  color: var(--color-gold-bright);
+  font-weight: 700;
+}
+
+.arch-live-pulse {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #64DD17;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #64DD17;
+  box-shadow: 0 0 8px #64DD17;
+  animation: radarPulse 2s infinite ease-in-out;
+}
+
+@keyframes radarPulse {
+  0%, 100% { transform: scale(0.9); opacity: 0.7; }
+  50% { transform: scale(1.3); opacity: 1; }
+}
+
+.arch-lantern {
+  color: var(--color-gold-bright);
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.jharokha-map-canvas {
+  position: relative;
   width: 100%;
-  height: 380px;
-  border: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7);
+  line-height: 0;
 }
 
-@media (max-width: 900px) {
+.jharokha-map-canvas iframe {
+  width: 100%;
+  height: 440px;
+  display: block;
+  filter: saturate(1.1) contrast(1.05);
+}
+
+.map-vignette-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 40px rgba(26, 2, 7, 0.5), inset 0 0 12px rgba(212, 175, 55, 0.25);
+  border-radius: 16px;
+}
+
+/* Map Floating Pin Card */
+.map-floating-pin-card {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(26, 2, 7, 0.92);
+  border: 1px solid rgba(245, 215, 127, 0.45);
+  border-radius: 14px;
+  padding: 0.55rem 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2;
+  pointer-events: auto;
+}
+
+.floating-pin-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #A81B32, #6A1120);
+  border: 1px solid #F5D77F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #F5D77F;
+  font-size: 0.85rem;
+}
+
+.floating-pin-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.floating-pin-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #FFF;
+}
+
+.floating-pin-coords {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.64rem;
+  color: #F5D77F;
+}
+
+.floating-pin-link {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.2);
+  border: 1px solid rgba(245, 215, 127, 0.4);
+  color: var(--color-gold-bright);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.68rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.floating-pin-link:hover {
+  background: var(--color-gold-main);
+  color: #1A0207;
+  transform: scale(1.1);
+}
+
+.jharokha-footer-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-top: 0.95rem;
+}
+
+.distance-pill {
+  background: rgba(28, 4, 11, 0.75);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 12px;
+  padding: 0.55rem 0.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7rem;
+  color: #E2D7C3;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.distance-pill:hover {
+  transform: translateY(-2px);
+  border-color: rgba(245, 215, 127, 0.5);
+}
+
+.distance-pill i {
+  color: var(--color-gold-bright);
+  font-size: 0.88rem;
+}
+
+.distance-pill strong {
+  color: #FFF;
+}
+
+/* Guest Weather Tip Card */
+.guest-weather-tip-card {
+  background: linear-gradient(135deg, rgba(38, 8, 17, 0.85) 0%, rgba(55, 11, 25, 0.85) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 18px;
+  padding: 1.1rem 1.3rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.guest-weather-tip-card .tip-icon {
+  font-size: 1.3rem;
+  color: var(--color-gold-bright);
+  margin-top: 0.15rem;
+  animation: tipSparkle 3s infinite ease-in-out;
+}
+
+@keyframes tipSparkle {
+  0%, 100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 2px rgba(245, 215, 127, 0.3)); }
+  50% { transform: scale(1.15) rotate(15deg); filter: drop-shadow(0 0 8px rgba(245, 215, 127, 0.8)); }
+}
+
+.guest-weather-tip-card .tip-content strong {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: var(--color-gold-bright);
+  margin-bottom: 0.25rem;
+}
+
+.guest-weather-tip-card .tip-content p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.02rem;
+  font-style: italic;
+  color: #E2D7C3;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* Royal Toast Notification */
+.royal-toast-notification {
+  position: fixed;
+  bottom: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, rgba(38, 8, 17, 0.98) 0%, rgba(16, 2, 7, 0.98) 100%);
+  border: 1px solid var(--color-gold-bright);
+  border-radius: 30px;
+  padding: 0.75rem 1.6rem;
+  color: #FAF3E0;
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(212, 175, 55, 0.4);
+  z-index: 99999;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.royal-toast-notification.visible {
+  bottom: 35px;
+  opacity: 1;
+}
+
+.royal-toast-notification .toast-icon {
+  color: #64DD17;
+  font-size: 1.1rem;
+}
+
+/* Responsive Adjustments for Venue Pavilion */
+@media (max-width: 1024px) {
   .venue-container {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    max-width: 680px;
   }
-  .map-cta-btn {
+  .jharokha-map-canvas iframe {
+    height: 380px;
+  }
+}
+
+@media (max-width: 640px) {
+  .venue-section {
+    padding: 4.5rem 1rem;
+  }
+  .transit-tabs {
+    grid-template-columns: 1fr;
+  }
+  .venue-amenities-grid {
+    grid-template-columns: 1fr;
+  }
+  .venue-cta-row {
+    flex-direction: column;
+  }
+  .venue-primary-btn,
+  .venue-secondary-btn {
     width: 100%;
-    justify-content: center;
-    padding: 0.75rem 1.2rem;
+  }
+  .jharokha-footer-stats {
+    grid-template-columns: 1fr;
+  }
+  .jharokha-map-canvas iframe {
+    height: 320px;
   }
 }
 

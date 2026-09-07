@@ -1249,4 +1249,98 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initScrollObserver();
 
+  // =========================================================================
+  // 9. THE ROYAL DESTINATION - TRANSIT GUIDE & VENUE MAP CONCIERGE
+  // =========================================================================
+  const transitRoutes = {
+    delhi: {
+      time: '~2 hrs 15 mins (120 km)',
+      route: 'Delhi-Meerut Expressway (NE 3) ➔ NH 58 Direct 4-Lane Highway',
+      note: 'Smooth signal-free expressway until Meerut bypass, then straight NH 58 toward Bhopa Road. High-speed, seamless transit.'
+    },
+    airport: {
+      time: '~2 hrs 45 mins (135 km)',
+      route: 'IGI Airport (DEL) ➔ UER II / Delhi-Meerut Expressway ➔ NH 58',
+      note: 'Pre-paid airport cabs (Uber / Ola / Innova) easily available directly to Palasa Hotel & Resorts, Muzaffarnagar.'
+    },
+    train: {
+      time: '~10 mins drive (4 km)',
+      route: 'Muzaffarnagar Jn (MOZ) ➔ Station Road ➔ Bhopa Road',
+      note: 'Fast express trains from New Delhi (Vande Bharat, Shatabdi, Jan Shatabdi) take ~1.5 to 2 hrs to Muzaffarnagar.'
+    },
+    dehradun: {
+      time: '~1 hr 45 mins (95 km)',
+      route: 'Dehradun / Haridwar ➔ Roorkee ➔ NH 58 Southbound to Bhopa Road',
+      note: 'Scenic, smooth 4-lane highway with picturesque sugarcane and rural countryside views.'
+    }
+  };
+
+  const transitTabs = document.querySelectorAll('.transit-tab');
+  const transitTimeVal = document.getElementById('transitTimeVal');
+  const transitRouteVal = document.getElementById('transitRouteVal');
+  const transitNoteVal = document.getElementById('transitNoteVal');
+
+  if (transitTabs.length > 0) {
+    transitTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const routeKey = tab.dataset.route;
+        const data = transitRoutes[routeKey];
+        if (!data) return;
+
+        transitTabs.forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+
+        if (transitTimeVal) transitTimeVal.textContent = data.time;
+        if (transitRouteVal) transitRouteVal.textContent = data.route;
+        if (transitNoteVal) transitNoteVal.textContent = data.note;
+      });
+    });
+  }
+
+  // Copy Address to Clipboard with Royal Toast
+  const copyAddressBtn = document.getElementById('copyAddressBtn');
+  const royalToast = document.getElementById('royalToast');
+  const royalToastMsg = document.getElementById('royalToastMsg');
+
+  if (copyAddressBtn) {
+    copyAddressBtn.addEventListener('click', async () => {
+      const addressText = "Palasa Hotel & Resorts, Bhopa Road, Near Vishwakarma Chowk, Muzaffarnagar, Uttar Pradesh 251001, India";
+      try {
+        await navigator.clipboard.writeText(addressText);
+        showRoyalToast("✦ Palace Address Copied to Clipboard! ✦");
+        copyAddressBtn.classList.add('copied');
+        const originalHTML = copyAddressBtn.innerHTML;
+        copyAddressBtn.innerHTML = '<i class="fa-solid fa-check"></i> <span class="copy-btn-text">Copied!</span>';
+        setTimeout(() => {
+          copyAddressBtn.innerHTML = originalHTML;
+          copyAddressBtn.classList.remove('copied');
+        }, 2200);
+      } catch (err) {
+        // Fallback for older browsers or restricted permissions
+        const ta = document.createElement('textarea');
+        ta.value = addressText;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showRoyalToast("✦ Palace Address Copied to Clipboard! ✦");
+      }
+    });
+  }
+
+  let toastTimer = null;
+  function showRoyalToast(msg) {
+    if (!royalToast) return;
+    if (royalToastMsg) royalToastMsg.textContent = msg;
+    royalToast.classList.add('visible');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      royalToast.classList.remove('visible');
+    }, 2800);
+  }
+
 });
