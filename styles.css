@@ -1212,7 +1212,7 @@ body {
 
 .itin-event-item {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: clamp(0.5rem, 1.4vw, 0.85rem);
   padding: 0.45rem 0.55rem;
   border-radius: 10px;
@@ -1235,7 +1235,7 @@ body {
   color: var(--color-gold-bright);
   white-space: nowrap;
   flex-shrink: 0;
-  margin-top: 2px;
+  margin-top: 0;
   display: flex;
   align-items: center;
   gap: 0.25rem;
@@ -1262,7 +1262,7 @@ body {
   font-size: clamp(0.76rem, 1.8vw, 0.82rem);
   font-weight: 700;
   color: #FFF;
-  margin: 0 0 0.15rem 0;
+  margin: 0;
   line-height: 1.3;
 }
 
