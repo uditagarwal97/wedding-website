@@ -1831,6 +1831,112 @@ body {
   50% { transform: rotate(35deg); }
 }
 
+/* Automated Guided Tour Control Bar */
+.mahal-tour-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  background: rgba(36, 6, 14, 0.88);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  border-radius: 30px;
+  padding: 0.45rem 0.75rem 0.45rem 1.15rem;
+  margin: -0.6rem auto 1.5rem auto;
+  max-width: 660px;
+  width: 94%;
+  box-sizing: border-box;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.55), 0 0 15px rgba(212, 175, 55, 0.12);
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.tour-indicator-left {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  color: #FAF3E0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tour-pulse-gem {
+  color: var(--color-gold-bright);
+  font-size: 0.88rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  animation: gemGlow 2.5s infinite ease-in-out;
+}
+
+@keyframes gemGlow {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(245, 215, 127, 0.4)); }
+  50% { transform: scale(1.18); filter: drop-shadow(0 0 8px rgba(245, 215, 127, 0.9)); }
+}
+
+.tour-status-text {
+  color: #E2D7C3;
+  font-weight: 500;
+  font-size: 0.78rem;
+}
+
+.tour-status-text strong {
+  color: var(--color-gold-bright);
+  font-weight: 700;
+}
+
+.tour-control-btn {
+  background: rgba(85, 14, 25, 0.85);
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  color: var(--color-gold-bright);
+  border-radius: 20px;
+  padding: 0.38rem 0.95rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: all 0.25s ease;
+  user-select: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.tour-control-btn:hover {
+  background: var(--color-gold-main);
+  color: #1A0207;
+  border-color: #FFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.4);
+}
+
+.tour-control-btn.paused {
+  background: linear-gradient(135deg, rgba(106, 17, 32, 0.95), rgba(153, 27, 48, 0.95));
+  border-color: var(--color-gold-bright);
+  color: #FFF;
+}
+
+@media (max-width: 600px) {
+  .mahal-tour-bar {
+    flex-direction: column;
+    padding: 0.65rem 0.85rem;
+    gap: 0.5rem;
+    border-radius: 20px;
+  }
+  .tour-indicator-left {
+    white-space: normal;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
 /* Quick Landmark Navigation Pills (Below Palace) */
 .mahal-quick-nav {
   display: flex;
@@ -1968,6 +2074,11 @@ body {
   pointer-events: none;
 }
 
+.mahal-hotspot-beacon.active-beacon .beacon-pulse-ring {
+  border-color: #FFD700;
+  animation: beaconPulseActive 1.4s infinite ease-out;
+}
+
 @keyframes beaconPulse {
   0% {
     transform: scale(0.65);
@@ -1976,6 +2087,19 @@ body {
   100% {
     transform: scale(1.6);
     opacity: 0;
+  }
+}
+
+@keyframes beaconPulseActive {
+  0% {
+    transform: scale(0.65);
+    opacity: 1;
+    border-width: 2.5px;
+  }
+  100% {
+    transform: scale(2.0);
+    opacity: 0;
+    border-width: 1px;
   }
 }
 
@@ -2010,7 +2134,8 @@ body {
 }
 
 .mahal-hotspot-beacon:hover .beacon-tooltip,
-.mahal-hotspot-beacon:focus .beacon-tooltip {
+.mahal-hotspot-beacon:focus .beacon-tooltip,
+.mahal-hotspot-beacon.active-beacon .beacon-tooltip {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(0);
@@ -2163,7 +2288,7 @@ body {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: opacity 0.35s ease, transform 0.6s ease;
+  transition: opacity 0.45s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s ease;
 }
 
 .folio-photo-wrapper:hover .folio-photo {

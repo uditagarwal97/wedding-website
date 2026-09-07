@@ -732,6 +732,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (nearestKey) {
+        onUserManualAction();
         selectLandmark(nearestKey);
       }
     });
@@ -782,7 +783,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Landmark Selection & Folio Drawer Display
-  function selectLandmark(key, photoIndex = 0) {
+  function selectLandmark(key, photoIndex = 0, isAutoTour = false) {
     const data = mahalLandmarks[key];
     if (!data) return;
 
@@ -824,7 +825,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update Photo with gallery support
     updateFolioPhoto(data, photoIndex);
 
-    openFolioDrawer();
+    openFolioDrawer(isAutoTour);
   }
 
   function updateFolioPhoto(data, photoIndex = 0) {
@@ -858,6 +859,7 @@ document.addEventListener('DOMContentLoaded', () => {
           dot.setAttribute('aria-label', `Photo ${idx + 1}`);
           dot.addEventListener('click', (e) => {
             e.stopPropagation();
+            onUserManualAction();
             updateFolioPhoto(data, idx);
           });
           folioDotsContainer.appendChild(dot);
@@ -878,13 +880,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function openFolioDrawer() {
+  function openFolioDrawer(isAutoTour = false) {
     if (!mahalTheater) return;
     const isMobile = window.innerWidth <= 900;
     const wasOpen = mahalTheater.classList.contains('drawer-open');
     mahalTheater.classList.add('drawer-open');
 
-    if (isMobile && !wasOpen) {
+    if (isMobile && !wasOpen && !isAutoTour) {
       setTimeout(() => {
         const folioEl = document.getElementById('royalFolioDrawer');
         if (folioEl) {
@@ -907,6 +909,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Event Listeners for Nav Pills
   mahalNavPills.forEach(pill => {
     pill.addEventListener('click', () => {
+      onUserManualAction();
       const targetKey = pill.dataset.target;
       selectLandmark(targetKey);
     });
@@ -916,6 +919,7 @@ document.addEventListener('DOMContentLoaded', () => {
   mahalBeacons.forEach(beacon => {
     beacon.addEventListener('click', (e) => {
       e.stopPropagation();
+      onUserManualAction();
       const landmarkKey = beacon.dataset.landmark;
       selectLandmark(landmarkKey);
     });
@@ -923,6 +927,7 @@ document.addEventListener('DOMContentLoaded', () => {
     beacon.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
+        onUserManualAction();
         const landmarkKey = beacon.dataset.landmark;
         selectLandmark(landmarkKey);
       }
@@ -930,11 +935,17 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Drawer Controls
-  if (folioCloseBtn) folioCloseBtn.addEventListener('click', closeFolioDrawer);
+  if (folioCloseBtn) {
+    folioCloseBtn.addEventListener('click', () => {
+      onUserManualAction();
+      closeFolioDrawer();
+    });
+  }
 
   if (folioPrevBtn) {
     folioPrevBtn.addEventListener('click', (e) => {
       e.stopPropagation();
+      onUserManualAction();
       const data = mahalLandmarks[currentLandmarkKey];
       if (data && data.photos && data.photos.length > 1) {
         updateFolioPhoto(data, currentLandmarkPhotoIndex - 1);
@@ -949,6 +960,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (folioNextBtn) {
     folioNextBtn.addEventListener('click', (e) => {
       e.stopPropagation();
+      onUserManualAction();
       const data = mahalLandmarks[currentLandmarkKey];
       if (data && data.photos && data.photos.length > 1) {
         updateFolioPhoto(data, currentLandmarkPhotoIndex + 1);
@@ -974,6 +986,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const touchEndX = e.changedTouches[0].clientX;
         const diff = touchStartX - touchEndX;
         if (Math.abs(diff) > 35) {
+          onUserManualAction();
           if (diff > 0 && folioNextBtn) {
             folioNextBtn.click();
           } else if (diff < 0 && folioPrevBtn) {
@@ -982,6 +995,138 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     }, { passive: true });
+  }
+
+  // =========================================================================
+  // AUTOMATED PALACE TOUR & LANDMARK SHOWCASE ENGINE
+  // =========================================================================
+  let isTourActive = false;
+  let userManuallyInteracted = false;
+  let tourLandmarkIndex = 0;
+  let tourPhotoIndex = 0;
+  let tourTimer = null;
+  let isSectionInViewport = false;
+
+  const tourStatusText = document.getElementById('tourStatusText');
+  const tourControlBtn = document.getElementById('tourControlBtn');
+  const tourControlIcon = document.getElementById('tourControlIcon');
+  const tourControlLabel = document.getElementById('tourControlLabel');
+
+  function updateTourStatusUI(isActive, landmarkName, photoNum, totalPhotos) {
+    if (!tourStatusText) return;
+    if (isActive) {
+      tourStatusText.innerHTML = `<strong>Tour Active:</strong> ${landmarkName} &bull; Photo ${photoNum} of ${totalPhotos}`;
+      if (tourControlBtn) {
+        tourControlBtn.classList.remove('paused');
+        if (tourControlIcon) tourControlIcon.className = 'fa-solid fa-pause';
+        if (tourControlLabel) tourControlLabel.textContent = 'Pause Tour';
+      }
+    } else {
+      tourStatusText.innerHTML = `<strong>Interactive Mode:</strong> Tap any landmark beacon or destination pill`;
+      if (tourControlBtn) {
+        tourControlBtn.classList.add('paused');
+        if (tourControlIcon) tourControlIcon.className = 'fa-solid fa-play';
+        if (tourControlLabel) tourControlLabel.textContent = 'Play Showcase';
+      }
+    }
+  }
+
+  function runNextTourStep() {
+    if (!isTourActive || !isSectionInViewport || userManuallyInteracted) return;
+
+    const landmarkKey = landmarkOrder[tourLandmarkIndex];
+    const data = mahalLandmarks[landmarkKey];
+    if (!data) return;
+
+    const totalPhotos = (data.photos && data.photos.length) ? data.photos.length : 1;
+
+    if (tourPhotoIndex === 0) {
+      selectLandmark(landmarkKey, 0, true);
+    } else {
+      updateFolioPhoto(data, tourPhotoIndex);
+    }
+
+    updateTourStatusUI(true, data.title, tourPhotoIndex + 1, totalPhotos);
+
+    if (tourPhotoIndex < totalPhotos - 1) {
+      tourPhotoIndex++;
+      tourTimer = setTimeout(runNextTourStep, 2700);
+    } else {
+      tourPhotoIndex = 0;
+      tourLandmarkIndex = (tourLandmarkIndex + 1) % landmarkOrder.length;
+      tourTimer = setTimeout(runNextTourStep, 3000);
+    }
+  }
+
+  function startAutoTour() {
+    if (isTourActive || userManuallyInteracted) return;
+    if (tourTimer) clearTimeout(tourTimer);
+    isTourActive = true;
+    runNextTourStep();
+  }
+
+  function pauseAutoTour(manual = false) {
+    isTourActive = false;
+    if (tourTimer) {
+      clearTimeout(tourTimer);
+      tourTimer = null;
+    }
+    if (manual) {
+      userManuallyInteracted = true;
+    }
+    updateTourStatusUI(false);
+  }
+
+  function onUserManualAction() {
+    if (!userManuallyInteracted) {
+      userManuallyInteracted = true;
+      pauseAutoTour(true);
+    }
+  }
+
+  if (tourControlBtn) {
+    tourControlBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (isTourActive) {
+        pauseAutoTour(true);
+      } else {
+        userManuallyInteracted = false;
+        const curIdx = landmarkOrder.indexOf(currentLandmarkKey);
+        if (curIdx !== -1) {
+          tourLandmarkIndex = curIdx;
+          tourPhotoIndex = 0;
+        }
+        startAutoTour();
+      }
+    });
+  }
+
+  // Observe Section 3 Entry
+  const glimpseSection = document.getElementById('glimpseOfUsSection');
+  if (glimpseSection && 'IntersectionObserver' in window) {
+    const tourObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          isSectionInViewport = true;
+          if (!userManuallyInteracted && !isTourActive) {
+            tourTimer = setTimeout(() => {
+              if (isSectionInViewport && !userManuallyInteracted) {
+                startAutoTour();
+              }
+            }, 800);
+          }
+        } else {
+          isSectionInViewport = false;
+          if (isTourActive) {
+            pauseAutoTour(false);
+          }
+        }
+      });
+    }, {
+      threshold: 0.20
+    });
+
+    tourObserver.observe(glimpseSection);
   }
 
   // Keyboard navigation

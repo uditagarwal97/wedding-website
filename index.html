@@ -14,7 +14,7 @@
   <!-- FontAwesome Icons for UI & Map pin icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <link rel="stylesheet" href="styles.css?v=77.0">
+  <link rel="stylesheet" href="styles.css?v=78.0">
 </head>
 <body>
 
@@ -351,6 +351,18 @@
           <span class="sub-subtitle">AN INTERACTIVE ROYAL KINGDOM</span>
           <h2 class="section-title">A GLIMPSE OF US</h2>
           <p class="mahal-instruction-hint"><i class="fa-solid fa-compass"></i> Explore our royal estate • Tap any landmark to unveil our memories</p>
+        </div>
+
+        <!-- Guided Showcase Status & Control Bar -->
+        <div class="mahal-tour-bar" id="mahalTourBar">
+          <div class="tour-indicator-left">
+            <span class="tour-pulse-gem"><i class="fa-solid fa-compass"></i></span>
+            <span class="tour-status-text" id="tourStatusText"><strong>Guided Palace Tour:</strong> Discovering landmarks &amp; moments</span>
+          </div>
+          <button class="tour-control-btn" id="tourControlBtn" aria-label="Pause Auto Tour">
+            <i class="fa-solid fa-pause" id="tourControlIcon"></i>
+            <span id="tourControlLabel">Pause Tour</span>
+          </button>
         </div>
 
         <!-- 3D Diorama & Integrated Folio Theater Stage -->
@@ -719,6 +731,6 @@
   </main>
 
   <script src="https://www.youtube.com/iframe_api"></script>
-  <script src="app.js?v=77.0"></script>
+  <script src="app.js?v=78.0"></script>
 </body>
 </html>
