@@ -630,8 +630,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let targetTiltX = 0, targetTiltY = 0;
   let panX = 0, panY = 0;
   let targetPanX = 0, targetPanY = 0;
-  let zoomLevel = 1.04;
-  let targetZoom = 1.04;
+  let zoomLevel = 1.02;
+  let targetZoom = 1.02;
   let isZoomedIn = false;
 
   // 3D Tilt & Smooth Zoom Render Loop
@@ -777,7 +777,7 @@ document.addEventListener('DOMContentLoaded', () => {
     targetTiltY = 0;
     targetPanX = 0;
     targetPanY = 0;
-    targetZoom = 1.04;
+    targetZoom = 1.02;
     isZoomedIn = false;
     if (mahalViewport) mahalViewport.classList.remove('is-zoomed');
   }
@@ -799,27 +799,25 @@ document.addEventListener('DOMContentLoaded', () => {
       beacon.classList.toggle('active-beacon', beacon.dataset.landmark === key);
     });
 
-    // Smooth Dramatic Camera Focus & Zoom on Landmark with comfortable framing
+    // Smooth Gentle Camera Focus & Subtle Zoom on Landmark (1.12x) with zero edge cutoffs
     if (data.zoomCoords) {
       isZoomedIn = true;
-      targetZoom = 1.40;
+      targetZoom = 1.12;
       if (mahalViewport) mahalViewport.classList.add('is-zoomed');
 
       const rect = mahalViewport ? mahalViewport.getBoundingClientRect() : { width: 800, height: 450 };
       const s = targetZoom;
-      const dx = (0.5 - data.zoomCoords.x / 100) * rect.width * s;
-      const dy = (0.5 - data.zoomCoords.y / 100) * rect.height * s;
+      // Gentle center-offsetting bounded strictly by the scale margin
+      const maxPanX = Math.max(0, ((s - 1) * rect.width) / 2);
+      const maxPanY = Math.max(0, ((s - 1) * rect.height) / 2);
 
-      // Safety bleed margin so perspective 3D rotation never pulls image edges into view
-      const bleedX = 0.02 * rect.width;
-      const bleedY = 0.02 * rect.height;
-      const maxPanX = Math.max(0, ((s - 1) * rect.width) / 2 - bleedX);
-      const maxPanY = Math.max(0, ((s - 1) * rect.height) / 2 - bleedY);
+      const rawDx = (0.5 - data.zoomCoords.x / 100) * rect.width * 0.4;
+      const rawDy = (0.5 - data.zoomCoords.y / 100) * rect.height * 0.4;
 
-      targetPanX = Math.max(-maxPanX, Math.min(maxPanX, dx));
-      targetPanY = Math.max(-maxPanY, Math.min(maxPanY, dy));
-      targetTiltX = (data.zoomCoords.y - 50) * 0.08;
-      targetTiltY = (50 - data.zoomCoords.x) * 0.09;
+      targetPanX = Math.max(-maxPanX, Math.min(maxPanX, rawDx));
+      targetPanY = Math.max(-maxPanY, Math.min(maxPanY, rawDy));
+      targetTiltX = (data.zoomCoords.y - 50) * 0.04;
+      targetTiltY = (50 - data.zoomCoords.x) * 0.05;
     }
 
     // Update Photo with gallery support

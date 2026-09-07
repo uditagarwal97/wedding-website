@@ -2002,11 +2002,9 @@ body {
   width: 100%;
   height: auto;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
   aspect-ratio: 16 / 9;
   pointer-events: none;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: high-quality;
   transform: translateZ(0);
   backface-visibility: hidden;
 }
@@ -2203,12 +2201,13 @@ body {
   position: relative;
   flex: 1 1 100%;
   width: 100%;
+  aspect-ratio: 16 / 9;
   border-radius: 26px;
   overflow: hidden;
   perspective: 1200px;
   box-shadow: 0 25px 75px rgba(0, 0, 0, 0.9), 0 0 40px rgba(212, 175, 55, 0.15);
   border: 1.5px solid rgba(212, 175, 55, 0.4);
-  background: #080d19;
+  background: #080105;
   cursor: pointer;
   user-select: none;
   touch-action: pan-y;

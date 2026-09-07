@@ -1,0 +1,657 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="100%" height="100%">
+  <defs>
+    <!-- Background Night Gradients -->
+    <radialGradient id="skyGlow" cx="50%" cy="45%" r="75%">
+      <stop offset="0%" stop-color="#1F0814" />
+      <stop offset="45%" stop-color="#12030B" />
+      <stop offset="85%" stop-color="#080105" />
+      <stop offset="100%" stop-color="#040002" />
+    </radialGradient>
+
+    <!-- Royal Gold Gradients -->
+    <linearGradient id="goldLinear" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF5D1" />
+      <stop offset="35%" stop-color="#E5C158" />
+      <stop offset="70%" stop-color="#B88A28" />
+      <stop offset="100%" stop-color="#7A5610" />
+    </linearGradient>
+
+    <linearGradient id="goldH" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#B88A28" />
+      <stop offset="50%" stop-color="#FCEBA6" />
+      <stop offset="100%" stop-color="#AA7E1F" />
+    </linearGradient>
+
+    <radialGradient id="goldAura" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(245, 215, 127, 0.45)" />
+      <stop offset="50%" stop-color="rgba(212, 175, 55, 0.18)" />
+      <stop offset="100%" stop-color="rgba(212, 175, 55, 0)" />
+    </radialGradient>
+
+    <radialGradient id="palaceGlow" cx="50%" cy="52%" r="42%">
+      <stop offset="0%" stop-color="rgba(245, 215, 127, 0.28)" />
+      <stop offset="55%" stop-color="rgba(197, 147, 42, 0.12)" />
+      <stop offset="100%" stop-color="rgba(0, 0, 0, 0)" />
+    </radialGradient>
+
+    <!-- Water Gradients -->
+    <linearGradient id="lakeWater" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0D2C42" />
+      <stop offset="40%" stop-color="#0A2234" />
+      <stop offset="80%" stop-color="#051522" />
+      <stop offset="100%" stop-color="#020B12" />
+    </linearGradient>
+
+    <linearGradient id="seaWater" x1="30%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#123E59" />
+      <stop offset="50%" stop-color="#0B2B3F" />
+      <stop offset="100%" stop-color="#04141F" />
+    </linearGradient>
+
+    <!-- Garden Gradients -->
+    <radialGradient id="gardenGrass" cx="40%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#143A26" />
+      <stop offset="60%" stop-color="#0E281A" />
+      <stop offset="100%" stop-color="#07170E" />
+    </radialGradient>
+
+    <!-- Beach Sand Gradient -->
+    <linearGradient id="beachSand" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#543E23" />
+      <stop offset="40%" stop-color="#3D2B14" />
+      <stop offset="100%" stop-color="#241708" />
+    </linearGradient>
+
+    <!-- Bazaar Night Warmth -->
+    <radialGradient id="bazaarGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(255, 150, 50, 0.35)" />
+      <stop offset="50%" stop-color="rgba(217, 83, 30, 0.15)" />
+      <stop offset="100%" stop-color="rgba(15, 3, 8, 0)" />
+    </radialGradient>
+
+    <!-- Soft Glow Filter -->
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <filter id="subtleGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <!-- Mughal Geometric Jaali Pattern -->
+    <pattern id="mughalJaali" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M15,0 L30,15 L15,30 L0,15 Z" fill="none" stroke="rgba(212, 175, 55, 0.07)" stroke-width="1" />
+      <circle cx="15" cy="15" r="3.5" fill="none" stroke="rgba(245, 215, 127, 0.1)" stroke-width="0.8" />
+    </pattern>
+  </defs>
+
+  <!-- BASE SKY & ESTATE GROUND CANVAS -->
+  <rect width="1600" height="900" fill="url(#skyGlow)" />
+  <rect width="1600" height="900" fill="url(#mughalJaali)" />
+
+  <!-- AMBIENT ESTATE LIGHTING CONES -->
+  <circle cx="800" cy="490" r="480" fill="url(#palaceGlow)" />
+  <circle cx="360" cy="740" r="220" fill="url(#bazaarGlow)" />
+  <circle cx="1250" cy="710" r="260" fill="url(#goldAura)" opacity="0.4" />
+
+  <!-- ORNAMENTAL ROYAL BORDER & ARCHITECTURAL BLEED FRAME -->
+  <g id="estateBorderFrame">
+    <!-- Outer Inset Border -->
+    <rect x="20" y="20" width="1560" height="860" rx="16" fill="none" stroke="url(#goldLinear)" stroke-width="1.8" opacity="0.65" />
+    <rect x="28" y="28" width="1544" height="844" rx="12" fill="none" stroke="rgba(212, 175, 55, 0.25)" stroke-width="1" />
+    
+    <!-- Corner Mughal Floral Ornaments -->
+    <!-- Top-Left -->
+    <path d="M28,68 Q28,28 68,28 L85,28 Q45,45 28,85 Z" fill="url(#goldLinear)" opacity="0.8" />
+    <circle cx="52" cy="52" r="4" fill="#FFEBA6" />
+    <!-- Top-Right -->
+    <path d="M1572,68 Q1572,28 1532,28 L1515,28 Q1555,45 1572,85 Z" fill="url(#goldLinear)" opacity="0.8" />
+    <circle cx="1548" cy="52" r="4" fill="#FFEBA6" />
+    <!-- Bottom-Left -->
+    <path d="M28,832 Q28,872 68,872 L85,872 Q45,855 28,815 Z" fill="url(#goldLinear)" opacity="0.8" />
+    <circle cx="52" cy="848" r="4" fill="#FFEBA6" />
+    <!-- Bottom-Right -->
+    <path d="M1572,832 Q1572,872 1532,872 L1515,872 Q1555,855 1572,815 Z" fill="url(#goldLinear)" opacity="0.8" />
+    <circle cx="1548" cy="848" r="4" fill="#FFEBA6" />
+
+    <!-- Vintage Cartographic Compass Rose in Top Left -->
+    <g transform="translate(130, 85) scale(0.65)">
+      <circle cx="0" cy="0" r="38" fill="none" stroke="url(#goldLinear)" stroke-width="1" stroke-dasharray="3,3" opacity="0.5" />
+      <polygon points="0,-45 8,-12 0,0 -8,-12" fill="url(#goldH)" />
+      <polygon points="0,45 8,12 0,0 -8,12" fill="#7A5610" />
+      <polygon points="45,0 12,8 0,0 12,-8" fill="url(#goldLinear)" />
+      <polygon points="-45,0 -12,8 0,0 -12,-8" fill="#7A5610" />
+      <circle cx="0" cy="0" r="6" fill="#FFF5D1" />
+      <text x="0" y="-52" font-family="'Cinzel', serif" font-size="14" font-weight="700" fill="#FCEBA6" text-anchor="middle" letter-spacing="2">N</text>
+    </g>
+
+    <!-- Kingdom Cartouche Title Top Right -->
+    <g transform="translate(1410, 80)">
+      <rect x="-140" y="-22" width="280" height="42" rx="21" fill="rgba(18, 4, 11, 0.85)" stroke="url(#goldLinear)" stroke-width="1.2" />
+      <text x="0" y="4" font-family="'Cinzel Decorative', 'Cinzel', serif" font-size="13" font-weight="700" fill="#FFEBA6" text-anchor="middle" letter-spacing="3">✦ THE ROYAL ESTATE ✦</text>
+    </g>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- TOPOGRAPHY & REGIONAL LANDSCAPES -->
+  <!-- ========================================================================= -->
+
+  <!-- 1. TOP RIGHT: ROYAL BEACH SHORELINE -->
+  <g id="landscapeBeach">
+    <!-- Ocean Water Body -->
+    <path d="M1020,20 C1080,70 1140,110 1220,135 C1320,165 1450,140 1572,110 L1572,20 Z" fill="url(#seaWater)" opacity="0.9" />
+    <path d="M1060,20 C1110,60 1160,95 1230,120 C1310,148 1430,125 1572,100" fill="none" stroke="rgba(145, 215, 255, 0.35)" stroke-width="1.5" stroke-dasharray="8,6" />
+    
+    <!-- Beach Golden Sand Dune -->
+    <path d="M980,20 C1040,85 1110,140 1190,165 C1290,195 1420,175 1572,150 L1572,20 Z" fill="url(#beachSand)" opacity="0.8" />
+    <path d="M1000,30 C1060,95 1130,148 1210,170 C1300,195 1410,180 1572,160" fill="none" stroke="rgba(245, 215, 127, 0.3)" stroke-width="2" />
+    
+    <!-- Stylized Waves Lines -->
+    <path d="M1280,45 C1305,40 1330,48 1355,45 M1390,65 C1415,60 1440,68 1465,65 M1210,75 C1235,70 1260,78 1285,75" fill="none" stroke="rgba(175, 230, 255, 0.4)" stroke-width="1.2" stroke-linecap="round" />
+  </g>
+
+  <!-- 2. TOP CENTER: PALM GROVE TERRAIN -->
+  <g id="landscapePalms">
+    <ellipse cx="720" cy="140" rx="180" ry="85" fill="#0C2014" opacity="0.6" />
+    <!-- Garden Stone Pathways -->
+    <path d="M720,220 C715,180 690,140 680,100 M725,220 C735,175 760,135 780,95" fill="none" stroke="rgba(212, 175, 55, 0.22)" stroke-width="3" stroke-dasharray="2,4" />
+  </g>
+
+  <!-- 3. TOP LEFT: SHAHI BAAG CHARBAGH FORMAL GARDENS -->
+  <g id="landscapeGarden">
+    <!-- Charbagh Quadrangle Foundation -->
+    <rect x="170" y="160" width="410" height="270" rx="14" fill="url(#gardenGrass)" stroke="rgba(212, 175, 55, 0.35)" stroke-width="1.4" />
+    <!-- Cross Water Channels (The 4 Streams of Charbagh) -->
+    <!-- Horizontal Canal -->
+    <rect x="170" y="287" width="410" height="16" fill="#0A2234" stroke="rgba(212, 175, 55, 0.4)" stroke-width="1" />
+    <line x1="170" y1="295" x2="580" y2="295" stroke="rgba(175, 230, 255, 0.5)" stroke-width="1" stroke-dasharray="8,6" />
+    <!-- Vertical Canal -->
+    <rect x="367" y="160" width="16" height="270" fill="#0A2234" stroke="rgba(212, 175, 55, 0.4)" stroke-width="1" />
+    <line x1="375" y1="160" x2="375" y2="430" stroke="rgba(175, 230, 255, 0.5)" stroke-width="1" stroke-dasharray="8,6" />
+
+    <!-- 4 Geometric Parterre Lawns with Floral Arabesque Fill -->
+    <g stroke="rgba(212, 175, 55, 0.25)" stroke-width="0.9" fill="none">
+      <!-- Quad 1: Top-Left -->
+      <rect x="190" y="180" width="160" height="92" rx="8" fill="#12301F" />
+      <circle cx="270" cy="226" r="22" />
+      <path d="M250,226 Q270,206 290,226 Q270,246 250,226" fill="rgba(212, 175, 55, 0.12)" />
+      <!-- Quad 2: Top-Right -->
+      <rect x="400" y="180" width="160" height="92" rx="8" fill="#12301F" />
+      <circle cx="480" cy="226" r="22" />
+      <path d="M460,226 Q480,206 500,226 Q480,246 460,226" fill="rgba(212, 175, 55, 0.12)" />
+      <!-- Quad 3: Bottom-Left -->
+      <rect x="190" y="318" width="160" height="92" rx="8" fill="#12301F" />
+      <circle cx="270" cy="364" r="22" />
+      <path d="M250,364 Q270,344 290,364 Q270,384 250,364" fill="rgba(212, 175, 55, 0.12)" />
+      <!-- Quad 4: Bottom-Right -->
+      <rect x="400" y="318" width="160" height="92" rx="8" fill="#12301F" />
+      <circle cx="480" cy="364" r="22" />
+      <path d="M460,364 Q480,344 500,364 Q480,384 460,364" fill="rgba(212, 175, 55, 0.12)" />
+    </g>
+
+    <!-- Symmetrical Royal Cypress Trees Lining Canals -->
+    <g fill="#0E4226" stroke="#256B42" stroke-width="0.8">
+      <polygon points="215,282 220,260 225,282" />
+      <polygon points="255,282 260,260 265,282" />
+      <polygon points="295,282 300,260 305,282" />
+      <polygon points="335,282 340,260 345,282" />
+      <polygon points="415,282 420,260 425,282" />
+      <polygon points="455,282 460,260 465,282" />
+      <polygon points="495,282 500,260 505,282" />
+      <polygon points="535,282 540,260 545,282" />
+    </g>
+  </g>
+
+  <!-- 4. BOTTOM RIGHT: SHAHI JHEEL ROYAL LAKE -->
+  <g id="landscapeLake">
+    <!-- Royal Lake Reservoir Basin -->
+    <path d="M1020,620 C1080,590 1170,580 1280,600 C1410,625 1520,600 1572,580 L1572,872 L1120,872 C1060,830 1000,750 1000,690 C1000,650 1010,630 1020,620 Z" fill="url(#lakeWater)" stroke="rgba(212, 175, 55, 0.4)" stroke-width="1.5" />
+    
+    <!-- Stepped Marble Ghats Embankment -->
+    <path d="M1030,625 C1090,595 1175,588 1280,608 C1405,632 1510,608 1560,590" fill="none" stroke="url(#goldLinear)" stroke-width="3" opacity="0.85" />
+    <path d="M1040,635 C1095,608 1180,600 1280,620 C1400,642 1500,620 1550,605" fill="none" stroke="rgba(212, 175, 55, 0.45)" stroke-width="1.8" />
+    <path d="M1050,645 C1100,620 1185,612 1280,632 C1395,652 1490,632 1540,620" fill="none" stroke="rgba(212, 175, 55, 0.25)" stroke-width="1.2" />
+
+    <!-- Ghat Pavilion Steps Accents -->
+    <line x1="1140" y1="595" x2="1140" y2="625" stroke="url(#goldH)" stroke-width="1.5" />
+    <line x1="1240" y1="603" x2="1240" y2="633" stroke="url(#goldH)" stroke-width="1.5" />
+    <line x1="1360" y1="620" x2="1360" y2="650" stroke="url(#goldH)" stroke-width="1.5" />
+
+    <!-- Water Ripple Accents -->
+    <g stroke="rgba(145, 215, 255, 0.45)" stroke-width="1.2" stroke-linecap="round">
+      <path d="M1120,680 C1145,676 1175,684 1200,680" />
+      <path d="M1320,670 C1350,665 1380,674 1410,670" />
+      <path d="M1180,740 C1210,735 1245,744 1275,740" />
+      <path d="M1360,760 C1390,755 1425,764 1455,760" />
+      <path d="M1080,790 C1110,785 1140,794 1170,790" />
+      <path d="M1250,820 C1280,815 1315,824 1345,820" />
+    </g>
+
+    <!-- Floating Water Lilies / Lotuses -->
+    <g transform="translate(1130, 710) scale(0.8)">
+      <ellipse cx="0" cy="0" rx="14" ry="7" fill="#1B4D32" />
+      <circle cx="-2" cy="-4" r="5" fill="#ECA2B8" />
+      <circle cx="2" cy="-4" r="4" fill="#FFEBA6" />
+    </g>
+    <g transform="translate(1390, 720) scale(0.8)">
+      <ellipse cx="0" cy="0" rx="14" ry="7" fill="#1B4D32" />
+      <circle cx="-2" cy="-4" r="5" fill="#ECA2B8" />
+      <circle cx="2" cy="-4" r="4" fill="#FFEBA6" />
+    </g>
+  </g>
+
+  <!-- 5. BOTTOM LEFT: MEENA BAZAAR COURTYARD & COBBLESTONES -->
+  <g id="landscapeBazaar">
+    <!-- Bazaar Octagonal Courtyard Ground -->
+    <polygon points="170,720 250,650 470,650 560,720 540,840 450,872 230,872 170,810" fill="#240D17" stroke="rgba(212, 175, 55, 0.45)" stroke-width="1.5" />
+    <!-- Diagonal Cobblestone Lattice -->
+    <path d="M200,680 L520,840 M240,660 L540,810 M180,730 L450,870 M180,790 L340,870 M250,650 L180,720 M350,650 L200,800 M450,650 L260,840 M540,720 L370,870" fill="none" stroke="rgba(212, 175, 55, 0.12)" stroke-width="1" />
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- DETAILED ARCHITECTURAL STRUCTURES (THE 6 LANDMARKS) -->
+  <!-- ========================================================================= -->
+
+  <!-- ========================================================================= -->
+  <!-- LANDMARK 1: THE GRAND BALLROOM & PALACE CENTER (Coords ~50%, 56%) -->
+  <!-- ========================================================================= -->
+  <g id="landmarkBallroom" transform="translate(800, 504)">
+    <!-- Palace Platform / Marble Plinth (Jagati) -->
+    <polygon points="-320,130 320,130 280,155 -280,155" fill="#2A141D" stroke="url(#goldLinear)" stroke-width="1.5" />
+    <rect x="-280" y="115" width="560" height="15" fill="#1E0A12" stroke="rgba(212, 175, 55, 0.5)" stroke-width="1" />
+    
+    <!-- Central Grand Staircase with Golden Balustrades -->
+    <polygon points="-80,130 80,130 110,165 -110,165" fill="#3D1C28" stroke="url(#goldH)" stroke-width="1.2" />
+    <line x1="-88" y1="138" x2="88" y2="138" stroke="rgba(245, 215, 127, 0.7)" stroke-width="1.2" />
+    <line x1="-96" y1="146" x2="96" y2="146" stroke="rgba(245, 215, 127, 0.7)" stroke-width="1.2" />
+    <line x1="-104" y1="154" x2="104" y2="154" stroke="rgba(245, 215, 127, 0.7)" stroke-width="1.2" />
+
+    <!-- Palace Wings Colonnade (Left & Right) -->
+    <!-- Left Wing -->
+    <g transform="translate(-160, 40)">
+      <rect x="-100" y="0" width="100" height="75" fill="#2D111E" stroke="url(#goldLinear)" stroke-width="1.2" />
+      <!-- Colonnade Cusped Arches -->
+      <path d="M-90,75 L-90,30 Q-75,12 -60,30 L-60,75 M-50,75 L-50,30 Q-35,12 -20,30 L-20,75" fill="rgba(245, 215, 127, 0.15)" stroke="url(#goldH)" stroke-width="1" />
+      <!-- Wing Roof Parapet with Jaali Screen -->
+      <line x1="-105" y1="0" x2="5" y2="0" stroke="url(#goldLinear)" stroke-width="2.5" />
+      <polygon points="-80,0 -70,-18 -60,0" fill="url(#goldLinear)" />
+      <polygon points="-40,0 -30,-18 -20,0" fill="url(#goldLinear)" />
+      <!-- Left Wing Corner Chhatri Dome Pavilion -->
+      <g transform="translate(-90, -18)">
+        <rect x="-12" y="0" width="24" height="18" fill="none" stroke="url(#goldLinear)" stroke-width="1" />
+        <!-- Mughal Fluted Dome -->
+        <path d="M-16,0 Q-16,-24 0,-30 Q16,-24 16,0 Z" fill="url(#goldLinear)" />
+        <line x1="0" y1="-30" x2="0" y2="-40" stroke="#FFEBA6" stroke-width="1.5" />
+        <circle cx="0" cy="-40" r="2.5" fill="#FFEBA6" />
+      </g>
+    </g>
+
+    <!-- Right Wing -->
+    <g transform="translate(160, 40)">
+      <rect x="0" y="0" width="100" height="75" fill="#2D111E" stroke="url(#goldLinear)" stroke-width="1.2" />
+      <!-- Colonnade Cusped Arches -->
+      <path d="M10,75 L10,30 Q25,12 40,30 L40,75 M50,75 L50,30 Q65,12 80,30 L80,75" fill="rgba(245, 215, 127, 0.15)" stroke="url(#goldH)" stroke-width="1" />
+      <!-- Wing Roof Parapet with Jaali Screen -->
+      <line x1="-5" y1="0" x2="105" y2="0" stroke="url(#goldLinear)" stroke-width="2.5" />
+      <polygon points="20,0 30,-18 40,0" fill="url(#goldLinear)" />
+      <polygon points="60,0 70,-18 80,0" fill="url(#goldLinear)" />
+      <!-- Right Wing Corner Chhatri Dome Pavilion -->
+      <g transform="translate(90, -18)">
+        <rect x="-12" y="0" width="24" height="18" fill="none" stroke="url(#goldLinear)" stroke-width="1" />
+        <path d="M-16,0 Q-16,-24 0,-30 Q16,-24 16,0 Z" fill="url(#goldLinear)" />
+        <line x1="0" y1="-30" x2="0" y2="-40" stroke="#FFEBA6" stroke-width="1.5" />
+        <circle cx="0" cy="-40" r="2.5" fill="#FFEBA6" />
+      </g>
+    </g>
+
+    <!-- Central Grand Ballroom Mahal Facade (Tier 1) -->
+    <rect x="-105" y="10" width="210" height="105" fill="#3D1826" stroke="url(#goldLinear)" stroke-width="1.8" />
+    
+    <!-- Grand Royal Arch Entrance (Iwan) -->
+    <path d="M-55,115 L-55,50 C-55,20 55,20 55,50 L55,115 Z" fill="#19040C" stroke="url(#goldH)" stroke-width="2" />
+    <!-- Cusped Inner Multi-Foil Arch -->
+    <path d="M-45,115 L-45,58 Q-45,34 -25,32 Q0,20 25,32 Q45,34 45,58 L45,115" fill="none" stroke="#FFEBA6" stroke-width="1.5" />
+    
+    <!-- Warm Golden Chandelier Glow inside the Grand Ballroom Arch -->
+    <circle cx="0" cy="65" r="28" fill="url(#goldAura)" />
+    <g transform="translate(0, 52) scale(0.7)">
+      <!-- Royal Crystal Chandelier -->
+      <line x1="0" y1="-10" x2="0" y2="5" stroke="#FFEBA6" stroke-width="1.5" />
+      <ellipse cx="0" cy="8" rx="16" ry="5" fill="none" stroke="#FFEBA6" stroke-width="1.2" />
+      <polygon points="0,22 -14,10 14,10" fill="url(#goldH)" opacity="0.85" />
+      <circle cx="0" cy="24" r="3" fill="#FFF" />
+    </g>
+
+    <!-- Second Tier Facade with Royal Jharokha Balconies -->
+    <rect x="-85" y="-55" width="170" height="65" fill="#4A1F30" stroke="url(#goldLinear)" stroke-width="1.5" />
+    <!-- Center Jharokha Balcony -->
+    <g transform="translate(0, -25)">
+      <!-- Projected Balcony Base -->
+      <polygon points="-28,25 28,25 20,38 -20,38" fill="url(#goldH)" stroke="url(#goldLinear)" stroke-width="1" />
+      <!-- Arch Windows of Jharokha -->
+      <rect x="-24" y="0" width="48" height="25" fill="#1A060E" stroke="url(#goldLinear)" stroke-width="1.2" />
+      <path d="M-20,25 L-20,12 Q-10,4 0,12 L0,25 M0,25 L0,12 Q10,4 20,12 L20,25" fill="none" stroke="#FFEBA6" stroke-width="1" />
+      <!-- Bangaldar Curved Eaves Roof -->
+      <path d="M-34,0 Q0,-14 34,0 L30,-6 Q0,-18 -30,-6 Z" fill="url(#goldLinear)" />
+    </g>
+    <!-- Left & Right Flanking Jharokhas -->
+    <g transform="translate(-56, -20) scale(0.65)">
+      <polygon points="-24,25 24,25 16,38 -16,38" fill="url(#goldH)" />
+      <rect x="-20" y="0" width="40" height="25" fill="#1A060E" stroke="url(#goldLinear)" stroke-width="1.2" />
+      <path d="M-28,0 Q0,-14 28,0 L24,-6 Q0,-18 -24,-6 Z" fill="url(#goldLinear)" />
+    </g>
+    <g transform="translate(56, -20) scale(0.65)">
+      <polygon points="-24,25 24,25 16,38 -16,38" fill="url(#goldH)" />
+      <rect x="-20" y="0" width="40" height="25" fill="#1A060E" stroke="url(#goldLinear)" stroke-width="1.2" />
+      <path d="M-28,0 Q0,-14 28,0 L24,-6 Q0,-18 -24,-6 Z" fill="url(#goldLinear)" />
+    </g>
+
+    <!-- Parapet Cornice with Ornate Merlons -->
+    <line x1="-90" y1="-55" x2="90" y2="-55" stroke="url(#goldLinear)" stroke-width="3" />
+    <g fill="url(#goldH)">
+      <polygon points="-80,-55 -72,-68 -64,-55" />
+      <polygon points="-50,-55 -42,-68 -34,-55" />
+      <polygon points="-20,-55 -12,-68 -4,-55" />
+      <polygon points="10,-55 18,-68 26,-55" />
+      <polygon points="40,-55 48,-68 56,-55" />
+      <polygon points="70,-55 78,-68 86,-55" />
+    </g>
+
+    <!-- THE IMPERIAL CENTRAL ONION DOME (GUMBAD) -->
+    <g transform="translate(0, -68)">
+      <!-- Drum / Cylindrical Base -->
+      <rect x="-38" y="-18" width="76" height="18" fill="#3D1826" stroke="url(#goldLinear)" stroke-width="1.2" />
+      <line x1="-42" y1="-18" x2="42" y2="-18" stroke="url(#goldLinear)" stroke-width="2" />
+      <!-- Fluted Golden Bulbous Dome Profile -->
+      <path d="M-42,-18 C-58,-40 -40,-85 0,-105 C40,-85 58,-40 42,-18 Z" fill="url(#goldLinear)" stroke="#5E4008" stroke-width="1" />
+      <!-- Dome Ribs Fluting -->
+      <path d="M0,-105 C-18,-85 -24,-40 -16,-18 M0,-105 C18,-85 24,-40 16,-18 M0,-105 L0,-18" fill="none" stroke="rgba(255, 245, 209, 0.5)" stroke-width="1.2" />
+      
+      <!-- Inverted Lotus Petal Finial Collar -->
+      <path d="M-12,-105 Q0,-115 12,-105 Z" fill="#FFEBA6" />
+      <!-- Brass Kalash & Royal Flagpole -->
+      <line x1="0" y1="-105" x2="0" y2="-138" stroke="#FFEBA6" stroke-width="2" />
+      <circle cx="0" cy="-122" r="4.5" fill="#FFF5D1" />
+      <circle cx="0" cy="-134" r="3" fill="#FFF5D1" />
+      <!-- Golden Royal Triangular Pennant -->
+      <polygon points="0,-138 28,-130 0,-122" fill="#E5C158" stroke="#FFEBA6" stroke-width="0.8" />
+    </g>
+
+    <!-- Flanking Twin Minarets -->
+    <!-- Left Minaret -->
+    <g transform="translate(-115, 20)">
+      <rect x="-8" y="-120" width="16" height="100" fill="#2E121F" stroke="url(#goldLinear)" stroke-width="1" />
+      <!-- Minaret Balcony Tiers -->
+      <rect x="-12" y="-45" width="24" height="6" fill="url(#goldH)" />
+      <rect x="-12" y="-95" width="24" height="6" fill="url(#goldH)" />
+      <!-- Minaret Chhatri & Dome -->
+      <g transform="translate(0, -120)">
+        <polygon points="-12,0 12,0 8,-12 -8,-12" fill="url(#goldLinear)" />
+        <path d="M-8,-12 Q0,-26 8,-12 Z" fill="url(#goldLinear)" />
+        <line x1="0" y1="-26" x2="0" y2="-34" stroke="#FFEBA6" stroke-width="1.2" />
+      </g>
+    </g>
+    <!-- Right Minaret -->
+    <g transform="translate(115, 20)">
+      <rect x="-8" y="-120" width="16" height="100" fill="#2E121F" stroke="url(#goldLinear)" stroke-width="1" />
+      <rect x="-12" y="-45" width="24" height="6" fill="url(#goldH)" />
+      <rect x="-12" y="-95" width="24" height="6" fill="url(#goldH)" />
+      <g transform="translate(0, -120)">
+        <polygon points="-12,0 12,0 8,-12 -8,-12" fill="url(#goldLinear)" />
+        <path d="M-8,-12 Q0,-26 8,-12 Z" fill="url(#goldLinear)" />
+        <line x1="0" y1="-26" x2="0" y2="-34" stroke="#FFEBA6" stroke-width="1.2" />
+      </g>
+    </g>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- LANDMARK 2: SHAHI BAAG (MUGHAL GARDENS) (Coords ~24%, 32%) -->
+  <!-- ========================================================================= -->
+  <g id="landmarkGardenDetail" transform="translate(375, 295)">
+    <!-- Central Octagonal Fountain Basin (Hauz) -->
+    <polygon points="-36,-15 -15,-36 15,-36 36,-15 36,15 15,36 -15,36 -36,15" fill="#0A2436" stroke="url(#goldLinear)" stroke-width="2" />
+    <polygon points="-28,-12 -12,-28 12,-28 28,-12 28,12 12,28 -12,28 -28,12" fill="#144666" stroke="rgba(175, 230, 255, 0.6)" stroke-width="1" />
+    
+    <!-- Central Marble Lotus Fountain Tier -->
+    <circle cx="0" cy="0" r="10" fill="url(#goldH)" stroke="#FFEBA6" stroke-width="1" />
+    <!-- Water Jets -->
+    <path d="M0,0 Q-8,-22 -15,-16 M0,0 Q8,-22 15,-16 M0,0 Q0,-26 0,-18" fill="none" stroke="rgba(255, 255, 255, 0.85)" stroke-width="1.5" stroke-linecap="round" />
+    
+    <!-- North Garden Royal Pavilion (Baradari) -->
+    <g transform="translate(0, -90)">
+      <rect x="-42" y="0" width="84" height="32" fill="#2A111E" stroke="url(#goldLinear)" stroke-width="1.2" />
+      <!-- Cusped Arches -->
+      <path d="M-32,32 L-32,14 Q-20,5 -8,14 L-8,32 M8,32 L8,14 Q20,5 32,14 L32,32" fill="none" stroke="#FFEBA6" stroke-width="1.2" />
+      <!-- Pavilion Roof -->
+      <polygon points="-48,0 48,0 36,-12 -36,-12" fill="url(#goldLinear)" />
+      <!-- Triple Chhatri Domes -->
+      <path d="M-30,-12 Q-24,-24 -18,-12 Z" fill="url(#goldH)" />
+      <path d="M-10,-12 Q0,-30 10,-12 Z" fill="url(#goldH)" />
+      <path d="M18,-12 Q24,-24 30,-12 Z" fill="url(#goldH)" />
+    </g>
+
+    <!-- Flowering Rose & Jasmine Bushes Around Foundation -->
+    <g fill="#99223D" opacity="0.85">
+      <circle cx="-55" cy="-20" r="4" />
+      <circle cx="-50" cy="-24" r="3.5" fill="#FFEBA6" />
+      <circle cx="-58" cy="20" r="4" />
+      <circle cx="55" cy="-20" r="4" />
+      <circle cx="58" cy="20" r="4" />
+      <circle cx="52" cy="24" r="3.5" fill="#FFEBA6" />
+    </g>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- LANDMARK 3: SHAHI JHEEL (THE LAKE & ROYAL BOAT) (Coords ~78%, 78%) -->
+  <!-- ========================================================================= -->
+  <g id="landmarkLakeDetail" transform="translate(1248, 702)">
+    <!-- Ornate Royal Canopy Boat (Shikara / Royal Barge) -->
+    <!-- Boat Hull -->
+    <path d="M-80,-5 C-40,25 40,25 80,-5 C50,15 -50,15 -80,-5 Z" fill="#422510" stroke="url(#goldLinear)" stroke-width="1.8" />
+    <!-- Golden Prow & Stern Dragon/Peacock Flourish -->
+    <path d="M-80,-5 C-95,-15 -90,-30 -82,-35 C-78,-32 -82,-18 -75,-8" fill="url(#goldLinear)" />
+    <path d="M80,-5 C95,-15 90,-30 82,-35 C78,-32 82,-18 75,-8" fill="url(#goldLinear)" />
+    
+    <!-- Royal Velvet Boat Pavilion Canopy -->
+    <g transform="translate(0, -6)">
+      <!-- Canopy Pillars -->
+      <line x1="-35" y1="0" x2="-35" y2="-32" stroke="url(#goldLinear)" stroke-width="2" />
+      <line x1="35" y1="0" x2="35" y2="-32" stroke="url(#goldLinear)" stroke-width="2" />
+      <line x1="-12" y1="0" x2="-12" y2="-32" stroke="url(#goldLinear)" stroke-width="1.2" />
+      <line x1="12" y1="0" x2="12" y2="-32" stroke="url(#goldLinear)" stroke-width="1.2" />
+      
+      <!-- Scalloped Velvet Awning Roof -->
+      <path d="M-42,-32 Q0,-48 42,-32 L40,-38 Q0,-52 -40,-38 Z" fill="url(#goldLinear)" />
+      <!-- Draped Velvet Curtains -->
+      <path d="M-35,-32 Q-25,-18 -35,0 M35,-32 Q25,-18 35,0" fill="none" stroke="#A82845" stroke-width="3" />
+      <!-- Golden Hanging Fringes -->
+      <line x1="-30" y1="-32" x2="-30" y2="-26" stroke="#FFEBA6" stroke-width="1.5" />
+      <line x1="-15" y1="-34" x2="-15" y2="-28" stroke="#FFEBA6" stroke-width="1.5" />
+      <line x1="0" y1="-36" x2="0" y2="-30" stroke="#FFEBA6" stroke-width="1.5" />
+      <line x1="15" y1="-34" x2="15" y2="-28" stroke="#FFEBA6" stroke-width="1.5" />
+      <line x1="30" y1="-32" x2="30" y2="-26" stroke="#FFEBA6" stroke-width="1.5" />
+      
+      <!-- Royal Flag on Boat Mast -->
+      <line x1="0" y1="-48" x2="0" y2="-62" stroke="#FFEBA6" stroke-width="1.5" />
+      <polygon points="0,-62 18,-56 0,-50" fill="#E5C158" />
+    </g>
+
+    <!-- Water Reflection of Barge -->
+    <ellipse cx="0" cy="18" rx="65" ry="8" fill="rgba(212, 175, 55, 0.2)" opacity="0.6" />
+
+    <!-- Lakeside Stepped Chhatri Pavilion on Shore -->
+    <g transform="translate(130, -50)">
+      <polygon points="-24,30 24,30 18,38 -18,38" fill="url(#goldH)" />
+      <rect x="-18" y="5" width="36" height="25" fill="none" stroke="url(#goldLinear)" stroke-width="1.5" />
+      <path d="M-22,5 Q0,-18 22,5 Z" fill="url(#goldLinear)" />
+      <line x1="0" y1="-18" x2="0" y2="-26" stroke="#FFEBA6" stroke-width="1.5" />
+    </g>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- LANDMARK 4: COCONUT GROVE (Coords ~45%, 15%) -->
+  <!-- ========================================================================= -->
+  <g id="landmarkPalmsDetail" transform="translate(720, 135)">
+    <!-- Stylized Royal Tropical Coconut Palm 1 (Left Leaning) -->
+    <g transform="translate(-45, 20)">
+      <!-- Curved Slender Trunk with Ring Segments -->
+      <path d="M15,40 C5,15 -10,-15 -2,-45" fill="none" stroke="#5E4025" stroke-width="5" stroke-linecap="round" />
+      <path d="M15,40 C5,15 -10,-15 -2,-45" fill="none" stroke="url(#goldLinear)" stroke-width="2" stroke-linecap="round" opacity="0.6" />
+      <!-- Arching Golden Palm Fronds -->
+      <g transform="translate(-2, -45)" stroke="url(#goldLinear)" stroke-width="2" stroke-linecap="round" fill="none">
+        <path d="M0,0 Q-35,-25 -65,-5" />
+        <path d="M0,0 Q-45,-45 -40,-75" />
+        <path d="M0,0 Q0,-55 5,-80" />
+        <path d="M0,0 Q35,-45 55,-25" />
+        <path d="M0,0 Q45,-15 65,5" />
+        <!-- Palm Frond Foliage Feathers -->
+        <path d="M-20,-14 L-30,-22 M-40,-16 L-50,-26 M-25,-32 L-35,-42 M-10,-55 L-5,-68 M20,-30 L32,-38 M30,-12 L44,-16" stroke="#2B7A4B" stroke-width="2.5" />
+      </g>
+      <!-- Coconuts Cluster -->
+      <circle cx="-5" cy="-42" r="3.5" fill="#422510" />
+      <circle cx="1" cy="-43" r="3.5" fill="#5E4025" />
+      <circle cx="-1" cy="-38" r="3" fill="#FFEBA6" />
+    </g>
+
+    <!-- Stylized Royal Coconut Palm 2 (Right Tall Arching) -->
+    <g transform="translate(35, 10)">
+      <path d="M-15,50 C-5,20 15,-10 8,-55" fill="none" stroke="#5E4025" stroke-width="6" stroke-linecap="round" />
+      <path d="M-15,50 C-5,20 15,-10 8,-55" fill="none" stroke="url(#goldLinear)" stroke-width="2" stroke-linecap="round" opacity="0.6" />
+      <g transform="translate(8, -55)" stroke="url(#goldLinear)" stroke-width="2.2" stroke-linecap="round" fill="none">
+        <path d="M0,0 Q-40,-30 -75,-10" />
+        <path d="M0,0 Q-30,-60 -20,-85" />
+        <path d="M0,0 Q20,-65 35,-85" />
+        <path d="M0,0 Q55,-35 75,-15" />
+        <path d="M0,0 Q50,0 70,25" />
+        <path d="M-25,-18 L-38,-28 M-15,-45 L-22,-58 M15,-48 L22,-62 M35,-24 L48,-30 M35,0 L48,8" stroke="#2B7A4B" stroke-width="3" />
+      </g>
+      <circle cx="5" cy="-52" r="4" fill="#422510" />
+      <circle cx="12" cy="-51" r="3.5" fill="#FFEBA6" />
+    </g>
+
+    <!-- Garden Hammock between the Palms -->
+    <path d="M-28, -5 Q0,18 25,-8" fill="none" stroke="#FFEBA6" stroke-width="1.8" stroke-dasharray="3,2" />
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- LANDMARK 5: ROYAL BEACH SHORE (Coords ~72%, 10%) -->
+  <!-- ========================================================================= -->
+  <g id="landmarkBeachDetail" transform="translate(1152, 90)">
+    <!-- Royal Mughal Beach Umbrella / Shamiana (Parasol) -->
+    <g transform="translate(-15, 0)">
+      <!-- Angled Brass Pole -->
+      <line x1="0" y1="28" x2="8" y2="-18" stroke="#FFEBA6" stroke-width="2" />
+      <!-- Striped Velvet Canopy Dome -->
+      <g transform="translate(8, -18) rotate(-12)">
+        <path d="M-36,0 C-36,-26 36,-26 36,0 Z" fill="#99223D" stroke="url(#goldLinear)" stroke-width="1.5" />
+        <!-- Gold Stripes -->
+        <path d="M-18,0 C-18,-22 -6,-24 0,-25 L0,0" fill="url(#goldLinear)" />
+        <path d="M18,0 C18,-22 6,-24 0,-25 L0,0" fill="url(#goldLinear)" />
+        <!-- Scalloped Hem Valance -->
+        <path d="M-36,0 Q-30,6 -24,0 Q-18,6 -12,0 Q-6,6 0,0 Q6,6 12,0 Q18,6 24,0 Q30,6 36,0" fill="url(#goldH)" />
+        <circle cx="0" cy="-26" r="3" fill="#FFEBA6" />
+      </g>
+    </g>
+
+    <!-- Royal Teakwood Beach Loungers -->
+    <g transform="translate(22, 12)">
+      <polygon points="-16,8 20,4 24,10 -14,14" fill="#422510" stroke="url(#goldLinear)" stroke-width="1" />
+      <line x1="-12" y1="8" x2="-2" y2="-6" stroke="#422510" stroke-width="2" />
+      <line x1="-2" y1="-6" x2="16" y2="4" stroke="url(#goldLinear)" stroke-width="2" />
+      <!-- White & Gold Cushion -->
+      <polygon points="-6,-4 14,3 12,7 -8,0" fill="#FFF5D1" />
+    </g>
+
+    <!-- Seashell & Coastal Sparkle Flourishes -->
+    <circle cx="-50" cy="18" r="3" fill="#FFF5D1" opacity="0.8" />
+    <circle cx="55" cy="22" r="2.5" fill="#FFF5D1" opacity="0.8" />
+    <path d="M-40,25 C-38,20 -32,22 -30,26 Z" fill="url(#goldH)" opacity="0.75" />
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- LANDMARK 6: MEENA BAZAAR (NIGHT MARKET) (Coords ~23%, 82%) -->
+  <!-- ========================================================================= -->
+  <g id="landmarkBazaarDetail" transform="translate(368, 738)">
+    <!-- Bazaar Row of 3 Traditional Arched Market Stalls (Dukaans) -->
+    
+    <!-- Stall 1 (Left - Jewel & Perfume Attar Kiosk) -->
+    <g transform="translate(-75, 10)">
+      <!-- Stall Frame -->
+      <rect x="-24" y="-28" width="48" height="42" fill="#2E0E19" stroke="url(#goldLinear)" stroke-width="1.2" />
+      <!-- Arched Alcove -->
+      <path d="M-18,14 L-18,-8 Q0,-22 18,-8 L18,14 Z" fill="#14030A" stroke="#FFEBA6" stroke-width="1" />
+      <!-- Striped Velvet Canopy -->
+      <polygon points="-28,-28 28,-28 22,-44 -22,-44" fill="#99223D" stroke="url(#goldLinear)" stroke-width="1" />
+      <polygon points="-10,-28 10,-28 6,-44 -6,-44" fill="url(#goldLinear)" />
+      <!-- Glowing Lantern Hanging -->
+      <line x1="0" y1="-8" x2="0" y2="2" stroke="#FFEBA6" stroke-width="1" />
+      <circle cx="0" cy="5" r="4" fill="#FFB74D" filter="url(#subtleGlow)" />
+    </g>
+
+    <!-- Stall 2 (Center Grand - Silk & Royal Textile Emporium) -->
+    <g transform="translate(0, -5)">
+      <rect x="-32" y="-35" width="64" height="52" fill="#3D1422" stroke="url(#goldLinear)" stroke-width="1.5" />
+      <!-- Cusped Mughal Arch Entrance -->
+      <path d="M-22,17 L-22,-10 Q-22,-26 0,-26 Q22,-26 22,-10 L22,17 Z" fill="#1C050F" stroke="url(#goldH)" stroke-width="1.2" />
+      <!-- Multi-tier Eaves Roof -->
+      <polygon points="-38,-35 38,-35 28,-50 -28,-50" fill="url(#goldLinear)" />
+      <!-- Hanging Brass Lantern (Fanoos) -->
+      <line x1="0" y1="-26" x2="0" y2="-12" stroke="#FFEBA6" stroke-width="1.2" />
+      <polygon points="-5,-12 5,-12 0,-4" fill="#FFC107" filter="url(#subtleGlow)" />
+      <circle cx="0" cy="-8" r="6" fill="rgba(255, 183, 77, 0.4)" />
+    </g>
+
+    <!-- Stall 3 (Right - Spices & Sweetmeat Halwai Kiosk) -->
+    <g transform="translate(75, 10)">
+      <rect x="-24" y="-28" width="48" height="42" fill="#2E0E19" stroke="url(#goldLinear)" stroke-width="1.2" />
+      <path d="M-18,14 L-18,-8 Q0,-22 18,-8 L18,14 Z" fill="#14030A" stroke="#FFEBA6" stroke-width="1" />
+      <polygon points="-28,-28 28,-28 22,-44 -22,-44" fill="#275A3E" stroke="url(#goldLinear)" stroke-width="1" />
+      <polygon points="-10,-28 10,-28 6,-44 -6,-44" fill="url(#goldLinear)" />
+      <line x1="0" y1="-8" x2="0" y2="2" stroke="#FFEBA6" stroke-width="1" />
+      <circle cx="0" cy="5" r="4" fill="#FFB74D" filter="url(#subtleGlow)" />
+    </g>
+
+    <!-- Traditional Wooden Spoke Wheel Handcart (Thela) in Foreground -->
+    <g transform="translate(-25, 45)">
+      <!-- Cart Platform -->
+      <polygon points="-26,-4 26,-4 22,4 -22,4" fill="#422510" stroke="url(#goldLinear)" stroke-width="1" />
+      <!-- Large Spoked Brass Wheels -->
+      <circle cx="-16" cy="10" r="10" fill="none" stroke="url(#goldLinear)" stroke-width="1.5" />
+      <circle cx="-16" cy="10" r="2" fill="#FFEBA6" />
+      <line x1="-16" y1="0" x2="-16" y2="20" stroke="url(#goldLinear)" stroke-width="1" />
+      <line x1="-26" y1="10" x2="-6" y2="10" stroke="url(#goldLinear)" stroke-width="1" />
+      
+      <circle cx="16" cy="10" r="10" fill="none" stroke="url(#goldLinear)" stroke-width="1.5" />
+      <circle cx="16" cy="10" r="2" fill="#FFEBA6" />
+      <line x1="16" y1="0" x2="16" y2="20" stroke="url(#goldLinear)" stroke-width="1" />
+      <line x1="6" y1="10" x2="26" y2="10" stroke="url(#goldLinear)" stroke-width="1" />
+      <!-- Clay Pots / Brass Urns on Cart -->
+      <circle cx="-6" cy="-8" r="5" fill="#D96B27" />
+      <circle cx="6" cy="-9" r="6" fill="#FFEBA6" />
+    </g>
+
+    <!-- Festoon String of Fairylights Across Bazaar -->
+    <path d="M-100,-15 Q0,10 100,-15" fill="none" stroke="rgba(255, 235, 166, 0.6)" stroke-width="1" stroke-dasharray="1,7" />
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- GOLDEN CARTOGRAPHIC BANNER LABELS (SUBTLE VINTAGE CALLIGRAPHY) -->
+  <!-- ========================================================================= -->
+  <g font-family="'Cinzel', 'Playfair Display', serif" font-size="11" font-weight="700" letter-spacing="1.5" fill="#FFEBA6" opacity="0.85" text-anchor="middle">
+    <!-- Grand Ballroom Banner -->
+    <text x="800" y="662">✦ GRAND BALLROOM ✦</text>
+    <!-- Shahi Baag Banner -->
+    <text x="375" y="445">✦ SHAHI BAAG ✦</text>
+    <!-- Shahi Jheel Banner -->
+    <text x="1248" y="805">✦ SHAHI JHEEL ✦</text>
+    <!-- Coconut Grove Banner -->
+    <text x="720" y="240">✦ COCONUT GROVE ✦</text>
+    <!-- Royal Beach Banner -->
+    <text x="1152" y="145">✦ ROYAL BEACH ✦</text>
+    <!-- Meena Bazaar Banner -->
+    <text x="368" y="845">✦ MEENA BAZAAR ✦</text>
+  </g>
+
+</svg>
