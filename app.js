@@ -630,8 +630,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let targetTiltX = 0, targetTiltY = 0;
   let panX = 0, panY = 0;
   let targetPanX = 0, targetPanY = 0;
-  let zoomLevel = 1.02;
-  let targetZoom = 1.02;
+  let zoomLevel = 1.0;
+  let targetZoom = 1.0;
   let isZoomedIn = false;
 
   // 3D Tilt & Smooth Zoom Render Loop
@@ -777,7 +777,7 @@ document.addEventListener('DOMContentLoaded', () => {
     targetTiltY = 0;
     targetPanX = 0;
     targetPanY = 0;
-    targetZoom = 1.02;
+    targetZoom = 1.0;
     isZoomedIn = false;
     if (mahalViewport) mahalViewport.classList.remove('is-zoomed');
   }
@@ -799,26 +799,14 @@ document.addEventListener('DOMContentLoaded', () => {
       beacon.classList.toggle('active-beacon', beacon.dataset.landmark === key);
     });
 
-    // Smooth Gentle Camera Focus & Subtle Zoom on Landmark (1.12x) with zero edge cutoffs
-    if (data.zoomCoords) {
-      isZoomedIn = true;
-      targetZoom = 1.12;
-      if (mahalViewport) mahalViewport.classList.add('is-zoomed');
-
-      const rect = mahalViewport ? mahalViewport.getBoundingClientRect() : { width: 800, height: 450 };
-      const s = targetZoom;
-      // Gentle center-offsetting bounded strictly by the scale margin
-      const maxPanX = Math.max(0, ((s - 1) * rect.width) / 2);
-      const maxPanY = Math.max(0, ((s - 1) * rect.height) / 2);
-
-      const rawDx = (0.5 - data.zoomCoords.x / 100) * rect.width * 0.4;
-      const rawDy = (0.5 - data.zoomCoords.y / 100) * rect.height * 0.4;
-
-      targetPanX = Math.max(-maxPanX, Math.min(maxPanX, rawDx));
-      targetPanY = Math.max(-maxPanY, Math.min(maxPanY, rawDy));
-      targetTiltX = (data.zoomCoords.y - 50) * 0.04;
-      targetTiltY = (50 - data.zoomCoords.x) * 0.05;
-    }
+    // Keep palace unzoomed (1.0x) - pristine image display without blur, distortion, or empty spaces
+    targetZoom = 1.0;
+    targetPanX = 0;
+    targetPanY = 0;
+    targetTiltX = 0;
+    targetTiltY = 0;
+    isZoomedIn = false;
+    if (mahalViewport) mahalViewport.classList.remove('is-zoomed');
 
     // Update Photo with gallery support
     updateFolioPhoto(data, photoIndex);

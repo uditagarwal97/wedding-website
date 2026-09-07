@@ -2002,9 +2002,11 @@ body {
   width: 100%;
   height: auto;
   display: block;
-  object-fit: contain;
+  object-fit: cover;
   aspect-ratio: 16 / 9;
   pointer-events: none;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: high-quality;
   transform: translateZ(0);
   backface-visibility: hidden;
 }
