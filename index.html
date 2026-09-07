@@ -14,7 +14,7 @@
   <!-- FontAwesome Icons for UI & Map pin icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <link rel="stylesheet" href="styles.css?v=64.0">
+  <link rel="stylesheet" href="styles.css?v=76.0">
 </head>
 <body>
 
@@ -161,11 +161,11 @@
 
           <!-- Quick Day Jump Navigator -->
           <div class="itin-day-pills" role="tablist" aria-label="Jump to Wedding Day">
-            <button class="itin-jump-btn" data-target="panelDay10" id="jumpBtn10">
+            <button class="itin-jump-btn active-jump" data-target="panelDay10" id="jumpBtn10">
               <span class="jump-pill-num">10</span>
               <span class="jump-pill-label">THU • Welcome, Sagai &amp; Sangeet</span>
             </button>
-            <button class="itin-jump-btn active-jump" data-target="panelDay11" id="jumpBtn11">
+            <button class="itin-jump-btn" data-target="panelDay11" id="jumpBtn11">
               <span class="jump-pill-num">11</span>
               <span class="jump-pill-label">FRI • Haldi &amp; Wedding Reception</span>
               <span class="jump-crown-icon"><i class="fa-solid fa-crown"></i></span>
@@ -176,7 +176,7 @@
           <div class="itin-card-scroll-area" id="itinScrollArea">
             
             <!-- DAY 1: THURSDAY, DEC 10 -->
-            <div class="itin-day-block" id="panelDay10">
+            <div class="itin-day-block day-highlighted" id="panelDay10">
               <div class="itin-day-title-strip">
                 <span class="itin-day-badge">DAY I</span>
                 <span class="itin-day-date">Thursday, 10 Dec 2026</span>
@@ -283,13 +283,13 @@
               <span class="day-cell">9</span>
               
               <!-- Dec 10: Swagat, Sagai & Sangeet -->
-              <button class="day-cell wedding-date-btn date-sangeet" data-date="10" aria-label="Thursday, December 10, 2026 - Welcome, Sagai and Sangeet">
+              <button class="day-cell wedding-date-btn date-sangeet active-selected" data-date="10" aria-label="Thursday, December 10, 2026 - Welcome, Sagai and Sangeet">
                 <span class="day-number">10</span>
                 <span class="date-event-tag">SAGAI • SANGEET</span>
               </button>
 
               <!-- Dec 11: Haldi (Morning) and Wedding Reception (Night) -->
-              <button class="day-cell wedding-date-btn date-wedding active-selected" data-date="11" aria-label="Friday, December 11, 2026 - Haldi and Wedding Reception">
+              <button class="day-cell wedding-date-btn date-wedding" data-date="11" aria-label="Friday, December 11, 2026 - Haldi and Wedding Reception">
                 <span class="wedding-crown-icon"><i class="fa-solid fa-crown"></i></span>
                 <span class="day-number">11</span>
                 <span class="date-pulse-glow"></span>
@@ -363,8 +363,8 @@
               <!-- Diorama Artwork Canvas -->
               <div class="mahal-art-canvas">
                 <picture id="mahalArtPic">
-                  <source srcset="assets/royal_mahal_estate.png" type="image/png">
-                  <img src="assets/royal_mahal_estate.jpg" alt="3D Royal Indian Mughal Mahal and Kingdom" class="mahal-bg-img" id="mahalBgImg" draggable="false">
+                  <source srcset="assets/royal_mahal_estate.png?v=69.0" type="image/png">
+                  <img src="assets/royal_mahal_estate.jpg?v=69.0" alt="3D Royal Indian Mughal Mahal and Kingdom" class="mahal-bg-img" id="mahalBgImg" draggable="false">
                 </picture>
                 <div class="mahal-ambient-light"></div>
               </div>
@@ -402,18 +402,29 @@
                 </div>
               </div>
 
-              <!-- Landmark 4: Devasthan (Sacred Temple) -->
-              <div class="mahal-hotspot-beacon" style="left: 84%; top: 34%;" data-landmark="temple" role="button" tabindex="0" aria-label="Explore Devasthan">
+              <!-- Landmark 4: Coconut Grove -->
+              <div class="mahal-hotspot-beacon" style="left: 45%; top: 15%;" data-landmark="palms" role="button" tabindex="0" aria-label="Explore Coconut Grove">
                 <div class="beacon-pulse-ring"></div>
                 <div class="beacon-pulse-core">
-                  <i class="fa-solid fa-om"></i>
+                  <i class="fa-solid fa-tree"></i>
                 </div>
                 <div class="beacon-tooltip">
-                  <span class="tooltip-name">Devasthan</span>
+                  <span class="tooltip-name">Coconut Grove</span>
                 </div>
               </div>
 
-              <!-- Landmark 5: Meena Bazaar (Royal Night Market) -->
+              <!-- Landmark 5: Royal Beach Shore -->
+              <div class="mahal-hotspot-beacon" style="left: 72%; top: 10%;" data-landmark="beach" role="button" tabindex="0" aria-label="Explore Royal Beach">
+                <div class="beacon-pulse-ring"></div>
+                <div class="beacon-pulse-core">
+                  <i class="fa-solid fa-umbrella-beach"></i>
+                </div>
+                <div class="beacon-tooltip">
+                  <span class="tooltip-name">Royal Beach</span>
+                </div>
+              </div>
+
+              <!-- Landmark 6: Meena Bazaar (Royal Night Market) -->
               <div class="mahal-hotspot-beacon" style="left: 23%; top: 82%;" data-landmark="bazaar" role="button" tabindex="0" aria-label="Explore Meena Bazaar">
                 <div class="beacon-pulse-ring"></div>
                 <div class="beacon-pulse-core">
@@ -438,11 +449,11 @@
               
               <!-- Royal Picture Frame with Close Button and Nav Controls -->
               <div class="folio-photo-wrapper">
-                <picture id="folioPic">
-                  <source id="folioSrcWebp" srcset="assets/couple3.webp" type="image/webp">
-                  <img id="folioImg" src="assets/couple3.png" alt="Udit &amp; Gunjan" class="folio-photo">
-                </picture>
+                <img id="folioImg" src="assets/ballroom_dance.jpg" alt="Udit &amp; Gunjan Dancing Under the Stars" class="folio-photo">
                 <div class="folio-photo-glow"></div>
+
+                <!-- Floating Counter Badge for Multi-Photo Landmark -->
+                <div class="folio-counter-badge" id="folioCounterBadge">1 / 5</div>
 
                 <!-- Floating Close Button -->
                 <button class="folio-close-toggle" id="folioCloseBtn" aria-label="Close Photo" title="Close">
@@ -456,6 +467,9 @@
                 <button class="folio-nav-btn folio-next" id="folioNextBtn" aria-label="Next Photo" title="Next">
                   <i class="fa-solid fa-chevron-right"></i>
                 </button>
+
+                <!-- Dots Indicator for Multi-Photo Gallery -->
+                <div class="folio-dots-container" id="folioDotsContainer"></div>
               </div>
 
             </div>
@@ -477,9 +491,13 @@
             <span class="pill-icon">⛵</span>
             <span class="pill-title">Shahi Jheel</span>
           </button>
-          <button class="mahal-nav-pill" data-target="temple">
-            <span class="pill-icon">🛕</span>
-            <span class="pill-title">Devasthan</span>
+          <button class="mahal-nav-pill" data-target="palms">
+            <span class="pill-icon">🌴</span>
+            <span class="pill-title">Coconut Grove</span>
+          </button>
+          <button class="mahal-nav-pill" data-target="beach">
+            <span class="pill-icon">🏖️</span>
+            <span class="pill-title">Royal Beach</span>
           </button>
           <button class="mahal-nav-pill" data-target="bazaar">
             <span class="pill-icon">🏮</span>
@@ -541,6 +559,6 @@
   </main>
 
   <script src="https://www.youtube.com/iframe_api"></script>
-  <script src="app.js?v=64.0"></script>
+  <script src="app.js?v=76.0"></script>
 </body>
 </html>

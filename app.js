@@ -256,7 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const panelDay11 = document.getElementById('panelDay11');
   const itinScrollArea = document.getElementById('itinScrollArea') || document.getElementById('farmanScrollArea');
 
-  function selectWeddingDate(dateKey) {
+  function selectWeddingDate(dateKey, isInitialLoad = false) {
     // 1. Update active state on calendar date buttons
     calDateButtons.forEach(btn => {
       if (btn.getAttribute('data-date') === dateKey) {
@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (targetBlock) {
       targetBlock.classList.add('day-highlighted');
-      if (itinScrollArea) {
+      if (itinScrollArea && !isInitialLoad) {
         itinScrollArea.scrollTo({
           top: targetBlock.offsetTop - itinScrollArea.offsetTop - 10,
           behavior: 'smooth'
@@ -294,7 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Special fireworks celebration for the wedding day
-    if (dateKey === '11') {
+    if (dateKey === '11' && !isInitialLoad) {
       launchConfetti();
       launchFlyingDovesAndFireworks();
     }
@@ -316,6 +316,9 @@ document.addEventListener('DOMContentLoaded', () => {
       selectWeddingDate(dateKey);
     });
   });
+
+  // Default select Dec 10 on initial load
+  selectWeddingDate('10', true);
 
   // --- 1-Click Calendar Sync Suite ---
   const btnGoogleCal = document.getElementById('btnGoogleCal');
@@ -389,6 +392,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const folioNextBtn = document.getElementById('folioNextBtn');
   const folioImg = document.getElementById('folioImg');
   const folioSrcWebp = document.getElementById('folioSrcWebp');
+  const folioCounterBadge = document.getElementById('folioCounterBadge');
+  const folioDotsContainer = document.getElementById('folioDotsContainer');
+  let currentLandmarkPhotoIndex = 0;
 
   // Landmark Memory Data
   const mahalLandmarks = {
@@ -396,50 +402,227 @@ document.addEventListener('DOMContentLoaded', () => {
       tag: "THE GRAND BALLROOM • SHAHI MAHAL",
       title: "Dancing Under the Stars",
       desc: "Lost in the melody of our favorite song, dancing together in the illuminated grand ballroom of our dreams beneath chandeliers and golden arches.",
-      webp: "assets/couple3.webp",
-      png: "assets/couple3.png",
+      webp: "assets/ballroom_dance.jpg",
+      png: "assets/ballroom_dance.jpg",
       alt: "Udit & Gunjan Dancing Under the Stars",
-      zoomCoords: { x: 51, y: 56 }
+      zoomCoords: { x: 51, y: 56 },
+      photos: [
+        {
+          src: "assets/ballroom_dance.jpg",
+          alt: "Udit & Gunjan Dancing Under the Stars",
+          title: "Dancing Under the Stars",
+          objectPosition: "center 40%"
+        },
+        {
+          src: "assets/ballroom_walk.jpg",
+          alt: "A Royal Promenade Through the Ballroom",
+          title: "A Royal Promenade",
+          objectPosition: "center 35%"
+        },
+        {
+          src: "assets/ballroom_kiss.jpg",
+          alt: "Sweet Moments by the Balcony Arch",
+          title: "Sunlit Serenade",
+          objectPosition: "center 45%"
+        },
+        {
+          src: "assets/ballroom_piano.jpg",
+          alt: "Melodies of Love at the Grand Piano",
+          title: "Symphony of Hearts",
+          objectPosition: "center 50%"
+        },
+        {
+          src: "assets/ballroom_portrait.jpg",
+          alt: "Timeless Elegance in the Palace",
+          title: "A Regal Love",
+          objectPosition: "center 40%"
+        }
+      ]
     },
     garden: {
       tag: "SHAHI BAAG • ROYAL MUGHAL GARDENS",
       title: "The Beginning of Forever",
-      desc: "A golden sunset stroll amidst blooming marigolds, cypress trees, and terraced palace fountains where our paths gently intertwined into forever.",
-      webp: "assets/couple1.webp",
-      png: "assets/couple1.png",
-      alt: "Udit & Gunjan in the Mughal Gardens",
-      zoomCoords: { x: 24, y: 32 }
+      desc: "A golden sunset stroll amidst lush cypress groves, blooming hedges, and ancient pavilions where our paths gently intertwined into forever.",
+      webp: "assets/bagh_steps_laugh.jpg",
+      png: "assets/bagh_steps_laugh.jpg",
+      alt: "Udit & Gunjan in the Royal Gardens",
+      zoomCoords: { x: 24, y: 32 },
+      photos: [
+        {
+          src: "assets/bagh_steps_laugh.jpg",
+          alt: "Gunjan Leaning on Udit Laughing Together on the Garden Steps",
+          title: "Joy on the Garden Steps",
+          objectPosition: "center 25%"
+        },
+        {
+          src: "assets/bagh_lawn_dance.jpg",
+          alt: "Dancing and Twirling on the Garden Lawn Under Tall Trees",
+          title: "Dance Beneath the Pines",
+          objectPosition: "center 30%"
+        },
+        {
+          src: "assets/bagh_arches_sit.jpg",
+          alt: "Sitting Together on the Ancient Steps Beneath Historic Arches",
+          title: "Whispers by the Ancient Arches",
+          objectPosition: "center 25%"
+        },
+        {
+          src: "assets/bagh_path_stroll.jpg",
+          alt: "Walking Hand-in-Hand Beside Manicured Garden Hedges",
+          title: "A Stroll by the Pavilion",
+          objectPosition: "center 25%"
+        },
+        {
+          src: "assets/bagh_monument_walk.jpg",
+          alt: "Hand-in-Hand Walk Along the Historic Garden Avenue",
+          title: "The Beginning of Forever",
+          objectPosition: "center 30%"
+        }
+      ]
     },
     lake: {
       tag: "SHAHI JHEEL • PALACE WATERS",
       title: "Serenade by the Water",
       desc: "Watching the sun dip into tranquil palace waters from a golden royal boat, whispering promises across the gentle waves and lotus blooms.",
-      webp: "assets/couple2.webp",
-      png: "assets/couple2.png",
-      alt: "Udit & Gunjan by the Lake",
-      zoomCoords: { x: 78, y: 78 }
+      webp: "assets/jheel_proposal.jpg",
+      png: "assets/jheel_proposal.jpg",
+      alt: "Udit & Gunjan on the Palace Waters",
+      zoomCoords: { x: 78, y: 78 },
+      photos: [
+        {
+          src: "assets/jheel_proposal.jpg",
+          alt: "The Royal Proposal on the Yacht Bow",
+          title: "A Promise on the Waters",
+          objectPosition: "center 25%"
+        },
+        {
+          src: "assets/jheel_deck_gown.jpg",
+          alt: "Udit & Gunjan Hand-in-Hand with Flowing Gown",
+          title: "Serenade by the Water",
+          objectPosition: "center 30%"
+        },
+        {
+          src: "assets/jheel_standing_embrace.jpg",
+          alt: "Standing Embrace on the Yacht Deck",
+          title: "Held in Eternal Harmony",
+          objectPosition: "center 25%"
+        },
+        {
+          src: "assets/jheel_embrace_pink.jpg",
+          alt: "Gentle Loving Glance Across the Lake",
+          title: "Whispering Waves",
+          objectPosition: "center 25%"
+        }
+      ]
     },
-    temple: {
-      tag: "DEVASTHAN • SACRED SHRINE",
-      title: "Vows of Eternity",
-      desc: "Seeking sacred blessings before eternal holy fires and temple bells, united by tradition, timeless devotion, and Vedic pheras.",
-      webp: "assets/wedding.webp",
-      png: "assets/wedding.png",
-      alt: "Sacred Wedding Blessings",
-      zoomCoords: { x: 84, y: 34 }
+    palms: {
+      tag: "SHAHI KUNJ • COCONUT GROVE",
+      title: "Whispers in the Palms",
+      desc: "Strolling hand-in-hand beneath whispering coconut palms and tropical breezes, lost in laughter along sunlit trails where our journey blossoms.",
+      webp: "assets/coconut_sit.jpg",
+      png: "assets/coconut_sit.jpg",
+      alt: "Udit & Gunjan in the Coconut Grove",
+      zoomCoords: { x: 45, y: 15 },
+      photos: [
+        {
+          src: "assets/coconut_sit.jpg",
+          alt: "Udit & Gunjan Laughing Together by the Water",
+          title: "Joyful Moments by the Water",
+          objectPosition: "center 35%"
+        },
+        {
+          src: "assets/coconut_run.jpg",
+          alt: "Running Together Along the Palm Avenue",
+          title: "Carefree Days & Tropical Breezes",
+          objectPosition: "center 30%"
+        },
+        {
+          src: "assets/coconut_walk.jpg",
+          alt: "Hand in Hand Along the Lush Palm Trail",
+          title: "Hand in Hand Forever",
+          objectPosition: "center 35%"
+        },
+        {
+          src: "assets/coconut_tree.jpg",
+          alt: "Sweet Whispers by the Coconut Trunk",
+          title: "Whispering Palms",
+          objectPosition: "center 30%"
+        },
+        {
+          src: "assets/coconut_trail.jpg",
+          alt: "Balancing Together Along the Palm Ridge",
+          title: "Balancing Into Forever",
+          objectPosition: "center 35%"
+        }
+      ]
+    },
+    beach: {
+      tag: "SAGAR TATA • ROYAL BEACH",
+      title: "Golden Sands & Ocean Waves",
+      desc: "Walking barefoot upon warm golden sands where the turquoise sea whispers eternal love under the radiant tropical sun.",
+      webp: "assets/beach_lift.jpg",
+      png: "assets/beach_lift.jpg",
+      alt: "Udit & Gunjan on the Royal Beach",
+      zoomCoords: { x: 72, y: 10 },
+      photos: [
+        {
+          src: "assets/beach_lift.jpg",
+          alt: "Udit Lifting Gunjan Joyfully on the Beach Shore",
+          title: "Lifted by Love",
+          objectPosition: "center 30%"
+        },
+        {
+          src: "assets/beach_twirl.jpg",
+          alt: "Twirling Hand-in-Hand in the Ocean Waves",
+          title: "Dancing in the Ocean Waves",
+          objectPosition: "center 28%"
+        },
+        {
+          src: "assets/beach_laugh.jpg",
+          alt: "Walking Arm-in-Arm Laughing Warmly",
+          title: "Laughter Along the Coast",
+          objectPosition: "center 25%"
+        },
+        {
+          src: "assets/beach_splash.jpg",
+          alt: "Running Together Splashing in the Surf",
+          title: "Splashing Into Forever",
+          objectPosition: "center 25%"
+        }
+      ]
     },
     bazaar: {
       tag: "MEENA BAZAAR • FESTIVE NIGHTS",
       title: "Joy, Rhythm & Festivities",
       desc: "Basking in vibrant festive canopies, fragrant spices, joyous laughter, and the celebratory beats and dance of our royal Sangeet night.",
-      webp: "assets/sangeet.webp",
-      png: "assets/sangeet.png",
-      alt: "Festive Sangeet & Bazaar Revelry",
-      zoomCoords: { x: 23, y: 82 }
+      webp: "assets/bazaar_arch_sitting.jpg",
+      png: "assets/bazaar_arch_sitting.jpg",
+      alt: "Udit & Gunjan in the Vibrant Bazaar",
+      zoomCoords: { x: 23, y: 82 },
+      photos: [
+        {
+          src: "assets/bazaar_arch_sitting.jpg",
+          alt: "Udit & Gunjan Sitting Beneath Ornate Carved Gateway",
+          title: "Beneath the Royal Gateway",
+          objectPosition: "center 30%"
+        },
+        {
+          src: "assets/bazaar_alley_walk.jpg",
+          alt: "Walking Hand-in-Hand Through the Bustling Bazaar Alley",
+          title: "Strolling the Festive Alley",
+          objectPosition: "center 30%"
+        },
+        {
+          src: "assets/bazaar_jewelry_shop.jpg",
+          alt: "Admiring Golden Jewelry & Tassels at the Bazaar Shop",
+          title: "Golden Treasures & Laughter",
+          objectPosition: "center 25%"
+        }
+      ]
     }
   };
 
-  const landmarkOrder = ['ballroom', 'garden', 'lake', 'temple', 'bazaar'];
+  const landmarkOrder = ['ballroom', 'garden', 'lake', 'palms', 'beach', 'bazaar'];
   let currentLandmarkKey = 'ballroom';
   let isDragging = false;
   let startX = 0, startY = 0;
@@ -599,7 +782,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Landmark Selection & Folio Drawer Display
-  function selectLandmark(key) {
+  function selectLandmark(key, photoIndex = 0) {
     const data = mahalLandmarks[key];
     if (!data) return;
 
@@ -615,10 +798,10 @@ document.addEventListener('DOMContentLoaded', () => {
       beacon.classList.toggle('active-beacon', beacon.dataset.landmark === key);
     });
 
-    // Smooth Dramatic Camera Focus & Zoom on Landmark with zero margin space
+    // Smooth Dramatic Camera Focus & Zoom on Landmark with comfortable framing
     if (data.zoomCoords) {
       isZoomedIn = true;
-      targetZoom = 2.05;
+      targetZoom = 1.40;
       if (mahalViewport) mahalViewport.classList.add('is-zoomed');
 
       const rect = mahalViewport ? mahalViewport.getBoundingClientRect() : { width: 800, height: 450 };
@@ -626,30 +809,73 @@ document.addEventListener('DOMContentLoaded', () => {
       const dx = (0.5 - data.zoomCoords.x / 100) * rect.width * s;
       const dy = (0.5 - data.zoomCoords.y / 100) * rect.height * s;
 
-      // 7% safety bleed margin so perspective 3D rotation never pulls image edges into view
-      const bleedX = 0.07 * rect.width;
-      const bleedY = 0.07 * rect.height;
+      // Safety bleed margin so perspective 3D rotation never pulls image edges into view
+      const bleedX = 0.02 * rect.width;
+      const bleedY = 0.02 * rect.height;
       const maxPanX = Math.max(0, ((s - 1) * rect.width) / 2 - bleedX);
       const maxPanY = Math.max(0, ((s - 1) * rect.height) / 2 - bleedY);
 
       targetPanX = Math.max(-maxPanX, Math.min(maxPanX, dx));
       targetPanY = Math.max(-maxPanY, Math.min(maxPanY, dy));
-      targetTiltX = (data.zoomCoords.y - 50) * 0.12;
-      targetTiltY = (50 - data.zoomCoords.x) * 0.14;
+      targetTiltX = (data.zoomCoords.y - 50) * 0.08;
+      targetTiltY = (50 - data.zoomCoords.x) * 0.09;
     }
 
-    // Update Photo
-    if (folioSrcWebp) folioSrcWebp.srcset = data.webp;
-    if (folioImg) {
-      folioImg.style.opacity = '0';
-      folioImg.src = data.png;
-      folioImg.alt = data.alt;
-      setTimeout(() => {
-        folioImg.style.opacity = '1';
-      }, 50);
-    }
+    // Update Photo with gallery support
+    updateFolioPhoto(data, photoIndex);
 
     openFolioDrawer();
+  }
+
+  function updateFolioPhoto(data, photoIndex = 0) {
+    if (!data) return;
+
+    if (data.photos && data.photos.length > 0) {
+      currentLandmarkPhotoIndex = (photoIndex + data.photos.length) % data.photos.length;
+      const currentPhoto = data.photos[currentLandmarkPhotoIndex];
+
+      if (folioSrcWebp) folioSrcWebp.srcset = currentPhoto.src;
+      if (folioImg) {
+        folioImg.style.opacity = '0';
+        folioImg.onload = () => { folioImg.style.opacity = '1'; };
+        folioImg.src = currentPhoto.src;
+        folioImg.alt = currentPhoto.alt;
+        folioImg.style.objectPosition = currentPhoto.objectPosition || 'center center';
+        setTimeout(() => { folioImg.style.opacity = '1'; }, 40);
+      }
+
+      if (folioCounterBadge) {
+        folioCounterBadge.style.display = 'block';
+        folioCounterBadge.textContent = `${currentLandmarkPhotoIndex + 1} / ${data.photos.length}`;
+      }
+
+      if (folioDotsContainer) {
+        folioDotsContainer.style.display = 'flex';
+        folioDotsContainer.innerHTML = '';
+        data.photos.forEach((_, idx) => {
+          const dot = document.createElement('button');
+          dot.className = `folio-dot ${idx === currentLandmarkPhotoIndex ? 'active' : ''}`;
+          dot.setAttribute('aria-label', `Photo ${idx + 1}`);
+          dot.addEventListener('click', (e) => {
+            e.stopPropagation();
+            updateFolioPhoto(data, idx);
+          });
+          folioDotsContainer.appendChild(dot);
+        });
+      }
+    } else {
+      if (folioSrcWebp) folioSrcWebp.srcset = data.webp || data.png;
+      if (folioImg) {
+        folioImg.style.opacity = '0';
+        folioImg.onload = () => { folioImg.style.opacity = '1'; };
+        folioImg.src = data.png || data.webp;
+        folioImg.alt = data.alt || 'Royal Palace Landmark';
+        folioImg.style.objectPosition = 'center center';
+        setTimeout(() => { folioImg.style.opacity = '1'; }, 40);
+      }
+      if (folioCounterBadge) folioCounterBadge.style.display = 'none';
+      if (folioDotsContainer) folioDotsContainer.style.display = 'none';
+    }
   }
 
   function openFolioDrawer() {
@@ -707,19 +933,55 @@ document.addEventListener('DOMContentLoaded', () => {
   if (folioCloseBtn) folioCloseBtn.addEventListener('click', closeFolioDrawer);
 
   if (folioPrevBtn) {
-    folioPrevBtn.addEventListener('click', () => {
-      const curIndex = landmarkOrder.indexOf(currentLandmarkKey);
-      const prevIndex = (curIndex - 1 + landmarkOrder.length) % landmarkOrder.length;
-      selectLandmark(landmarkOrder[prevIndex]);
+    folioPrevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const data = mahalLandmarks[currentLandmarkKey];
+      if (data && data.photos && data.photos.length > 1) {
+        updateFolioPhoto(data, currentLandmarkPhotoIndex - 1);
+      } else {
+        const curIndex = landmarkOrder.indexOf(currentLandmarkKey);
+        const prevIndex = (curIndex - 1 + landmarkOrder.length) % landmarkOrder.length;
+        selectLandmark(landmarkOrder[prevIndex]);
+      }
     });
   }
 
   if (folioNextBtn) {
-    folioNextBtn.addEventListener('click', () => {
-      const curIndex = landmarkOrder.indexOf(currentLandmarkKey);
-      const nextIndex = (curIndex + 1) % landmarkOrder.length;
-      selectLandmark(landmarkOrder[nextIndex]);
+    folioNextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const data = mahalLandmarks[currentLandmarkKey];
+      if (data && data.photos && data.photos.length > 1) {
+        updateFolioPhoto(data, currentLandmarkPhotoIndex + 1);
+      } else {
+        const curIndex = landmarkOrder.indexOf(currentLandmarkKey);
+        const nextIndex = (curIndex + 1) % landmarkOrder.length;
+        selectLandmark(landmarkOrder[nextIndex]);
+      }
     });
+  }
+
+  // Touch Swipe on Folio Photo Wrapper for Mobile
+  const folioWrapperEl = document.querySelector('.folio-photo-wrapper');
+  if (folioWrapperEl) {
+    let touchStartX = 0;
+    folioWrapperEl.addEventListener('touchstart', (e) => {
+      if (e.touches && e.touches.length > 0) {
+        touchStartX = e.touches[0].clientX;
+      }
+    }, { passive: true });
+    folioWrapperEl.addEventListener('touchend', (e) => {
+      if (e.changedTouches && e.changedTouches.length > 0) {
+        const touchEndX = e.changedTouches[0].clientX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 35) {
+          if (diff > 0 && folioNextBtn) {
+            folioNextBtn.click();
+          } else if (diff < 0 && folioPrevBtn) {
+            folioPrevBtn.click();
+          }
+        }
+      }
+    }, { passive: true });
   }
 
   // Keyboard navigation
