@@ -14,7 +14,7 @@
   <!-- FontAwesome Icons for UI & Map pin icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <link rel="stylesheet" href="styles.css?v=39.0">
+  <link rel="stylesheet" href="styles.css?v=54.0">
 </head>
 <body>
 
@@ -58,8 +58,8 @@
 
       <div class="blessings-container">
         <!-- Interactive Realistic Marigold Flower Button with Circular Royal Seal Prompt -->
-        <button id="marigoldBtn" class="marigold-btn" aria-label="Press to share blessings and open invitation">
-          <svg viewBox="0 0 200 200" class="marigold-text-ring">
+        <button id="marigoldBtn" class="marigold-btn" aria-label="Tap to share blessings and open wedding invitation" tabindex="0">
+          <svg viewBox="0 0 200 200" class="marigold-text-ring" aria-hidden="true">
             <path id="textPathRing" d="M 100, 100 m -78, 0 a 78,78 0 1,1 156,0 a 78,78 0 1,1 -156,0" fill="none" />
             <text font-family="'Cormorant Garamond', serif" font-size="11" font-weight="600" letter-spacing="2.2" fill="#F5D77F">
               <textPath href="#textPathRing" startOffset="0%">
@@ -67,13 +67,22 @@
               </textPath>
             </text>
           </svg>
-          <div class="marigold-pulse-ring"></div>
+          <div class="marigold-pulse-ring" aria-hidden="true"></div>
           <picture>
             <source srcset="assets/marigold_flower.webp" type="image/webp">
             <img src="assets/marigold_flower.png" alt="Genda Phool Marigold Flower" class="marigold-img">
           </picture>
-          <div class="marigold-glow" id="marigoldGlow"></div>
+          <div class="marigold-glow" id="marigoldGlow" aria-hidden="true"></div>
         </button>
+
+        <!-- Accessible Visual Prompt Banner & Auto-Trigger Countdown -->
+        <div class="landing-prompt-banner" id="landingPrompt" role="button" tabindex="0" aria-label="Tap to open invitation immediately">
+          <div class="prompt-icon-bounce" aria-hidden="true">
+            <i class="fa-solid fa-hand-pointer"></i>
+          </div>
+          <span class="prompt-main-text">Tap flower to open</span>
+          <span class="prompt-auto-badge" id="autoTimerBadge">or opening in <strong id="autoTimerCount">5</strong>s</span>
+        </div>
       </div>
     </div>
   </section>
@@ -97,7 +106,7 @@
     <!-- 2. FORMAL ANNOUNCEMENT / HERO HERO ARCHITECTURE SECTION -->
     <section id="announcement" class="announcement-section">
       <!-- Background Video -->
-      <video autoplay muted loop playsinline class="announcement-video-bg">
+      <video id="announcementVideo" autoplay muted loop playsinline preload="auto" class="announcement-video-bg">
         <source src="assets/Cinematic_K_video_fps_gol.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -128,45 +137,210 @@
       </div>
     </section>
 
-    <!-- 3. INTERACTIVE "SAVE THE DATE" SCRATCH CARDS -->
-    <section id="saveTheDate" class="scratch-section">
+    <!-- 3. ROYAL MUGHAL CALENDAR - THE ROYAL RENDEZVOUS -->
+    <section id="saveTheDate" class="calendar-section">
       <div class="section-header reveal-on-scroll">
-        <span class="sub-subtitle">REVEAL OUR BIG DAY</span>
-        <h2 class="section-title">SAVE THE DATE</h2>
-        <p class="section-instruction">Scratch to reveal our wedding date</p>
+        <span class="sub-subtitle">AN AUSPICIOUS UNION</span>
+        <h2 class="section-title">THE ROYAL RENDEZVOUS</h2>
       </div>
 
-      <div class="scratch-cards-grid">
-        <!-- Heart 1: Day -->
-        <div class="scratch-card-wrapper reveal-on-scroll delay-1" id="scratchCard1">
-          <div class="scratch-card-bg">
-            <span class="scratch-label">DAY</span>
-            <span class="scratch-value" id="valDay">11</span>
+      <div class="save-the-date-split-layout reveal-on-scroll">
+        
+        <!-- LEFT PANEL (Desktop) / TOP PANEL (Mobile): Royal Velvet Itinerary Card -->
+        <div class="itinerary-panel-card" id="itineraryPanel">
+          
+          <div class="panel-ornament-header">
+            <h3 class="panel-title">WEDDING FESTIVITIES</h3>
+            <p class="itin-header-sub">Two Days of Celebrations • Palasa Hotel &amp; Resorts</p>
+            <div class="panel-header-divider">
+              <span class="divider-line"></span>
+              <span class="divider-gem">꧁ ✦ ꧂</span>
+              <span class="divider-line"></span>
+            </div>
           </div>
-          <canvas id="canvasDay" class="scratch-canvas" width="220" height="220"></canvas>
+
+          <!-- Quick Day Jump Navigator -->
+          <div class="itin-day-pills" role="tablist" aria-label="Jump to Wedding Day">
+            <button class="itin-jump-btn" data-target="panelDay10" id="jumpBtn10">
+              <span class="jump-pill-num">10</span>
+              <span class="jump-pill-label">THU • Welcome, Sagai &amp; Sangeet</span>
+            </button>
+            <button class="itin-jump-btn active-jump" data-target="panelDay11" id="jumpBtn11">
+              <span class="jump-pill-num">11</span>
+              <span class="jump-pill-label">FRI • Haldi &amp; Wedding Reception</span>
+              <span class="jump-crown-icon"><i class="fa-solid fa-crown"></i></span>
+            </button>
+          </div>
+
+          <!-- Single Continuous Two-Day Itinerary Container -->
+          <div class="itin-card-scroll-area" id="itinScrollArea">
+            
+            <!-- DAY 1: THURSDAY, DEC 10 -->
+            <div class="itin-day-block" id="panelDay10">
+              <div class="itin-day-title-strip">
+                <span class="itin-day-badge">DAY I</span>
+                <span class="itin-day-date">Thursday, 10 Dec 2026</span>
+              </div>
+              <div class="itin-events-list">
+                <div class="itin-event-item">
+                  <div class="itin-event-time"><i class="fa-regular fa-clock"></i> 11:00 AM</div>
+                  <div class="itin-event-body">
+                    <h5 class="itin-event-name">Guest Welcome (Shahi Swagat)</h5>
+                    <span class="itin-event-venue"><i class="fa-solid fa-location-dot"></i> Palace Courtyard</span>
+                  </div>
+                </div>
+                <div class="itin-event-item">
+                  <div class="itin-event-time"><i class="fa-regular fa-clock"></i> 12:00 PM</div>
+                  <div class="itin-event-body">
+                    <h5 class="itin-event-name">Sagai &amp; Godbharai</h5>
+                    <span class="itin-event-venue"><i class="fa-solid fa-location-dot"></i> Crystal Lawns &amp; Banquet</span>
+                  </div>
+                </div>
+                <div class="itin-event-item">
+                  <div class="itin-event-time"><i class="fa-regular fa-clock"></i> 7:00 PM Onwards</div>
+                  <div class="itin-event-body">
+                    <h5 class="itin-event-name">Sangeet &amp; Engagement</h5>
+                    <span class="itin-event-venue"><i class="fa-solid fa-location-dot"></i> Crystal Lawns &amp; Grand Ballroom</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ORNAMENTAL INTERDAY DIVIDER -->
+            <div class="itin-interday-divider">
+              <span class="itin-div-line"></span>
+              <span class="itin-div-badge"><i class="fa-solid fa-crown"></i> Auspicious Next Day</span>
+              <span class="itin-div-line"></span>
+            </div>
+
+            <!-- DAY 2: FRIDAY, DEC 11 -->
+            <div class="itin-day-block featured-day" id="panelDay11">
+              <div class="itin-day-title-strip featured">
+                <span class="itin-day-badge gold">DAY II</span>
+                <span class="itin-day-date">Friday, 11 Dec 2026</span>
+              </div>
+              <div class="itin-events-list">
+                <div class="itin-event-item">
+                  <div class="itin-event-time"><i class="fa-regular fa-clock"></i> 10:00 AM</div>
+                  <div class="itin-event-body">
+                    <h5 class="itin-event-name">Haldi Ceremony</h5>
+                    <span class="itin-event-venue"><i class="fa-solid fa-location-dot"></i> Poolside Courtyard</span>
+                  </div>
+                </div>
+                <div class="itin-event-item featured-item">
+                  <div class="itin-event-time gold"><i class="fa-regular fa-clock"></i> 8:00 PM Onwards</div>
+                  <div class="itin-event-body">
+                    <h5 class="itin-event-name">Wedding Reception &amp; Vedic Pheras</h5>
+                    <span class="itin-event-venue"><i class="fa-solid fa-location-dot"></i> Royal Mandap &amp; Grand Ballroom</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
         </div>
 
-        <!-- Heart 2: Month -->
-        <div class="scratch-card-wrapper reveal-on-scroll delay-2" id="scratchCard2">
-          <div class="scratch-card-bg">
-            <span class="scratch-label">MONTH</span>
-            <span class="scratch-value" id="valMonth">DEC</span>
+        <!-- RIGHT PANEL (Desktop) / BOTTOM PANEL (Mobile): Royal Mughal Calendar -->
+        <div class="calendar-panel-card" id="calendarPanel">
+          <!-- Ornate Card Header -->
+          <div class="calendar-card-header">
+            <div class="calendar-flourish-top">
+              <span class="ornament-line"></span>
+              <span class="ornament-icon">꧁ ✦ ꧂</span>
+              <span class="ornament-line"></span>
+            </div>
+            <h3 class="calendar-month-title">DECEMBER 2026</h3>
+            <p class="calendar-auspicious-subtitle">Margashirsha • Pausha • Palasa Hotel, Muzaffarnagar</p>
           </div>
-          <canvas id="canvasMonth" class="scratch-canvas" width="220" height="220"></canvas>
+
+          <!-- Calendar Table -->
+          <div class="calendar-table-container">
+            <!-- Day of Week Row -->
+            <div class="calendar-weekdays-row">
+              <span class="weekday-col">SUN</span>
+              <span class="weekday-col">MON</span>
+              <span class="weekday-col">TUE</span>
+              <span class="weekday-col">WED</span>
+              <span class="weekday-col">THU</span>
+              <span class="weekday-col">FRI</span>
+              <span class="weekday-col">SAT</span>
+            </div>
+
+            <!-- Days Grid -->
+            <div class="calendar-days-grid" id="calendarDaysGrid">
+              <!-- Empty slots before Tue Dec 1 (Sun, Mon) -->
+              <span class="day-cell day-empty"></span>
+              <span class="day-cell day-empty"></span>
+              <span class="day-cell">1</span>
+              <span class="day-cell">2</span>
+              <span class="day-cell">3</span>
+              <span class="day-cell">4</span>
+              <span class="day-cell">5</span>
+              <span class="day-cell">6</span>
+              <span class="day-cell">7</span>
+              <span class="day-cell">8</span>
+              <span class="day-cell">9</span>
+              
+              <!-- Dec 10: Swagat, Sagai & Sangeet -->
+              <button class="day-cell wedding-date-btn date-sangeet" data-date="10" aria-label="Thursday, December 10, 2026 - Welcome, Sagai and Sangeet">
+                <span class="day-number">10</span>
+                <span class="date-event-tag">SAGAI • SANGEET</span>
+              </button>
+
+              <!-- Dec 11: Haldi (Morning) and Wedding Reception (Night) -->
+              <button class="day-cell wedding-date-btn date-wedding active-selected" data-date="11" aria-label="Friday, December 11, 2026 - Haldi and Wedding Reception">
+                <span class="wedding-crown-icon"><i class="fa-solid fa-crown"></i></span>
+                <span class="day-number">11</span>
+                <span class="date-pulse-glow"></span>
+                <span class="date-event-tag wedding-tag">HALDI • RECEPTION</span>
+              </button>
+
+              <span class="day-cell">12</span>
+              <span class="day-cell">13</span>
+              <span class="day-cell">14</span>
+              <span class="day-cell">15</span>
+              <span class="day-cell">16</span>
+              <span class="day-cell">17</span>
+              <span class="day-cell">18</span>
+              <span class="day-cell">19</span>
+              <span class="day-cell">20</span>
+              <span class="day-cell">21</span>
+              <span class="day-cell">22</span>
+              <span class="day-cell">23</span>
+              <span class="day-cell">24</span>
+              <span class="day-cell">25</span>
+              <span class="day-cell">26</span>
+              <span class="day-cell">27</span>
+              <span class="day-cell">28</span>
+              <span class="day-cell">29</span>
+              <span class="day-cell">30</span>
+              <span class="day-cell">31</span>
+              <!-- Empty slots to finish week grid -->
+              <span class="day-cell day-empty"></span>
+              <span class="day-cell day-empty"></span>
+            </div>
+          </div>
+
+          <!-- Calendar Helper Footer -->
+          <div class="calendar-footer-hint">
+            <i class="fa-solid fa-hand-pointer"></i> Tap Dec 10 or Dec 11 to view events
+          </div>
+
+          <!-- 1-Click Calendar Sync Action Suite (Moved to Royal Calendar Panel) -->
+          <div class="calendar-sync-actions">
+            <span class="sync-actions-caption"><i class="fa-solid fa-bell"></i> Save celebrations to your calendar:</span>
+            <div class="calendar-buttons-grid">
+              <a href="#" id="btnGoogleCal" target="_blank" rel="noopener" class="cal-action-btn google-cal-btn" aria-label="Add to Google Calendar">
+                <i class="fa-brands fa-google"></i> Google Calendar
+              </a>
+              <button id="btnAppleCal" class="cal-action-btn apple-cal-btn" aria-label="Download Apple or Outlook iCal Event">
+                <i class="fa-brands fa-apple"></i> Apple / Outlook (.ics)
+              </button>
+            </div>
+          </div>
         </div>
 
-        <!-- Heart 3: Year -->
-        <div class="scratch-card-wrapper reveal-on-scroll delay-3" id="scratchCard3">
-          <div class="scratch-card-bg">
-            <span class="scratch-label">YEAR</span>
-            <span class="scratch-value" id="valYear">2026</span>
-          </div>
-          <canvas id="canvasYear" class="scratch-canvas" width="220" height="220"></canvas>
-        </div>
-      </div>
-
-      <div id="scratchCompletionMsg" class="scratch-completion-msg hidden">
-        We request the honor of your presence on <strong>December 11, 2026</strong>
       </div>
     </section>
 
@@ -273,131 +447,58 @@
       </div>
     </section>
 
-    <!-- 5. EVENT SCHEDULE & CEREMONY CARDS -->
-    <section id="events" class="events-section">
-      <div class="section-header reveal-on-scroll">
-        <span class="sub-subtitle">WEDDING ITINERARY</span>
-        <h2 class="section-title">EVENTS &amp; CELEBRATIONS</h2>
-        <p class="section-instruction">Join us across three days of love, music, and tradition</p>
-      </div>
-
-      <div class="events-grid">
-        
-        <!-- Sangeet Card -->
-        <div class="event-card reveal-on-scroll delay-1">
-          <div class="event-bg-image" style="background-image: url('assets/sangeet.webp');">
-            <div class="event-overlay"></div>
-          </div>
-          <div class="event-card-content">
-            <div class="event-badge">NIGHT OF MUSIC &amp; DANCE</div>
-            <h3 class="event-name">Sangeet &amp; Ring Ceremony</h3>
-            <div class="event-meta">
-              <div class="meta-item"><i class="fa-solid fa-calendar-day"></i> Thursday, December 10, 2026</div>
-              <div class="meta-item"><i class="fa-solid fa-clock"></i> 8:00 PM Onwards</div>
-              <div class="meta-item"><i class="fa-solid fa-location-dot"></i> Crystal Lawns, Palasa Hotel, Udaipur</div>
-            </div>
-            <p class="event-desc">An evening of glittering performances, energetic dhol beats, delicious cocktails, and endless dancing under string lights.</p>
-            <a href="https://maps.app.goo.gl/DWSVJpDQqgPCErpN6" target="_blank" rel="noopener" class="map-cta-btn">
-              <i class="fa-solid fa-map-location-dot"></i> VIEW ON MAPS
-            </a>
-          </div>
-        </div>
-
-        <!-- Wedding Ceremony Card -->
-        <div class="event-card featured-event reveal-on-scroll delay-2">
-          <div class="event-bg-image" style="background-image: url('assets/wedding.webp');">
-            <div class="event-overlay"></div>
-          </div>
-          <div class="event-card-content">
-            <div class="event-badge gold">THE MAIN CEREMONY</div>
-            <h3 class="event-name">Pheras &amp; Royal Mandap</h3>
-            <div class="event-meta">
-              <div class="meta-item"><i class="fa-solid fa-calendar-day"></i> Friday, December 11, 2026</div>
-              <div class="meta-item"><i class="fa-solid fa-clock"></i> 11:00 AM (Baraat &amp; Phere)</div>
-              <div class="meta-item"><i class="fa-solid fa-location-dot"></i> Royal Mandap, Palasa Hotel, Udaipur</div>
-            </div>
-            <p class="event-desc">The sacred vows around the holy fire beside the serene pools and regal architecture of Palasa Hotel.</p>
-            <a href="https://maps.app.goo.gl/DWSVJpDQqgPCErpN6" target="_blank" rel="noopener" class="map-cta-btn highlight">
-              <i class="fa-solid fa-map-location-dot"></i> VIEW ON MAPS
-            </a>
-          </div>
-        </div>
-
-        <!-- Reception Card -->
-        <div class="event-card reveal-on-scroll delay-3">
-          <div class="event-bg-image" style="background-image: url('assets/reception.webp');">
-            <div class="event-overlay"></div>
-          </div>
-          <div class="event-card-content">
-            <div class="event-badge">GRAND BALLROOM</div>
-            <h3 class="event-name">Gala Reception</h3>
-            <div class="event-meta">
-              <div class="meta-item"><i class="fa-solid fa-calendar-day"></i> Saturday, December 12, 2026</div>
-              <div class="meta-item"><i class="fa-solid fa-clock"></i> 7:00 PM Onwards</div>
-              <div class="meta-item"><i class="fa-solid fa-location-dot"></i> Grand Ballroom, Palasa Hotel, Udaipur</div>
-            </div>
-            <p class="event-desc">Dress to impress! Join us for a royal formal banquet, champagne toasts, cake cutting, and celebratory dining.</p>
-            <a href="https://maps.app.goo.gl/DWSVJpDQqgPCErpN6" target="_blank" rel="noopener" class="map-cta-btn">
-              <i class="fa-solid fa-map-location-dot"></i> VIEW ON MAPS
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- 6. VENUE LOCATION & EMBEDDED GOOGLE MAP SECTION -->
+    <!-- 5. VENUE LOCATION & EMBEDDED GOOGLE MAP SECTION -->
     <section id="venue" class="venue-section">
-      <div class="section-header reveal-on-scroll">
-        <span class="sub-subtitle">THE WEDDING VENUE</span>
-        <h2 class="section-title">PALASA HOTEL &amp; RESORT</h2>
-        <p class="section-instruction">Udaipur, Rajasthan • www.palasahotel.com</p>
-      </div>
+        <div class="section-header reveal-on-scroll">
+          <span class="sub-subtitle">THE WEDDING VENUE</span>
+          <h2 class="section-title">PALASA HOTEL &amp; RESORTS</h2>
+          <p class="section-instruction">Muzaffarnagar, Uttar Pradesh • www.palasahotel.com</p>
+        </div>
 
-      <div class="venue-container reveal-on-scroll">
-        <!-- Venue Information Card -->
-        <div class="venue-info-card">
-          <h3 class="venue-card-title">Palasa Hotel &amp; Resort</h3>
-          <p class="venue-address"><i class="fa-solid fa-location-dot"></i> Badi Hawala Road, Near Shilpgram, Udaipur, Rajasthan 313001</p>
-          <p class="venue-website"><i class="fa-solid fa-globe"></i> <a href="https://www.palasahotel.com/" target="_blank" rel="noopener">www.palasahotel.com</a></p>
-          <div class="venue-btn-group">
-            <a href="https://maps.app.goo.gl/DWSVJpDQqgPCErpN6" target="_blank" rel="noopener" class="map-cta-btn highlight">
-              <i class="fa-solid fa-map-location-dot"></i> OPEN IN GOOGLE MAPS
-            </a>
-            <a href="https://www.palasahotel.com/" target="_blank" rel="noopener" class="map-cta-btn">
-              <i class="fa-solid fa-hotel"></i> VISIT HOTEL WEBSITE
-            </a>
+        <div class="venue-container reveal-on-scroll">
+          <!-- Venue Information Card -->
+          <div class="venue-info-card">
+            <h3 class="venue-card-title">Palasa Hotel &amp; Resorts</h3>
+            <p class="venue-address"><i class="fa-solid fa-location-dot"></i> Bhopa Road, Near Vishwakarma Chowk, Muzaffarnagar, Uttar Pradesh 251001</p>
+            <p class="venue-website"><i class="fa-solid fa-globe"></i> <a href="https://www.palasahotel.com/" target="_blank" rel="noopener">www.palasahotel.com</a></p>
+            <div class="venue-btn-group">
+              <a href="https://share.google/FsrWqkFWa4dCP65mh" target="_blank" rel="noopener" class="map-cta-btn highlight">
+                <i class="fa-solid fa-map-location-dot"></i> OPEN IN GOOGLE MAPS
+              </a>
+              <a href="https://www.palasahotel.com/" target="_blank" rel="noopener" class="map-cta-btn">
+                <i class="fa-solid fa-hotel"></i> VISIT HOTEL WEBSITE
+              </a>
+            </div>
+          </div>
+
+          <!-- Embedded Interactive Google Map -->
+          <div class="google-map-wrapper">
+            <iframe 
+              title="Palasa Hotel &amp; Resorts Location Map"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3473.5048945333624!2d77.72555337592574!3d29.472464545443643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390c1be948f1964d%3A0xd6584e6d82ee16ee!2sPalasa%20Hotel%20%26%20Resort!5e0!3m2!1sen!2sca!4v1784603028729!5m2!1sen!2sca" 
+              width="100%" 
+              height="380" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="strict-origin-when-cross-origin">
+            </iframe>
           </div>
         </div>
+      </section>
 
-        <!-- Embedded Interactive Google Map -->
-        <div class="google-map-wrapper">
-          <iframe 
-            title="Palasa Hotel &amp; Resort Location Map"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3473.5048945333624!2d77.72555337592574!3d29.472464545443643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390c1be948f1964d%3A0xd6584e6d82ee16ee!2sPalasa%20Hotel%20%26%20Resort!5e0!3m2!1sen!2sca!4v1784603028729!5m2!1sen!2sca" 
-            width="100%" 
-            height="380" 
-            style="border:0;" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="strict-origin-when-cross-origin">
-          </iframe>
-        </div>
-      </div>
-    </section>
-
-    <!-- 7. CLOSING FOOTER -->
-    <footer class="site-footer">
-      <div class="footer-ornament">꧁ ✦ ꧂</div>
-      <h3 class="footer-couple">Udit &amp; Gunjan</h3>
-      <p class="footer-date">December 11, 2026 • Palasa Hotel, Udaipur, Rajasthan</p>
-      <div class="footer-divider"></div>
-      <p class="footer-credit">With love &amp; gratitude to our family and friends</p>
-    </footer>
+      <!-- 6. CLOSING FOOTER -->
+      <footer class="site-footer">
+        <div class="footer-ornament">꧁ ✦ ꧂</div>
+        <h3 class="footer-couple">Udit &amp; Gunjan</h3>
+        <p class="footer-date">December 11, 2026 • Palasa Hotel &amp; Resorts, Muzaffarnagar</p>
+        <div class="footer-divider"></div>
+        <p class="footer-credit">With love &amp; gratitude to our family and friends</p>
+      </footer>
 
   </main>
 
   <script src="https://www.youtube.com/iframe_api"></script>
-  <script src="app.js?v=39.0"></script>
+  <script src="app.js?v=52.0"></script>
 </body>
 </html>

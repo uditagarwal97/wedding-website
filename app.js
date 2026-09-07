@@ -35,32 +35,54 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2. LANDING WAX SEAL REVEAL & CURTAIN WIPE
   // =========================================================================
   // =========================================================================
-  // 2. LANDING MARIGOLD REVEAL & CURTAIN WIPE
+  // 2. LANDING MARIGOLD REVEAL, AUTO-TIMER & ACCESSIBILITY
   // =========================================================================
   const marigoldBtn = document.getElementById('marigoldBtn');
   const marigoldGlow = document.getElementById('marigoldGlow');
   const landingScreen = document.getElementById('landingScreen');
+  const landingPrompt = document.getElementById('landingPrompt');
+  const autoTimerCountEl = document.getElementById('autoTimerCount');
   const mainInvitation = document.getElementById('mainInvitation');
 
   let isInvitationOpened = false;
+  let countdownRemaining = 5;
+  let autoTimerInterval = null;
 
   function openInvitation() {
     if (isInvitationOpened) return;
     isInvitationOpened = true;
 
-    // 1. Trigger Marigold Glow Pulse
+    // Clear any active auto-countdown timer
+    if (autoTimerInterval) {
+      clearInterval(autoTimerInterval);
+      autoTimerInterval = null;
+    }
+
+    // 1. Reset background cinematic video to start from 0:00 and play
+    const announcementVideo = document.getElementById('announcementVideo');
+    if (announcementVideo) {
+      try {
+        announcementVideo.currentTime = 0;
+        const playPromise = announcementVideo.play();
+        if (playPromise !== undefined) {
+          playPromise.catch((e) => console.log('Announcement video play error:', e));
+        }
+      } catch (err) {
+        console.log('Announcement video error:', err);
+      }
+    }
+
+    // 2. Trigger Marigold Glow Pulse
     if (marigoldGlow) marigoldGlow.classList.add('active');
 
-    // 2. Make mainInvitation visible IMMEDIATELY directly behind stage curtains
+    // 3. Make mainInvitation visible IMMEDIATELY directly behind stage curtains
     if (mainInvitation) mainInvitation.classList.remove('hidden');
 
-    // 3. Immediately dissolve landing text & part stage curtains
+    // 4. Immediately dissolve landing text & part stage curtains
     if (landingScreen) landingScreen.classList.add('curtains-open');
     startRomanticAudio();
 
-
-
-    // 4. Remove landing screen overlay after curtains fully open outward
+    // 5. Remove landing screen overlay after curtains fully open outward
     setTimeout(() => {
       if (landingScreen) landingScreen.style.display = 'none';
 
@@ -69,8 +91,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 1500);
   }
 
-  // Only Marigold button click triggers reveal
-  if (marigoldBtn) marigoldBtn.addEventListener('click', openInvitation);
+  // 5-Second Automatic Animation Trigger with Live Visual Countdown
+  autoTimerInterval = setInterval(() => {
+    countdownRemaining--;
+    if (autoTimerCountEl && countdownRemaining >= 0) {
+      autoTimerCountEl.textContent = countdownRemaining;
+    }
+    if (countdownRemaining <= 0) {
+      clearInterval(autoTimerInterval);
+      autoTimerInterval = null;
+      openInvitation();
+    }
+  }, 1000);
+
+  // Click & Touch Interactions
+  if (marigoldBtn) marigoldBtn.addEventListener('click', (e) => { e.stopPropagation(); openInvitation(); });
+  if (landingPrompt) landingPrompt.addEventListener('click', (e) => { e.stopPropagation(); openInvitation(); });
+  if (landingScreen) landingScreen.addEventListener('click', openInvitation);
+
+  // Keyboard Accessibility (Enter / Space keys)
+  const handleKeyActivation = (e) => {
+    if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+      e.preventDefault();
+      openInvitation();
+    }
+  };
+  if (marigoldBtn) marigoldBtn.addEventListener('keydown', handleKeyActivation);
+  if (landingPrompt) landingPrompt.addEventListener('keydown', handleKeyActivation);
 
   // =========================================================================
   // 3. ROMANTIC BACKGROUND MUSIC (Jashn-E-Bahaaraa via YouTube IFrame API)
@@ -201,137 +248,128 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 4. CANVAS SCRATCH CARDS ENGINE
+  // 4. ROYAL MUGHAL CALENDAR & ROYAL ITINERARY
   // =========================================================================
-  const scratchCards = [
-    { canvasId: 'canvasDay', cardId: 'scratchCard1' },
-    { canvasId: 'canvasMonth', cardId: 'scratchCard2' },
-    { canvasId: 'canvasYear', cardId: 'scratchCard3' }
-  ];
+  const calDateButtons = document.querySelectorAll('.wedding-date-btn');
+  const itinJumpButtons = document.querySelectorAll('.itin-jump-btn, .farman-jump-btn');
+  const panelDay10 = document.getElementById('panelDay10');
+  const panelDay11 = document.getElementById('panelDay11');
+  const itinScrollArea = document.getElementById('itinScrollArea') || document.getElementById('farmanScrollArea');
 
-  let revealedCount = 0;
-
-  scratchCards.forEach(item => {
-    const canvas = document.getElementById(item.canvasId);
-    const card = document.getElementById(item.cardId);
-    if (!canvas || !card) return;
-
-    const ctx = canvas.getContext('2d');
-    const width = canvas.width;
-    const height = canvas.height;
-
-    // Draw Terracotta Canvas Coating (Clipped perfectly by SVG clip-path on wrapper)
-    function initCanvasCoating() {
-      const rect = card.getBoundingClientRect();
-      const w = rect.width > 0 ? rect.width : 220;
-      const h = rect.height > 0 ? rect.height : 210;
-
-      canvas.width = w;
-      canvas.height = h;
-
-      ctx.clearRect(0, 0, w, h);
-
-      // Fill Terracotta background
-      ctx.fillStyle = '#C86D51';
-      ctx.fillRect(0, 0, w, h);
-
-      // Texture flecks
-      ctx.fillStyle = '#B35C42';
-      for (let i = 0; i < 40; i++) {
-        ctx.beginPath();
-        ctx.arc(Math.random() * w, Math.random() * h, Math.random() * 8 + 2, 0, Math.PI * 2);
-        ctx.fill();
+  function selectWeddingDate(dateKey) {
+    // 1. Update active state on calendar date buttons
+    calDateButtons.forEach(btn => {
+      if (btn.getAttribute('data-date') === dateKey) {
+        btn.classList.add('active-selected');
+      } else {
+        btn.classList.remove('active-selected');
       }
+    });
 
-      // Clean, elegant "SCRATCH TO REVEAL" text (Minimalist & Royal)
-      ctx.fillStyle = '#FDFBF7';
-      ctx.font = '600 13px "Cormorant Garamond", "Cinzel Decorative", serif';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText('SCRATCH TO REVEAL', w / 2, h / 2);
-    }
+    // 2. Update active state on Itinerary jump buttons
+    itinJumpButtons.forEach(btn => {
+      const targetId = btn.getAttribute('data-target');
+      if ((dateKey === '10' && targetId === 'panelDay10') || (dateKey === '11' && targetId === 'panelDay11')) {
+        btn.classList.add('active-jump');
+      } else {
+        btn.classList.remove('active-jump');
+      }
+    });
 
-    initCanvasCoating();
+    // 3. Highlight corresponding day block in the itinerary and smooth scroll into view
+    const targetBlock = dateKey === '10' ? panelDay10 : panelDay11;
+    const otherBlock = dateKey === '10' ? panelDay11 : panelDay10;
 
-    // Scratch Logic
-    let isScratching = false;
-
-    function revealCard() {
-      if (card.classList.contains('revealed')) return;
-      card.classList.add('revealed');
-      canvas.style.opacity = '0';
-      setTimeout(() => {
-        canvas.style.display = 'none';
-      }, 400);
-
-      revealedCount++;
-      if (revealedCount === 3) {
-        triggerAllScratchCompletion();
+    if (targetBlock) {
+      targetBlock.classList.add('day-highlighted');
+      if (itinScrollArea) {
+        itinScrollArea.scrollTo({
+          top: targetBlock.offsetTop - itinScrollArea.offsetTop - 10,
+          behavior: 'smooth'
+        });
       }
     }
-
-    function getScratchPos(e) {
-      const rect = canvas.getBoundingClientRect();
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-      return {
-        x: (clientX - rect.left) * (width / rect.width),
-        y: (clientY - rect.top) * (height / rect.height)
-      };
+    if (otherBlock) {
+      otherBlock.classList.remove('day-highlighted');
     }
 
-    function scratch(e) {
-      if (!isScratching) return;
-      e.preventDefault();
-
-      const pos = getScratchPos(e);
-      ctx.globalCompositeOperation = 'destination-out';
-      ctx.beginPath();
-      ctx.arc(pos.x, pos.y, 28, 0, Math.PI * 2);
-      ctx.fill();
-
-      checkScratchedPercentage();
+    // Special fireworks celebration for the wedding day
+    if (dateKey === '11') {
+      launchConfetti();
+      launchFlyingDovesAndFireworks();
     }
+  }
 
-    function checkScratchedPercentage() {
-      try {
-        const imageData = ctx.getImageData(0, 0, width, height);
-        const pixels = imageData.data;
-        let clearPixels = 0;
-
-        for (let i = 3; i < pixels.length; i += 4) {
-          if (pixels[i] === 0) clearPixels++;
-        }
-
-        const percentage = clearPixels / (pixels.length / 4);
-        if (percentage > 0.35) {
-          revealCard();
-        }
-      } catch (err) {
-        // In case of local CORS restriction on canvas reading
-      }
-    }
-
-    // Touch & Mouse Scratch Listeners
-    canvas.addEventListener('mousedown', (e) => { isScratching = true; scratch(e); });
-    canvas.addEventListener('mousemove', scratch);
-    window.addEventListener('mouseup', () => { isScratching = false; });
-
-    canvas.addEventListener('touchstart', (e) => { isScratching = true; scratch(e); }, { passive: false });
-    canvas.addEventListener('touchmove', scratch, { passive: false });
-    window.addEventListener('touchend', () => { isScratching = false; });
-
-    // Tap fallback: click anywhere on card auto-reveals
-    card.addEventListener('click', () => {
-      revealCard();
+  // Attach click listeners to calendar date buttons
+  calDateButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const date = btn.getAttribute('data-date');
+      selectWeddingDate(date);
     });
   });
 
-  function triggerAllScratchCompletion() {
-    const msg = document.getElementById('scratchCompletionMsg');
-    if (msg) msg.classList.remove('hidden');
-    launchConfetti();
-    launchFlyingDovesAndFireworks();
+  // Attach click listeners to Itinerary jump buttons
+  itinJumpButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-target');
+      const dateKey = targetId === 'panelDay10' ? '10' : '11';
+      selectWeddingDate(dateKey);
+    });
+  });
+
+  // --- 1-Click Calendar Sync Suite ---
+  const btnGoogleCal = document.getElementById('btnGoogleCal');
+  const btnAppleCal = document.getElementById('btnAppleCal');
+
+  if (btnGoogleCal) {
+    const gCalTitle = encodeURIComponent("Royal Wedding Celebrations | Udit & Gunjan");
+    const gCalDetails = encodeURIComponent(
+      "Join us in celebrating the royal wedding of Udit Agarwal and Gunjan Garg!\n\n" +
+      "Shahi Procession Schedule:\n" +
+      "• Dec 10, 11:00 AM: Guest Welcome (Shahi Swagat)\n" +
+      "• Dec 10, 12:00 PM: Sagai & Godbharai\n" +
+      "• Dec 10, 7:00 PM Onwards: Sangeet & Engagement\n" +
+      "• Dec 11, 10:00 AM: Haldi Ceremony\n" +
+      "• Dec 11, 8:00 PM Onwards: Wedding Reception & Vedic Pheras\n\n" +
+      "Venue: Palasa Hotel & Resorts, Muzaffarnagar, Uttar Pradesh\n" +
+      "Location Map: https://share.google/FsrWqkFWa4dCP65mh\n" +
+      "Hotel Website: https://www.palasahotel.com/"
+    );
+    const gCalLocation = encodeURIComponent("Palasa Hotel & Resorts, Bhopa Road, Near Vishwakarma Chowk, Muzaffarnagar, Uttar Pradesh 251001");
+    // All-day celebration block Dec 10 to Dec 12, 2026
+    const gCalDates = "20261210/20261212";
+    btnGoogleCal.href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${gCalTitle}&dates=${gCalDates}&details=${gCalDetails}&location=${gCalLocation}`;
+  }
+
+  if (btnAppleCal) {
+    btnAppleCal.addEventListener('click', () => {
+      const icsLines = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//Udit and Gunjan Wedding//EN",
+        "CALSCALE:GREGORIAN",
+        "METHOD:PUBLISH",
+        "BEGIN:VEVENT",
+        "UID:wedding-udit-gunjan-2026@palasahotel.com",
+        "DTSTAMP:20260906T000000Z",
+        "DTSTART;VALUE=DATE:20261210",
+        "DTEND;VALUE=DATE:20261212",
+        "SUMMARY:Royal Wedding of Udit & Gunjan",
+        "DESCRIPTION:Join us in celebrating the royal wedding of Udit Agarwal and Gunjan Garg at Palasa Hotel & Resorts, Muzaffarnagar. Dec 10: 11 AM Guest Welcome | 12 PM Sagai & Godbharai | 7 PM Sangeet & Engagement. Dec 11: 10 AM Haldi | 8 PM Onwards Wedding Reception & Pheras. Map: https://share.google/FsrWqkFWa4dCP65mh",
+        "LOCATION:Palasa Hotel & Resorts\\, Bhopa Road\\, Near Vishwakarma Chowk\\, Muzaffarnagar\\, Uttar Pradesh 251001",
+        "STATUS:CONFIRMED",
+        "TRANSP:OPAQUE",
+        "END:VEVENT",
+        "END:VCALENDAR"
+      ];
+      const icsBlob = new Blob([icsLines.join("\r\n")], { type: 'text/calendar;charset=utf-8' });
+      const dlLink = document.createElement('a');
+      dlLink.href = window.URL.createObjectURL(icsBlob);
+      dlLink.setAttribute('download', 'Udit_Gunjan_Royal_Wedding_2026.ics');
+      document.body.appendChild(dlLink);
+      dlLink.click();
+      document.body.removeChild(dlLink);
+    });
   }
 
   // =========================================================================
