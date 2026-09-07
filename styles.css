@@ -1781,8 +1781,9 @@ body {
 }
 
 /* ==========================================================================
-   4. COUNTDOWN TIMER & PHOTO CAROUSEL
+   4. 3D INTERACTIVE ROYAL MAHAL & KINGDOM - A GLIMPSE OF US
    ========================================================================== */
+.glimpse-mahal-section,
 .countdown-carousel-section {
   padding: 6rem 1.5rem;
   background-image: 
@@ -1793,185 +1794,615 @@ body {
   color: var(--color-parchment);
 }
 
-/* Countdown Container */
-.countdown-container {
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto 5rem auto;
-}
-
-.journey-header {
-  font-family: var(--font-script);
-  font-size: 2.8rem;
-  color: var(--color-gold-bright);
-  margin-bottom: 2rem;
-}
-
-.countdown-grid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.time-box {
-  background: rgba(43, 4, 11, 0.7);
-  border: 1px solid rgba(212, 175, 55, 0.4);
-  padding: 1.2rem 1.8rem;
-  border-radius: 16px;
-  min-width: 100px;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-}
-
-.time-num {
-  font-family: var(--font-heading);
-  font-size: 3rem;
-  font-weight: 700;
-  color: var(--color-gold-bright);
-  display: block;
-  line-height: 1;
-  margin-bottom: 0.3rem;
-}
-
-.time-label {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.15rem;
-  color: #E2D7C3;
-}
-
-.time-colon {
-  font-family: var(--font-heading);
-  font-size: 2.5rem;
-  color: var(--color-gold-main);
-}
-
-/* Carousel Section */
-.carousel-wrapper {
-  max-width: 900px;
+/* ==========================================================================
+   4. 3D INTERACTIVE ROYAL MAHAL & KINGDOM - A GLIMPSE OF US
+   ========================================================================== */
+.glimpse-mahal-wrapper {
+  max-width: 1160px;
   margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.carousel-container {
-  position: relative;
+.mahal-instruction-hint {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  font-style: italic;
+  color: #F5D77F;
+  text-align: center;
+  margin: 0.35rem 0 1.2rem 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
 }
 
-.carousel-track-container {
-  width: 100%;
-  overflow: hidden;
-  border-radius: 24px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(212, 175, 55, 0.3);
+.mahal-instruction-hint i {
+  color: var(--color-gold-bright);
+  font-size: 0.95rem;
+  animation: compassSpin 6s infinite ease-in-out;
 }
 
-.carousel-track {
+@keyframes compassSpin {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(35deg); }
+}
+
+/* Quick Landmark Navigation Pills */
+.mahal-quick-nav {
   display: flex;
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  width: 100%;
 }
 
-.carousel-slide {
-  min-width: 100%;
-  padding: 0;
+.mahal-nav-pill {
+  background: rgba(36, 6, 14, 0.75);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 30px;
+  padding: 0.55rem 1.1rem;
+  color: #E6D7C3;
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  user-select: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
-.photo-frame {
+.mahal-nav-pill .pill-icon {
+  font-size: 1rem;
+}
+
+.mahal-nav-pill:hover {
+  background: rgba(85, 14, 25, 0.85);
+  border-color: #F5D77F;
+  color: #FFF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+}
+
+.mahal-nav-pill.active-nav {
+  background: linear-gradient(135deg, rgba(106, 17, 32, 0.95) 0%, rgba(153, 27, 48, 0.95) 100%);
+  border-color: #F5D77F;
+  color: #FFF;
+  box-shadow: 0 6px 22px rgba(212, 175, 55, 0.4), inset 0 0 0 1px rgba(245, 215, 127, 0.3);
+  transform: translateY(-2px);
+}
+
+/* 3D Diorama Viewport */
+.mahal-viewport-container {
   position: relative;
   width: 100%;
-  height: 520px;
+  max-width: 1120px;
+  margin: 0 auto;
+  border-radius: 26px;
   overflow: hidden;
-  border-radius: 24px;
+  perspective: 1200px;
+  box-shadow: 0 25px 75px rgba(0, 0, 0, 0.9), 0 0 40px rgba(212, 175, 55, 0.15);
+  border: 1.5px solid rgba(212, 175, 55, 0.4);
+  background: #0E0205;
+  cursor: grab;
+  user-select: none;
+  touch-action: pan-y;
+  box-sizing: border-box;
 }
 
-.carousel-img {
+.mahal-viewport-container:active {
+  cursor: grabbing;
+}
+
+.mahal-tilt-stage {
+  position: relative;
   width: 100%;
-  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.4, 1);
+  will-change: transform;
+}
+
+.mahal-art-canvas {
+  position: relative;
+  width: 100%;
+  line-height: 0;
+}
+
+.mahal-bg-img {
+  width: 100%;
+  height: auto;
+  display: block;
   object-fit: cover;
-  object-position: center;
-  transition: transform 0.8s ease;
+  aspect-ratio: 16 / 9;
+  pointer-events: none;
 }
 
-.carousel-slide:hover .carousel-img {
-  transform: scale(1.05);
-}
-
-.photo-caption {
+.mahal-ambient-light {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: linear-gradient(to top, rgba(43, 4, 11, 0.95) 0%, rgba(43, 4, 11, 0.5) 60%, transparent 100%);
-  padding: 3rem 2rem 2rem 2rem;
-  color: var(--color-parchment);
+  inset: 0;
+  background: 
+    radial-gradient(circle at 50% 50%, transparent 65%, rgba(14, 2, 5, 0.45) 100%),
+    linear-gradient(to top, rgba(14, 2, 5, 0.5) 0%, transparent 20%);
+  pointer-events: none;
 }
 
-.photo-caption h3 {
-  font-family: var(--font-heading);
-  font-size: 1.8rem;
+/* Interactive Landmark Hotspot Beacons */
+.mahal-hotspot-beacon {
+  position: absolute;
+  transform: translate(-50%, -50%) translateZ(25px);
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  outline: none;
+}
+
+.mahal-hotspot-beacon:hover,
+.mahal-hotspot-beacon:focus,
+.mahal-hotspot-beacon.active-beacon {
+  transform: translate(-50%, -50%) translateZ(45px) scale(1.18);
+  z-index: 25;
+}
+
+.beacon-pulse-core {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #FFF6D8 0%, #D4AF37 55%, #8B6508 100%);
+  box-shadow: 0 0 15px rgba(245, 215, 127, 0.85), 0 0 30px rgba(212, 175, 55, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3A050E;
+  font-size: 0.95rem;
+  border: 2px solid #FFF;
+  transition: all 0.3s ease;
+}
+
+.mahal-hotspot-beacon:hover .beacon-pulse-core,
+.mahal-hotspot-beacon.active-beacon .beacon-pulse-core {
+  background: radial-gradient(circle at 35% 35%, #FFF 0%, #FFD700 60%, #B8860B 100%);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 1), 0 0 45px rgba(212, 175, 55, 0.8);
+  color: #210307;
+}
+
+.beacon-pulse-ring {
+  position: absolute;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: 2px solid rgba(245, 215, 127, 0.8);
+  animation: beaconPulse 2.2s infinite ease-out;
+  pointer-events: none;
+}
+
+@keyframes beaconPulse {
+  0% {
+    transform: scale(0.65);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+/* Floating Landmark Tooltip */
+.beacon-tooltip {
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background: rgba(28, 4, 10, 0.95);
+  border: 1px solid #D4AF37;
+  border-radius: 12px;
+  padding: 0.45rem 0.85rem;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.75), 0 0 15px rgba(212, 175, 55, 0.25);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+  white-space: nowrap;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  z-index: 30;
+}
+
+.beacon-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #D4AF37;
+}
+
+.mahal-hotspot-beacon:hover .beacon-tooltip,
+.mahal-hotspot-beacon:focus .beacon-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.tooltip-badge {
+  font-family: 'Cinzel', serif;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #D4AF37;
+  text-transform: uppercase;
+}
+
+.tooltip-name {
+  font-family: 'Cinzel Decorative', 'Cinzel', serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #FFF;
+}
+
+.tooltip-action {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #F5D77F;
+  margin-top: 0.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
+/* Recenter Floating Button */
+.mahal-recenter-btn {
+  position: absolute;
+  bottom: 1.1rem;
+  right: 1.1rem;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(28, 4, 10, 0.85);
+  border: 1px solid var(--color-gold-main);
   color: var(--color-gold-bright);
-  margin-bottom: 0.3rem;
+  cursor: pointer;
+  z-index: 15;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
-.photo-caption p {
-  font-family: var(--font-serif);
+.mahal-recenter-btn:hover {
+  background: var(--color-gold-main);
+  color: var(--color-maroon-dark);
+  transform: scale(1.1) rotate(45deg);
+}
+
+/* ==========================================================================
+   ROYAL JHAROKHA PHOTO POPUP MODAL
+   ========================================================================== */
+.mahal-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.35s ease;
+  box-sizing: border-box;
+}
+
+.mahal-modal-overlay.active-modal {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mahal-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 1, 3, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+}
+
+.jharokha-modal-container {
+  position: relative;
+  max-width: 880px;
+  width: 100%;
+  max-height: 90vh;
+  z-index: 2;
+  transform: scale(0.92) translateY(24px);
+  transition: transform 0.35s cubic-bezier(0.34, 1.4, 0.64, 1);
+  box-sizing: border-box;
+}
+
+.mahal-modal-overlay.active-modal .jharokha-modal-container {
+  transform: scale(1) translateY(0);
+}
+
+.jharokha-card-frame {
+  background: radial-gradient(ellipse at top, rgba(50, 8, 18, 0.98) 0%, rgba(18, 2, 6, 0.99) 100%);
+  border: 1.5px solid var(--color-gold-main);
+  border-radius: 26px;
+  padding: clamp(1.4rem, 2.8vw, 2.4rem);
+  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.95), 0 0 50px rgba(212, 175, 55, 0.2);
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.jharokha-close-btn {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4A0E17 0%, #200408 100%);
+  border: 1.5px solid var(--color-gold-bright);
+  color: var(--color-gold-bright);
   font-size: 1.15rem;
-  font-style: italic;
-  color: #E2D7C3;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
 }
 
-/* Nav Buttons */
-.carousel-nav-btn {
+.jharokha-close-btn:hover {
+  background: var(--color-gold-main);
+  color: var(--color-maroon-dark);
+  transform: scale(1.12) rotate(90deg);
+}
+
+.jharokha-nav-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  background: rgba(43, 4, 11, 0.8);
+  background: rgba(36, 6, 14, 0.88);
   border: 1px solid var(--color-gold-main);
   color: var(--color-gold-bright);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   cursor: pointer;
-  z-index: 10;
-  transition: var(--transition-smooth);
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 5;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
 }
 
-.carousel-nav-btn:hover {
+.jharokha-nav-arrow:hover {
   background: var(--color-gold-main);
   color: var(--color-maroon-dark);
-  transform: translateY(-50%) scale(1.1);
+  transform: translateY(-50%) scale(1.12);
 }
 
-.carousel-nav-btn.prev-btn { left: -25px; }
-.carousel-nav-btn.next-btn { right: -25px; }
+.jharokha-prev-btn { left: -24px; }
+.jharokha-next-btn { right: -24px; }
 
-.carousel-dots {
+/* Arch Header */
+.jharokha-arch-header {
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 0.8rem;
-  margin-top: 1.8rem;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
 }
 
-.dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: rgba(212, 175, 55, 0.3);
-  cursor: pointer;
-  transition: var(--transition-smooth);
+.arch-filigree-left,
+.arch-filigree-right {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.6), transparent);
 }
 
-.dot.active {
-  background: var(--color-gold-bright);
-  width: 35px;
-  border-radius: 10px;
+.arch-crown-emblem {
+  color: var(--color-gold-bright);
+  font-size: 1.3rem;
+  text-shadow: 0 0 15px rgba(245, 215, 127, 0.6);
+}
+
+.jharokha-body-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(1.2rem, 2.5vw, 2.2rem);
+  align-items: center;
+}
+
+.jharokha-photo-wrap {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 2px solid rgba(212, 175, 55, 0.5);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.75);
+  aspect-ratio: 4 / 5;
+  max-height: 440px;
+  background: #0A0103;
+}
+
+.jharokha-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.3s ease, transform 0.6s ease;
+}
+
+.jharokha-photo-wrap:hover .jharokha-photo {
+  transform: scale(1.04);
+}
+
+.jharokha-photo-glow {
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+/* Story Pane */
+.jharokha-details-pane {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.jharokha-landmark-tag {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--color-gold-bright);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.jharokha-landmark-tag i {
+  color: #F5D77F;
+}
+
+.jharokha-story-title {
+  font-family: 'Cinzel Decorative', 'Cinzel', serif;
+  font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, #FFF6D8 0%, #F5D77F 40%, #D4AF37 80%, #AA8222 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 0.7rem 0;
+  line-height: 1.25;
+}
+
+.jharokha-story-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  line-height: 1.65;
+  color: #E8DAC4;
+  font-style: italic;
+  margin: 0 0 1rem 0;
+}
+
+.jharokha-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0.5rem 0 1.2rem 0;
+}
+
+.jharokha-div-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, rgba(212, 175, 55, 0.5), transparent);
+}
+
+.jharokha-div-gem {
+  color: var(--color-gold-bright);
+  font-size: 0.85rem;
+}
+
+.jharokha-meta-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #D6C3A1;
+}
+
+.jharokha-couple-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #F5D77F;
+}
+
+.jharokha-couple-label i {
+  color: #E23D58;
+  font-size: 0.7rem;
+}
+
+/* ==========================================================================
+   RESPONSIVE OVERRIDES FOR 3D MAHAL & JHAROKHA MODAL
+   ========================================================================== */
+@media (max-width: 900px) {
+  .jharokha-body-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .jharokha-photo-wrap {
+    max-height: 320px;
+    aspect-ratio: 16 / 10;
+  }
+  .jharokha-prev-btn { left: 4px; }
+  .jharokha-next-btn { right: 4px; }
+}
+
+@media (max-width: 600px) {
+  .mahal-quick-nav {
+    gap: 0.45rem;
+  }
+  .mahal-nav-pill {
+    padding: 0.45rem 0.8rem;
+    font-size: 0.7rem;
+  }
+  .mahal-hotspot-beacon {
+    width: 36px;
+    height: 36px;
+  }
+  .beacon-pulse-core {
+    width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+  }
+  .beacon-pulse-ring {
+    width: 48px;
+    height: 48px;
+  }
+  .jharokha-modal-container {
+    max-width: 95vw;
+  }
+  .jharokha-card-frame {
+    padding: 1.2rem 1rem;
+    border-radius: 20px;
+  }
+  .jharokha-close-btn {
+    top: 10px;
+    right: 10px;
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
 }
 
 
@@ -2100,22 +2531,6 @@ body {
   .parchment-card {
     padding: 3.5rem 2rem;
   }
-  .countdown-grid {
-    gap: 1.2rem;
-  }
-  .time-box {
-    padding: 1rem 1.4rem;
-    min-width: 85px;
-  }
-  .time-num {
-    font-size: 2.5rem;
-  }
-  .photo-frame {
-    height: 440px;
-  }
-  .events-grid {
-    gap: 2.2rem;
-  }
 }
 
 /* Mobile & Small Tablet Devices (max-width: 768px) */
@@ -2211,55 +2626,10 @@ body {
     font-size: 0.65rem;
   }
 
-  /* Countdown & Carousel */
+  .glimpse-mahal-section,
   .countdown-carousel-section {
     padding: 4rem 1rem;
   }
-  .journey-header {
-    font-size: 2.2rem;
-    margin-bottom: 1.5rem;
-  }
-  .countdown-grid {
-    gap: 0.6rem;
-  }
-  .time-colon {
-    font-size: 1.8rem;
-    display: none;
-  }
-  .time-box {
-    padding: 0.8rem 0.9rem;
-    min-width: 70px;
-    border-radius: 12px;
-    flex: 1;
-    max-width: 85px;
-  }
-  .time-num {
-    font-size: 2rem;
-  }
-  .time-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.05rem;
-  }
-  .photo-frame {
-    height: 340px;
-    border-radius: 16px;
-  }
-  .photo-caption {
-    padding: 2rem 1.2rem 1.2rem 1.2rem;
-  }
-  .photo-caption h3 {
-    font-size: 1.3rem;
-  }
-  .photo-caption p {
-    font-size: 0.95rem;
-  }
-  .carousel-nav-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
-  }
-  .carousel-nav-btn.prev-btn { left: 8px; }
-  .carousel-nav-btn.next-btn { right: 8px; }
 
   /* Audio Controller */
   .audio-controller-wrapper {
@@ -2407,16 +2777,6 @@ body {
   }
   .seal-monogram {
     font-size: 1.1rem;
-  }
-  .photo-frame {
-    height: 280px;
-  }
-  .time-num {
-    font-size: 1.6rem;
-  }
-  .time-box {
-    padding: 0.6rem 0.4rem;
-    min-width: 60px;
   }
 }
 

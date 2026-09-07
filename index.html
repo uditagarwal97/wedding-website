@@ -14,7 +14,7 @@
   <!-- FontAwesome Icons for UI & Map pin icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <link rel="stylesheet" href="styles.css?v=54.0">
+  <link rel="stylesheet" href="styles.css?v=56.0">
 </head>
 <body>
 
@@ -344,105 +344,120 @@
       </div>
     </section>
 
-    <!-- 4. COUNTDOWN TIMER & ANIMATED PHOTO CAROUSEL -->
-    <section id="countdownCarousel" class="countdown-carousel-section">
-      
-      <!-- Countdown Ticker -->
-      <div class="countdown-container reveal-on-scroll">
-        <p class="journey-header">The start of a beautiful journey...</p>
-        <div class="countdown-grid">
-          <div class="time-box">
-            <span id="timerDays" class="time-num">00</span>
-            <span class="time-label">DAYS</span>
-          </div>
-          <div class="time-colon">:</div>
-          <div class="time-box">
-            <span id="timerHours" class="time-num">00</span>
-            <span class="time-label">HOURS</span>
-          </div>
-          <div class="time-colon">:</div>
-          <div class="time-box">
-            <span id="timerMins" class="time-num">00</span>
-            <span class="time-label">MINUTES</span>
-          </div>
-          <div class="time-colon">:</div>
-          <div class="time-box">
-            <span id="timerSecs" class="time-num">00</span>
-            <span class="time-label">SECONDS</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Illustrated Photo Carousel -->
-      <div class="carousel-wrapper reveal-on-scroll">
+    <!-- 4. 3D INTERACTIVE ROYAL MAHAL - A GLIMPSE OF US -->
+    <section id="glimpseOfUsSection" class="glimpse-mahal-section">
+      <div class="glimpse-mahal-wrapper reveal-on-scroll" id="glimpseOfUs">
         <div class="section-header light">
-          <span class="sub-subtitle">OUR BEAUTIFUL MOMENTS</span>
+          <span class="sub-subtitle">AN INTERACTIVE ROYAL KINGDOM</span>
           <h2 class="section-title">A GLIMPSE OF US</h2>
+          <p class="mahal-instruction-hint"><i class="fa-solid fa-compass"></i> Explore our royal estate • Tap any landmark to unveil our memories</p>
         </div>
 
-        <div class="carousel-container">
-          <button id="carouselPrev" class="carousel-nav-btn prev-btn" aria-label="Previous Slide">
-            <i class="fa-solid fa-chevron-left"></i>
+        <!-- Quick Landmark Navigation Strip -->
+        <div class="mahal-quick-nav" role="tablist" aria-label="Explore Royal Landmarks">
+          <button class="mahal-nav-pill active-nav" data-target="ballroom">
+            <span class="pill-icon">🏰</span>
+            <span class="pill-title">Grand Ballroom</span>
           </button>
+          <button class="mahal-nav-pill" data-target="garden">
+            <span class="pill-icon">🌸</span>
+            <span class="pill-title">Shahi Baag</span>
+          </button>
+          <button class="mahal-nav-pill" data-target="lake">
+            <span class="pill-icon">⛵</span>
+            <span class="pill-title">Shahi Jheel</span>
+          </button>
+          <button class="mahal-nav-pill" data-target="temple">
+            <span class="pill-icon">🛕</span>
+            <span class="pill-title">Devasthan</span>
+          </button>
+          <button class="mahal-nav-pill" data-target="bazaar">
+            <span class="pill-icon">🏮</span>
+            <span class="pill-title">Meena Bazaar</span>
+          </button>
+        </div>
 
-          <div class="carousel-track-container">
-            <div class="carousel-track" id="carouselTrack">
-
-              <!-- Slide 1 -->
-              <div class="carousel-slide active">
-                <div class="photo-frame">
-                  <picture>
-                    <source srcset="assets/couple1.webp" type="image/webp">
-                    <img src="assets/couple1.png" alt="Udit &amp; Gunjan Golden Moment" class="carousel-img">
-                  </picture>
-                  <div class="photo-caption">
-                    <h3>The Beginning of Forever</h3>
-                    <p>When two souls meet under sunset skies</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Slide 2 -->
-              <div class="carousel-slide">
-                <div class="photo-frame">
-                  <picture>
-                    <source srcset="assets/couple2.webp" type="image/webp">
-                    <img src="assets/couple2.png" alt="Udit &amp; Gunjan with Pet" class="carousel-img">
-                  </picture>
-                  <div class="photo-caption">
-                    <h3>Cozy Moments &amp; Puppy Love</h3>
-                    <p>Our little family complete with lazy Sunday snuggles</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Slide 3 -->
-              <div class="carousel-slide">
-                <div class="photo-frame">
-                  <picture>
-                    <source srcset="assets/couple3.webp" type="image/webp">
-                    <img src="assets/couple3.png" alt="Udit &amp; Gunjan Dancing under Stars" class="carousel-img">
-                  </picture>
-                  <div class="photo-caption">
-                    <h3>Dancing Under the Stars</h3>
-                    <p>Lost in the melody of our favorite song</p>
-                  </div>
-                </div>
-              </div>
-
+        <!-- 3D Diorama Viewport Container -->
+        <div class="mahal-viewport-container" id="mahalViewport">
+          <div class="mahal-tilt-stage" id="mahalStage">
+            
+            <!-- Diorama Artwork Canvas -->
+            <div class="mahal-art-canvas">
+              <img src="assets/royal_mahal_estate.jpg" alt="3D Royal Indian Mughal Mahal and Kingdom" class="mahal-bg-img" id="mahalBgImg" draggable="false">
+              <div class="mahal-ambient-light"></div>
             </div>
+
+            <!-- Landmark 1: The Grand Ballroom & Palace Center -->
+            <div class="mahal-hotspot-beacon" style="left: 58%; top: 38%;" data-landmark="ballroom" role="button" tabindex="0" aria-label="Explore Grand Ballroom">
+              <div class="beacon-pulse-ring"></div>
+              <div class="beacon-pulse-core">
+                <i class="fa-solid fa-crown"></i>
+              </div>
+              <div class="beacon-tooltip">
+                <span class="tooltip-badge">ROYAL PALACE</span>
+                <span class="tooltip-name">Grand Ballroom</span>
+                <span class="tooltip-action"><i class="fa-solid fa-camera"></i> View Moments</span>
+              </div>
+            </div>
+
+            <!-- Landmark 2: Shahi Baag (Mughal Gardens) -->
+            <div class="mahal-hotspot-beacon" style="left: 26%; top: 26%;" data-landmark="garden" role="button" tabindex="0" aria-label="Explore Shahi Baag">
+              <div class="beacon-pulse-ring"></div>
+              <div class="beacon-pulse-core">
+                <i class="fa-solid fa-spa"></i>
+              </div>
+              <div class="beacon-tooltip">
+                <span class="tooltip-badge">ROYAL GARDENS</span>
+                <span class="tooltip-name">Shahi Baag</span>
+                <span class="tooltip-action"><i class="fa-solid fa-camera"></i> View Moments</span>
+              </div>
+            </div>
+
+            <!-- Landmark 3: Shahi Jheel (The Lake & Royal Boat) -->
+            <div class="mahal-hotspot-beacon" style="left: 80%; top: 80%;" data-landmark="lake" role="button" tabindex="0" aria-label="Explore Shahi Jheel">
+              <div class="beacon-pulse-ring"></div>
+              <div class="beacon-pulse-core">
+                <i class="fa-solid fa-water"></i>
+              </div>
+              <div class="beacon-tooltip">
+                <span class="tooltip-badge">PALACE WATERS</span>
+                <span class="tooltip-name">Shahi Jheel &amp; Ghat</span>
+                <span class="tooltip-action"><i class="fa-solid fa-camera"></i> View Moments</span>
+              </div>
+            </div>
+
+            <!-- Landmark 4: Devasthan (Sacred Temple) -->
+            <div class="mahal-hotspot-beacon" style="left: 88%; top: 22%;" data-landmark="temple" role="button" tabindex="0" aria-label="Explore Devasthan Mandir">
+              <div class="beacon-pulse-ring"></div>
+              <div class="beacon-pulse-core">
+                <i class="fa-solid fa-om"></i>
+              </div>
+              <div class="beacon-tooltip">
+                <span class="tooltip-badge">SACRED TEMPLE</span>
+                <span class="tooltip-name">Devasthan Mandir</span>
+                <span class="tooltip-action"><i class="fa-solid fa-camera"></i> View Moments</span>
+              </div>
+            </div>
+
+            <!-- Landmark 5: Meena Bazaar (Royal Night Market) -->
+            <div class="mahal-hotspot-beacon" style="left: 19%; top: 74%;" data-landmark="bazaar" role="button" tabindex="0" aria-label="Explore Meena Bazaar">
+              <div class="beacon-pulse-ring"></div>
+              <div class="beacon-pulse-core">
+                <i class="fa-solid fa-store"></i>
+              </div>
+              <div class="beacon-tooltip">
+                <span class="tooltip-badge">FESTIVE NIGHTS</span>
+                <span class="tooltip-name">Meena Bazaar</span>
+                <span class="tooltip-action"><i class="fa-solid fa-camera"></i> View Moments</span>
+              </div>
+            </div>
+
           </div>
 
-          <button id="carouselNext" class="carousel-nav-btn next-btn" aria-label="Next Slide">
-            <i class="fa-solid fa-chevron-right"></i>
+          <!-- Compass Recenter Floating Button -->
+          <button class="mahal-recenter-btn" id="mahalRecenterBtn" aria-label="Reset 3D View" title="Reset 3D View">
+            <i class="fa-solid fa-compass"></i>
           </button>
-        </div>
-
-        <!-- Carousel Dots -->
-        <div class="carousel-dots" id="carouselDots">
-          <span class="dot active" data-index="0"></span>
-          <span class="dot" data-index="1"></span>
-          <span class="dot" data-index="2"></span>
         </div>
       </div>
     </section>
@@ -496,9 +511,69 @@
         <p class="footer-credit">With love &amp; gratitude to our family and friends</p>
       </footer>
 
+      <!-- ROYAL JHAROKHA PHOTO POPUP MODAL -->
+      <div id="mahalModal" class="mahal-modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="mahalModalTitle">
+        <div class="mahal-modal-backdrop" id="mahalModalBackdrop"></div>
+        <div class="jharokha-modal-container">
+          
+          <!-- Close Button -->
+          <button class="jharokha-close-btn" id="mahalModalClose" aria-label="Close Story">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+
+          <!-- Prev & Next Navigation Buttons -->
+          <button class="jharokha-nav-arrow jharokha-prev-btn" id="mahalModalPrev" aria-label="Previous Landmark">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <button class="jharokha-nav-arrow jharokha-next-btn" id="mahalModalNext" aria-label="Next Landmark">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+
+          <div class="jharokha-card-frame">
+            <!-- Ornate Top Arch & Crown -->
+            <div class="jharokha-arch-header">
+              <div class="arch-filigree-left"></div>
+              <div class="arch-crown-emblem"><i class="fa-solid fa-crown"></i></div>
+              <div class="arch-filigree-right"></div>
+            </div>
+
+            <div class="jharokha-body-grid">
+              <!-- Photo Side -->
+              <div class="jharokha-photo-wrap">
+                <picture id="mahalModalPic">
+                  <source id="mahalModalSrcWebp" srcset="assets/couple3.webp" type="image/webp">
+                  <img id="mahalModalImg" src="assets/couple3.png" alt="Udit &amp; Gunjan Royal Wedding Memory" class="jharokha-photo">
+                </picture>
+                <div class="jharokha-photo-glow"></div>
+              </div>
+
+              <!-- Story Side -->
+              <div class="jharokha-details-pane">
+                <div class="jharokha-landmark-tag" id="mahalModalTag">
+                  <i class="fa-solid fa-location-dot"></i> <span id="mahalModalTagText">THE GRAND BALLROOM • SHAHI MAHAL</span>
+                </div>
+                <h3 class="jharokha-story-title" id="mahalModalTitle">Dancing Under the Stars</h3>
+                <p class="jharokha-story-desc" id="mahalModalDesc">Lost in the melody of our favorite song, dancing together in the illuminated grand ballroom of our dreams.</p>
+                
+                <div class="jharokha-divider">
+                  <span class="jharokha-div-line"></span>
+                  <span class="jharokha-div-gem">꧁ ✦ ꧂</span>
+                  <span class="jharokha-div-line"></span>
+                </div>
+
+                <div class="jharokha-meta-strip">
+                  <span class="jharokha-couple-label"><i class="fa-solid fa-heart"></i> UDIT &amp; GUNJAN</span>
+                  <span class="jharokha-date-label">DECEMBER 2026</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
   </main>
 
   <script src="https://www.youtube.com/iframe_api"></script>
-  <script src="app.js?v=52.0"></script>
+  <script src="app.js?v=56.0"></script>
 </body>
 </html>

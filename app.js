@@ -373,106 +373,279 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 5. LIVE COUNTDOWN TIMER TICKER
+  // 6. 3D INTERACTIVE ROYAL MAHAL & JHAROKHA MODAL ENGINE
   // =========================================================================
-  const targetDate = new Date('December 11, 2026 11:00:00').getTime();
+  const mahalViewport = document.getElementById('mahalViewport');
+  const mahalStage = document.getElementById('mahalStage');
+  const mahalRecenterBtn = document.getElementById('mahalRecenterBtn');
+  const mahalNavPills = document.querySelectorAll('.mahal-nav-pill');
+  const mahalBeacons = document.querySelectorAll('.mahal-hotspot-beacon');
 
-  function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
+  // Modal elements
+  const mahalModal = document.getElementById('mahalModal');
+  const mahalModalBackdrop = document.getElementById('mahalModalBackdrop');
+  const mahalModalClose = document.getElementById('mahalModalClose');
+  const mahalModalPrev = document.getElementById('mahalModalPrev');
+  const mahalModalNext = document.getElementById('mahalModalNext');
+  const mahalModalImg = document.getElementById('mahalModalImg');
+  const mahalModalSrcWebp = document.getElementById('mahalModalSrcWebp');
+  const mahalModalTagText = document.getElementById('mahalModalTagText');
+  const mahalModalTitle = document.getElementById('mahalModalTitle');
+  const mahalModalDesc = document.getElementById('mahalModalDesc');
 
-    const daysEl = document.getElementById('timerDays');
-    const hoursEl = document.getElementById('timerHours');
-    const minsEl = document.getElementById('timerMins');
-    const secsEl = document.getElementById('timerSecs');
+  // Landmark Memory Data
+  const mahalLandmarks = {
+    ballroom: {
+      tag: "THE GRAND BALLROOM • SHAHI MAHAL",
+      title: "Dancing Under the Stars",
+      desc: "Lost in the melody of our favorite song, dancing together in the illuminated grand ballroom of our dreams beneath chandeliers and golden arches.",
+      webp: "assets/couple3.webp",
+      png: "assets/couple3.png",
+      alt: "Udit & Gunjan Dancing Under the Stars",
+      zoomCoords: { x: 58, y: 38 }
+    },
+    garden: {
+      tag: "SHAHI BAAG • ROYAL MUGHAL GARDENS",
+      title: "The Beginning of Forever",
+      desc: "A golden sunset stroll amidst blooming marigolds, cypress trees, and terraced palace fountains where our paths gently intertwined into forever.",
+      webp: "assets/couple1.webp",
+      png: "assets/couple1.png",
+      alt: "Udit & Gunjan in the Mughal Gardens",
+      zoomCoords: { x: 26, y: 26 }
+    },
+    lake: {
+      tag: "SHAHI JHEEL • PALACE WATERS",
+      title: "Serenade by the Water",
+      desc: "Watching the sun dip into tranquil palace waters from a golden royal boat, whispering promises across the gentle waves and lotus blooms.",
+      webp: "assets/couple2.webp",
+      png: "assets/couple2.png",
+      alt: "Udit & Gunjan by the Lake",
+      zoomCoords: { x: 80, y: 80 }
+    },
+    temple: {
+      tag: "DEVASTHAN • SACRED SHRINE",
+      title: "Vows of Eternity",
+      desc: "Seeking sacred blessings before eternal holy fires and temple bells, united by tradition, timeless devotion, and Vedic pheras.",
+      webp: "assets/wedding.webp",
+      png: "assets/wedding.png",
+      alt: "Sacred Wedding Blessings",
+      zoomCoords: { x: 88, y: 22 }
+    },
+    bazaar: {
+      tag: "MEENA BAZAAR • FESTIVE NIGHTS",
+      title: "Joy, Rhythm & Festivities",
+      desc: "Basking in vibrant festive canopies, fragrant spices, joyous laughter, and the celebratory beats and dance of our royal Sangeet night.",
+      webp: "assets/sangeet.webp",
+      png: "assets/sangeet.png",
+      alt: "Festive Sangeet & Bazaar Revelry",
+      zoomCoords: { x: 19, y: 74 }
+    }
+  };
 
-    if (!daysEl || !hoursEl || !minsEl || !secsEl) return;
+  const landmarkOrder = ['ballroom', 'garden', 'lake', 'temple', 'bazaar'];
+  let currentLandmarkKey = 'ballroom';
+  let isDragging = false;
+  let startX = 0, startY = 0;
+  let currentTiltX = 0, currentTiltY = 0;
+  let targetTiltX = 0, targetTiltY = 0;
+  let panX = 0, panY = 0;
+  let targetPanX = 0, targetPanY = 0;
+  let zoomLevel = 1;
+  let targetZoom = 1;
+  let isZoomedIn = false;
 
-    if (distance < 0) {
-      daysEl.textContent = '00';
-      hoursEl.textContent = '00';
-      minsEl.textContent = '00';
-      secsEl.textContent = '00';
-      return;
+  // 3D Tilt Render Loop
+  function update3DTransform() {
+    currentTiltX += (targetTiltX - currentTiltX) * 0.12;
+    currentTiltY += (targetTiltY - currentTiltY) * 0.12;
+    panX += (targetPanX - panX) * 0.12;
+    panY += (targetPanY - panY) * 0.12;
+    zoomLevel += (targetZoom - zoomLevel) * 0.12;
+
+    if (mahalStage) {
+      mahalStage.style.transform = `scale(${zoomLevel}) translate(${panX}px, ${panY}px) rotateX(${currentTiltX}deg) rotateY(${currentTiltY}deg)`;
     }
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    daysEl.textContent = days < 10 ? '0' + days : days;
-    hoursEl.textContent = hours < 10 ? '0' + hours : hours;
-    minsEl.textContent = minutes < 10 ? '0' + minutes : minutes;
-    secsEl.textContent = seconds < 10 ? '0' + seconds : seconds;
+    requestAnimationFrame(update3DTransform);
   }
+  requestAnimationFrame(update3DTransform);
 
-  setInterval(updateCountdown, 1000);
-  updateCountdown();
+  // Mouse Parallax for Desktop
+  if (mahalViewport) {
+    mahalViewport.addEventListener('mousemove', (e) => {
+      if (isZoomedIn) return;
+      const rect = mahalViewport.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
 
-  // =========================================================================
-  // 6. PHOTO CAROUSEL ENGINE
-  // =========================================================================
-  const track = document.getElementById('carouselTrack');
-  const slides = Array.from(track ? track.children : []);
-  const nextBtn = document.getElementById('carouselNext');
-  const prevBtn = document.getElementById('carouselPrev');
-  const dotsNav = document.getElementById('carouselDots');
-  const dots = Array.from(dotsNav ? dotsNav.children : []);
-
-  let currentIndex = 0;
-  let carouselAutoInterval = null;
-
-  function goToSlide(index) {
-    if (!track) return;
-    if (index < 0) index = slides.length - 1;
-    if (index >= slides.length) index = 0;
-
-    currentIndex = index;
-    track.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-    slides.forEach((slide, i) => {
-      slide.classList.toggle('active', i === currentIndex);
+      targetTiltX = -y * 14;
+      targetTiltY = x * 18;
     });
 
-    dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === currentIndex);
+    mahalViewport.addEventListener('mouseleave', () => {
+      if (isZoomedIn) return;
+      targetTiltX = 0;
+      targetTiltY = 0;
     });
-  }
 
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      goToSlide(currentIndex + 1);
-      resetCarouselTimer();
+    // Touch Drag & Pan for Mobile
+    mahalViewport.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        isDragging = true;
+        startX = e.touches[0].clientX - panX;
+        startY = e.touches[0].clientY - panY;
+      }
+    }, { passive: true });
+
+    mahalViewport.addEventListener('touchmove', (e) => {
+      if (!isDragging || e.touches.length !== 1) return;
+      const x = e.touches[0].clientX;
+      const y = e.touches[0].clientY;
+      targetPanX = (x - startX) * 0.4;
+      targetPanY = (y - startY) * 0.4;
+      const maxPan = 70 * zoomLevel;
+      targetPanX = Math.max(-maxPan, Math.min(maxPan, targetPanX));
+      targetPanY = Math.max(-maxPan, Math.min(maxPan, targetPanY));
+    }, { passive: true });
+
+    mahalViewport.addEventListener('touchend', () => {
+      isDragging = false;
     });
   }
 
-  if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
-      goToSlide(currentIndex - 1);
-      resetCarouselTimer();
+  // Recenter button
+  if (mahalRecenterBtn) {
+    mahalRecenterBtn.addEventListener('click', () => {
+      resetMahalCamera();
     });
   }
 
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-      goToSlide(i);
-      resetCarouselTimer();
+  function resetMahalCamera() {
+    targetTiltX = 0;
+    targetTiltY = 0;
+    targetPanX = 0;
+    targetPanY = 0;
+    targetZoom = 1;
+    isZoomedIn = false;
+  }
+
+  // Landmark Selection & Modal Display
+  function selectLandmark(key, openModalFlag = true) {
+    const data = mahalLandmarks[key];
+    if (!data) return;
+
+    currentLandmarkKey = key;
+
+    // Update Nav Pills
+    mahalNavPills.forEach(pill => {
+      pill.classList.toggle('active-nav', pill.dataset.target === key);
+    });
+
+    // Update Beacons
+    mahalBeacons.forEach(beacon => {
+      beacon.classList.toggle('active-beacon', beacon.dataset.landmark === key);
+    });
+
+    // Smooth Camera Focus on Landmark
+    if (data.zoomCoords) {
+      isZoomedIn = true;
+      targetZoom = 1.12;
+      targetPanX = (50 - data.zoomCoords.x) * 3;
+      targetPanY = (50 - data.zoomCoords.y) * 2;
+      targetTiltX = (data.zoomCoords.y - 50) * 0.12;
+      targetTiltY = (50 - data.zoomCoords.x) * 0.15;
+    }
+
+    // Populate Modal Content
+    if (mahalModalTagText) mahalModalTagText.textContent = data.tag;
+    if (mahalModalTitle) mahalModalTitle.textContent = data.title;
+    if (mahalModalDesc) mahalModalDesc.textContent = data.desc;
+    if (mahalModalSrcWebp) mahalModalSrcWebp.srcset = data.webp;
+    if (mahalModalImg) {
+      mahalModalImg.style.opacity = '0';
+      mahalModalImg.src = data.png;
+      mahalModalImg.alt = data.alt;
+      setTimeout(() => {
+        mahalModalImg.style.opacity = '1';
+      }, 50);
+    }
+
+    if (openModalFlag) {
+      openMahalModal();
+    }
+  }
+
+  function openMahalModal() {
+    if (!mahalModal) return;
+    mahalModal.classList.add('active-modal');
+    mahalModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMahalModal() {
+    if (!mahalModal) return;
+    mahalModal.classList.remove('active-modal');
+    mahalModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    resetMahalCamera();
+  }
+
+  // Event Listeners for Nav Pills
+  mahalNavPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      const targetKey = pill.dataset.target;
+      selectLandmark(targetKey, true);
     });
   });
 
-  function startCarouselTimer() {
-    carouselAutoInterval = setInterval(() => {
-      goToSlide(currentIndex + 1);
-    }, 4500);
+  // Event Listeners for Hotspot Beacons
+  mahalBeacons.forEach(beacon => {
+    beacon.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const landmarkKey = beacon.dataset.landmark;
+      selectLandmark(landmarkKey, true);
+    });
+
+    beacon.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const landmarkKey = beacon.dataset.landmark;
+        selectLandmark(landmarkKey, true);
+      }
+    });
+  });
+
+  // Modal Controls
+  if (mahalModalClose) mahalModalClose.addEventListener('click', closeMahalModal);
+  if (mahalModalBackdrop) mahalModalBackdrop.addEventListener('click', closeMahalModal);
+
+  if (mahalModalPrev) {
+    mahalModalPrev.addEventListener('click', () => {
+      const curIndex = landmarkOrder.indexOf(currentLandmarkKey);
+      const prevIndex = (curIndex - 1 + landmarkOrder.length) % landmarkOrder.length;
+      selectLandmark(landmarkOrder[prevIndex], false);
+    });
   }
 
-  function resetCarouselTimer() {
-    clearInterval(carouselAutoInterval);
-    startCarouselTimer();
+  if (mahalModalNext) {
+    mahalModalNext.addEventListener('click', () => {
+      const curIndex = landmarkOrder.indexOf(currentLandmarkKey);
+      const nextIndex = (curIndex + 1) % landmarkOrder.length;
+      selectLandmark(landmarkOrder[nextIndex], false);
+    });
   }
 
-  startCarouselTimer();
+  // Keyboard navigation
+  window.addEventListener('keydown', (e) => {
+    if (!mahalModal || !mahalModal.classList.contains('active-modal')) return;
+    if (e.key === 'Escape') {
+      closeMahalModal();
+    } else if (e.key === 'ArrowLeft') {
+      if (mahalModalPrev) mahalModalPrev.click();
+    } else if (e.key === 'ArrowRight') {
+      if (mahalModalNext) mahalModalNext.click();
+    }
+  });
 
   // =========================================================================
   // 7. CONFETTI, DOVES & STARDUST CANVAS PARTICLES ENGINE
