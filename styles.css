@@ -1810,7 +1810,7 @@ body {
   font-style: italic;
   color: #F5D77F;
   text-align: center;
-  margin: 0.35rem 0 1.2rem 0;
+  margin: 0.35rem 0 1.6rem 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1828,14 +1828,15 @@ body {
   50% { transform: rotate(35deg); }
 }
 
-/* Quick Landmark Navigation Pills */
+/* Quick Landmark Navigation Pills (Below Palace) */
 .mahal-quick-nav {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.65rem;
   flex-wrap: wrap;
-  margin-bottom: 1.5rem;
+  margin-top: 1.6rem;
+  margin-bottom: 0.5rem;
   width: 100%;
 }
 
@@ -1880,35 +1881,7 @@ body {
   transform: translateY(-2px);
 }
 
-/* 3D Diorama Viewport */
-.mahal-viewport-container {
-  position: relative;
-  width: 100%;
-  max-width: 1120px;
-  margin: 0 auto;
-  border-radius: 26px;
-  overflow: hidden;
-  perspective: 1200px;
-  box-shadow: 0 25px 75px rgba(0, 0, 0, 0.9), 0 0 40px rgba(212, 175, 55, 0.15);
-  border: 1.5px solid rgba(212, 175, 55, 0.4);
-  background: #0E0205;
-  cursor: grab;
-  user-select: none;
-  touch-action: pan-y;
-  box-sizing: border-box;
-}
 
-.mahal-viewport-container:active {
-  cursor: grabbing;
-}
-
-.mahal-tilt-stage {
-  position: relative;
-  width: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.4, 1);
-  will-change: transform;
-}
 
 .mahal-art-canvas {
   position: relative;
@@ -1923,6 +1896,10 @@ body {
   object-fit: cover;
   aspect-ratio: 16 / 9;
   pointer-events: none;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: high-quality;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .mahal-ambient-light {
@@ -2005,20 +1982,17 @@ body {
   bottom: 120%;
   left: 50%;
   transform: translateX(-50%) translateY(8px);
-  background: rgba(28, 4, 10, 0.95);
-  border: 1px solid #D4AF37;
-  border-radius: 12px;
-  padding: 0.45rem 0.85rem;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.75), 0 0 15px rgba(212, 175, 55, 0.25);
+  background: rgba(24, 3, 8, 0.94);
+  border: 1px solid rgba(212, 175, 55, 0.75);
+  border-radius: 10px;
+  padding: 0.35rem 0.75rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8), 0 0 12px rgba(212, 175, 55, 0.25);
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
   transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
   white-space: nowrap;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
   z-index: 30;
 }
 
@@ -2028,7 +2002,7 @@ body {
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  border: 6px solid transparent;
+  border: 5px solid transparent;
   border-top-color: #D4AF37;
 }
 
@@ -2039,32 +2013,13 @@ body {
   transform: translateX(-50%) translateY(0);
 }
 
-.tooltip-badge {
-  font-family: 'Cinzel', serif;
-  font-size: 0.58rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  color: #D4AF37;
-  text-transform: uppercase;
-}
-
 .tooltip-name {
-  font-family: 'Cinzel Decorative', 'Cinzel', serif;
-  font-size: 0.88rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
   font-weight: 700;
-  color: #FFF;
-}
-
-.tooltip-action {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 600;
-  color: #F5D77F;
-  margin-top: 0.15rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.3rem;
+  letter-spacing: 0.06em;
+  color: #FFF6D8;
+  display: block;
 }
 
 /* Recenter Floating Button */
@@ -2097,275 +2052,224 @@ body {
 }
 
 /* ==========================================================================
-   ROYAL JHAROKHA PHOTO POPUP MODAL
+   INTEGRATED THEATER STAGE & ROYAL FOLIO DRAWER
    ========================================================================== */
-.mahal-modal-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 999999;
+.mahal-theater-stage {
+  position: relative;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.35s ease;
+  align-items: stretch;
+  gap: 0;
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
   box-sizing: border-box;
 }
 
-.mahal-modal-overlay.active-modal {
+.mahal-theater-stage.drawer-open {
+  gap: 1.4rem;
+}
+
+/* 3D Diorama Viewport */
+.mahal-viewport-container {
+  position: relative;
+  flex: 1 1 100%;
+  width: 100%;
+  border-radius: 26px;
+  overflow: hidden;
+  perspective: 1200px;
+  box-shadow: 0 25px 75px rgba(0, 0, 0, 0.9), 0 0 40px rgba(212, 175, 55, 0.15);
+  border: 1.5px solid rgba(212, 175, 55, 0.4);
+  background: #080d19;
+  cursor: pointer;
+  user-select: none;
+  touch-action: pan-y;
+  box-sizing: border-box;
+  transition: flex 0.5s cubic-bezier(0.25, 1, 0.5, 1), transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.mahal-viewport-container.is-zoomed {
+  cursor: grab;
+}
+
+.mahal-viewport-container.is-zoomed:active {
+  cursor: grabbing;
+}
+
+.mahal-tilt-stage {
+  position: relative;
+  width: 100%;
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+}
+
+/* When Folio Drawer is open on desktop, diorama compresses gracefully to 60% */
+.mahal-theater-stage.drawer-open .mahal-viewport-container {
+  flex: 1 1 60%;
+}
+
+/* Integrated Royal Folio Drawer */
+.royal-folio-drawer {
+  flex: 0 0 0px;
+  width: 0;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.mahal-theater-stage.drawer-open .royal-folio-drawer {
+  flex: 0 0 40%;
+  width: 40%;
   opacity: 1;
   visibility: visible;
 }
 
-.mahal-modal-backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(8, 1, 3, 0.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  cursor: pointer;
-}
-
-.jharokha-modal-container {
-  position: relative;
-  max-width: 880px;
-  width: 100%;
-  max-height: 90vh;
-  z-index: 2;
-  transform: scale(0.92) translateY(24px);
-  transition: transform 0.35s cubic-bezier(0.34, 1.4, 0.64, 1);
-  box-sizing: border-box;
-}
-
-.mahal-modal-overlay.active-modal .jharokha-modal-container {
-  transform: scale(1) translateY(0);
-}
-
-.jharokha-card-frame {
+.folio-drawer-inner {
   background: radial-gradient(ellipse at top, rgba(50, 8, 18, 0.98) 0%, rgba(18, 2, 6, 0.99) 100%);
   border: 1.5px solid var(--color-gold-main);
   border-radius: 26px;
-  padding: clamp(1.4rem, 2.8vw, 2.4rem);
-  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.95), 0 0 50px rgba(212, 175, 55, 0.2);
-  position: relative;
-  overflow: hidden;
+  padding: 0.5rem;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9), 0 0 35px rgba(212, 175, 55, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
   box-sizing: border-box;
+  position: relative;
 }
 
-.jharokha-close-btn {
+/* Picture Frame with In-Frame Navigation & Close Controls */
+.folio-photo-wrapper {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1.5px solid rgba(212, 175, 55, 0.5);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  background: #0A0103;
+}
+
+.folio-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.35s ease, transform 0.6s ease;
+}
+
+.folio-photo-wrapper:hover .folio-photo {
+  transform: scale(1.03);
+}
+
+.folio-photo-glow {
   position: absolute;
-  top: -16px;
-  right: -16px;
-  width: 44px;
-  height: 44px;
+  inset: 0;
+  box-shadow: inset 0 0 28px rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+}
+
+/* Floating Close Button */
+.folio-close-toggle {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #4A0E17 0%, #200408 100%);
-  border: 1.5px solid var(--color-gold-bright);
-  color: var(--color-gold-bright);
-  font-size: 1.15rem;
+  background: rgba(24, 3, 8, 0.85);
+  border: 1.2px solid var(--color-gold-main);
+  color: #FFF;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   z-index: 10;
-  transition: all 0.3s ease;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
 }
 
-.jharokha-close-btn:hover {
+.folio-close-toggle:hover {
   background: var(--color-gold-main);
   color: var(--color-maroon-dark);
-  transform: scale(1.12) rotate(90deg);
+  transform: scale(1.12);
 }
 
-.jharokha-nav-arrow {
+/* Floating Navigation Arrows */
+.folio-nav-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 48px;
-  height: 48px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  background: rgba(36, 6, 14, 0.88);
-  border: 1px solid var(--color-gold-main);
+  background: rgba(24, 3, 8, 0.85);
+  border: 1.2px solid var(--color-gold-main);
   color: var(--color-gold-bright);
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 5;
-  transition: all 0.3s ease;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 10;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
 }
 
-.jharokha-nav-arrow:hover {
+.folio-nav-btn:hover {
   background: var(--color-gold-main);
   color: var(--color-maroon-dark);
   transform: translateY(-50%) scale(1.12);
 }
 
-.jharokha-prev-btn { left: -24px; }
-.jharokha-next-btn { right: -24px; }
-
-/* Arch Header */
-.jharokha-arch-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 1.2rem;
-}
-
-.arch-filigree-left,
-.arch-filigree-right {
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.6), transparent);
-}
-
-.arch-crown-emblem {
-  color: var(--color-gold-bright);
-  font-size: 1.3rem;
-  text-shadow: 0 0 15px rgba(245, 215, 127, 0.6);
-}
-
-.jharokha-body-grid {
-  display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: clamp(1.2rem, 2.5vw, 2.2rem);
-  align-items: center;
-}
-
-.jharokha-photo-wrap {
-  position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  border: 2px solid rgba(212, 175, 55, 0.5);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.75);
-  aspect-ratio: 4 / 5;
-  max-height: 440px;
-  background: #0A0103;
-}
-
-.jharokha-photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: opacity 0.3s ease, transform 0.6s ease;
-}
-
-.jharokha-photo-wrap:hover .jharokha-photo {
-  transform: scale(1.04);
-}
-
-.jharokha-photo-glow {
-  position: absolute;
-  inset: 0;
-  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.4);
-  pointer-events: none;
-}
-
-/* Story Pane */
-.jharokha-details-pane {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.jharokha-landmark-tag {
-  font-family: 'Cinzel', serif;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: var(--color-gold-bright);
-  margin-bottom: 0.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.jharokha-landmark-tag i {
-  color: #F5D77F;
-}
-
-.jharokha-story-title {
-  font-family: 'Cinzel Decorative', 'Cinzel', serif;
-  font-size: clamp(1.35rem, 2.5vw, 1.85rem);
-  font-weight: 700;
-  background: linear-gradient(135deg, #FFF6D8 0%, #F5D77F 40%, #D4AF37 80%, #AA8222 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin: 0 0 0.7rem 0;
-  line-height: 1.25;
-}
-
-.jharokha-story-desc {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
-  line-height: 1.65;
-  color: #E8DAC4;
-  font-style: italic;
-  margin: 0 0 1rem 0;
-}
-
-.jharokha-divider {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin: 0.5rem 0 1.2rem 0;
-}
-
-.jharokha-div-line {
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(to right, rgba(212, 175, 55, 0.5), transparent);
-}
-
-.jharokha-div-gem {
-  color: var(--color-gold-bright);
-  font-size: 0.85rem;
-}
-
-.jharokha-meta-strip {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: #D6C3A1;
-}
-
-.jharokha-couple-label {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  color: #F5D77F;
-}
-
-.jharokha-couple-label i {
-  color: #E23D58;
-  font-size: 0.7rem;
-}
+.folio-nav-btn.folio-prev { left: 10px; }
+.folio-nav-btn.folio-next { right: 10px; }
 
 /* ==========================================================================
-   RESPONSIVE OVERRIDES FOR 3D MAHAL & JHAROKHA MODAL
+   RESPONSIVE OVERRIDES FOR 3D THEATER & FOLIO DRAWER
    ========================================================================== */
 @media (max-width: 900px) {
-  .jharokha-body-grid {
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
+  .mahal-theater-stage {
+    flex-direction: column-reverse;
+    gap: 0;
   }
-  .jharokha-photo-wrap {
-    max-height: 320px;
+
+  .mahal-theater-stage.drawer-open {
+    gap: 1.1rem;
+  }
+
+  .mahal-theater-stage.drawer-open .mahal-viewport-container {
+    flex: 1 1 auto;
+  }
+
+  .royal-folio-drawer {
+    width: 100%;
+    flex: 0 0 auto;
+    max-height: 0;
+    margin: 0;
+    transition: max-height 0.45s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.35s ease, visibility 0.35s ease;
+  }
+
+  .mahal-theater-stage.drawer-open .royal-folio-drawer {
+    width: 100%;
+    flex: 0 0 auto;
+    max-height: 380px;
+  }
+
+  .folio-photo-wrapper {
     aspect-ratio: 16 / 10;
+    max-height: 320px;
   }
-  .jharokha-prev-btn { left: 4px; }
-  .jharokha-next-btn { right: 4px; }
 }
 
 @media (max-width: 600px) {
@@ -2389,19 +2293,25 @@ body {
     width: 48px;
     height: 48px;
   }
-  .jharokha-modal-container {
-    max-width: 95vw;
+  .folio-drawer-inner {
+    padding: 0.45rem;
+    border-radius: 18px;
   }
-  .jharokha-card-frame {
-    padding: 1.2rem 1rem;
-    border-radius: 20px;
+  .folio-photo-wrapper {
+    aspect-ratio: 16 / 10;
+    max-height: 250px;
   }
-  .jharokha-close-btn {
-    top: 10px;
-    right: 10px;
-    width: 38px;
-    height: 38px;
-    font-size: 1rem;
+  .folio-close-toggle {
+    top: 8px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
+    font-size: 0.88rem;
+  }
+  .folio-nav-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 0.85rem;
   }
 }
 

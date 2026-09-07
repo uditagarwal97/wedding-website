@@ -14,7 +14,7 @@
   <!-- FontAwesome Icons for UI & Map pin icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <link rel="stylesheet" href="styles.css?v=56.0">
+  <link rel="stylesheet" href="styles.css?v=64.0">
 </head>
 <body>
 
@@ -353,7 +353,117 @@
           <p class="mahal-instruction-hint"><i class="fa-solid fa-compass"></i> Explore our royal estate • Tap any landmark to unveil our memories</p>
         </div>
 
-        <!-- Quick Landmark Navigation Strip -->
+        <!-- 3D Diorama & Integrated Folio Theater Stage -->
+        <div class="mahal-theater-stage" id="mahalTheater">
+          
+          <!-- Left Wing: 3D Palace Diorama Viewport -->
+          <div class="mahal-viewport-container" id="mahalViewport">
+            <div class="mahal-tilt-stage" id="mahalStage">
+              
+              <!-- Diorama Artwork Canvas -->
+              <div class="mahal-art-canvas">
+                <picture id="mahalArtPic">
+                  <source srcset="assets/royal_mahal_estate.png" type="image/png">
+                  <img src="assets/royal_mahal_estate.jpg" alt="3D Royal Indian Mughal Mahal and Kingdom" class="mahal-bg-img" id="mahalBgImg" draggable="false">
+                </picture>
+                <div class="mahal-ambient-light"></div>
+              </div>
+
+              <!-- Landmark 1: The Grand Ballroom & Palace Center -->
+              <div class="mahal-hotspot-beacon" style="left: 51%; top: 56%;" data-landmark="ballroom" role="button" tabindex="0" aria-label="Explore Grand Ballroom">
+                <div class="beacon-pulse-ring"></div>
+                <div class="beacon-pulse-core">
+                  <i class="fa-solid fa-crown"></i>
+                </div>
+                <div class="beacon-tooltip">
+                  <span class="tooltip-name">Grand Ballroom</span>
+                </div>
+              </div>
+
+              <!-- Landmark 2: Shahi Baag (Mughal Gardens) -->
+              <div class="mahal-hotspot-beacon" style="left: 24%; top: 32%;" data-landmark="garden" role="button" tabindex="0" aria-label="Explore Shahi Baag">
+                <div class="beacon-pulse-ring"></div>
+                <div class="beacon-pulse-core">
+                  <i class="fa-solid fa-spa"></i>
+                </div>
+                <div class="beacon-tooltip">
+                  <span class="tooltip-name">Shahi Baag</span>
+                </div>
+              </div>
+
+              <!-- Landmark 3: Shahi Jheel (The Lake & Royal Boat) -->
+              <div class="mahal-hotspot-beacon" style="left: 78%; top: 78%;" data-landmark="lake" role="button" tabindex="0" aria-label="Explore Shahi Jheel">
+                <div class="beacon-pulse-ring"></div>
+                <div class="beacon-pulse-core">
+                  <i class="fa-solid fa-water"></i>
+                </div>
+                <div class="beacon-tooltip">
+                  <span class="tooltip-name">Shahi Jheel</span>
+                </div>
+              </div>
+
+              <!-- Landmark 4: Devasthan (Sacred Temple) -->
+              <div class="mahal-hotspot-beacon" style="left: 84%; top: 34%;" data-landmark="temple" role="button" tabindex="0" aria-label="Explore Devasthan">
+                <div class="beacon-pulse-ring"></div>
+                <div class="beacon-pulse-core">
+                  <i class="fa-solid fa-om"></i>
+                </div>
+                <div class="beacon-tooltip">
+                  <span class="tooltip-name">Devasthan</span>
+                </div>
+              </div>
+
+              <!-- Landmark 5: Meena Bazaar (Royal Night Market) -->
+              <div class="mahal-hotspot-beacon" style="left: 23%; top: 82%;" data-landmark="bazaar" role="button" tabindex="0" aria-label="Explore Meena Bazaar">
+                <div class="beacon-pulse-ring"></div>
+                <div class="beacon-pulse-core">
+                  <i class="fa-solid fa-store"></i>
+                </div>
+                <div class="beacon-tooltip">
+                  <span class="tooltip-name">Meena Bazaar</span>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Compass Recenter Floating Button -->
+            <button class="mahal-recenter-btn" id="mahalRecenterBtn" aria-label="Reset 3D View" title="Reset 3D View">
+              <i class="fa-solid fa-compass"></i>
+            </button>
+          </div>
+
+          <!-- Right Wing: Integrated Royal Folio Drawer (Pure Photo Frame) -->
+          <div class="royal-folio-drawer" id="royalFolioDrawer" aria-label="Royal Memory Photo">
+            <div class="folio-drawer-inner">
+              
+              <!-- Royal Picture Frame with Close Button and Nav Controls -->
+              <div class="folio-photo-wrapper">
+                <picture id="folioPic">
+                  <source id="folioSrcWebp" srcset="assets/couple3.webp" type="image/webp">
+                  <img id="folioImg" src="assets/couple3.png" alt="Udit &amp; Gunjan" class="folio-photo">
+                </picture>
+                <div class="folio-photo-glow"></div>
+
+                <!-- Floating Close Button -->
+                <button class="folio-close-toggle" id="folioCloseBtn" aria-label="Close Photo" title="Close">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+
+                <!-- Previous / Next In-Frame Navigation -->
+                <button class="folio-nav-btn folio-prev" id="folioPrevBtn" aria-label="Previous Photo" title="Previous">
+                  <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button class="folio-nav-btn folio-next" id="folioNextBtn" aria-label="Next Photo" title="Next">
+                  <i class="fa-solid fa-chevron-right"></i>
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Quick Landmark Navigation Strip (Positioned Below Palace) -->
         <div class="mahal-quick-nav" role="tablist" aria-label="Explore Royal Landmarks">
           <button class="mahal-nav-pill active-nav" data-target="ballroom">
             <span class="pill-icon">🏰</span>
@@ -374,89 +484,6 @@
           <button class="mahal-nav-pill" data-target="bazaar">
             <span class="pill-icon">🏮</span>
             <span class="pill-title">Meena Bazaar</span>
-          </button>
-        </div>
-
-        <!-- 3D Diorama Viewport Container -->
-        <div class="mahal-viewport-container" id="mahalViewport">
-          <div class="mahal-tilt-stage" id="mahalStage">
-            
-            <!-- Diorama Artwork Canvas -->
-            <div class="mahal-art-canvas">
-              <img src="assets/royal_mahal_estate.jpg" alt="3D Royal Indian Mughal Mahal and Kingdom" class="mahal-bg-img" id="mahalBgImg" draggable="false">
-              <div class="mahal-ambient-light"></div>
-            </div>
-
-            <!-- Landmark 1: The Grand Ballroom & Palace Center -->
-            <div class="mahal-hotspot-beacon" style="left: 58%; top: 38%;" data-landmark="ballroom" role="button" tabindex="0" aria-label="Explore Grand Ballroom">
-              <div class="beacon-pulse-ring"></div>
-              <div class="beacon-pulse-core">
-                <i class="fa-solid fa-crown"></i>
-              </div>
-              <div class="beacon-tooltip">
-                <span class="tooltip-badge">ROYAL PALACE</span>
-                <span class="tooltip-name">Grand Ballroom</span>
-                <span class="tooltip-action"><i class="fa-solid fa-camera"></i> View Moments</span>
-              </div>
-            </div>
-
-            <!-- Landmark 2: Shahi Baag (Mughal Gardens) -->
-            <div class="mahal-hotspot-beacon" style="left: 26%; top: 26%;" data-landmark="garden" role="button" tabindex="0" aria-label="Explore Shahi Baag">
-              <div class="beacon-pulse-ring"></div>
-              <div class="beacon-pulse-core">
-                <i class="fa-solid fa-spa"></i>
-              </div>
-              <div class="beacon-tooltip">
-                <span class="tooltip-badge">ROYAL GARDENS</span>
-                <span class="tooltip-name">Shahi Baag</span>
-                <span class="tooltip-action"><i class="fa-solid fa-camera"></i> View Moments</span>
-              </div>
-            </div>
-
-            <!-- Landmark 3: Shahi Jheel (The Lake & Royal Boat) -->
-            <div class="mahal-hotspot-beacon" style="left: 80%; top: 80%;" data-landmark="lake" role="button" tabindex="0" aria-label="Explore Shahi Jheel">
-              <div class="beacon-pulse-ring"></div>
-              <div class="beacon-pulse-core">
-                <i class="fa-solid fa-water"></i>
-              </div>
-              <div class="beacon-tooltip">
-                <span class="tooltip-badge">PALACE WATERS</span>
-                <span class="tooltip-name">Shahi Jheel &amp; Ghat</span>
-                <span class="tooltip-action"><i class="fa-solid fa-camera"></i> View Moments</span>
-              </div>
-            </div>
-
-            <!-- Landmark 4: Devasthan (Sacred Temple) -->
-            <div class="mahal-hotspot-beacon" style="left: 88%; top: 22%;" data-landmark="temple" role="button" tabindex="0" aria-label="Explore Devasthan Mandir">
-              <div class="beacon-pulse-ring"></div>
-              <div class="beacon-pulse-core">
-                <i class="fa-solid fa-om"></i>
-              </div>
-              <div class="beacon-tooltip">
-                <span class="tooltip-badge">SACRED TEMPLE</span>
-                <span class="tooltip-name">Devasthan Mandir</span>
-                <span class="tooltip-action"><i class="fa-solid fa-camera"></i> View Moments</span>
-              </div>
-            </div>
-
-            <!-- Landmark 5: Meena Bazaar (Royal Night Market) -->
-            <div class="mahal-hotspot-beacon" style="left: 19%; top: 74%;" data-landmark="bazaar" role="button" tabindex="0" aria-label="Explore Meena Bazaar">
-              <div class="beacon-pulse-ring"></div>
-              <div class="beacon-pulse-core">
-                <i class="fa-solid fa-store"></i>
-              </div>
-              <div class="beacon-tooltip">
-                <span class="tooltip-badge">FESTIVE NIGHTS</span>
-                <span class="tooltip-name">Meena Bazaar</span>
-                <span class="tooltip-action"><i class="fa-solid fa-camera"></i> View Moments</span>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- Compass Recenter Floating Button -->
-          <button class="mahal-recenter-btn" id="mahalRecenterBtn" aria-label="Reset 3D View" title="Reset 3D View">
-            <i class="fa-solid fa-compass"></i>
           </button>
         </div>
       </div>
@@ -511,69 +538,9 @@
         <p class="footer-credit">With love &amp; gratitude to our family and friends</p>
       </footer>
 
-      <!-- ROYAL JHAROKHA PHOTO POPUP MODAL -->
-      <div id="mahalModal" class="mahal-modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="mahalModalTitle">
-        <div class="mahal-modal-backdrop" id="mahalModalBackdrop"></div>
-        <div class="jharokha-modal-container">
-          
-          <!-- Close Button -->
-          <button class="jharokha-close-btn" id="mahalModalClose" aria-label="Close Story">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-
-          <!-- Prev & Next Navigation Buttons -->
-          <button class="jharokha-nav-arrow jharokha-prev-btn" id="mahalModalPrev" aria-label="Previous Landmark">
-            <i class="fa-solid fa-chevron-left"></i>
-          </button>
-          <button class="jharokha-nav-arrow jharokha-next-btn" id="mahalModalNext" aria-label="Next Landmark">
-            <i class="fa-solid fa-chevron-right"></i>
-          </button>
-
-          <div class="jharokha-card-frame">
-            <!-- Ornate Top Arch & Crown -->
-            <div class="jharokha-arch-header">
-              <div class="arch-filigree-left"></div>
-              <div class="arch-crown-emblem"><i class="fa-solid fa-crown"></i></div>
-              <div class="arch-filigree-right"></div>
-            </div>
-
-            <div class="jharokha-body-grid">
-              <!-- Photo Side -->
-              <div class="jharokha-photo-wrap">
-                <picture id="mahalModalPic">
-                  <source id="mahalModalSrcWebp" srcset="assets/couple3.webp" type="image/webp">
-                  <img id="mahalModalImg" src="assets/couple3.png" alt="Udit &amp; Gunjan Royal Wedding Memory" class="jharokha-photo">
-                </picture>
-                <div class="jharokha-photo-glow"></div>
-              </div>
-
-              <!-- Story Side -->
-              <div class="jharokha-details-pane">
-                <div class="jharokha-landmark-tag" id="mahalModalTag">
-                  <i class="fa-solid fa-location-dot"></i> <span id="mahalModalTagText">THE GRAND BALLROOM • SHAHI MAHAL</span>
-                </div>
-                <h3 class="jharokha-story-title" id="mahalModalTitle">Dancing Under the Stars</h3>
-                <p class="jharokha-story-desc" id="mahalModalDesc">Lost in the melody of our favorite song, dancing together in the illuminated grand ballroom of our dreams.</p>
-                
-                <div class="jharokha-divider">
-                  <span class="jharokha-div-line"></span>
-                  <span class="jharokha-div-gem">꧁ ✦ ꧂</span>
-                  <span class="jharokha-div-line"></span>
-                </div>
-
-                <div class="jharokha-meta-strip">
-                  <span class="jharokha-couple-label"><i class="fa-solid fa-heart"></i> UDIT &amp; GUNJAN</span>
-                  <span class="jharokha-date-label">DECEMBER 2026</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
   </main>
 
   <script src="https://www.youtube.com/iframe_api"></script>
-  <script src="app.js?v=56.0"></script>
+  <script src="app.js?v=64.0"></script>
 </body>
 </html>

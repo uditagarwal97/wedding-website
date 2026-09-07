@@ -373,25 +373,22 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 6. 3D INTERACTIVE ROYAL MAHAL & JHAROKHA MODAL ENGINE
+  // 6. 3D INTERACTIVE ROYAL MAHAL & ROYAL FOLIO DRAWER ENGINE
   // =========================================================================
+  const mahalTheater = document.getElementById('mahalTheater');
   const mahalViewport = document.getElementById('mahalViewport');
   const mahalStage = document.getElementById('mahalStage');
   const mahalRecenterBtn = document.getElementById('mahalRecenterBtn');
   const mahalNavPills = document.querySelectorAll('.mahal-nav-pill');
   const mahalBeacons = document.querySelectorAll('.mahal-hotspot-beacon');
 
-  // Modal elements
-  const mahalModal = document.getElementById('mahalModal');
-  const mahalModalBackdrop = document.getElementById('mahalModalBackdrop');
-  const mahalModalClose = document.getElementById('mahalModalClose');
-  const mahalModalPrev = document.getElementById('mahalModalPrev');
-  const mahalModalNext = document.getElementById('mahalModalNext');
-  const mahalModalImg = document.getElementById('mahalModalImg');
-  const mahalModalSrcWebp = document.getElementById('mahalModalSrcWebp');
-  const mahalModalTagText = document.getElementById('mahalModalTagText');
-  const mahalModalTitle = document.getElementById('mahalModalTitle');
-  const mahalModalDesc = document.getElementById('mahalModalDesc');
+  // Royal Folio Drawer elements
+  const royalFolioDrawer = document.getElementById('royalFolioDrawer');
+  const folioCloseBtn = document.getElementById('folioCloseBtn');
+  const folioPrevBtn = document.getElementById('folioPrevBtn');
+  const folioNextBtn = document.getElementById('folioNextBtn');
+  const folioImg = document.getElementById('folioImg');
+  const folioSrcWebp = document.getElementById('folioSrcWebp');
 
   // Landmark Memory Data
   const mahalLandmarks = {
@@ -402,7 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
       webp: "assets/couple3.webp",
       png: "assets/couple3.png",
       alt: "Udit & Gunjan Dancing Under the Stars",
-      zoomCoords: { x: 58, y: 38 }
+      zoomCoords: { x: 51, y: 56 }
     },
     garden: {
       tag: "SHAHI BAAG • ROYAL MUGHAL GARDENS",
@@ -411,7 +408,7 @@ document.addEventListener('DOMContentLoaded', () => {
       webp: "assets/couple1.webp",
       png: "assets/couple1.png",
       alt: "Udit & Gunjan in the Mughal Gardens",
-      zoomCoords: { x: 26, y: 26 }
+      zoomCoords: { x: 24, y: 32 }
     },
     lake: {
       tag: "SHAHI JHEEL • PALACE WATERS",
@@ -420,7 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
       webp: "assets/couple2.webp",
       png: "assets/couple2.png",
       alt: "Udit & Gunjan by the Lake",
-      zoomCoords: { x: 80, y: 80 }
+      zoomCoords: { x: 78, y: 78 }
     },
     temple: {
       tag: "DEVASTHAN • SACRED SHRINE",
@@ -429,7 +426,7 @@ document.addEventListener('DOMContentLoaded', () => {
       webp: "assets/wedding.webp",
       png: "assets/wedding.png",
       alt: "Sacred Wedding Blessings",
-      zoomCoords: { x: 88, y: 22 }
+      zoomCoords: { x: 84, y: 34 }
     },
     bazaar: {
       tag: "MEENA BAZAAR • FESTIVE NIGHTS",
@@ -438,7 +435,7 @@ document.addEventListener('DOMContentLoaded', () => {
       webp: "assets/sangeet.webp",
       png: "assets/sangeet.png",
       alt: "Festive Sangeet & Bazaar Revelry",
-      zoomCoords: { x: 19, y: 74 }
+      zoomCoords: { x: 23, y: 82 }
     }
   };
 
@@ -450,11 +447,11 @@ document.addEventListener('DOMContentLoaded', () => {
   let targetTiltX = 0, targetTiltY = 0;
   let panX = 0, panY = 0;
   let targetPanX = 0, targetPanY = 0;
-  let zoomLevel = 1;
-  let targetZoom = 1;
+  let zoomLevel = 1.04;
+  let targetZoom = 1.04;
   let isZoomedIn = false;
 
-  // 3D Tilt Render Loop
+  // 3D Tilt & Smooth Zoom Render Loop
   function update3DTransform() {
     currentTiltX += (targetTiltX - currentTiltX) * 0.12;
     currentTiltY += (targetTiltY - currentTiltY) * 0.12;
@@ -463,16 +460,35 @@ document.addEventListener('DOMContentLoaded', () => {
     zoomLevel += (targetZoom - zoomLevel) * 0.12;
 
     if (mahalStage) {
-      mahalStage.style.transform = `scale(${zoomLevel}) translate(${panX}px, ${panY}px) rotateX(${currentTiltX}deg) rotateY(${currentTiltY}deg)`;
+      mahalStage.style.transform = `translate(${panX}px, ${panY}px) scale(${zoomLevel}) rotateX(${currentTiltX}deg) rotateY(${currentTiltY}deg)`;
     }
 
     requestAnimationFrame(update3DTransform);
   }
   requestAnimationFrame(update3DTransform);
 
-  // Mouse Parallax for Desktop
+  let isPointerDown = false;
+  let pointerStartX = 0, pointerStartY = 0;
+  let hasDragged = false;
+  let dragOriginPanX = 0, dragOriginPanY = 0;
+
+  // Mouse & Touch Interactions on the Palace
   if (mahalViewport) {
     mahalViewport.addEventListener('mousemove', (e) => {
+      if (isPointerDown && isZoomedIn) {
+        const dx = e.clientX - pointerStartX;
+        const dy = e.clientY - pointerStartY;
+        if (Math.hypot(dx, dy) > 5) {
+          hasDragged = true;
+          const rect = mahalViewport.getBoundingClientRect();
+          const maxPanX = Math.max(0, ((zoomLevel - 1) * rect.width) / 2);
+          const maxPanY = Math.max(0, ((zoomLevel - 1) * rect.height) / 2);
+          targetPanX = Math.max(-maxPanX, Math.min(maxPanX, dragOriginPanX + dx));
+          targetPanY = Math.max(-maxPanY, Math.min(maxPanY, dragOriginPanY + dy));
+        }
+        return;
+      }
+
       if (isZoomedIn) return;
       const rect = mahalViewport.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
@@ -482,10 +498,59 @@ document.addEventListener('DOMContentLoaded', () => {
       targetTiltY = x * 18;
     });
 
+    mahalViewport.addEventListener('mousedown', (e) => {
+      if (e.target.closest('#mahalRecenterBtn') || e.target.closest('.mahal-hotspot-beacon')) return;
+      isPointerDown = true;
+      hasDragged = false;
+      pointerStartX = e.clientX;
+      pointerStartY = e.clientY;
+      dragOriginPanX = panX;
+      dragOriginPanY = panY;
+    });
+
+    window.addEventListener('mouseup', () => {
+      isPointerDown = false;
+    });
+
     mahalViewport.addEventListener('mouseleave', () => {
       if (isZoomedIn) return;
       targetTiltX = 0;
       targetTiltY = 0;
+    });
+
+    // Direct Click on the Palace to Zoom In
+    mahalViewport.addEventListener('click', (e) => {
+      if (hasDragged) {
+        hasDragged = false;
+        return;
+      }
+      if (e.target.closest('#mahalRecenterBtn') || e.target.closest('.mahal-hotspot-beacon')) {
+        return;
+      }
+
+      const rect = mahalViewport.getBoundingClientRect();
+      const localX = (e.clientX - rect.left - rect.width / 2 - panX) / zoomLevel + rect.width / 2;
+      const localY = (e.clientY - rect.top - rect.height / 2 - panY) / zoomLevel + rect.height / 2;
+      const clickX = (localX / rect.width) * 100;
+      const clickY = (localY / rect.height) * 100;
+
+      let nearestKey = null;
+      let minDistance = Infinity;
+
+      for (const [key, item] of Object.entries(mahalLandmarks)) {
+        if (!item.zoomCoords) continue;
+        const dx = clickX - item.zoomCoords.x;
+        const dy = clickY - item.zoomCoords.y;
+        const dist = Math.hypot(dx, dy);
+        if (dist < minDistance) {
+          minDistance = dist;
+          nearestKey = key;
+        }
+      }
+
+      if (nearestKey) {
+        selectLandmark(nearestKey);
+      }
     });
 
     // Touch Drag & Pan for Mobile
@@ -501,11 +566,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!isDragging || e.touches.length !== 1) return;
       const x = e.touches[0].clientX;
       const y = e.touches[0].clientY;
-      targetPanX = (x - startX) * 0.4;
-      targetPanY = (y - startY) * 0.4;
-      const maxPan = 70 * zoomLevel;
-      targetPanX = Math.max(-maxPan, Math.min(maxPan, targetPanX));
-      targetPanY = Math.max(-maxPan, Math.min(maxPan, targetPanY));
+      const rect = mahalViewport.getBoundingClientRect();
+      const maxPanX = Math.max(0, ((zoomLevel - 1) * rect.width) / 2);
+      const maxPanY = Math.max(0, ((zoomLevel - 1) * rect.height) / 2);
+      targetPanX = Math.max(-maxPanX, Math.min(maxPanX, (x - startX) * 0.7));
+      targetPanY = Math.max(-maxPanY, Math.min(maxPanY, (y - startY) * 0.7));
     }, { passive: true });
 
     mahalViewport.addEventListener('touchend', () => {
@@ -517,6 +582,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (mahalRecenterBtn) {
     mahalRecenterBtn.addEventListener('click', () => {
       resetMahalCamera();
+      if (mahalTheater && mahalTheater.classList.contains('drawer-open')) {
+        closeFolioDrawer();
+      }
     });
   }
 
@@ -525,12 +593,13 @@ document.addEventListener('DOMContentLoaded', () => {
     targetTiltY = 0;
     targetPanX = 0;
     targetPanY = 0;
-    targetZoom = 1;
+    targetZoom = 1.04;
     isZoomedIn = false;
+    if (mahalViewport) mahalViewport.classList.remove('is-zoomed');
   }
 
-  // Landmark Selection & Modal Display
-  function selectLandmark(key, openModalFlag = true) {
+  // Landmark Selection & Folio Drawer Display
+  function selectLandmark(key) {
     const data = mahalLandmarks[key];
     if (!data) return;
 
@@ -546,55 +615,74 @@ document.addEventListener('DOMContentLoaded', () => {
       beacon.classList.toggle('active-beacon', beacon.dataset.landmark === key);
     });
 
-    // Smooth Camera Focus on Landmark
+    // Smooth Dramatic Camera Focus & Zoom on Landmark with zero margin space
     if (data.zoomCoords) {
       isZoomedIn = true;
-      targetZoom = 1.12;
-      targetPanX = (50 - data.zoomCoords.x) * 3;
-      targetPanY = (50 - data.zoomCoords.y) * 2;
+      targetZoom = 2.05;
+      if (mahalViewport) mahalViewport.classList.add('is-zoomed');
+
+      const rect = mahalViewport ? mahalViewport.getBoundingClientRect() : { width: 800, height: 450 };
+      const s = targetZoom;
+      const dx = (0.5 - data.zoomCoords.x / 100) * rect.width * s;
+      const dy = (0.5 - data.zoomCoords.y / 100) * rect.height * s;
+
+      // 7% safety bleed margin so perspective 3D rotation never pulls image edges into view
+      const bleedX = 0.07 * rect.width;
+      const bleedY = 0.07 * rect.height;
+      const maxPanX = Math.max(0, ((s - 1) * rect.width) / 2 - bleedX);
+      const maxPanY = Math.max(0, ((s - 1) * rect.height) / 2 - bleedY);
+
+      targetPanX = Math.max(-maxPanX, Math.min(maxPanX, dx));
+      targetPanY = Math.max(-maxPanY, Math.min(maxPanY, dy));
       targetTiltX = (data.zoomCoords.y - 50) * 0.12;
-      targetTiltY = (50 - data.zoomCoords.x) * 0.15;
+      targetTiltY = (50 - data.zoomCoords.x) * 0.14;
     }
 
-    // Populate Modal Content
-    if (mahalModalTagText) mahalModalTagText.textContent = data.tag;
-    if (mahalModalTitle) mahalModalTitle.textContent = data.title;
-    if (mahalModalDesc) mahalModalDesc.textContent = data.desc;
-    if (mahalModalSrcWebp) mahalModalSrcWebp.srcset = data.webp;
-    if (mahalModalImg) {
-      mahalModalImg.style.opacity = '0';
-      mahalModalImg.src = data.png;
-      mahalModalImg.alt = data.alt;
+    // Update Photo
+    if (folioSrcWebp) folioSrcWebp.srcset = data.webp;
+    if (folioImg) {
+      folioImg.style.opacity = '0';
+      folioImg.src = data.png;
+      folioImg.alt = data.alt;
       setTimeout(() => {
-        mahalModalImg.style.opacity = '1';
+        folioImg.style.opacity = '1';
       }, 50);
     }
 
-    if (openModalFlag) {
-      openMahalModal();
+    openFolioDrawer();
+  }
+
+  function openFolioDrawer() {
+    if (!mahalTheater) return;
+    const isMobile = window.innerWidth <= 900;
+    const wasOpen = mahalTheater.classList.contains('drawer-open');
+    mahalTheater.classList.add('drawer-open');
+
+    if (isMobile && !wasOpen) {
+      setTimeout(() => {
+        const folioEl = document.getElementById('royalFolioDrawer');
+        if (folioEl) {
+          const yOffset = -75;
+          const y = folioEl.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+        }
+      }, 100);
     }
   }
 
-  function openMahalModal() {
-    if (!mahalModal) return;
-    mahalModal.classList.add('active-modal');
-    mahalModal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeMahalModal() {
-    if (!mahalModal) return;
-    mahalModal.classList.remove('active-modal');
-    mahalModal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
+  function closeFolioDrawer() {
+    if (!mahalTheater) return;
+    mahalTheater.classList.remove('drawer-open');
     resetMahalCamera();
+    mahalBeacons.forEach(beacon => beacon.classList.remove('active-beacon'));
+    mahalNavPills.forEach(pill => pill.classList.remove('active-nav'));
   }
 
   // Event Listeners for Nav Pills
   mahalNavPills.forEach(pill => {
     pill.addEventListener('click', () => {
       const targetKey = pill.dataset.target;
-      selectLandmark(targetKey, true);
+      selectLandmark(targetKey);
     });
   });
 
@@ -603,47 +691,46 @@ document.addEventListener('DOMContentLoaded', () => {
     beacon.addEventListener('click', (e) => {
       e.stopPropagation();
       const landmarkKey = beacon.dataset.landmark;
-      selectLandmark(landmarkKey, true);
+      selectLandmark(landmarkKey);
     });
 
     beacon.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         const landmarkKey = beacon.dataset.landmark;
-        selectLandmark(landmarkKey, true);
+        selectLandmark(landmarkKey);
       }
     });
   });
 
-  // Modal Controls
-  if (mahalModalClose) mahalModalClose.addEventListener('click', closeMahalModal);
-  if (mahalModalBackdrop) mahalModalBackdrop.addEventListener('click', closeMahalModal);
+  // Drawer Controls
+  if (folioCloseBtn) folioCloseBtn.addEventListener('click', closeFolioDrawer);
 
-  if (mahalModalPrev) {
-    mahalModalPrev.addEventListener('click', () => {
+  if (folioPrevBtn) {
+    folioPrevBtn.addEventListener('click', () => {
       const curIndex = landmarkOrder.indexOf(currentLandmarkKey);
       const prevIndex = (curIndex - 1 + landmarkOrder.length) % landmarkOrder.length;
-      selectLandmark(landmarkOrder[prevIndex], false);
+      selectLandmark(landmarkOrder[prevIndex]);
     });
   }
 
-  if (mahalModalNext) {
-    mahalModalNext.addEventListener('click', () => {
+  if (folioNextBtn) {
+    folioNextBtn.addEventListener('click', () => {
       const curIndex = landmarkOrder.indexOf(currentLandmarkKey);
       const nextIndex = (curIndex + 1) % landmarkOrder.length;
-      selectLandmark(landmarkOrder[nextIndex], false);
+      selectLandmark(landmarkOrder[nextIndex]);
     });
   }
 
   // Keyboard navigation
   window.addEventListener('keydown', (e) => {
-    if (!mahalModal || !mahalModal.classList.contains('active-modal')) return;
+    if (!mahalTheater || !mahalTheater.classList.contains('drawer-open')) return;
     if (e.key === 'Escape') {
-      closeMahalModal();
+      closeFolioDrawer();
     } else if (e.key === 'ArrowLeft') {
-      if (mahalModalPrev) mahalModalPrev.click();
+      if (folioPrevBtn) folioPrevBtn.click();
     } else if (e.key === 'ArrowRight') {
-      if (mahalModalNext) mahalModalNext.click();
+      if (folioNextBtn) folioNextBtn.click();
     }
   });
 
