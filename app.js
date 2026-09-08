@@ -1396,7 +1396,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollObserver();
 
   // =========================================================================
-  // 9. THE ROYAL DESTINATION - TRANSIT GUIDE & VENUE MAP CONCIERGE
+  // 9. VENUE - TRANSIT GUIDE & VENUE MAP CONCIERGE
   // =========================================================================
   const transitRoutes = {
     delhi: {

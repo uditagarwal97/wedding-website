@@ -2795,7 +2795,7 @@ body {
 }
 
 /* ==========================================================================
-   5. THE ROYAL DESTINATION & INTERACTIVE MAP PAVILION
+   5. VENUE & INTERACTIVE MAP PAVILION
    ========================================================================== */
 .venue-section {
   position: relative;
@@ -2808,6 +2808,32 @@ body {
   background-attachment: fixed;
   overflow-x: clip;
   color: var(--color-parchment);
+}
+
+/* Venue Section Header Typography (Balanced Venue Title & Venue Name Hierarchy) */
+.venue-section .section-header .venue-title,
+.venue-section .sub-subtitle {
+  font-family: var(--font-sans);
+  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+  font-weight: 700;
+  letter-spacing: 0.35rem;
+  color: var(--color-gold-bright);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.65rem;
+  text-shadow: 0 0 12px rgba(245, 215, 127, 0.3);
+}
+
+.venue-section .section-header .venue-name,
+.venue-section .section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.85rem, 3.2vw, 2.5rem);
+  font-weight: 600;
+  color: var(--color-parchment);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.6rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+  line-height: 1.25;
 }
 
 .venue-container {
@@ -2883,10 +2909,10 @@ body {
 
 .concierge-venue-name {
   font-family: 'Cinzel Decorative', 'Cinzel', serif;
-  font-size: clamp(1.8rem, 2.6vw, 2.3rem);
+  font-size: clamp(1.55rem, 2.3vw, 2.05rem);
   color: var(--color-gold-bright);
   margin: 0;
-  line-height: 1.2;
+  line-height: 1.25;
   letter-spacing: 0.03em;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
 }
