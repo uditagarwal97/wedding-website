@@ -89,10 +89,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const announcement = document.getElementById('announcement');
       if (announcement) announcement.scrollIntoView({ behavior: 'smooth' });
 
-      // Automatically start slow vertical scroll when user enters main page
+      // Automatically start vertical scroll when user enters main page
       setTimeout(() => {
         startAutoVerticalScroll();
-      }, 1400);
+      }, 200);
     }, 1500);
   }
 
@@ -132,8 +132,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let autoScrollLastTimestamp = null;
   let autoScrollElapsed = 0;
   let autoScrollFadeTimeout = null;
-  const AUTO_SCROLL_SPEED = 90; // pixels per second (~90px/s for faster, fluid scrolling)
-  const AUTO_SCROLL_RAMP = 900; // 0.9s gentle ease-in ramp
+  const AUTO_SCROLL_SPEED = 200; // 200 pixels/sec for brisk, lively auto-scrolling
+  const AUTO_SCROLL_RAMP = 200; // 200ms quick ease-in ramp
 
   const autoScrollPill = document.getElementById('autoScrollPill');
   const autoScrollToggleBtn = document.getElementById('autoScrollToggleBtn');
