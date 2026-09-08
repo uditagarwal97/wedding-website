@@ -2406,6 +2406,14 @@ body {
   transform: scale(1.03);
 }
 
+.folio-photo-surface.contain-fit,
+.folio-photo-wrapper:hover .folio-photo-surface.contain-fit {
+  background-size: contain !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  transform: none !important;
+}
+
 /* Transparent Protective Click Shield */
 .folio-photo-shield {
   position: absolute;

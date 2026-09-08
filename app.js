@@ -595,7 +595,8 @@ document.addEventListener('DOMContentLoaded', () => {
           src: "assets/ballroom_walk.jpg",
           alt: "A Royal Promenade Through the Ballroom",
           title: "A Royal Promenade",
-          objectPosition: "center 35%"
+          objectPosition: "center center",
+          backgroundSize: "contain"
         },
         {
           src: "assets/ballroom_kiss.jpg",
@@ -1010,6 +1011,13 @@ document.addEventListener('DOMContentLoaded', () => {
             folioPhotoSurface.style.backgroundImage = `url('${currentPhoto.src}')`;
           }
           folioPhotoSurface.style.backgroundPosition = currentPhoto.objectPosition || 'center center';
+          if (currentPhoto.backgroundSize === 'contain') {
+            folioPhotoSurface.classList.add('contain-fit');
+            folioPhotoSurface.style.backgroundSize = 'contain';
+          } else {
+            folioPhotoSurface.classList.remove('contain-fit');
+            folioPhotoSurface.style.backgroundSize = currentPhoto.backgroundSize || 'cover';
+          }
           folioPhotoSurface.setAttribute('aria-label', currentPhoto.alt || 'Royal Memory Photo');
           setTimeout(() => { folioPhotoSurface.style.opacity = '1'; }, 40);
         };
@@ -1048,7 +1056,9 @@ document.addEventListener('DOMContentLoaded', () => {
           } else {
             folioPhotoSurface.style.backgroundImage = `url('${src}')`;
           }
+          folioPhotoSurface.classList.remove('contain-fit');
           folioPhotoSurface.style.backgroundPosition = 'center center';
+          folioPhotoSurface.style.backgroundSize = 'cover';
           folioPhotoSurface.setAttribute('aria-label', data.alt || 'Royal Palace Landmark');
           setTimeout(() => { folioPhotoSurface.style.opacity = '1'; }, 40);
         };

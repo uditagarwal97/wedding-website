@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Wedding Invitation | Udit &amp; Gunjan</title>
-  <meta name="description" content="Join us in celebrating the wedding of Udit Agarwal and Gunjan Garg. Save the date, view event schedules, and explore our beautiful journey.">
-  
+  <meta name="description"
+    content="Join us in celebrating the wedding of Udit Agarwal and Gunjan Garg. Save the date, view event schedules, and explore our beautiful journey.">
+
   <!-- Anti-Proxy & Anti-Snooping Security Directives (Prevents intermediate Wi-Fi/carrier proxies from caching or transcoding media) -->
   <meta http-equiv="Cache-Control" content="private, no-transform">
   <meta http-equiv="Pragma" content="no-cache">
@@ -13,17 +15,21 @@
   <!-- Google Fonts: Cinzel, Cinzel Decorative, Playfair Display, Montserrat & Cormorant Garamond -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Cinzel+Decorative:wght@400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Great+Vibes&family=Monsieur+La+Doulaise&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Cinzel+Decorative:wght@400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Great+Vibes&family=Monsieur+La+Doulaise&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+    rel="stylesheet">
+
   <!-- FontAwesome Icons for UI & Map pin icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <link rel="stylesheet" href="styles.css?v=93.0">
+  <link rel="stylesheet" href="styles.css?v=94.0">
 </head>
+
 <body>
 
   <!-- Hidden YouTube Audio Player Container for Jashn-E-Bahaaraa -->
-  <div id="ytAudioContainer" style="position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; top: -9999px; left: -9999px;">
+  <div id="ytAudioContainer"
+    style="position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; top: -9999px; left: -9999px;">
     <div id="ytPlayer"></div>
   </div>
 
@@ -34,7 +40,8 @@
   <svg width="0" height="0" style="position: absolute; pointer-events: none;">
     <defs>
       <clipPath id="heartClip" clipPathUnits="objectBoundingBox">
-        <path d="M 0.5, 0.95 C 0.05, 0.62 0, 0.32 0.18, 0.11 C 0.34, -0.04 0.47, 0.08 0.5, 0.2 C 0.53, 0.08 0.66, -0.04 0.82, 0.11 C 1, 0.32 0.95, 0.62 0.5, 0.95 Z" />
+        <path
+          d="M 0.5, 0.95 C 0.05, 0.62 0, 0.32 0.18, 0.11 C 0.34, -0.04 0.47, 0.08 0.5, 0.2 C 0.53, 0.08 0.66, -0.04 0.82, 0.11 C 1, 0.32 0.95, 0.62 0.5, 0.95 Z" />
       </clipPath>
     </defs>
   </svg>
@@ -62,10 +69,12 @@
 
       <div class="blessings-container">
         <!-- Interactive Realistic Marigold Flower Button with Circular Royal Seal Prompt -->
-        <button id="marigoldBtn" class="marigold-btn" aria-label="Tap to share blessings and open wedding invitation" tabindex="0">
+        <button id="marigoldBtn" class="marigold-btn" aria-label="Tap to share blessings and open wedding invitation"
+          tabindex="0">
           <svg viewBox="0 0 200 200" class="marigold-text-ring" aria-hidden="true">
             <path id="textPathRing" d="M 100, 100 m -78, 0 a 78,78 0 1,1 156,0 a 78,78 0 1,1 -156,0" fill="none" />
-            <text font-family="'Cormorant Garamond', serif" font-size="11" font-weight="600" letter-spacing="2.2" fill="#F5D77F">
+            <text font-family="'Cormorant Garamond', serif" font-size="11" font-weight="600" letter-spacing="2.2"
+              fill="#F5D77F">
               <textPath href="#textPathRing" startOffset="0%">
                 ✦ TAP FLOWER TO BLESS ✦ OPEN INVITATION ✦
               </textPath>
@@ -80,12 +89,14 @@
         </button>
 
         <!-- Accessible Visual Prompt Banner & Auto-Trigger Countdown -->
-        <div class="landing-prompt-banner" id="landingPrompt" role="button" tabindex="0" aria-label="Tap to open invitation immediately">
+        <div class="landing-prompt-banner" id="landingPrompt" role="button" tabindex="0"
+          aria-label="Tap to open invitation immediately">
           <div class="prompt-icon-bounce" aria-hidden="true">
             <i class="fa-solid fa-hand-pointer"></i>
           </div>
           <span class="prompt-main-text">Tap flower to open</span>
-          <span class="prompt-auto-badge" id="autoTimerBadge">or opening in <strong id="autoTimerCount">5</strong>s</span>
+          <span class="prompt-auto-badge" id="autoTimerBadge">or opening in <strong
+              id="autoTimerCount">5</strong>s</span>
         </div>
       </div>
     </div>
@@ -118,7 +129,8 @@
     <!-- 2. FORMAL ANNOUNCEMENT / HERO HERO ARCHITECTURE SECTION -->
     <section id="announcement" class="announcement-section">
       <!-- Background Video -->
-      <video id="announcementVideo" autoplay muted loop playsinline preload="auto" poster="assets/wallpaper_bg.webp" class="announcement-video-bg">
+      <video id="announcementVideo" autoplay muted loop playsinline preload="auto" poster="assets/wallpaper_bg.webp"
+        class="announcement-video-bg">
         <source src="assets/Cinematic_K_video_fps_gol.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -128,7 +140,8 @@
         <!-- Card Content -->
         <div class="mughal-card-content">
           <p class="card-opening-blessing">
-            With the blessings of the Almighty and our families, we cordially invite you to grace the wedding ceremony of
+            With the blessings of the Almighty and our families, we cordially invite you to grace the wedding ceremony
+            of
           </p>
 
           <div class="card-couple-section">
@@ -157,10 +170,10 @@
       </div>
 
       <div class="save-the-date-split-layout reveal-on-scroll">
-        
+
         <!-- LEFT PANEL (Desktop) / TOP PANEL (Mobile): Royal Velvet Itinerary Card -->
         <div class="itinerary-panel-card" id="itineraryPanel">
-          
+
           <div class="panel-ornament-header">
             <h3 class="panel-title">WEDDING FESTIVITIES</h3>
             <p class="itin-header-sub">Two Days of Celebrations • Palasa Hotel &amp; Resorts</p>
@@ -186,7 +199,7 @@
 
           <!-- Single Continuous Two-Day Itinerary Container -->
           <div class="itin-card-scroll-area" id="itinScrollArea">
-            
+
             <!-- DAY 1: THURSDAY, DEC 10 -->
             <div class="itin-day-block day-highlighted" id="panelDay10">
               <div class="itin-day-title-strip">
@@ -288,15 +301,17 @@
               <span class="day-cell">7</span>
               <span class="day-cell">8</span>
               <span class="day-cell">9</span>
-              
+
               <!-- Dec 10: Swagat, Sagai & Sangeet -->
-              <button class="day-cell wedding-date-btn date-sangeet active-selected" data-date="10" aria-label="Thursday, December 10, 2026 - Welcome, Sagai and Sangeet">
+              <button class="day-cell wedding-date-btn date-sangeet active-selected" data-date="10"
+                aria-label="Thursday, December 10, 2026 - Welcome, Sagai and Sangeet">
                 <span class="day-number">10</span>
                 <span class="date-event-tag">SAGAI • SANGEET</span>
               </button>
 
               <!-- Dec 11: Haldi (Morning) and Wedding Reception (Night) -->
-              <button class="day-cell wedding-date-btn date-wedding" data-date="11" aria-label="Friday, December 11, 2026 - Haldi and Wedding Reception">
+              <button class="day-cell wedding-date-btn date-wedding" data-date="11"
+                aria-label="Friday, December 11, 2026 - Haldi and Wedding Reception">
                 <span class="wedding-crown-icon"><i class="fa-solid fa-crown"></i></span>
                 <span class="day-number">11</span>
                 <span class="date-pulse-glow"></span>
@@ -336,12 +351,15 @@
 
           <!-- 1-Click Calendar Sync Action Suite (Moved to Royal Calendar Panel) -->
           <div class="calendar-sync-actions">
-            <span class="sync-actions-caption"><i class="fa-solid fa-bell"></i> Save celebrations to your calendar:</span>
+            <span class="sync-actions-caption"><i class="fa-solid fa-bell"></i> Save celebrations to your
+              calendar:</span>
             <div class="calendar-buttons-grid">
-              <a href="javascript:void(0)" id="btnGoogleCal" target="_blank" rel="noopener noreferrer" class="cal-action-btn google-cal-btn" aria-label="Add to Google Calendar">
+              <a href="javascript:void(0)" id="btnGoogleCal" target="_blank" rel="noopener noreferrer"
+                class="cal-action-btn google-cal-btn" aria-label="Add to Google Calendar">
                 <i class="fa-brands fa-google"></i> Google Calendar
               </a>
-              <button id="btnAppleCal" class="cal-action-btn apple-cal-btn" aria-label="Download Apple or Outlook iCal Event">
+              <button id="btnAppleCal" class="cal-action-btn apple-cal-btn"
+                aria-label="Download Apple or Outlook iCal Event">
                 <i class="fa-brands fa-apple"></i> Apple / Outlook (.ics)
               </button>
             </div>
@@ -357,14 +375,16 @@
         <div class="section-header light">
           <span class="sub-subtitle">AN INTERACTIVE ROYAL KINGDOM</span>
           <h2 class="section-title">A GLIMPSE OF US</h2>
-          <p class="mahal-instruction-hint"><i class="fa-solid fa-compass"></i> Explore our palace of memories. Tap any landmark to unveil our journey</p>
+          <p class="mahal-instruction-hint"><i class="fa-solid fa-compass"></i> Explore our palace of memories. Tap any
+            landmark to unveil our journey</p>
         </div>
 
         <!-- Guided Showcase Status & Control Bar -->
         <div class="mahal-tour-bar" id="mahalTourBar">
           <div class="tour-indicator-left">
             <span class="tour-pulse-gem"><i class="fa-solid fa-compass"></i></span>
-            <span class="tour-status-text" id="tourStatusText"><strong>Guided Palace Tour:</strong> Discovering landmarks &amp; moments</span>
+            <span class="tour-status-text" id="tourStatusText"><strong>Guided Palace Tour:</strong> Discovering
+              landmarks &amp; moments</span>
           </div>
           <button class="tour-control-btn" id="tourControlBtn" aria-label="Pause Auto Tour">
             <i class="fa-solid fa-pause" id="tourControlIcon"></i>
@@ -374,22 +394,24 @@
 
         <!-- 3D Diorama & Integrated Folio Theater Stage -->
         <div class="mahal-theater-stage" id="mahalTheater">
-          
+
           <!-- Left Wing: 3D Palace Diorama Viewport -->
           <div class="mahal-viewport-container" id="mahalViewport">
             <div class="mahal-tilt-stage" id="mahalStage">
-              
+
               <!-- Diorama Artwork Canvas -->
               <div class="mahal-art-canvas">
                 <picture id="mahalArtPic">
                   <source srcset="assets/royal_mahal_estate.png?v=81.0" type="image/png">
-                  <img src="assets/royal_mahal_estate.jpg?v=81.0" alt="3D Royal Indian Mughal Mahal and Kingdom" class="mahal-bg-img" id="mahalBgImg" draggable="false">
+                  <img src="assets/royal_mahal_estate.jpg?v=81.0" alt="3D Royal Indian Mughal Mahal and Kingdom"
+                    class="mahal-bg-img" id="mahalBgImg" draggable="false">
                 </picture>
                 <div class="mahal-ambient-light"></div>
               </div>
 
               <!-- Landmark 1: The Grand Ballroom & Palace Center -->
-              <div class="mahal-hotspot-beacon" style="left: 51%; top: 56%;" data-landmark="ballroom" role="button" tabindex="0" aria-label="Explore Grand Ballroom">
+              <div class="mahal-hotspot-beacon" style="left: 51%; top: 56%;" data-landmark="ballroom" role="button"
+                tabindex="0" aria-label="Explore Grand Ballroom">
                 <div class="beacon-pulse-ring"></div>
                 <div class="beacon-pulse-core">
                   <i class="fa-solid fa-crown"></i>
@@ -400,7 +422,8 @@
               </div>
 
               <!-- Landmark 2: Shahi Baag (Mughal Gardens) -->
-              <div class="mahal-hotspot-beacon" style="left: 24%; top: 32%;" data-landmark="garden" role="button" tabindex="0" aria-label="Explore Shahi Baag">
+              <div class="mahal-hotspot-beacon" style="left: 24%; top: 32%;" data-landmark="garden" role="button"
+                tabindex="0" aria-label="Explore Shahi Baag">
                 <div class="beacon-pulse-ring"></div>
                 <div class="beacon-pulse-core">
                   <i class="fa-solid fa-spa"></i>
@@ -411,7 +434,8 @@
               </div>
 
               <!-- Landmark 3: Shahi Jheel (The Lake & Royal Boat) -->
-              <div class="mahal-hotspot-beacon" style="left: 78%; top: 78%;" data-landmark="lake" role="button" tabindex="0" aria-label="Explore Shahi Jheel">
+              <div class="mahal-hotspot-beacon" style="left: 78%; top: 78%;" data-landmark="lake" role="button"
+                tabindex="0" aria-label="Explore Shahi Jheel">
                 <div class="beacon-pulse-ring"></div>
                 <div class="beacon-pulse-core">
                   <i class="fa-solid fa-water"></i>
@@ -422,7 +446,8 @@
               </div>
 
               <!-- Landmark 4: Coconut Grove -->
-              <div class="mahal-hotspot-beacon" style="left: 45%; top: 15%;" data-landmark="palms" role="button" tabindex="0" aria-label="Explore Coconut Grove">
+              <div class="mahal-hotspot-beacon" style="left: 45%; top: 15%;" data-landmark="palms" role="button"
+                tabindex="0" aria-label="Explore Coconut Grove">
                 <div class="beacon-pulse-ring"></div>
                 <div class="beacon-pulse-core">
                   <i class="fa-solid fa-tree"></i>
@@ -433,7 +458,8 @@
               </div>
 
               <!-- Landmark 5: Royal Beach Shore -->
-              <div class="mahal-hotspot-beacon" style="left: 72%; top: 10%;" data-landmark="beach" role="button" tabindex="0" aria-label="Explore Royal Beach">
+              <div class="mahal-hotspot-beacon" style="left: 72%; top: 10%;" data-landmark="beach" role="button"
+                tabindex="0" aria-label="Explore Royal Beach">
                 <div class="beacon-pulse-ring"></div>
                 <div class="beacon-pulse-core">
                   <i class="fa-solid fa-umbrella-beach"></i>
@@ -444,7 +470,8 @@
               </div>
 
               <!-- Landmark 6: Meena Bazaar (Royal Night Market) -->
-              <div class="mahal-hotspot-beacon" style="left: 23%; top: 82%;" data-landmark="bazaar" role="button" tabindex="0" aria-label="Explore Meena Bazaar">
+              <div class="mahal-hotspot-beacon" style="left: 23%; top: 82%;" data-landmark="bazaar" role="button"
+                tabindex="0" aria-label="Explore Meena Bazaar">
                 <div class="beacon-pulse-ring"></div>
                 <div class="beacon-pulse-core">
                   <i class="fa-solid fa-store"></i>
@@ -465,10 +492,12 @@
           <!-- Right Wing: Integrated Royal Folio Drawer (Pure Photo Frame) -->
           <div class="royal-folio-drawer" id="royalFolioDrawer" aria-label="Royal Memory Photo">
             <div class="folio-drawer-inner">
-              
+
               <!-- Royal Picture Frame with Close Button and Nav Controls -->
               <div class="folio-photo-wrapper">
-                <div id="folioPhotoSurface" class="folio-photo-surface" role="img" aria-label="Udit &amp; Gunjan Dancing Under the Stars" style="background-image: url('assets/ballroom_dance.jpg'); background-position: center center;"></div>
+                <div id="folioPhotoSurface" class="folio-photo-surface" role="img"
+                  aria-label="Udit &amp; Gunjan Dancing Under the Stars"
+                  style="background-image: url('assets/ballroom_dance.jpg'); background-position: center center;"></div>
                 <div class="folio-photo-shield" aria-hidden="true"></div>
                 <div class="folio-photo-glow"></div>
 
@@ -537,21 +566,15 @@
           <span class="divider-gem">꧁ ✦ ꧂</span>
           <span class="divider-line"></span>
         </div>
-        <p class="section-instruction">A Palatial Sanctuary in Muzaffarnagar</p>
+        <p class="section-instruction"><br>A Palatial Sanctuary in Muzaffarnagar</p>
       </div>
 
       <div class="venue-container reveal-on-scroll">
-        
+
         <!-- LEFT PANEL: Imperial Hospitality & Transit Concierge -->
         <div class="venue-concierge-card">
-          
-          <div class="concierge-badge-row">
-            <span class="concierge-star-badge"><i class="fa-solid fa-crown"></i> 5-STAR LUXURY RESORT &amp; BANQUETS</span>
-            <span class="concierge-city-badge"><i class="fa-solid fa-location-dot"></i> Muzaffarnagar, UP</span>
-          </div>
 
           <h3 class="concierge-venue-name">Palasa Hotel &amp; Resorts</h3>
-          <p class="concierge-tagline">Where timeless Mughal grandeur meets warm Indian hospitality, set amid manicured imperial lawns and grand banquet halls.</p>
 
           <!-- Quick Address Box with One-Click Copy -->
           <div class="venue-address-box">
@@ -560,9 +583,11 @@
             </div>
             <div class="address-text-wrap">
               <span class="address-label">Official Venue Address</span>
-              <p class="address-full" id="venueAddressText">Bhopa Road, Near Vishwakarma Chowk, Muzaffarnagar, Uttar Pradesh 251001, India</p>
+              <p class="address-full" id="venueAddressText">Bhopa Road, Near Vishwakarma Chowk, Muzaffarnagar, Uttar
+                Pradesh 251001, India</p>
             </div>
-            <button class="address-copy-btn" id="copyAddressBtn" title="Copy Address to Clipboard" aria-label="Copy Address">
+            <button class="address-copy-btn" id="copyAddressBtn" title="Copy Address to Clipboard"
+              aria-label="Copy Address">
               <i class="fa-solid fa-copy"></i>
               <span class="copy-btn-text">Copy</span>
             </button>
@@ -598,24 +623,29 @@
               </div>
               <div class="transit-detail-stat">
                 <span class="transit-stat-label">Recommended Route:</span>
-                <span class="transit-stat-val" id="transitRouteVal">Delhi-Meerut Expressway (NE 3) &rarr; NH 58 Direct 4-Lane Highway</span>
+                <span class="transit-stat-val" id="transitRouteVal">Delhi-Meerut Expressway (NE 3) &rarr; NH 58 Direct
+                  4-Lane Highway</span>
               </div>
-              <p class="transit-detail-note" id="transitNoteVal">Smooth signal-free expressway until Meerut bypass, then straight NH 58 toward Bhopa Road. High-speed, seamless transit.</p>
+              <p class="transit-detail-note" id="transitNoteVal">Smooth signal-free expressway until Meerut bypass, then
+                straight NH 58 toward Bhopa Road. High-speed, seamless transit.</p>
             </div>
           </div>
 
 
           <!-- Action Buttons -->
           <div class="venue-cta-row">
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Palasa+Hotel+%26+Resort,+Bhopa+Road,+Muzaffarnagar" target="_blank" rel="noopener noreferrer" class="venue-primary-btn" id="startGpsBtn">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Palasa+Hotel+%26+Resort,+Bhopa+Road,+Muzaffarnagar"
+              target="_blank" rel="noopener noreferrer" class="venue-primary-btn" id="startGpsBtn">
               <i class="fa-solid fa-location-arrow"></i>
               <span>START GPS NAVIGATION</span>
             </a>
-            <a href="https://maps.apple.com/?daddr=Palasa+Hotel+%26+Resort,+Bhopa+Road,+Muzaffarnagar" target="_blank" rel="noopener noreferrer" class="venue-secondary-btn" id="appleMapsBtn">
+            <a href="https://maps.apple.com/?daddr=Palasa+Hotel+%26+Resort,+Bhopa+Road,+Muzaffarnagar" target="_blank"
+              rel="noopener noreferrer" class="venue-secondary-btn" id="appleMapsBtn">
               <i class="fa-brands fa-apple"></i>
               <span>APPLE MAPS</span>
             </a>
-            <a href="https://www.palasahotel.com/" target="_blank" rel="noopener noreferrer" class="venue-secondary-btn" id="hotelWebBtn">
+            <a href="https://www.palasahotel.com/" target="_blank" rel="noopener noreferrer" class="venue-secondary-btn"
+              id="hotelWebBtn">
               <i class="fa-solid fa-hotel"></i>
               <span>RESORT WEBSITE</span>
             </a>
@@ -625,10 +655,10 @@
 
         <!-- RIGHT PANEL: Royal Jharokha Map Pavilion -->
         <div class="venue-map-pavilion">
-          
+
           <!-- Ornate Jharokha Pavilion Arch Frame -->
           <div class="jharokha-frame">
-            
+
             <div class="jharokha-arch-header">
               <div class="arch-lantern left-lantern"><i class="fa-solid fa-gem"></i></div>
               <div class="arch-ornament-center">
@@ -640,34 +670,11 @@
 
             <!-- Embedded Interactive Google Map -->
             <div class="jharokha-map-canvas">
-              <iframe 
-                id="venueGoogleIframe"
-                title="Palasa Hotel &amp; Resorts Location Map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3473.5048945333624!2d77.72555337592574!3d29.472464545443643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390c1be948f1964d%3A0xd6584e6d82ee16ee!2sPalasa%20Hotel%20%26%20Resort!5e0!3m2!1sen!2sca!4v1784603028729!5m2!1sen!2sca" 
-                width="100%" 
-                height="440" 
-                style="border:0;" 
-                allowfullscreen="" 
-                loading="lazy" 
+              <iframe id="venueGoogleIframe" title=" "
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3473.5048945333624!2d77.72555337592574!3d29.472464545443643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390c1be948f1964d%3A0xd6584e6d82ee16ee!2sPalasa%20Hotel%20%26%20Resort!5e0!3m2!1sen!2sca!4v1784603028729!5m2!1sen!2sca"
+                width="100%" height="440" style="border:0;" allowfullscreen="" loading="lazy"
                 referrerpolicy="strict-origin-when-cross-origin">
               </iframe>
-
-              <!-- Map Ambient Gold Light Vignette -->
-              <div class="map-vignette-overlay"></div>
-
-              <!-- Map Quick Floating Pin Card -->
-              <div class="map-floating-pin-card">
-                <div class="floating-pin-icon">
-                  <i class="fa-solid fa-champagne-glasses"></i>
-                </div>
-                <div class="floating-pin-info">
-                  <span class="floating-pin-title">Palasa Hotel &amp; Resorts</span>
-                  <span class="floating-pin-coords">29.4725&deg; N, 77.7256&deg; E</span>
-                </div>
-                <a href="https://share.google/FsrWqkFWa4dCP65mh" target="_blank" rel="noopener noreferrer" class="floating-pin-link" title="Open in Google Maps App">
-                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
-              </div>
             </div>
 
             <!-- Jharokha Lower Banner & Key Distance Pills -->
@@ -700,18 +707,19 @@
       </div>
     </section>
 
-      <!-- 6. CLOSING FOOTER -->
-      <footer class="site-footer">
-        <div class="footer-ornament">꧁ ✦ ꧂</div>
-        <h3 class="footer-couple">Udit &amp; Gunjan</h3>
-        <p class="footer-date">December 11, 2026 • Palasa Hotel &amp; Resorts, Muzaffarnagar</p>
-        <div class="footer-divider"></div>
-        <p class="footer-credit">With love &amp; gratitude to our family and friends</p>
-      </footer>
+    <!-- 6. CLOSING FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-ornament">꧁ ✦ ꧂</div>
+      <h3 class="footer-couple">Udit &amp; Gunjan</h3>
+      <p class="footer-date">December 11, 2026 • Palasa Hotel &amp; Resorts, Muzaffarnagar</p>
+      <div class="footer-divider"></div>
+      <p class="footer-credit">With love &amp; gratitude to our family and friends</p>
+    </footer>
 
   </main>
 
   <script src="https://www.youtube.com/iframe_api"></script>
   <script src="app.js?v=94.0"></script>
 </body>
+
 </html>
