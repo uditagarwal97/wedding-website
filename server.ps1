@@ -96,6 +96,10 @@ try {
         $response.ContentType = $contentType
         $response.AddHeader("Access-Control-Allow-Origin", "*")
         $response.AddHeader("Accept-Ranges", "bytes")
+        # Anti-Proxy & Anti-Snooping Headers (Prevents intermediate Wi-Fi/carrier proxies from caching/transcoding photos)
+        $response.AddHeader("Cache-Control", "private, no-transform")
+        $response.AddHeader("Surrogate-Control", "no-store")
+        $response.AddHeader("X-Content-Type-Options", "nosniff")
 
         $fileInfo = New-Object System.IO.FileInfo($localPath)
         $fileSize = $fileInfo.Length

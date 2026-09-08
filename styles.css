@@ -2282,23 +2282,46 @@ body {
   height: 100%;
   min-height: 100%;
   background: #0A0103;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
-.folio-photo {
+/* Option 3: CSS Background Photo Surface (No <img> tag, prevents right-click save and mobile long-press) */
+.folio-photo-surface {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
   display: block;
   transition: opacity 0.45s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  pointer-events: none;
 }
 
-.folio-photo-wrapper:hover .folio-photo {
+.folio-photo-wrapper:hover .folio-photo-surface {
   transform: scale(1.03);
+}
+
+/* Transparent Protective Click Shield */
+.folio-photo-shield {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: transparent;
+  pointer-events: auto;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .folio-photo-glow {
   position: absolute;
   inset: 0;
+  z-index: 3;
   box-shadow: inset 0 0 28px rgba(0, 0, 0, 0.45);
   pointer-events: none;
 }

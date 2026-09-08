@@ -390,7 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const folioCloseBtn = document.getElementById('folioCloseBtn');
   const folioPrevBtn = document.getElementById('folioPrevBtn');
   const folioNextBtn = document.getElementById('folioNextBtn');
-  const folioImg = document.getElementById('folioImg');
+  const folioPhotoSurface = document.getElementById('folioPhotoSurface') || document.getElementById('folioImg');
   const folioSrcWebp = document.getElementById('folioSrcWebp');
   const folioCounterBadge = document.getElementById('folioCounterBadge');
   const folioDotsContainer = document.getElementById('folioDotsContainer');
@@ -822,13 +822,20 @@ document.addEventListener('DOMContentLoaded', () => {
       const currentPhoto = data.photos[currentLandmarkPhotoIndex];
 
       if (folioSrcWebp) folioSrcWebp.srcset = currentPhoto.src;
-      if (folioImg) {
-        folioImg.style.opacity = '0';
-        folioImg.onload = () => { folioImg.style.opacity = '1'; };
-        folioImg.src = currentPhoto.src;
-        folioImg.alt = currentPhoto.alt;
-        folioImg.style.objectPosition = currentPhoto.objectPosition || 'center center';
-        setTimeout(() => { folioImg.style.opacity = '1'; }, 40);
+      if (folioPhotoSurface) {
+        folioPhotoSurface.style.opacity = '0';
+        const imgPreload = new Image();
+        imgPreload.onload = () => {
+          if (folioPhotoSurface.tagName === 'IMG') {
+            folioPhotoSurface.src = currentPhoto.src;
+          } else {
+            folioPhotoSurface.style.backgroundImage = `url('${currentPhoto.src}')`;
+          }
+          folioPhotoSurface.style.backgroundPosition = currentPhoto.objectPosition || 'center center';
+          folioPhotoSurface.setAttribute('aria-label', currentPhoto.alt || 'Royal Memory Photo');
+          setTimeout(() => { folioPhotoSurface.style.opacity = '1'; }, 40);
+        };
+        imgPreload.src = currentPhoto.src;
       }
 
       if (folioCounterBadge) {
@@ -852,14 +859,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
     } else {
-      if (folioSrcWebp) folioSrcWebp.srcset = data.webp || data.png;
-      if (folioImg) {
-        folioImg.style.opacity = '0';
-        folioImg.onload = () => { folioImg.style.opacity = '1'; };
-        folioImg.src = data.png || data.webp;
-        folioImg.alt = data.alt || 'Royal Palace Landmark';
-        folioImg.style.objectPosition = 'center center';
-        setTimeout(() => { folioImg.style.opacity = '1'; }, 40);
+      const src = data.png || data.webp;
+      if (folioSrcWebp && src) folioSrcWebp.srcset = src;
+      if (folioPhotoSurface && src) {
+        folioPhotoSurface.style.opacity = '0';
+        const imgPreload = new Image();
+        imgPreload.onload = () => {
+          if (folioPhotoSurface.tagName === 'IMG') {
+            folioPhotoSurface.src = src;
+          } else {
+            folioPhotoSurface.style.backgroundImage = `url('${src}')`;
+          }
+          folioPhotoSurface.style.backgroundPosition = 'center center';
+          folioPhotoSurface.setAttribute('aria-label', data.alt || 'Royal Palace Landmark');
+          setTimeout(() => { folioPhotoSurface.style.opacity = '1'; }, 40);
+        };
+        imgPreload.src = src;
       }
       if (folioCounterBadge) folioCounterBadge.style.display = 'none';
       if (folioDotsContainer) folioDotsContainer.style.display = 'none';

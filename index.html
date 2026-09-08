@@ -6,6 +6,10 @@
   <title>Wedding Invitation | Udit &amp; Gunjan</title>
   <meta name="description" content="Join us in celebrating the wedding of Udit Agarwal and Gunjan Garg. Save the date, view event schedules, and explore our beautiful journey.">
   
+  <!-- Anti-Proxy & Anti-Snooping Security Directives (Prevents intermediate Wi-Fi/carrier proxies from caching or transcoding media) -->
+  <meta http-equiv="Cache-Control" content="private, no-transform">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <!-- Google Fonts: Cinzel, Cinzel Decorative, Playfair Display, Montserrat & Cormorant Garamond -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +18,7 @@
   <!-- FontAwesome Icons for UI & Map pin icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <link rel="stylesheet" href="styles.css?v=81.0">
+  <link rel="stylesheet" href="styles.css?v=82.0">
 </head>
 <body>
 
@@ -456,7 +460,8 @@
               
               <!-- Royal Picture Frame with Close Button and Nav Controls -->
               <div class="folio-photo-wrapper">
-                <img id="folioImg" src="assets/ballroom_dance.jpg" alt="Udit &amp; Gunjan Dancing Under the Stars" class="folio-photo">
+                <div id="folioPhotoSurface" class="folio-photo-surface" role="img" aria-label="Udit &amp; Gunjan Dancing Under the Stars" style="background-image: url('assets/ballroom_dance.jpg'); background-position: center center;"></div>
+                <div class="folio-photo-shield" aria-hidden="true"></div>
                 <div class="folio-photo-glow"></div>
 
                 <!-- Floating Counter Badge for Multi-Photo Landmark -->
@@ -699,6 +704,6 @@
   </main>
 
   <script src="https://www.youtube.com/iframe_api"></script>
-  <script src="app.js?v=81.0"></script>
+  <script src="app.js?v=82.0"></script>
 </body>
 </html>
