@@ -86,10 +86,10 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       if (landingScreen) landingScreen.style.display = 'none';
 
-      const announcement = document.getElementById('announcement');
-      if (announcement) announcement.scrollIntoView({ behavior: 'smooth' });
+      // Ensure window is at top without conflicting native smooth scroll
+      window.scrollTo(0, 0);
 
-      // Automatically start vertical scroll when user enters main page
+      // Automatically start vertical scroll with 10ms animation speed
       setTimeout(() => {
         startAutoVerticalScroll();
       }, 10);
@@ -125,15 +125,13 @@ document.addEventListener('DOMContentLoaded', () => {
   if (landingPrompt) landingPrompt.addEventListener('keydown', handleKeyActivation);
 
   // =========================================================================
-  // AUTOMATIC SLOW VERTICAL SCROLL ON MAIN PAGE ENTRY
+  // AUTOMATIC VERTICAL SCROLL (10ms Animation Speed Interval)
   // =========================================================================
   let isAutoScrolling = false;
-  let autoScrollRafId = null;
-  let autoScrollLastTimestamp = null;
-  let autoScrollElapsed = 0;
+  let autoScrollTimer = null;
   let autoScrollFadeTimeout = null;
-  const AUTO_SCROLL_SPEED = 240; // ~240px/sec for fast, continuous animated scrolling
-  const AUTO_SCROLL_RAMP = 10; // 10ms instantaneous ramp
+  const AUTO_SCROLL_INTERVAL_MS = 10; // Exactly 10ms animation tick interval
+  const AUTO_SCROLL_STEP_PX = 2; // 2px per 10ms tick (~200px/s continuous animated scroll)
 
   const autoScrollPill = document.getElementById('autoScrollPill');
   const autoScrollToggleBtn = document.getElementById('autoScrollToggleBtn');
@@ -162,7 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
         autoScrollToggleBtn.textContent = 'Resume';
         autoScrollToggleBtn.setAttribute('aria-label', 'Resume Auto-Scroll');
       }
-      // After 4.5 seconds of pause, gently fade out the indicator if user is reading manually
       if (autoScrollFadeTimeout) clearTimeout(autoScrollFadeTimeout);
       autoScrollFadeTimeout = setTimeout(() => {
         if (!isAutoScrolling && autoScrollPill) {
@@ -175,49 +172,36 @@ document.addEventListener('DOMContentLoaded', () => {
   function startAutoVerticalScroll() {
     if (isAutoScrolling) return;
     isAutoScrolling = true;
-    autoScrollLastTimestamp = null;
-    autoScrollElapsed = 0;
     updateAutoScrollUI(true);
 
-    function step(timestamp) {
-      if (!isAutoScrolling) return;
-      if (!autoScrollLastTimestamp) {
-        autoScrollLastTimestamp = timestamp;
+    if (autoScrollTimer) clearInterval(autoScrollTimer);
+    autoScrollTimer = setInterval(() => {
+      if (!isAutoScrolling) {
+        clearInterval(autoScrollTimer);
+        autoScrollTimer = null;
+        return;
       }
-      const dt = Math.min((timestamp - autoScrollLastTimestamp) / 1000, 0.1);
-      autoScrollLastTimestamp = timestamp;
-      autoScrollElapsed += dt * 1000;
 
-      // Smooth ease-in over the first 1.5 seconds
-      const ramp = Math.min(autoScrollElapsed / AUTO_SCROLL_RAMP, 1);
-      const ease = ramp * (2 - ramp); // Ease-out quadratic
-      const stepDist = AUTO_SCROLL_SPEED * ease * dt;
-
-      window.scrollBy(0, stepDist);
+      window.scrollBy(0, AUTO_SCROLL_STEP_PX);
 
       // Stop when reaching near bottom of document
       const maxScroll = (document.documentElement.scrollHeight || document.body.scrollHeight) - window.innerHeight - 20;
       if (window.scrollY >= maxScroll) {
         stopAutoVerticalScroll();
-        return;
       }
-
-      autoScrollRafId = requestAnimationFrame(step);
-    }
-
-    autoScrollRafId = requestAnimationFrame(step);
+    }, AUTO_SCROLL_INTERVAL_MS);
   }
 
   function stopAutoVerticalScroll() {
     isAutoScrolling = false;
-    if (autoScrollRafId) {
-      cancelAnimationFrame(autoScrollRafId);
-      autoScrollRafId = null;
+    if (autoScrollTimer) {
+      clearInterval(autoScrollTimer);
+      autoScrollTimer = null;
     }
     updateAutoScrollUI(false);
   }
 
-  // Gracefully pause if user interacts manually
+  // Gracefully pause only when user performs explicit manual scroll actions
   function handleManualUserScroll() {
     if (isAutoScrolling) {
       stopAutoVerticalScroll();
@@ -225,12 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   window.addEventListener('wheel', handleManualUserScroll, { passive: true });
-  window.addEventListener('touchstart', handleManualUserScroll, { passive: true });
-  window.addEventListener('pointerdown', (e) => {
-    // Don't pause if tapping directly on the auto-scroll toggle button
-    if (autoScrollToggleBtn && autoScrollToggleBtn.contains(e.target)) return;
-    handleManualUserScroll();
-  }, { passive: true });
+  window.addEventListener('touchmove', handleManualUserScroll, { passive: true });
   window.addEventListener('keydown', (e) => {
     if (['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Space', 'Home', 'End'].includes(e.code)) {
       handleManualUserScroll();
