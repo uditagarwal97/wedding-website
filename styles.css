@@ -2465,7 +2465,7 @@ body {
    ========================================================================== */
 @media (max-width: 900px) {
   .mahal-theater-stage {
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
     gap: 0;
   }
