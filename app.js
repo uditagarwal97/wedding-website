@@ -125,25 +125,52 @@ document.addEventListener('DOMContentLoaded', () => {
   if (landingPrompt) landingPrompt.addEventListener('keydown', handleKeyActivation);
 
   // =========================================================================
-  // AUTOMATIC VERTICAL SCROLL (10ms Animation Speed Interval)
+  // AUTOMATIC VERTICAL SCROLL WITH SECTION-AWARE SLOWDOWN & SPEEDUP
+  // Slows down for 8 seconds as each section becomes visible, then speeds up
   // =========================================================================
   let isAutoScrolling = false;
   let autoScrollTimer = null;
   let autoScrollFadeTimeout = null;
   const AUTO_SCROLL_INTERVAL_MS = 10; // Exactly 10ms animation tick interval
-  const AUTO_SCROLL_STEP_PX = 3; // 3px per 10ms tick (~300px/s fast animated scroll)
+  const AUTO_SCROLL_SLOW_STEP = 0.35; // Slow reading speed (~35px/s) when viewing a section
+  const AUTO_SCROLL_FAST_STEP = 3.5;  // Fast travel speed (~350px/s) between sections
+  const SECTION_SLOWDOWN_MS = 8000;   // Exactly 8 seconds slowdown on each visible section
+
+  const TRACKED_SECTIONS = [
+    { id: 'announcement', name: 'Royal Invitation', icon: 'fa-crown' },
+    { id: 'saveTheDate', name: 'Celebrations', icon: 'fa-calendar-day' },
+    { id: 'glimpseOfUsSection', name: 'Royal Mahal', icon: 'fa-landmark-dome' },
+    { id: 'venue', name: 'Palace Venue', icon: 'fa-hotel' }
+  ];
+
+  let currentSpeed = AUTO_SCROLL_SLOW_STEP;
+  let subpixelAccumulator = 0;
+  let lastSlowedSectionId = null;
+  let sectionEnterTimestamp = 0;
+  let pauseTimestamp = 0;
 
   const autoScrollPill = document.getElementById('autoScrollPill');
   const autoScrollToggleBtn = document.getElementById('autoScrollToggleBtn');
   const autoScrollStatus = document.getElementById('autoScrollStatus');
 
+  function getActiveSection() {
+    // Check which section is in primary view (near upper-middle viewport)
+    const viewportMid = window.innerHeight * 0.45;
+    for (const sec of TRACKED_SECTIONS) {
+      const el = document.getElementById(sec.id);
+      if (!el) continue;
+      const rect = el.getBoundingClientRect();
+      if (rect.top <= viewportMid && rect.bottom >= window.innerHeight * 0.2) {
+        return sec;
+      }
+    }
+    return null;
+  }
+
   function updateAutoScrollUI(active) {
     if (!autoScrollPill) return;
     if (active) {
       autoScrollPill.classList.add('visible');
-      if (autoScrollStatus) {
-        autoScrollStatus.innerHTML = '<i class="fa-solid fa-angles-down scroll-bounce-icon"></i> Auto-Scrolling';
-      }
       if (autoScrollToggleBtn) {
         autoScrollToggleBtn.textContent = 'Pause';
         autoScrollToggleBtn.setAttribute('aria-label', 'Pause Auto-Scroll');
@@ -174,6 +201,15 @@ document.addEventListener('DOMContentLoaded', () => {
     isAutoScrolling = true;
     // Set scrollBehavior to 'auto' so continuous scrollBy doesn't stutter against CSS smooth scrolling
     document.documentElement.style.scrollBehavior = 'auto';
+
+    // If resumed after pause, offset sectionEnterTimestamp so remaining 8s window is preserved
+    if (pauseTimestamp > 0 && sectionEnterTimestamp > 0) {
+      sectionEnterTimestamp += (Date.now() - pauseTimestamp);
+      pauseTimestamp = 0;
+    } else if (!sectionEnterTimestamp) {
+      sectionEnterTimestamp = Date.now();
+    }
+
     updateAutoScrollUI(true);
 
     if (autoScrollTimer) clearInterval(autoScrollTimer);
@@ -184,7 +220,45 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      window.scrollBy(0, AUTO_SCROLL_STEP_PX);
+      const activeSec = getActiveSection();
+      const now = Date.now();
+
+      // If a new section has become visible, trigger 8-second slowdown
+      if (activeSec && activeSec.id !== lastSlowedSectionId) {
+        lastSlowedSectionId = activeSec.id;
+        sectionEnterTimestamp = now;
+      }
+
+      const elapsed = sectionEnterTimestamp > 0 ? (now - sectionEnterTimestamp) : SECTION_SLOWDOWN_MS;
+      let targetSpeed;
+
+      if (elapsed < SECTION_SLOWDOWN_MS) {
+        // Slow speed for the 8-second section reading window
+        targetSpeed = AUTO_SCROLL_SLOW_STEP;
+        const currentSecInfo = activeSec || TRACKED_SECTIONS.find(s => s.id === lastSlowedSectionId);
+        const secName = currentSecInfo ? currentSecInfo.name : 'Viewing Section';
+        const secIcon = currentSecInfo ? currentSecInfo.icon : 'fa-eye';
+        if (autoScrollStatus) {
+          autoScrollStatus.innerHTML = `<i class="fa-solid ${secIcon} scroll-bounce-icon"></i> ${secName}`;
+        }
+      } else {
+        // After 8 seconds: Speed up animation between sections
+        targetSpeed = AUTO_SCROLL_FAST_STEP;
+        if (autoScrollStatus) {
+          autoScrollStatus.innerHTML = '<i class="fa-solid fa-angles-down scroll-bounce-icon"></i> Auto-Scrolling';
+        }
+      }
+
+      // Smoothly interpolate current speed towards target speed (no jarring jumps)
+      currentSpeed += (targetSpeed - currentSpeed) * 0.08;
+
+      // Sub-pixel accumulator ensures precision across high-DPI mobile screens
+      subpixelAccumulator += currentSpeed;
+      if (subpixelAccumulator >= 1) {
+        const stepPx = Math.floor(subpixelAccumulator);
+        window.scrollBy(0, stepPx);
+        subpixelAccumulator -= stepPx;
+      }
 
       // Stop when reaching near bottom of document
       const maxScroll = (document.documentElement.scrollHeight || document.body.scrollHeight) - window.innerHeight - 20;
@@ -196,6 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function stopAutoVerticalScroll() {
     isAutoScrolling = false;
+    pauseTimestamp = Date.now();
     // Restore default CSS smooth scroll behavior
     document.documentElement.style.scrollBehavior = '';
     if (autoScrollTimer) {
@@ -208,6 +283,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Gracefully pause only when user performs explicit manual scroll actions
   function handleManualUserScroll() {
     if (isAutoScrolling) {
+      // User manually scrolled; reset tracked section so resuming provides fresh 8s view
+      lastSlowedSectionId = null;
+      sectionEnterTimestamp = 0;
       stopAutoVerticalScroll();
     }
   }
