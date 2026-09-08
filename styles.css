@@ -2403,15 +2403,7 @@ body {
 }
 
 .folio-photo-wrapper:hover .folio-photo-surface {
-  transform: scale(1.03);
-}
-
-.folio-photo-surface.contain-fit,
-.folio-photo-wrapper:hover .folio-photo-surface.contain-fit {
-  background-size: contain !important;
-  background-position: center center !important;
-  background-repeat: no-repeat !important;
-  transform: none !important;
+  transform: scale(1.02);
 }
 
 /* Transparent Protective Click Shield */

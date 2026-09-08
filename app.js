@@ -595,8 +595,8 @@ document.addEventListener('DOMContentLoaded', () => {
           src: "assets/ballroom_walk.jpg",
           alt: "A Royal Promenade Through the Ballroom",
           title: "A Royal Promenade",
-          objectPosition: "center center",
-          backgroundSize: "contain"
+          objectPosition: "center 36%",
+          backgroundSize: "auto 110%"
         },
         {
           src: "assets/ballroom_kiss.jpg",
@@ -1011,13 +1011,7 @@ document.addEventListener('DOMContentLoaded', () => {
             folioPhotoSurface.style.backgroundImage = `url('${currentPhoto.src}')`;
           }
           folioPhotoSurface.style.backgroundPosition = currentPhoto.objectPosition || 'center center';
-          if (currentPhoto.backgroundSize === 'contain') {
-            folioPhotoSurface.classList.add('contain-fit');
-            folioPhotoSurface.style.backgroundSize = 'contain';
-          } else {
-            folioPhotoSurface.classList.remove('contain-fit');
-            folioPhotoSurface.style.backgroundSize = currentPhoto.backgroundSize || 'cover';
-          }
+          folioPhotoSurface.style.backgroundSize = currentPhoto.backgroundSize || 'cover';
           folioPhotoSurface.setAttribute('aria-label', currentPhoto.alt || 'Royal Memory Photo');
           setTimeout(() => { folioPhotoSurface.style.opacity = '1'; }, 40);
         };
