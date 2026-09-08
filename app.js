@@ -132,8 +132,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let autoScrollLastTimestamp = null;
   let autoScrollElapsed = 0;
   let autoScrollFadeTimeout = null;
-  const AUTO_SCROLL_SPEED = 46; // pixels per second (~46px/s is a serene, slow reading scroll)
-  const AUTO_SCROLL_RAMP = 1500; // 1.5s gentle ease-in ramp
+  const AUTO_SCROLL_SPEED = 90; // pixels per second (~90px/s for faster, fluid scrolling)
+  const AUTO_SCROLL_RAMP = 900; // 0.9s gentle ease-in ramp
 
   const autoScrollPill = document.getElementById('autoScrollPill');
   const autoScrollToggleBtn = document.getElementById('autoScrollToggleBtn');
