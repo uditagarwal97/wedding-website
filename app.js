@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let autoScrollTimer = null;
   let autoScrollFadeTimeout = null;
   const AUTO_SCROLL_INTERVAL_MS = 10; // Exactly 10ms animation tick interval
-  const AUTO_SCROLL_STEP_PX = 5; // 5px per 10ms tick (~500px/s fast animated scroll)
+  const AUTO_SCROLL_STEP_PX = 3; // 3px per 10ms tick (~300px/s fast animated scroll)
 
   const autoScrollPill = document.getElementById('autoScrollPill');
   const autoScrollToggleBtn = document.getElementById('autoScrollToggleBtn');
@@ -172,6 +172,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function startAutoVerticalScroll() {
     if (isAutoScrolling) return;
     isAutoScrolling = true;
+    // Set scrollBehavior to 'auto' so continuous scrollBy doesn't stutter against CSS smooth scrolling
+    document.documentElement.style.scrollBehavior = 'auto';
     updateAutoScrollUI(true);
 
     if (autoScrollTimer) clearInterval(autoScrollTimer);
@@ -194,6 +196,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function stopAutoVerticalScroll() {
     isAutoScrolling = false;
+    // Restore default CSS smooth scroll behavior
+    document.documentElement.style.scrollBehavior = '';
     if (autoScrollTimer) {
       clearInterval(autoScrollTimer);
       autoScrollTimer = null;
@@ -299,32 +303,20 @@ document.addEventListener('DOMContentLoaded', () => {
         ytPlayer.setPlaybackRate(JASHN_SPEED);
         ytPlayer.setVolume(JASHN_VOLUME);
         ytPlayer.playVideo();
-        isPlayingAudio = true;
-        if (audioToggleBtn) {
-          audioToggleBtn.classList.add('playing');
-          audioToggleBtn.classList.remove('muted');
-        }
-        if (audioTooltip) audioTooltip.textContent = 'PAUSE MUSIC';
         return;
       } catch (err) {
-        console.log('YouTube play error:', err);
+        console.log('YouTube play error (likely mobile autoplay policy):', err);
       }
     }
 
     // Fallback if API is still loading
     setTimeout(() => {
-      if (ytPlayer && typeof ytPlayer.playVideo === 'function') {
+      if (!isPlayingAudio && ytPlayer && typeof ytPlayer.playVideo === 'function') {
         try {
           ytPlayer.seekTo(JASHN_START_SEC, true);
           ytPlayer.setPlaybackRate(JASHN_SPEED);
           ytPlayer.setVolume(JASHN_VOLUME);
           ytPlayer.playVideo();
-          isPlayingAudio = true;
-          if (audioToggleBtn) {
-            audioToggleBtn.classList.add('playing');
-            audioToggleBtn.classList.remove('muted');
-          }
-          if (audioTooltip) audioTooltip.textContent = 'PAUSE MUSIC';
         } catch (e) { }
       }
     }, 1000);

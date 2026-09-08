@@ -80,8 +80,10 @@ try {
         # Normalize relative path and map to root
         $relPath = $urlPath.TrimStart("/").Replace("/", [System.IO.Path]::DirectorySeparatorChar)
         $localPath = [System.IO.Path]::Combine($Root, $relPath)
+        $canonicalPath = [System.IO.Path]::GetFullPath($localPath)
+        $canonicalRoot = [System.IO.Path]::GetFullPath($Root)
 
-        if (-not (Test-Path -LiteralPath $localPath -PathType Leaf)) {
+        if (-not $canonicalPath.StartsWith($canonicalRoot, [System.StringComparison]::OrdinalIgnoreCase) -or -not (Test-Path -LiteralPath $canonicalPath -PathType Leaf)) {
             $response.StatusCode = 404
             $msg = [System.Text.Encoding]::UTF8.GetBytes("404 Not Found: $urlPath")
             $response.ContentType = "text/plain; charset=utf-8"
@@ -90,6 +92,7 @@ try {
             $response.OutputStream.Close()
             continue
         }
+        $localPath = $canonicalPath
 
         $ext = [System.IO.Path]::GetExtension($localPath).ToLower()
         $contentType = if ($mimeTypes.ContainsKey($ext)) { $mimeTypes[$ext] } else { "application/octet-stream" }

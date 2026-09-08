@@ -632,8 +632,8 @@ body {
    ========================================================================== */
 .audio-controller-wrapper {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  bottom: max(2rem, calc(env(safe-area-inset-bottom, 0px) + 1.2rem));
+  right: max(2rem, calc(env(safe-area-inset-right, 0px) + 1.2rem));
   z-index: 999;
 }
 
@@ -719,7 +719,7 @@ body {
    ========================================================================== */
 .auto-scroll-pill {
   position: fixed;
-  bottom: 2rem;
+  bottom: max(2rem, calc(env(safe-area-inset-bottom, 0px) + 1.2rem));
   left: 50%;
   transform: translateX(-50%) translateY(25px);
   z-index: 998;
@@ -788,10 +788,14 @@ body {
 }
 
 @media (max-width: 640px) {
+  .audio-controller-wrapper {
+    bottom: max(1.2rem, calc(env(safe-area-inset-bottom, 0px) + 0.8rem));
+    right: max(1rem, calc(env(safe-area-inset-right, 0px) + 0.6rem));
+  }
   .auto-scroll-pill {
-    bottom: 1.2rem;
-    padding: 0.35rem 0.8rem 0.35rem 0.95rem;
-    max-width: calc(100vw - 100px);
+    bottom: max(1.2rem, calc(env(safe-area-inset-bottom, 0px) + 0.8rem));
+    padding: 0.35rem 0.75rem 0.35rem 0.85rem;
+    max-width: calc(100vw - 85px);
   }
   .auto-scroll-status {
     font-size: 0.68rem;
@@ -808,8 +812,8 @@ body {
 .announcement-section {
   position: relative;
   width: 100%;
-  height: 100vh;
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -3558,7 +3562,7 @@ body {
 /* Royal Toast Notification */
 .royal-toast-notification {
   position: fixed;
-  bottom: -80px;
+  top: -80px;
   left: 50%;
   transform: translateX(-50%);
   background: linear-gradient(135deg, rgba(38, 8, 17, 0.98) 0%, rgba(16, 2, 7, 0.98) 100%);
@@ -3579,7 +3583,7 @@ body {
 }
 
 .royal-toast-notification.visible {
-  bottom: 35px;
+  top: max(1.5rem, calc(env(safe-area-inset-top, 0px) + 0.8rem));
   opacity: 1;
 }
 
