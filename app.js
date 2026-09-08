@@ -88,6 +88,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const announcement = document.getElementById('announcement');
       if (announcement) announcement.scrollIntoView({ behavior: 'smooth' });
+
+      // Automatically start slow vertical scroll when user enters main page
+      setTimeout(() => {
+        startAutoVerticalScroll();
+      }, 1400);
     }, 1500);
   }
 
@@ -118,6 +123,130 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   if (marigoldBtn) marigoldBtn.addEventListener('keydown', handleKeyActivation);
   if (landingPrompt) landingPrompt.addEventListener('keydown', handleKeyActivation);
+
+  // =========================================================================
+  // AUTOMATIC SLOW VERTICAL SCROLL ON MAIN PAGE ENTRY
+  // =========================================================================
+  let isAutoScrolling = false;
+  let autoScrollRafId = null;
+  let autoScrollLastTimestamp = null;
+  let autoScrollElapsed = 0;
+  let autoScrollFadeTimeout = null;
+  const AUTO_SCROLL_SPEED = 46; // pixels per second (~46px/s is a serene, slow reading scroll)
+  const AUTO_SCROLL_RAMP = 1500; // 1.5s gentle ease-in ramp
+
+  const autoScrollPill = document.getElementById('autoScrollPill');
+  const autoScrollToggleBtn = document.getElementById('autoScrollToggleBtn');
+  const autoScrollStatus = document.getElementById('autoScrollStatus');
+
+  function updateAutoScrollUI(active) {
+    if (!autoScrollPill) return;
+    if (active) {
+      autoScrollPill.classList.add('visible');
+      if (autoScrollStatus) {
+        autoScrollStatus.innerHTML = '<i class="fa-solid fa-angles-down scroll-bounce-icon"></i> Auto-Scrolling';
+      }
+      if (autoScrollToggleBtn) {
+        autoScrollToggleBtn.textContent = 'Pause';
+        autoScrollToggleBtn.setAttribute('aria-label', 'Pause Auto-Scroll');
+      }
+      if (autoScrollFadeTimeout) {
+        clearTimeout(autoScrollFadeTimeout);
+        autoScrollFadeTimeout = null;
+      }
+    } else {
+      if (autoScrollStatus) {
+        autoScrollStatus.innerHTML = '<i class="fa-solid fa-pause"></i> Auto-Scroll Paused';
+      }
+      if (autoScrollToggleBtn) {
+        autoScrollToggleBtn.textContent = 'Resume';
+        autoScrollToggleBtn.setAttribute('aria-label', 'Resume Auto-Scroll');
+      }
+      // After 4.5 seconds of pause, gently fade out the indicator if user is reading manually
+      if (autoScrollFadeTimeout) clearTimeout(autoScrollFadeTimeout);
+      autoScrollFadeTimeout = setTimeout(() => {
+        if (!isAutoScrolling && autoScrollPill) {
+          autoScrollPill.classList.remove('visible');
+        }
+      }, 4500);
+    }
+  }
+
+  function startAutoVerticalScroll() {
+    if (isAutoScrolling) return;
+    isAutoScrolling = true;
+    autoScrollLastTimestamp = null;
+    autoScrollElapsed = 0;
+    updateAutoScrollUI(true);
+
+    function step(timestamp) {
+      if (!isAutoScrolling) return;
+      if (!autoScrollLastTimestamp) {
+        autoScrollLastTimestamp = timestamp;
+      }
+      const dt = Math.min((timestamp - autoScrollLastTimestamp) / 1000, 0.1);
+      autoScrollLastTimestamp = timestamp;
+      autoScrollElapsed += dt * 1000;
+
+      // Smooth ease-in over the first 1.5 seconds
+      const ramp = Math.min(autoScrollElapsed / AUTO_SCROLL_RAMP, 1);
+      const ease = ramp * (2 - ramp); // Ease-out quadratic
+      const stepDist = AUTO_SCROLL_SPEED * ease * dt;
+
+      window.scrollBy(0, stepDist);
+
+      // Stop when reaching near bottom of document
+      const maxScroll = (document.documentElement.scrollHeight || document.body.scrollHeight) - window.innerHeight - 20;
+      if (window.scrollY >= maxScroll) {
+        stopAutoVerticalScroll();
+        return;
+      }
+
+      autoScrollRafId = requestAnimationFrame(step);
+    }
+
+    autoScrollRafId = requestAnimationFrame(step);
+  }
+
+  function stopAutoVerticalScroll() {
+    isAutoScrolling = false;
+    if (autoScrollRafId) {
+      cancelAnimationFrame(autoScrollRafId);
+      autoScrollRafId = null;
+    }
+    updateAutoScrollUI(false);
+  }
+
+  // Gracefully pause if user interacts manually
+  function handleManualUserScroll() {
+    if (isAutoScrolling) {
+      stopAutoVerticalScroll();
+    }
+  }
+
+  window.addEventListener('wheel', handleManualUserScroll, { passive: true });
+  window.addEventListener('touchstart', handleManualUserScroll, { passive: true });
+  window.addEventListener('pointerdown', (e) => {
+    // Don't pause if tapping directly on the auto-scroll toggle button
+    if (autoScrollToggleBtn && autoScrollToggleBtn.contains(e.target)) return;
+    handleManualUserScroll();
+  }, { passive: true });
+  window.addEventListener('keydown', (e) => {
+    if (['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Space', 'Home', 'End'].includes(e.code)) {
+      handleManualUserScroll();
+    }
+  }, { passive: true });
+
+  if (autoScrollToggleBtn) {
+    autoScrollToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (isAutoScrolling) {
+        stopAutoVerticalScroll();
+      } else {
+        startAutoVerticalScroll();
+      }
+    });
+  }
 
   // =========================================================================
   // 3. ROMANTIC BACKGROUND MUSIC (Jashn-E-Bahaaraa via YouTube IFrame API)

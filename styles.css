@@ -715,6 +715,94 @@ body {
 }
 
 /* ==========================================================================
+   FLOATING AUTO-SCROLL CONTROLLER
+   ========================================================================== */
+.auto-scroll-pill {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(25px);
+  z-index: 998;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(26, 2, 7, 0.88);
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.65), 0 0 16px rgba(212, 175, 55, 0.25);
+  border-radius: 30px;
+  padding: 0.45rem 1rem 0.45rem 1.15rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.auto-scroll-pill.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.auto-scroll-status {
+  font-family: 'Cinzel', serif;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--color-gold-bright);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  white-space: nowrap;
+}
+
+.scroll-bounce-icon {
+  animation: scrollBounceDown 1.6s infinite ease-in-out;
+  color: var(--color-gold-main);
+  font-size: 0.78rem;
+}
+
+@keyframes scrollBounceDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(3px); }
+}
+
+.auto-scroll-btn {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.3), rgba(163, 128, 37, 0.45));
+  border: 1px solid rgba(245, 215, 127, 0.55);
+  color: var(--color-gold-bright);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 0.25rem 0.7rem;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.auto-scroll-btn:hover {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.55), rgba(163, 128, 37, 0.7));
+  box-shadow: 0 0 12px rgba(245, 215, 127, 0.45);
+}
+
+@media (max-width: 640px) {
+  .auto-scroll-pill {
+    bottom: 1.2rem;
+    padding: 0.35rem 0.8rem 0.35rem 0.95rem;
+    max-width: calc(100vw - 100px);
+  }
+  .auto-scroll-status {
+    font-size: 0.68rem;
+  }
+  .auto-scroll-btn {
+    font-size: 0.64rem;
+    padding: 0.2rem 0.55rem;
+  }
+}
+
+/* ==========================================================================
    2. FORMAL ANNOUNCEMENT ROYAL PARCHMENT PAPER CARD
    ========================================================================== */
 .announcement-section {
