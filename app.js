@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let autoScrollTimer = null;
   let autoScrollFadeTimeout = null;
   const AUTO_SCROLL_INTERVAL_MS = 10; // Exactly 10ms animation tick interval
-  const AUTO_SCROLL_STEP_PX = 2; // 2px per 10ms tick (~200px/s continuous animated scroll)
+  const AUTO_SCROLL_STEP_PX = 5; // 5px per 10ms tick (~500px/s fast animated scroll)
 
   const autoScrollPill = document.getElementById('autoScrollPill');
   const autoScrollToggleBtn = document.getElementById('autoScrollToggleBtn');
