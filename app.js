@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Automatically start vertical scroll when user enters main page
       setTimeout(() => {
         startAutoVerticalScroll();
-      }, 200);
+      }, 10);
     }, 1500);
   }
 
@@ -132,8 +132,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let autoScrollLastTimestamp = null;
   let autoScrollElapsed = 0;
   let autoScrollFadeTimeout = null;
-  const AUTO_SCROLL_SPEED = 200; // 200 pixels/sec for brisk, lively auto-scrolling
-  const AUTO_SCROLL_RAMP = 200; // 200ms quick ease-in ramp
+  const AUTO_SCROLL_SPEED = 240; // ~240px/sec for fast, continuous animated scrolling
+  const AUTO_SCROLL_RAMP = 10; // 10ms instantaneous ramp
 
   const autoScrollPill = document.getElementById('autoScrollPill');
   const autoScrollToggleBtn = document.getElementById('autoScrollToggleBtn');
