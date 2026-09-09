@@ -663,11 +663,17 @@ document.addEventListener('DOMContentLoaded', () => {
       tag: "SHAHI JHEEL • PALACE WATERS",
       title: "Serenade by the Water",
       desc: "Watching the sun dip into tranquil palace waters from a golden royal boat, whispering promises across the gentle waves and lotus blooms.",
-      webp: "assets/jheel_deck_gown.jpg",
-      png: "assets/jheel_deck_gown.jpg",
+      webp: "assets/jheel_hand_kiss.jpg",
+      png: "assets/jheel_hand_kiss.jpg",
       alt: "Udit & Gunjan on the Palace Waters",
       zoomCoords: { x: 78, y: 78 },
       photos: [
+        {
+          src: "assets/jheel_hand_kiss.jpg",
+          alt: "Udit Kissing Gunjan's Hand on the Yacht Deck",
+          title: "A Promise on the Waters",
+          objectPosition: "center center"
+        },
         {
           src: "assets/jheel_deck_gown.jpg",
           alt: "Udit & Gunjan Hand-in-Hand with Flowing Gown",
